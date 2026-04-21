@@ -20,7 +20,7 @@
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.0" ;
+    owl:versionInfo "1.1" ;
     dct:issued "2026-04-21"^^xsd:date ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
@@ -87,6 +87,58 @@
     rdfs:subClassOf :RiskClassification ;
     rdfs:label "Trafficking recruitment risk"@en, "Riesgo de reclutamiento para trata"@es ;
     rdfs:comment "Risk that the offer is recruitment for trafficking in persons in the sense of the Palermo Protocol: for forced labour, sexual exploitation, forced criminality, forced marriage or organ removal."@en .
+
+#################################################################
+#    FraudScheme taxonomy (v1.1)
+#    Named schemes documented from Ramona AI field work and survivor testimony
+#    in Mexico and Latin America. Each scheme is a specific way a fraudulent
+#    job offer is operationalised against candidates in the region.
+#################################################################
+
+:FraudScheme a owl:Class ;
+    rdfs:label "Fraud scheme"@en, "Esquema de fraude"@es ;
+    rdfs:comment "A named operational pattern by which a fraudulent job offer harms the candidate. Independent of the RiskClassification axes: a single offer can exhibit one or more named schemes."@en .
+
+:IdentityTheftScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Identity theft scheme"@en, "Esquema de robo de identidad"@es ;
+    rdfs:comment "The offer's purpose is to harvest the candidate's personal data (CURP, INE, bank details) to commit downstream fraud against the candidate or third parties. Hiring is never actually intended."@en .
+
+:PyramidScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Pyramid / MLM scheme"@en, "Esquema piramidal / multinivel"@es ;
+    rdfs:comment "The candidate's actual income depends on recruiting further candidates, not on the advertised job. Covers classic pyramid schemes and multi-level-marketing operations disguised as employment."@en .
+
+:PayToWorkScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Pay-to-work scheme"@en, "Esquema de pago por trabajar"@es ;
+    rdfs:comment "The candidate is asked to pay the recruiter or a third party before being hired, under the guise of onboarding fees, training, interview fees, uniform costs, administrative processing, background check, or starter kit. Often the candidate is never contacted again."@en .
+
+:VisaFraudScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Migration / visa fraud scheme"@en, "Esquema de fraude migratorio"@es ;
+    rdfs:comment "The offer promises employment in a foreign country (commonly Canada, the United States or Western Europe for Latin American victims) and demands payment for visa, gestor or recruiter services. The intermediary disappears after collecting payment. Commonly marketed as domestic work, caregiving, nanny placement or hospitality abroad."@en .
+
+:InPersonLureScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "In-person lure scheme"@en, "Esquema de citación presencial"@es ;
+    rdfs:comment "The offer exists solely to bring the candidate to a physical location under the appearance of a hiring event or interview. The real purpose is kidnapping, assault, sexual violence or femicide. Characterised by plausible role, nameless company, multi-use building address, request to come alone and without identification. Documented archetypal case: Edith Guadalupe Valdez Saldívar, Benito Juárez CDMX, April 2026."@en .
+
+:DebtBondageTraffickingScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Debt bondage trafficking scheme"@en, "Esquema de trata con deuda"@es ;
+    rdfs:comment "The offer relocates the candidate to a destination where exploitation is performed, often across borders, and binds the victim through a manufactured debt: smuggling fees, transportation, housing, paperwork. Covers the Tapachula-to-United States labour-exploitation corridor, the Latin-America-to-Western-Europe sex-trafficking pattern (e.g. falsely advertised childcare jobs in Paris), and domestic-work trafficking with document retention."@en .
+
+# Link properties: an offer or a victim can exhibit one or more FraudSchemes.
+
+:exhibitsFraudScheme a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :FraudScheme ;
+    rdfs:label "exhibits fraud scheme"@en, "presenta esquema de fraude"@es .
+
+:victimOfFraudScheme a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :FraudScheme ;
+    rdfs:label "victim of fraud scheme"@en, "víctima de esquema de fraude"@es .
+
 
 :SurvivorTestimonyPattern a owl:Class ;
     rdfs:label "Survivor testimony pattern"@en, "Patrón de testimonio de sobreviviente"@es ;
