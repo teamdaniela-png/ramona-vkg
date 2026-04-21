@@ -7,6 +7,18 @@
 BEGIN;
 
 -- =========================================================================
+-- Operational-schema extensions (additive, non-breaking)
+-- =========================================================================
+
+-- Add pattern tag to evidence_sources so a source can be tagged with the
+-- named FraudScheme (or 'general') it documents. Used by seed v1.2 onward.
+ALTER TABLE ramona.evidence_sources
+    ADD COLUMN IF NOT EXISTS source_pattern TEXT;
+
+COMMENT ON COLUMN ramona.evidence_sources.source_pattern IS
+'Named FraudScheme tag from RATR-O (IdentityTheftScheme, PyramidScheme, etc.) or ''general'' when no single scheme applies.';
+
+-- =========================================================================
 -- Demographics and victim-centric tables
 -- =========================================================================
 
