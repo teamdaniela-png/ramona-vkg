@@ -20,7 +20,7 @@
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.1" ;
+    owl:versionInfo "1.2" ;
     dct:issued "2026-04-21"^^xsd:date ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
@@ -128,6 +128,63 @@
     rdfs:subClassOf :FraudScheme ;
     rdfs:label "Debt bondage trafficking scheme"@en, "Esquema de trata con deuda"@es ;
     rdfs:comment "The offer relocates the candidate to a destination where exploitation is performed, often across borders, and binds the victim through a manufactured debt: smuggling fees, transportation, housing, paperwork. Covers the Tapachula-to-United States labour-exploitation corridor, the Latin-America-to-Western-Europe sex-trafficking pattern (e.g. falsely advertised childcare jobs in Paris), and domestic-work trafficking with document retention."@en .
+
+:DomesticWorkerLockInScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Domestic worker lock-in scheme"@en, "Esquema de encierro en trabajo doméstico"@es ;
+    rdfs:comment "The candidate is hired as a live-in domestic worker, caregiver or nanny and then isolated inside the employer's household: documents withheld, phone confiscated or rationed, days-off refused, movement outside the home forbidden. Wages are withheld or paid to a family member. Common end-state of VisaFraudScheme placements abroad and of internal placements from rural to urban Mexico."@en .
+
+:OnlineCryptoJobScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Crypto / forex job scheme"@en, "Esquema de empleo cripto / forex"@es ;
+    rdfs:comment "Advertised as 'crypto trader', 'forex analyst', 'Web3 community manager' or 'blockchain assistant' with high salary, full remote and no experience required. Often used as cover for pay-to-work (candidate buys a 'training course' or deposits 'starting capital'), identity theft (KYC data collected for money-laundering accounts), or cross-border trafficking into Southeast Asian crypto-scam compounds."@en .
+
+:ModelingAgencyScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Modelling agency scheme"@en, "Esquema de agencia de modelaje"@es ;
+    rdfs:comment "A supposed modelling, acting, influencer or image agency recruits young women, occasionally men, with the promise of bookings abroad. The first 'casting' is used to produce compromising photographs and to extract personal data. Subsequent 'shoots' lead to sexual exploitation, pornographic production without consent or forced escort work. Documented end-state of recruitment on Facebook Marketplace and Instagram DMs in Mexico and Colombia."@en .
+
+:CallCenterScamScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Call-centre scam employment scheme"@en, "Esquema de empleo en call center estafador"@es ;
+    rdfs:comment "The candidate is hired as a legitimate customer-service, collections or sales agent in a call centre that is in fact a fraud operation (time-share extortion, fake investment, virtual kidnapping, romance scams). The worker realises they are defrauding clients and attempts to leave, at which point threats, wage withholding or confiscated documents prevent them from doing so. Documented in Mexico, Costa Rica and the Philippines."@en .
+
+:FakeMaquilaScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Fake maquila scheme"@en, "Esquema de maquila fantasma"@es ;
+    rdfs:comment "Offer of employment at an export-processing factory in the Mexican north border or in border free-trade zones. The maquila is either non-existent (workers arrive to find no facility), a cover for forced labour in a related industry (for example drug packaging, human-trafficking logistics), or a real facility operating under abusive conditions below the legal minimum. Candidates commonly relocate from southern Mexico and Central America."@en .
+
+:MLMHealthBeautyScheme a owl:Class ;
+    rdfs:subClassOf :PyramidScheme ;
+    rdfs:label "Health / beauty MLM scheme"@en, "Esquema multinivel de salud y belleza"@es ;
+    rdfs:comment "A multi-level marketing operation centred on nutritional supplements, cosmetics, slimming products or wellness programmes. Presented as an employment or business opportunity, in practice the participant earns only by recruiting further 'distributors' and by purchasing inventory that cannot be sold on the open market. Canonical examples in Latin America include product lines marketed through Facebook groups and WhatsApp chains."@en .
+
+:GigEconomyFakeDriverScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Gig-economy fake driver scheme"@en, "Esquema de conductor gig fraudulento"@es ;
+    rdfs:comment "The candidate is offered work as a ride-hailing or delivery driver for a platform (Uber, DiDi, Cabify, Beat, Rappi, DiDi Food). The recruiter provides a 'rented' vehicle on terms that include daily rent, insurance fees and maintenance charges. The arithmetic guarantees the driver ends each week in deficit, binding them through accumulating debt. The vehicle is often stolen or fraudulently registered and is used to extract labour under the threat of criminal complaint."@en .
+
+:ForcedCriminalityScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Forced criminality scheme"@en, "Esquema de reclutamiento para criminalidad forzada"@es ;
+    rdfs:comment "Offer advertised as 'private security', 'bodyguard', 'armed escort', 'watchman at a ranch' or 'warehouse security' with atypically high salary. The real purpose is enlistment into organised-crime armed structures, most notably as halcones, sicarios, or coca-processing labour. Archetypal Mexican case: the CJNG Rancho Izaguirre (Teuchitlán, Jalisco) recruiting scheme of 2024-2025."@en .
+
+:OnlineInfluencerSalesScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Influencer sales scheme"@en, "Esquema de ventas como influencer"@es ;
+    rdfs:comment "The candidate is offered a paid role as 'brand ambassador', 'community manager trainee' or 'social media sales associate'. The role requires the candidate to set up their own social accounts, purchase the product catalogue, and 'earn' from commission and from recruiting further ambassadors. In effect a pyramid or MLM structure presented as a creator-economy job. Commonly used by cosmetic, fashion and digital-education brands."@en .
+
+:ForeignLanguageTeacherScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Foreign-language teacher scheme"@en, "Esquema de maestro de idiomas en el extranjero"@es ;
+    rdfs:comment "The candidate is offered a teaching position abroad (typically Spanish in Asia or English in Latin America) with housing, visa and flight paid by the agency. On arrival the promised contract does not exist: the candidate is placed in a different role, forced to pay back 'travel expenses', has documents retained, or finds the school is a front for sex tourism or forced domestic work. Documented corridors include Mexico-China, Mexico-Korea, and Peru-Japan."@en .
+
+# Candidate and victim link to Scheme (extended range)
+
+:candidateDefraudedBy a owl:ObjectProperty ;
+    rdfs:domain :Candidate ; rdfs:range :FraudScheme ;
+    rdfs:label "candidate defrauded by scheme"@en .
+
 
 # Link properties: an offer or a victim can exhibit one or more FraudSchemes.
 
