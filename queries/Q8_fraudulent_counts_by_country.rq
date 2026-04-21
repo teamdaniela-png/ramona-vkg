@@ -1,0 +1,15 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q8. Confirmed-fraudulent offers by country, with average risk score.
+# Operational question: geographic distribution of confirmed cases.
+
+SELECT ?countryName (COUNT(?offer) AS ?nFraudulent) (AVG(?score) AS ?avgRisk) WHERE {
+  ?offer a :JobOffer ;
+         :hasRiskClassification ?rc ;
+         :inCountry ?country ;
+         :riskScore ?score .
+  ?rc :riskLevel "fraudulent" .
+  ?country :countryName ?countryName .
+}
+GROUP BY ?countryName
+ORDER BY DESC(?nFraudulent)

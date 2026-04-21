@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O)</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; color: #222; }
+  h1, h2 { color: #1F3A5F; }
+  h1 { border-bottom: 3px solid #1F3A5F; padding-bottom: .3em; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: .2em; margin-top: 2em; }
+  code { background: #f2f4f8; padding: 1px 5px; border-radius: 3px; font-size: 0.95em; }
+  .meta-box { background: #f8fafc; border-left: 4px solid #1F3A5F; padding: 1em; margin: 1em 0; }
+  .meta-box dt { font-weight: bold; margin-top: .5em; }
+  .term { background: #ffffff; border: 1px solid #e4e7eb; border-radius: 6px; padding: 1em 1.2em; margin: .8em 0; }
+  .term h3 { margin: 0 0 .4em 0; font-size: 1.1em; }
+  .term .lang { color: #666; font-size: .9em; margin: .2em 0; }
+  .term .comment { margin: .4em 0; }
+  table.meta { border-collapse: collapse; margin-top: .6em; }
+  table.meta th { text-align: left; font-weight: normal; color: #555; padding: 2px 10px 2px 0; vertical-align: top; }
+  ul.toc { columns: 3; -webkit-columns: 3; -moz-columns: 3; padding-left: 1em; font-size: .9em; }
+  ul.toc li { margin: 2px 0; }
+  a { color: #1F3A5F; }
+</style>
+</head>
+<body>
+<h1>Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O)</h1>
+<p><em>Ontología Ramona contra el Reclutamiento Fraudulento y la Trata (RATR-O)</em></p>
+
+<div class="meta-box">
+<dl>
+  <dt>Version</dt><dd>1.0</dd>
+  <dt>Issued</dt><dd>2026-04-21</dd>
+  <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
+  <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
+  <dt>Licence</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></dd>
+  <dt>Ontology IRI</dt><dd><code>https://ramona.ai/ont</code></dd>
+  <dt>Profile</dt><dd>OWL 2 QL (DL-Lite fragment)</dd>
+  <dt>See also</dt><dd><a href="https://bioportal.bioontology.org/ontologies/HUTRO">HUTRO on BioPortal</a></dd>
+</dl>
+</div>
+
+<h2>Abstract</h2>
+<p>A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona&#x27;s domain-specific taxonomy of online recruitment fraud in Mexico and Latin America.</p>
+
+<h2>Table of contents</h2>
+<h3>Classes (31)</h3>
+<ul class="toc"><li><a href="#AgeGroup"><code>:AgeGroup</code></a></li><li><a href="#Agent"><code>:Agent</code></a></li><li><a href="#Candidate"><code>:Candidate</code></a></li><li><a href="#CommunicationTool"><code>:CommunicationTool</code></a></li><li><a href="#Country"><code>:Country</code></a></li><li><a href="#DemographicProfile"><code>:DemographicProfile</code></a></li><li><a href="#DocumentationType"><code>:DocumentationType</code></a></li><li><a href="#Employer"><code>:Employer</code></a></li><li><a href="#EvidenceSource"><code>:EvidenceSource</code></a></li><li><a href="#ExploitationRisk"><code>:ExploitationRisk</code></a></li><li><a href="#FalseDocumentation"><code>:FalseDocumentation</code></a></li><li><a href="#FraudRisk"><code>:FraudRisk</code></a></li><li><a href="#Gender"><code>:Gender</code></a></li><li><a href="#JobOffer"><code>:JobOffer</code></a></li><li><a href="#Language"><code>:Language</code></a></li><li><a href="#OnlineRecruitmentChannel"><code>:OnlineRecruitmentChannel</code></a></li><li><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a></li><li><a href="#Platform"><code>:Platform</code></a></li><li><a href="#PressArticle"><code>:PressArticle</code></a></li><li><a href="#Recruiter"><code>:Recruiter</code></a></li><li><a href="#RecruitmentMethod"><code>:RecruitmentMethod</code></a></li><li><a href="#RedFlag"><code>:RedFlag</code></a></li><li><a href="#RiskClassification"><code>:RiskClassification</code></a></li><li><a href="#Submission"><code>:Submission</code></a></li><li><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></li><li><a href="#TraffickingRisk"><code>:TraffickingRisk</code></a></li><li><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></li><li><a href="#TransportationMeans"><code>:TransportationMeans</code></a></li><li><a href="#TypeOfExploitation"><code>:TypeOfExploitation</code></a></li><li><a href="#Victim"><code>:Victim</code></a></li><li><a href="#VulnerabilityFactor"><code>:VulnerabilityFactor</code></a></li></ul>
+<h3>Object properties (31)</h3>
+<ul class="toc"><li><a href="#associatedWithRoute"><code>:associatedWithRoute</code></a></li><li><a href="#contactedThrough"><code>:contactedThrough</code></a></li><li><a href="#derivedFrom"><code>:derivedFrom</code></a></li><li><a href="#destinationCountry"><code>:destinationCountry</code></a></li><li><a href="#evidenceFor"><code>:evidenceFor</code></a></li><li><a href="#hasAgeGroup"><code>:hasAgeGroup</code></a></li><li><a href="#hasDemographicProfile"><code>:hasDemographicProfile</code></a></li><li><a href="#hasGender"><code>:hasGender</code></a></li><li><a href="#hasNationality"><code>:hasNationality</code></a></li><li><a href="#hasRecruitmentMethod"><code>:hasRecruitmentMethod</code></a></li><li><a href="#hasRedFlag"><code>:hasRedFlag</code></a></li><li><a href="#hasRiskClassification"><code>:hasRiskClassification</code></a></li><li><a href="#hasVulnerabilityFactor"><code>:hasVulnerabilityFactor</code></a></li><li><a href="#inCountry"><code>:inCountry</code></a></li><li><a href="#inLanguage"><code>:inLanguage</code></a></li><li><a href="#leadsToExploitation"><code>:leadsToExploitation</code></a></li><li><a href="#matchesPattern"><code>:matchesPattern</code></a></li><li><a href="#offeredBy"><code>:offeredBy</code></a></li><li><a href="#offeredByEmployer"><code>:offeredByEmployer</code></a></li><li><a href="#offeredByRecruiter"><code>:offeredByRecruiter</code></a></li><li><a href="#originCountry"><code>:originCountry</code></a></li><li><a href="#platformCountry"><code>:platformCountry</code></a></li><li><a href="#postedVia"><code>:postedVia</code></a></li><li><a href="#recruitedVia"><code>:recruitedVia</code></a></li><li><a href="#recruiterCountry"><code>:recruiterCountry</code></a></li><li><a href="#submittedBy"><code>:submittedBy</code></a></li><li><a href="#submittedOffer"><code>:submittedOffer</code></a></li><li><a href="#transportedBy"><code>:transportedBy</code></a></li><li><a href="#travelledWith"><code>:travelledWith</code></a></li><li><a href="#victimOfExploitation"><code>:victimOfExploitation</code></a></li><li><a href="#victimOfOffer"><code>:victimOfOffer</code></a></li></ul>
+<h3>Datatype properties (46)</h3>
+<ul class="toc"><li><a href="#ageGroupName"><code>:ageGroupName</code></a></li><li><a href="#agentName"><code>:agentName</code></a></li><li><a href="#classifiedOn"><code>:classifiedOn</code></a></li><li><a href="#classifierVersion"><code>:classifierVersion</code></a></li><li><a href="#communicationToolName"><code>:communicationToolName</code></a></li><li><a href="#contactHash"><code>:contactHash</code></a></li><li><a href="#countryISOCode"><code>:countryISOCode</code></a></li><li><a href="#countryName"><code>:countryName</code></a></li><li><a href="#datasetName"><code>:datasetName</code></a></li><li><a href="#datasetRecordId"><code>:datasetRecordId</code></a></li><li><a href="#detectedBy"><code>:detectedBy</code></a></li><li><a href="#documentationTypeName"><code>:documentationTypeName</code></a></li><li><a href="#explanationText"><code>:explanationText</code></a></li><li><a href="#exploitationType"><code>:exploitationType</code></a></li><li><a href="#flagConfidence"><code>:flagConfidence</code></a></li><li><a href="#flagType"><code>:flagType</code></a></li><li><a href="#genderName"><code>:genderName</code></a></li><li><a href="#hasRawText"><code>:hasRawText</code></a></li><li><a href="#hasTitle"><code>:hasTitle</code></a></li><li><a href="#hasVerifiedIdentity"><code>:hasVerifiedIdentity</code></a></li><li><a href="#historicalFlagCount"><code>:historicalFlagCount</code></a></li><li><a href="#historicalOfferCount"><code>:historicalOfferCount</code></a></li><li><a href="#knownSince"><code>:knownSince</code></a></li><li><a href="#languageISOCode"><code>:languageISOCode</code></a></li><li><a href="#languageName"><code>:languageName</code></a></li><li><a href="#offeredLocation"><code>:offeredLocation</code></a></li><li><a href="#offeredRole"><code>:offeredRole</code></a></li><li><a href="#offeredSalaryMXN"><code>:offeredSalaryMXN</code></a></li><li><a href="#patternDescription"><code>:patternDescription</code></a></li><li><a href="#patternName"><code>:patternName</code></a></li><li><a href="#platformName"><code>:platformName</code></a></li><li><a href="#platformType"><code>:platformType</code></a></li><li><a href="#postedOn"><code>:postedOn</code></a></li><li><a href="#recruitmentMethodName"><code>:recruitmentMethodName</code></a></li><li><a href="#riskLevel"><code>:riskLevel</code></a></li><li><a href="#riskScore"><code>:riskScore</code></a></li><li><a href="#routeName"><code>:routeName</code></a></li><li><a href="#sourceAuthor"><code>:sourceAuthor</code></a></li><li><a href="#sourceDate"><code>:sourceDate</code></a></li><li><a href="#sourceOutlet"><code>:sourceOutlet</code></a></li><li><a href="#sourceTitle"><code>:sourceTitle</code></a></li><li><a href="#sourceUrl"><code>:sourceUrl</code></a></li><li><a href="#transportationMeansName"><code>:transportationMeansName</code></a></li><li><a href="#victimId"><code>:victimId</code></a></li><li><a href="#vulnerabilityFactorName"><code>:vulnerabilityFactorName</code></a></li><li><a href="#yearOfRegistration"><code>:yearOfRegistration</code></a></li></ul>
+
+<h2>Classes</h2>
+
+<div class="term" id="AgeGroup">
+<h3><code>:AgeGroup</code> &mdash; Age group</h3>
+<p class="lang">es: <em>Grupo etario</em></p>
+<p class="comment">A coarse age bucket aligned to CTDC: 0-8, 9-17, 18-20, 21-23, 24-26, 27-29, 30-38, 39-47, 48+.</p>
+</div>
+<div class="term" id="Agent">
+<h3><code>:Agent</code> &mdash; Agent</h3>
+<p class="lang">es: <em>Agente</em></p>
+<p class="comment">An actor who can post or be associated with a job offer.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:Employer</code>, <code>:Recruiter</code></td></tr>
+</table>
+</div>
+<div class="term" id="Candidate">
+<h3><code>:Candidate</code> &mdash; Candidate</h3>
+<p class="lang">es: <em>Candidato</em></p>
+<p class="comment">User who submitted an offer to Ramona for verification.</p>
+</div>
+<div class="term" id="CommunicationTool">
+<h3><code>:CommunicationTool</code> &mdash; Communication tool</h3>
+<p class="lang">es: <em>Herramienta de comunicación</em></p>
+<p class="comment">A tool used for communication between recruiters, smugglers, traffickers or victims. Distinct from Platform because it describes the tool itself, not the platform it runs on.</p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROsmuggler_and_trafficker_communication_tools">https://bioportal.bioontology.org/ontologies/HUTROsmuggler_and_trafficker_communication_tools</a></td></tr>
+</table>
+</div>
+<div class="term" id="Country">
+<h3><code>:Country</code> &mdash; Country</h3>
+<p class="lang">es: <em>País</em></p>
+</div>
+<div class="term" id="DemographicProfile">
+<h3><code>:DemographicProfile</code> &mdash; Demographic profile</h3>
+<p class="lang">es: <em>Perfil demográfico</em></p>
+<p class="comment">An anonymised demographic description of a victim or candidate, covering age group, gender, nationality and education.</p>
+</div>
+<div class="term" id="DocumentationType">
+<h3><code>:DocumentationType</code> &mdash; Documentation type</h3>
+<p class="lang">es: <em>Tipo de documentación</em></p>
+<p class="comment">An identity or travel document demanded or withheld during recruitment. Includes the case of falsified documents.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:FalseDocumentation</code></td></tr>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type">https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type</a></td></tr>
+</table>
+</div>
+<div class="term" id="Employer">
+<h3><code>:Employer</code> &mdash; Employer</h3>
+<p class="lang">es: <em>Empleador</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:Agent</code></td></tr>
+</table>
+</div>
+<div class="term" id="EvidenceSource">
+<h3><code>:EvidenceSource</code> &mdash; Evidence source</h3>
+<p class="lang">es: <em>Fuente de evidencia</em></p>
+<p class="comment">A public document or case file from which a pattern, route, offer or victim record was derived (e.g. press article, CTDC record, NGO report).</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:OpenDatasetRecord</code>, <code>:PressArticle</code></td></tr>
+</table>
+</div>
+<div class="term" id="ExploitationRisk">
+<h3><code>:ExploitationRisk</code> &mdash; Labour exploitation risk</h3>
+<p class="lang">es: <em>Riesgo de explotación laboral</em></p>
+<p class="comment">Risk that the offer leads to substandard working conditions, wage theft, excessive hours or other exploitation that does not rise to the legal definition of trafficking.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:RiskClassification</code></td></tr>
+</table>
+</div>
+<div class="term" id="FalseDocumentation">
+<h3><code>:FalseDocumentation</code> &mdash; False documentation</h3>
+<p class="lang">es: <em>Documentación falsa</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:DocumentationType</code></td></tr>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation">https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation</a></td></tr>
+</table>
+</div>
+<div class="term" id="FraudRisk">
+<h3><code>:FraudRisk</code> &mdash; Labour fraud risk</h3>
+<p class="lang">es: <em>Riesgo de fraude laboral</em></p>
+<p class="comment">Risk that the offer is a fraud designed to extract money, data or unpaid work from the candidate, without necessarily leading to trafficking or exploitation.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:RiskClassification</code></td></tr>
+</table>
+</div>
+<div class="term" id="Gender">
+<h3><code>:Gender</code> &mdash; Gender</h3>
+<p class="lang">es: <em>Género</em></p>
+</div>
+<div class="term" id="JobOffer">
+<h3><code>:JobOffer</code> &mdash; Job offer</h3>
+<p class="lang">es: <em>Oferta laboral</em></p>
+<p class="comment">A posting advertising employment, submitted to Ramona or harvested from public channels.</p>
+</div>
+<div class="term" id="Language">
+<h3><code>:Language</code> &mdash; Language</h3>
+<p class="lang">es: <em>Idioma</em></p>
+</div>
+<div class="term" id="OnlineRecruitmentChannel">
+<h3><code>:OnlineRecruitmentChannel</code> &mdash; Online recruitment channel</h3>
+<p class="lang">es: <em>Canal de reclutamiento en línea</em></p>
+<p class="comment">A digital communication channel used by recruiters to contact candidates. Controlled vocabulary covers Messenger, WhatsApp, Telegram, Marketplace, TikTok, SMS, classifieds and other.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:Platform</code></td></tr>
+</table>
+</div>
+<div class="term" id="OpenDatasetRecord">
+<h3><code>:OpenDatasetRecord</code> &mdash; Open dataset record</h3>
+<p class="lang">es: <em>Registro de dataset abierto</em></p>
+<p class="comment">A single anonymised case record drawn from an open anti-trafficking dataset such as CTDC or UNODC.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:EvidenceSource</code></td></tr>
+</table>
+</div>
+<div class="term" id="Platform">
+<h3><code>:Platform</code> &mdash; Platform</h3>
+<p class="lang">es: <em>Plataforma</em></p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:OnlineRecruitmentChannel</code></td></tr>
+</table>
+</div>
+<div class="term" id="PressArticle">
+<h3><code>:PressArticle</code> &mdash; Press article</h3>
+<p class="lang">es: <em>Artículo de prensa</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:EvidenceSource</code></td></tr>
+</table>
+</div>
+<div class="term" id="Recruiter">
+<h3><code>:Recruiter</code> &mdash; Recruiter</h3>
+<p class="lang">es: <em>Reclutador</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:Agent</code></td></tr>
+</table>
+</div>
+<div class="term" id="RecruitmentMethod">
+<h3><code>:RecruitmentMethod</code> &mdash; Recruitment method</h3>
+<p class="lang">es: <em>Método de reclutamiento</em></p>
+<p class="comment">The mechanism by which a potential victim is initially approached and enlisted into a trafficking or fraudulent-employment scheme.</p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROrecruitment_method">https://bioportal.bioontology.org/ontologies/HUTROrecruitment_method</a></td></tr>
+</table>
+</div>
+<div class="term" id="RedFlag">
+<h3><code>:RedFlag</code> &mdash; Red flag</h3>
+<p class="lang">es: <em>Bandera roja</em></p>
+<p class="comment">A detected indicator of potential fraud or trafficking recruitment risk. Seven canonical flags are defined by Ramona AI.</p>
+</div>
+<div class="term" id="RiskClassification">
+<h3><code>:RiskClassification</code> &mdash; Risk classification</h3>
+<p class="lang">es: <em>Clasificación de riesgo</em></p>
+<p class="comment">An assessment of an offer along Ramona&#x27;s risk axes. See :fraudAxis, :exploitationAxis and :traffickingAxis for the three independent dimensions covered.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:ExploitationRisk</code>, <code>:FraudRisk</code>, <code>:TraffickingRisk</code></td></tr>
+</table>
+</div>
+<div class="term" id="Submission">
+<h3><code>:Submission</code> &mdash; Submission</h3>
+<p class="lang">es: <em>Solicitud</em></p>
+<p class="comment">An act by a Candidate of submitting an offer for Ramona verification.</p>
+</div>
+<div class="term" id="SurvivorTestimonyPattern">
+<h3><code>:SurvivorTestimonyPattern</code> &mdash; Survivor testimony pattern</h3>
+<p class="lang">es: <em>Patrón de testimonio de sobreviviente</em></p>
+<p class="comment">A recurring linguistic or logistical pattern extracted from survivor interviews or documented cases.</p>
+</div>
+<div class="term" id="TraffickingRisk">
+<h3><code>:TraffickingRisk</code> &mdash; Trafficking recruitment risk</h3>
+<p class="lang">es: <em>Riesgo de reclutamiento para trata</em></p>
+<p class="comment">Risk that the offer is recruitment for trafficking in persons in the sense of the Palermo Protocol: for forced labour, sexual exploitation, forced criminality, forced marriage or organ removal.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:RiskClassification</code></td></tr>
+</table>
+</div>
+<div class="term" id="TraffickingRoute">
+<h3><code>:TraffickingRoute</code> &mdash; Trafficking route</h3>
+<p class="lang">es: <em>Ruta de trata</em></p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places">https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places</a></td></tr>
+</table>
+</div>
+<div class="term" id="TransportationMeans">
+<h3><code>:TransportationMeans</code> &mdash; Transportation means</h3>
+<p class="lang">es: <em>Medio de transporte</em></p>
+<p class="comment">The means of transport used at a stage of the trafficking route.</p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROtransportation_means">https://bioportal.bioontology.org/ontologies/HUTROtransportation_means</a></td></tr>
+</table>
+</div>
+<div class="term" id="TypeOfExploitation">
+<h3><code>:TypeOfExploitation</code> &mdash; Type of exploitation</h3>
+<p class="lang">es: <em>Tipo de explotación</em></p>
+<p class="comment">The exploitation outcome associated with a trafficking case. Controlled vocabulary covers labour, sexual, forced criminality, forced marriage, organ removal, mixed.</p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation">https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation</a></td></tr>
+</table>
+</div>
+<div class="term" id="Victim">
+<h3><code>:Victim</code> &mdash; Victim</h3>
+<p class="lang">es: <em>Víctima</em></p>
+<p class="comment">A person documented as having been exploited or attempted-to-be-exploited in a trafficking or fraudulent-employment scheme. Sourced from anonymised CTDC records and publicly reported press cases.</p>
+</div>
+<div class="term" id="VulnerabilityFactor">
+<h3><code>:VulnerabilityFactor</code> &mdash; Vulnerability factor</h3>
+<p class="lang">es: <em>Factor de vulnerabilidad</em></p>
+<p class="comment">A socioeconomic, demographic or situational factor that increases the probability of a candidate accepting a high-risk offer.</p>
+<table class='meta'>
+<tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor">https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor</a></td></tr>
+</table>
+</div>
+<h2>Object properties</h2>
+<div class="term" id="associatedWithRoute">
+<h3><code>:associatedWithRoute</code> &mdash; associated with route</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:TraffickingRoute</code></td></tr>
+</table>
+</div>
+<div class="term" id="contactedThrough">
+<h3><code>:contactedThrough</code> &mdash; contacted through</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:CommunicationTool</code></td></tr>
+</table>
+</div>
+<div class="term" id="derivedFrom">
+<h3><code>:derivedFrom</code> &mdash; derived from</h3>
+<table class='meta'>
+<tr><th>Range</th><td><code>:EvidenceSource</code></td></tr>
+</table>
+</div>
+<div class="term" id="destinationCountry">
+<h3><code>:destinationCountry</code> &mdash; destination country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="evidenceFor">
+<h3><code>:evidenceFor</code> &mdash; evidence for</h3>
+<p class="comment">Links an evidence source to the pattern, route, offer or victim it documents.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasAgeGroup">
+<h3><code>:hasAgeGroup</code> &mdash; has age group</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:DemographicProfile</code></td></tr>
+<tr><th>Range</th><td><code>:AgeGroup</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasDemographicProfile">
+<h3><code>:hasDemographicProfile</code> &mdash; has demographic profile</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:DemographicProfile</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasGender">
+<h3><code>:hasGender</code> &mdash; has gender</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:DemographicProfile</code></td></tr>
+<tr><th>Range</th><td><code>:Gender</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasNationality">
+<h3><code>:hasNationality</code> &mdash; has nationality</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:DemographicProfile</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasRecruitmentMethod">
+<h3><code>:hasRecruitmentMethod</code> &mdash; has recruitment method</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:RecruitmentMethod</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasRedFlag">
+<h3><code>:hasRedFlag</code> &mdash; has red flag</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:RedFlag</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasRiskClassification">
+<h3><code>:hasRiskClassification</code> &mdash; has risk classification</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:RiskClassification</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasVulnerabilityFactor">
+<h3><code>:hasVulnerabilityFactor</code> &mdash; has vulnerability factor</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:DemographicProfile</code></td></tr>
+<tr><th>Range</th><td><code>:VulnerabilityFactor</code></td></tr>
+</table>
+</div>
+<div class="term" id="inCountry">
+<h3><code>:inCountry</code> &mdash; in country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="inLanguage">
+<h3><code>:inLanguage</code> &mdash; in language</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Language</code></td></tr>
+</table>
+</div>
+<div class="term" id="leadsToExploitation">
+<h3><code>:leadsToExploitation</code> &mdash; leads to exploitation</h3>
+<p class="comment">Only asserted when the offer has been confirmed to have produced an exploitation outcome (from press case or dataset confirmation).</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:TypeOfExploitation</code></td></tr>
+</table>
+</div>
+<div class="term" id="matchesPattern">
+<h3><code>:matchesPattern</code> &mdash; matches pattern</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredBy">
+<h3><code>:offeredBy</code> &mdash; offered by</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Agent</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredByEmployer">
+<h3><code>:offeredByEmployer</code> &mdash; offered by employer</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Employer</code></td></tr>
+<tr><th>Subproperty of</th><td><code>:offeredBy</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredByRecruiter">
+<h3><code>:offeredByRecruiter</code> &mdash; offered by recruiter</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Recruiter</code></td></tr>
+<tr><th>Subproperty of</th><td><code>:offeredBy</code></td></tr>
+</table>
+</div>
+<div class="term" id="originCountry">
+<h3><code>:originCountry</code> &mdash; origin country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="platformCountry">
+<h3><code>:platformCountry</code> &mdash; platform country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Platform</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="postedVia">
+<h3><code>:postedVia</code> &mdash; posted via</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:Platform</code></td></tr>
+</table>
+</div>
+<div class="term" id="recruitedVia">
+<h3><code>:recruitedVia</code> &mdash; recruited via</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:RecruitmentMethod</code></td></tr>
+</table>
+</div>
+<div class="term" id="recruiterCountry">
+<h3><code>:recruiterCountry</code> &mdash; recruiter country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Recruiter</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="submittedBy">
+<h3><code>:submittedBy</code> &mdash; submitted by</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Submission</code></td></tr>
+<tr><th>Range</th><td><code>:Candidate</code></td></tr>
+</table>
+</div>
+<div class="term" id="submittedOffer">
+<h3><code>:submittedOffer</code> &mdash; submitted offer</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Submission</code></td></tr>
+<tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
+<div class="term" id="transportedBy">
+<h3><code>:transportedBy</code> &mdash; transported by</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:TransportationMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="travelledWith">
+<h3><code>:travelledWith</code> &mdash; travelled with documentation</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:DocumentationType</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimOfExploitation">
+<h3><code>:victimOfExploitation</code> &mdash; victim of exploitation type</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:TypeOfExploitation</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimOfOffer">
+<h3><code>:victimOfOffer</code> &mdash; victim of offer</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
+<h2>Datatype properties</h2>
+<div class="term" id="ageGroupName">
+<h3><code>:ageGroupName</code> &mdash; :ageGroupName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:AgeGroup</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="agentName">
+<h3><code>:agentName</code> &mdash; :agentName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Agent</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="classifiedOn">
+<h3><code>:classifiedOn</code> &mdash; :classifiedOn</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="classifierVersion">
+<h3><code>:classifierVersion</code> &mdash; :classifierVersion</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="communicationToolName">
+<h3><code>:communicationToolName</code> &mdash; :communicationToolName</h3>
+<p class="comment">Controlled vocabulary: whatsapp, messenger, telegram, sms, voice_call, in_person, email, other.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:CommunicationTool</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="contactHash">
+<h3><code>:contactHash</code> &mdash; :contactHash</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Recruiter</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="countryISOCode">
+<h3><code>:countryISOCode</code> &mdash; :countryISOCode</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Country</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="countryName">
+<h3><code>:countryName</code> &mdash; :countryName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Country</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="datasetName">
+<h3><code>:datasetName</code> &mdash; :datasetName</h3>
+<p class="comment">Name of the open dataset (e.g. CTDC, UNODC-GLOTIP, RNPDNO).</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:OpenDatasetRecord</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="datasetRecordId">
+<h3><code>:datasetRecordId</code> &mdash; :datasetRecordId</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:OpenDatasetRecord</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="detectedBy">
+<h3><code>:detectedBy</code> &mdash; :detectedBy</h3>
+<p class="comment">Controlled vocabulary: rule, nlp, human.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="documentationTypeName">
+<h3><code>:documentationTypeName</code> &mdash; :documentationTypeName</h3>
+<p class="comment">Controlled vocabulary: national_id, passport, visa, work_permit, none, confiscated, false.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:DocumentationType</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="explanationText">
+<h3><code>:explanationText</code> &mdash; :explanationText</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="exploitationType">
+<h3><code>:exploitationType</code> &mdash; :exploitationType</h3>
+<p class="comment">Controlled vocabulary: labour, sexual, forced_criminality, forced_marriage, organ_removal, mixed, unknown.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TypeOfExploitation</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="flagConfidence">
+<h3><code>:flagConfidence</code> &mdash; :flagConfidence</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
+<tr><th>Range</th><td><code>decimal</code></td></tr>
+</table>
+</div>
+<div class="term" id="flagType">
+<h3><code>:flagType</code> &mdash; :flagType</h3>
+<p class="comment">Controlled vocabulary of 7 red flags defined by Ramona AI: sueldo_alto, horarios_flexibles, sin_experiencia, pago_adelantado, aceptacion_urgente, entrevista_lejana_traslado, empleo_fuera_estado.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="genderName">
+<h3><code>:genderName</code> &mdash; :genderName</h3>
+<p class="comment">Controlled vocabulary: female, male, non_binary, unknown.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Gender</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasRawText">
+<h3><code>:hasRawText</code> &mdash; :hasRawText</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasTitle">
+<h3><code>:hasTitle</code> &mdash; :hasTitle</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="hasVerifiedIdentity">
+<h3><code>:hasVerifiedIdentity</code> &mdash; :hasVerifiedIdentity</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Employer</code></td></tr>
+<tr><th>Range</th><td><code>boolean</code></td></tr>
+</table>
+</div>
+<div class="term" id="historicalFlagCount">
+<h3><code>:historicalFlagCount</code> &mdash; :historicalFlagCount</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Agent</code></td></tr>
+<tr><th>Range</th><td><code>integer</code></td></tr>
+</table>
+</div>
+<div class="term" id="historicalOfferCount">
+<h3><code>:historicalOfferCount</code> &mdash; :historicalOfferCount</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Agent</code></td></tr>
+<tr><th>Range</th><td><code>integer</code></td></tr>
+</table>
+</div>
+<div class="term" id="knownSince">
+<h3><code>:knownSince</code> &mdash; :knownSince</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="languageISOCode">
+<h3><code>:languageISOCode</code> &mdash; :languageISOCode</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Language</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="languageName">
+<h3><code>:languageName</code> &mdash; :languageName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Language</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredLocation">
+<h3><code>:offeredLocation</code> &mdash; :offeredLocation</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredRole">
+<h3><code>:offeredRole</code> &mdash; :offeredRole</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="offeredSalaryMXN">
+<h3><code>:offeredSalaryMXN</code> &mdash; :offeredSalaryMXN</h3>
+<p class="comment">Weekly salary in MXN as advertised in the offer.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>decimal</code></td></tr>
+</table>
+</div>
+<div class="term" id="patternDescription">
+<h3><code>:patternDescription</code> &mdash; :patternDescription</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="patternName">
+<h3><code>:patternName</code> &mdash; :patternName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="platformName">
+<h3><code>:platformName</code> &mdash; :platformName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Platform</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="platformType">
+<h3><code>:platformType</code> &mdash; :platformType</h3>
+<p class="comment">Controlled vocabulary: whatsapp, telegram, messenger, sms, facebook, tiktok, marketplace, classifieds, tiktok, other.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Platform</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="postedOn">
+<h3><code>:postedOn</code> &mdash; :postedOn</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="recruitmentMethodName">
+<h3><code>:recruitmentMethodName</code> &mdash; :recruitmentMethodName</h3>
+<p class="comment">Controlled vocabulary: personal_network, false_job_offer, social_media_contact, abduction, sale_by_family, debt_bondage, other.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RecruitmentMethod</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="riskLevel">
+<h3><code>:riskLevel</code> &mdash; :riskLevel</h3>
+<p class="comment">Controlled vocabulary: safe, suspicious, high-risk, fraudulent.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="riskScore">
+<h3><code>:riskScore</code> &mdash; :riskScore</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>decimal</code></td></tr>
+</table>
+</div>
+<div class="term" id="routeName">
+<h3><code>:routeName</code> &mdash; :routeName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceAuthor">
+<h3><code>:sourceAuthor</code> &mdash; :sourceAuthor</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceDate">
+<h3><code>:sourceDate</code> &mdash; :sourceDate</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceOutlet">
+<h3><code>:sourceOutlet</code> &mdash; :sourceOutlet</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceTitle">
+<h3><code>:sourceTitle</code> &mdash; :sourceTitle</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceUrl">
+<h3><code>:sourceUrl</code> &mdash; :sourceUrl</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>anyURI</code></td></tr>
+</table>
+</div>
+<div class="term" id="transportationMeansName">
+<h3><code>:transportationMeansName</code> &mdash; :transportationMeansName</h3>
+<p class="comment">Controlled vocabulary: bus, car, foot, boat, air, train, truck, mixed, unknown.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TransportationMeans</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimId">
+<h3><code>:victimId</code> &mdash; :victimId</h3>
+<p class="comment">Anonymised case identifier. For CTDC records, the CTDC victim id. For press cases, an outlet-specific hash.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="vulnerabilityFactorName">
+<h3><code>:vulnerabilityFactorName</code> &mdash; :vulnerabilityFactorName</h3>
+<p class="comment">Controlled vocabulary: economic, migrant_status, minor, prior_abuse, low_education, single_parent, displaced, indigenous, other.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:VulnerabilityFactor</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="yearOfRegistration">
+<h3><code>:yearOfRegistration</code> &mdash; :yearOfRegistration</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>gYear</code></td></tr>
+</table>
+</div>
+
+<h2>Alignment with HUTRO</h2>
+<p>Eight classes in RATR-O declare a <code>skos:closeMatch</code> to the corresponding concept in
+the Human Trafficking Ontology (HUTRO, Tesfahans, BioPortal, 2025). These are:
+<code>:RecruitmentMethod</code>, <code>:TypeOfExploitation</code>, <code>:VulnerabilityFactor</code>,
+<code>:TransportationMeans</code>, <code>:CommunicationTool</code>, <code>:DocumentationType</code>,
+<code>:FalseDocumentation</code>, and <code>:TraffickingRoute</code>.
+Classes specific to recruitment fraud, online channels, survivor-testimony patterns and Ramona's
+operational pipeline (for example <code>:RedFlag</code>, <code>:SurvivorTestimonyPattern</code>,
+<code>:OnlineRecruitmentChannel</code>, <code>:JobOffer</code>) are introduced by RATR-O and
+have no direct counterpart in HUTRO.</p>
+
+<h2>References</h2>
+<ul>
+<li>Calvanese, D., De Giacomo, G., Lembo, D., Lenzerini, M. and Rosati, R. (2007). Tractable Reasoning and Efficient Query Answering in Description Logics: The DL-Lite Family. <em>Journal of Automated Reasoning</em>, 39(3), 385–429.</li>
+<li>Calvanese, D., Cogrel, B., Komla-Ebri, S., Kontchakov, R., Lanti, D., Rezk, M., Rodriguez-Muro, M. and Xiao, G. (2017). Ontop: Answering SPARQL Queries over Relational Databases. <em>Semantic Web Journal</em>, 8(3), 471–487.</li>
+<li>Ortiz, M. and Šimkus, M. (2012). Reasoning and Query Answering in Description Logics. <em>Reasoning Web</em>, LNCS 7487, Springer, pp. 1–53.</li>
+<li>Xiao, G., Ding, L., Cogrel, B. and Calvanese, D. (2019). Virtual Knowledge Graphs: An Overview of Systems and Use Cases. <em>Data Intelligence</em>, 1(3), 201–223.</li>
+<li>UNESCO (2021). Recommendation on the Ethics of Artificial Intelligence. Document code pf0000380455.</li>
+</ul>
+
+<footer style="margin-top:3em;color:#888;font-size:.85em;border-top:1px solid #eee;padding-top:1em;">
+Prepared by Daniela Camberos, Ramona AI, for the Dialogue Residency at TU Wien, Institute of Logic and Computation (May to July 2026).
+Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+</footer>
+</body>
+</html>

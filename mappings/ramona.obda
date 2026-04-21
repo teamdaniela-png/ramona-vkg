@@ -1,0 +1,243 @@
+[PrefixDeclaration]
+:       https://ramona.ai/ont#
+ont:    https://ramona.ai/ont#
+rdf:    http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdfs:   http://www.w3.org/2000/01/rdf-schema#
+xsd:    http://www.w3.org/2001/XMLSchema#
+owl:    http://www.w3.org/2002/07/owl#
+
+[MappingDeclaration] @collection [[
+
+mappingId   M-Country
+target      <https://ramona.ai/country/{country_code}> a :Country ; :countryName {country_name}^^xsd:string ; :countryISOCode {country_code}^^xsd:string .
+source      SELECT country_code, country_name FROM ramona.countries
+
+mappingId   M-Language
+target      <https://ramona.ai/language/{language_code}> a :Language ; :languageName {language_name}^^xsd:string ; :languageISOCode {language_code}^^xsd:string .
+source      SELECT language_code, language_name FROM ramona.languages
+
+mappingId   M-Platform
+target      <https://ramona.ai/platform/{platform_id}> a :Platform ; :platformName {platform_name}^^xsd:string ; :platformType {platform_type}^^xsd:string .
+source      SELECT platform_id, platform_name, platform_type FROM ramona.platforms
+
+mappingId   M-Platform-Country
+target      <https://ramona.ai/platform/{platform_id}> :platformCountry <https://ramona.ai/country/{platform_country}> .
+source      SELECT platform_id, platform_country FROM ramona.platforms WHERE platform_country IS NOT NULL
+
+mappingId   M-EvidenceSource
+target      <https://ramona.ai/evidence/{source_id}> a :EvidenceSource ; :sourceTitle {source_title}^^xsd:string ; :sourceOutlet {source_outlet}^^xsd:string ; :sourceDate {source_date}^^xsd:date .
+source      SELECT source_id, source_title, source_outlet, source_date FROM ramona.evidence_sources
+
+mappingId   M-EvidenceSource-URL
+target      <https://ramona.ai/evidence/{source_id}> :sourceUrl {source_url}^^xsd:anyURI .
+source      SELECT source_id, source_url FROM ramona.evidence_sources WHERE source_url IS NOT NULL
+
+mappingId   M-Route
+target      <https://ramona.ai/route/{route_id}> a :TraffickingRoute ; :routeName {route_name}^^xsd:string ; :originCountry <https://ramona.ai/country/{origin_country}> ; :destinationCountry <https://ramona.ai/country/{destination_country}> .
+source      SELECT route_id, route_name, origin_country, destination_country FROM ramona.trafficking_routes
+
+mappingId   M-Route-KnownSince
+target      <https://ramona.ai/route/{route_id}> :knownSince {known_since}^^xsd:date .
+source      SELECT route_id, known_since FROM ramona.trafficking_routes WHERE known_since IS NOT NULL
+
+mappingId   M-Route-Evidence
+target      <https://ramona.ai/route/{route_id}> :derivedFrom <https://ramona.ai/evidence/{evidence_source}> .
+source      SELECT route_id, evidence_source FROM ramona.trafficking_routes WHERE evidence_source IS NOT NULL
+
+mappingId   M-Pattern
+target      <https://ramona.ai/pattern/{pattern_id}> a :SurvivorTestimonyPattern ; :patternName {pattern_name}^^xsd:string ; :patternDescription {pattern_description}^^xsd:string .
+source      SELECT pattern_id, pattern_name, pattern_description FROM ramona.survivor_patterns
+
+mappingId   M-Pattern-Evidence
+target      <https://ramona.ai/pattern/{pattern_id}> :derivedFrom <https://ramona.ai/evidence/{evidence_source}> .
+source      SELECT pattern_id, evidence_source FROM ramona.survivor_patterns WHERE evidence_source IS NOT NULL
+
+mappingId   M-Employer
+target      <https://ramona.ai/employer/{employer_id}> a :Employer ; :hasVerifiedIdentity {has_verified_identity}^^xsd:boolean ; :historicalOfferCount {historical_offer_count}^^xsd:integer ; :historicalFlagCount {historical_flag_count}^^xsd:integer .
+source      SELECT employer_id, has_verified_identity, historical_offer_count, historical_flag_count FROM ramona.employers
+
+mappingId   M-Employer-Name
+target      <https://ramona.ai/employer/{employer_id}> :agentName {employer_name}^^xsd:string .
+source      SELECT employer_id, employer_name FROM ramona.employers WHERE employer_name IS NOT NULL
+
+mappingId   M-Recruiter
+target      <https://ramona.ai/recruiter/{recruiter_id}> a :Recruiter ; :historicalOfferCount {historical_offer_count}^^xsd:integer ; :historicalFlagCount {historical_flag_count}^^xsd:integer .
+source      SELECT recruiter_id, historical_offer_count, historical_flag_count FROM ramona.recruiters
+
+mappingId   M-Recruiter-Contact
+target      <https://ramona.ai/recruiter/{recruiter_id}> :contactHash {contact_hash}^^xsd:string .
+source      SELECT recruiter_id, contact_hash FROM ramona.recruiters WHERE contact_hash IS NOT NULL
+
+mappingId   M-Recruiter-Name
+target      <https://ramona.ai/recruiter/{recruiter_id}> :agentName {agent_name}^^xsd:string .
+source      SELECT recruiter_id, agent_name FROM ramona.recruiters WHERE agent_name IS NOT NULL
+
+mappingId   M-Recruiter-Country
+target      <https://ramona.ai/recruiter/{recruiter_id}> :recruiterCountry <https://ramona.ai/country/{recruiter_country}> .
+source      SELECT recruiter_id, recruiter_country FROM ramona.recruiters WHERE recruiter_country IS NOT NULL
+
+mappingId   M-Candidate
+target      <https://ramona.ai/candidate/{candidate_id}> a :Candidate .
+source      SELECT candidate_id FROM ramona.candidates
+
+mappingId   M-Classification
+target      <https://ramona.ai/classification/{classification_id}> a :RiskClassification ; :riskLevel {risk_level}^^xsd:string ; :classifiedOn {classified_at}^^xsd:date ; :classifierVersion {classifier_version}^^xsd:string .
+source      SELECT classification_id, risk_level, classified_at, classifier_version FROM ramona.classifications
+
+mappingId   M-Classification-Explanation
+target      <https://ramona.ai/classification/{classification_id}> :explanationText {explanation_text}^^xsd:string .
+source      SELECT classification_id, explanation_text FROM ramona.classifications WHERE explanation_text IS NOT NULL
+
+mappingId   M-Offer
+target      <https://ramona.ai/offer/{offer_id}> a :JobOffer ; :hasRawText {raw_text}^^xsd:string ; :postedOn {posted_at}^^xsd:date ; :postedVia <https://ramona.ai/platform/{source_platform}> ; :inCountry <https://ramona.ai/country/{country_code}> ; :inLanguage <https://ramona.ai/language/{language_code}> .
+source      SELECT offer_id, raw_text, posted_at, source_platform, country_code, language_code FROM ramona.offers
+
+mappingId   M-Offer-Role
+target      <https://ramona.ai/offer/{offer_id}> :offeredRole {offered_role}^^xsd:string .
+source      SELECT offer_id, offered_role FROM ramona.offers WHERE offered_role IS NOT NULL
+
+mappingId   M-Offer-Location
+target      <https://ramona.ai/offer/{offer_id}> :offeredLocation {offered_location}^^xsd:string .
+source      SELECT offer_id, offered_location FROM ramona.offers WHERE offered_location IS NOT NULL
+
+mappingId   M-Offer-Salary
+target      <https://ramona.ai/offer/{offer_id}> :offeredSalaryMXN {offered_salary_mxn}^^xsd:decimal .
+source      SELECT offer_id, offered_salary_mxn FROM ramona.offers WHERE offered_salary_mxn IS NOT NULL
+
+mappingId   M-Offer-RiskScore
+target      <https://ramona.ai/offer/{offer_id}> :riskScore {risk_score}^^xsd:decimal .
+source      SELECT offer_id, risk_score FROM ramona.offers WHERE risk_score IS NOT NULL
+
+mappingId   M-Offer-Recruiter
+target      <https://ramona.ai/offer/{offer_id}> :offeredByRecruiter <https://ramona.ai/recruiter/{recruiter_id}> ; :offeredBy <https://ramona.ai/recruiter/{recruiter_id}> .
+source      SELECT offer_id, recruiter_id FROM ramona.offers WHERE recruiter_id IS NOT NULL
+
+mappingId   M-Offer-Employer
+target      <https://ramona.ai/offer/{offer_id}> :offeredByEmployer <https://ramona.ai/employer/{employer_id}> ; :offeredBy <https://ramona.ai/employer/{employer_id}> .
+source      SELECT offer_id, employer_id FROM ramona.offers WHERE employer_id IS NOT NULL
+
+mappingId   M-Offer-Classification
+target      <https://ramona.ai/offer/{offer_id}> :hasRiskClassification <https://ramona.ai/classification/{classification_id}> .
+source      SELECT offer_id, classification_id FROM ramona.offers WHERE classification_id IS NOT NULL
+
+mappingId   M-RedFlag
+target      <https://ramona.ai/flag/{flag_id}> a :RedFlag ; :flagType {flag_type}^^xsd:string ; :flagConfidence {flag_confidence}^^xsd:decimal ; :detectedBy {detected_by}^^xsd:string .
+source      SELECT flag_id, flag_type, flag_confidence, detected_by FROM ramona.red_flags
+
+mappingId   M-Offer-RedFlag
+target      <https://ramona.ai/offer/{offer_id}> :hasRedFlag <https://ramona.ai/flag/{flag_id}> .
+source      SELECT flag_id, offer_id FROM ramona.red_flags
+
+mappingId   M-Offer-Pattern
+target      <https://ramona.ai/offer/{offer_id}> :matchesPattern <https://ramona.ai/pattern/{pattern_id}> .
+source      SELECT offer_id, pattern_id FROM ramona.offer_patterns
+
+mappingId   M-Offer-Route
+target      <https://ramona.ai/offer/{offer_id}> :associatedWithRoute <https://ramona.ai/route/{route_id}> .
+source      SELECT offer_id, route_id FROM ramona.offer_routes
+
+mappingId   M-Submission
+target      <https://ramona.ai/submission/{submission_id}> a :Submission ; :submittedBy <https://ramona.ai/candidate/{candidate_id}> ; :submittedOffer <https://ramona.ai/offer/{offer_id}> .
+source      SELECT submission_id, candidate_id, offer_id FROM ramona.submissions
+
+# =========================================================================
+# v1.0 extensions: CTDC + press observatory (victim-centric layer)
+# =========================================================================
+
+mappingId   M-AgeGroup
+target      <https://ramona.ai/agegroup/{age_group_code}> a :AgeGroup ; :ageGroupName {age_group_label}^^xsd:string .
+source      SELECT age_group_code, age_group_label FROM public.age_group
+
+mappingId   M-Gender
+target      <https://ramona.ai/gender/{gender_code}> a :Gender ; :genderName {gender_label}^^xsd:string .
+source      SELECT gender_code, gender_label FROM public.gender
+
+mappingId   M-RecruitmentMethod
+target      <https://ramona.ai/recruitmentmethod/{recruitment_method_code}> a :RecruitmentMethod ; :recruitmentMethodName {recruitment_method_label}^^xsd:string .
+source      SELECT recruitment_method_code, recruitment_method_label FROM public.recruitment_method
+
+mappingId   M-ExploitationType
+target      <https://ramona.ai/exploitation/{exploitation_type_code}> a :TypeOfExploitation ; :exploitationType {exploitation_type_label}^^xsd:string .
+source      SELECT exploitation_type_code, exploitation_type_label FROM public.exploitation_type
+
+mappingId   M-Vulnerability
+target      <https://ramona.ai/vulnerability/{vulnerability_code}> a :VulnerabilityFactor ; :vulnerabilityFactorName {vulnerability_label}^^xsd:string .
+source      SELECT vulnerability_code, vulnerability_label FROM public.vulnerability_factor
+
+mappingId   M-CommunicationTool
+target      <https://ramona.ai/tool/{tool_code}> a :CommunicationTool ; :communicationToolName {tool_label}^^xsd:string .
+source      SELECT tool_code, tool_label FROM public.communication_tool
+
+mappingId   M-TransportationMeans
+target      <https://ramona.ai/transport/{tm_code}> a :TransportationMeans ; :transportationMeansName {tm_label}^^xsd:string .
+source      SELECT tm_code, tm_label FROM public.transportation_means
+
+mappingId   M-DocumentationType
+target      <https://ramona.ai/doc/{doc_code}> a :DocumentationType ; :documentationTypeName {doc_label}^^xsd:string .
+source      SELECT doc_code, doc_label FROM public.documentation_type
+
+mappingId   M-EvidenceSourceExtended
+target      <https://ramona.ai/evidence-ext/{source_id}> a :EvidenceSource ; :sourceTitle {title}^^xsd:string ; :sourceOutlet {outlet}^^xsd:string .
+source      SELECT source_id, title, outlet FROM public.evidence_source_extended
+
+mappingId   M-EvidenceSource-Kind
+target      <https://ramona.ai/evidence-ext/{source_id}> :datasetName {source_kind}^^xsd:string .
+source      SELECT source_id, source_kind FROM public.evidence_source_extended
+
+mappingId   M-PressArticle
+target      <https://ramona.ai/evidence-ext/{source_id}> a :PressArticle ; :sourceUrl {url}^^xsd:anyURI .
+source      SELECT source_id, url FROM public.evidence_source_extended WHERE source_kind = 'press' AND url IS NOT NULL
+
+mappingId   M-OpenDatasetRecord
+target      <https://ramona.ai/evidence-ext/{source_id}> a :OpenDatasetRecord ; :datasetName {dataset_name}^^xsd:string .
+source      SELECT source_id, dataset_name FROM public.evidence_source_extended WHERE source_kind IN ('ctdc','unodc','rnpdno')
+
+mappingId   M-Victim
+target      <https://ramona.ai/victim/{victim_id}> a :Victim ; :victimId {external_id}^^xsd:string ; :yearOfRegistration {year_of_registration}^^xsd:gYear .
+source      SELECT victim_id, external_id, year_of_registration FROM public.victim WHERE year_of_registration IS NOT NULL
+
+mappingId   M-Victim-NoYear
+target      <https://ramona.ai/victim/{victim_id}> a :Victim ; :victimId {external_id}^^xsd:string .
+source      SELECT victim_id, external_id FROM public.victim WHERE year_of_registration IS NULL
+
+mappingId   M-Victim-Source
+target      <https://ramona.ai/victim/{victim_id}> :derivedFrom <https://ramona.ai/evidence-ext/{source_id}> .
+source      SELECT victim_id, source_id FROM public.victim WHERE source_id IS NOT NULL
+
+mappingId   M-Victim-Age
+target      <https://ramona.ai/victim/{victim_id}> :hasAgeGroup <https://ramona.ai/agegroup/{age_group_code}> .
+source      SELECT victim_id, age_group_code FROM public.victim WHERE age_group_code IS NOT NULL
+
+mappingId   M-Victim-Gender
+target      <https://ramona.ai/victim/{victim_id}> :hasGender <https://ramona.ai/gender/{gender_code}> .
+source      SELECT victim_id, gender_code FROM public.victim WHERE gender_code IS NOT NULL
+
+mappingId   M-Victim-Citizenship
+target      <https://ramona.ai/victim/{victim_id}> :hasNationality <https://ramona.ai/country/{citizenship_iso3}> .
+source      SELECT victim_id, citizenship_iso3 FROM public.victim WHERE citizenship_iso3 IS NOT NULL
+
+mappingId   M-Victim-CoE
+target      <https://ramona.ai/victim/{victim_id}> :inCountry <https://ramona.ai/country/{country_of_exploitation_iso3}> .
+source      SELECT victim_id, country_of_exploitation_iso3 FROM public.victim WHERE country_of_exploitation_iso3 IS NOT NULL
+
+mappingId   M-Victim-Recruitment
+target      <https://ramona.ai/victim/{victim_id}> :recruitedVia <https://ramona.ai/recruitmentmethod/{recruitment_method_code}> .
+source      SELECT victim_id, recruitment_method_code FROM public.victim WHERE recruitment_method_code IS NOT NULL
+
+mappingId   M-Victim-CommunicationTool
+target      <https://ramona.ai/victim/{victim_id}> :contactedThrough <https://ramona.ai/tool/{communication_tool_code}> .
+source      SELECT victim_id, communication_tool_code FROM public.victim WHERE communication_tool_code IS NOT NULL
+
+mappingId   M-Victim-Exploitation
+target      <https://ramona.ai/victim/{victim_id}> :victimOfExploitation <https://ramona.ai/exploitation/{exploitation_type_code}> .
+source      SELECT victim_id, exploitation_type_code FROM public.victim_exploitation
+
+mappingId   M-Victim-Means
+target      <https://ramona.ai/victim/{victim_id}> :hasMeansOfControl {means_code}^^xsd:string .
+source      SELECT victim_id, means_code FROM public.victim_means_of_control
+
+mappingId   M-Victim-Vulnerability
+target      <https://ramona.ai/victim/{victim_id}> :hasVulnerabilityFactor <https://ramona.ai/vulnerability/{vulnerability_code}> .
+source      SELECT victim_id, vulnerability_code FROM public.victim_vulnerability
+
+]]

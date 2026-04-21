@@ -1,0 +1,22 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q12 — Demographic cross-section: age-group x gender x exploitation type.
+# Showcases how the ontology collapses a multi-source, multi-table query into
+# a single readable SPARQL expression, which is the core argument of the VKG
+# paradigm (Xiao et al., 2019).
+
+SELECT ?ageGroup ?gender ?exploitationType (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim a :Victim ;
+          :hasAgeGroup ?ag ;
+          :hasGender ?g ;
+          :victimOfExploitation ?exp .
+  ?ag :ageGroupName ?ageGroup .
+  ?g :genderName ?gender .
+  ?exp :exploitationType ?exploitationType .
+}
+GROUP BY ?ageGroup ?gender ?exploitationType
+HAVING (COUNT(DISTINCT ?victim) >= 3)
+ORDER BY DESC(?victims)
+LIMIT 200

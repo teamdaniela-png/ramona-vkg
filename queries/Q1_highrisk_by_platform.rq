@@ -1,0 +1,19 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q1. All high-risk / fraudulent offers in 2026 grouped by platform.
+# Operational question: which platforms carry the heaviest share of
+# flagged offers in the current year?
+
+SELECT ?platformName (COUNT(?offer) AS ?nOffers) WHERE {
+  ?offer a :JobOffer ;
+         :hasRiskClassification ?rc ;
+         :postedVia ?platform ;
+         :postedOn ?d .
+  ?rc :riskLevel ?level .
+  ?platform :platformName ?platformName .
+  FILTER(?level IN ("high-risk","fraudulent"))
+  FILTER(?d >= "2026-01-01"^^xsd:date)
+}
+GROUP BY ?platformName
+ORDER BY DESC(?nOffers)

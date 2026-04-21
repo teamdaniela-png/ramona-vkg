@@ -1,0 +1,12 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q4. Offers on a documented TraffickingRoute that have NOT yet been
+# classified by Ramona. These are priority cases for manual review.
+
+SELECT ?offer ?routeName ?postedOn WHERE {
+  ?offer :associatedWithRoute ?route ;
+         :postedOn ?postedOn .
+  ?route :routeName ?routeName .
+  FILTER NOT EXISTS { ?offer :hasRiskClassification ?rc }
+}
+ORDER BY DESC(?postedOn)

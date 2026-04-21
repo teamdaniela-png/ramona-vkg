@@ -1,0 +1,20 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q2. Recruiters who posted offers in at least two countries
+# and accumulated more than two red flags in the current quarter.
+# Operational question: cross-border reclutadores.
+
+SELECT ?recruiter
+       (COUNT(DISTINCT ?country) AS ?nCountries)
+       (COUNT(DISTINCT ?flag)    AS ?nFlags)
+WHERE {
+  ?offer :offeredByRecruiter ?recruiter ;
+         :inCountry ?country ;
+         :hasRedFlag ?flag ;
+         :postedOn ?d .
+  FILTER(?d >= "2026-01-01"^^xsd:date)
+}
+GROUP BY ?recruiter
+HAVING (COUNT(DISTINCT ?country) >= 2 && COUNT(DISTINCT ?flag) > 2)
+ORDER BY DESC(?nFlags)

@@ -1,0 +1,494 @@
+@prefix :      <https://ramona.ai/ont#> .
+@prefix ont:   <https://ramona.ai/ont#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix hutro: <https://bioportal.bioontology.org/ontologies/HUTRO> .
+
+#################################################################
+#    Ontology metadata
+#################################################################
+
+<https://ramona.ai/ont> a owl:Ontology ;
+    dc:title "Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O)"@en ;
+    dc:title "Ontología Ramona contra el Reclutamiento Fraudulento y la Trata (RATR-O)"@es ;
+    dc:creator "Daniela Camberos, Ramona AI" ;
+    dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "1.0" ;
+    dct:issued "2026-04-21"^^xsd:date ;
+    rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
+    rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
+
+#################################################################
+#    Core Classes — Agents, offers, submissions
+#################################################################
+
+:Agent a owl:Class ;
+    rdfs:label "Agent"@en, "Agente"@es ;
+    rdfs:comment "An actor who can post or be associated with a job offer."@en .
+
+:Recruiter a owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Recruiter"@en, "Reclutador"@es .
+
+:Employer a owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Employer"@en, "Empleador"@es .
+
+:JobOffer a owl:Class ;
+    rdfs:label "Job offer"@en, "Oferta laboral"@es ;
+    rdfs:comment "A posting advertising employment, submitted to Ramona or harvested from public channels."@en .
+
+:Platform a owl:Class ;
+    rdfs:label "Platform"@en, "Plataforma"@es .
+
+:OnlineRecruitmentChannel a owl:Class ;
+    rdfs:subClassOf :Platform ;
+    rdfs:label "Online recruitment channel"@en, "Canal de reclutamiento en línea"@es ;
+    rdfs:comment "A digital communication channel used by recruiters to contact candidates. Controlled vocabulary covers Messenger, WhatsApp, Telegram, Marketplace, TikTok, SMS, classifieds and other."@en .
+
+:Candidate a owl:Class ;
+    rdfs:label "Candidate"@en, "Candidato"@es ;
+    rdfs:comment "User who submitted an offer to Ramona for verification."@en .
+
+:Submission a owl:Class ;
+    rdfs:label "Submission"@en, "Solicitud"@es ;
+    rdfs:comment "An act by a Candidate of submitting an offer for Ramona verification."@en .
+
+#################################################################
+#    Risk and detection classes
+#################################################################
+
+:RedFlag a owl:Class ;
+    rdfs:label "Red flag"@en, "Bandera roja"@es ;
+    rdfs:comment "A detected indicator of potential fraud or trafficking recruitment risk. Seven canonical flags are defined by Ramona AI."@en .
+
+:RiskClassification a owl:Class ;
+    rdfs:label "Risk classification"@en, "Clasificación de riesgo"@es ;
+    rdfs:comment "An assessment of an offer along Ramona's risk axes. See :fraudAxis, :exploitationAxis and :traffickingAxis for the three independent dimensions covered."@en .
+
+:FraudRisk a owl:Class ;
+    rdfs:subClassOf :RiskClassification ;
+    rdfs:label "Labour fraud risk"@en, "Riesgo de fraude laboral"@es ;
+    rdfs:comment "Risk that the offer is a fraud designed to extract money, data or unpaid work from the candidate, without necessarily leading to trafficking or exploitation."@en .
+
+:ExploitationRisk a owl:Class ;
+    rdfs:subClassOf :RiskClassification ;
+    rdfs:label "Labour exploitation risk"@en, "Riesgo de explotación laboral"@es ;
+    rdfs:comment "Risk that the offer leads to substandard working conditions, wage theft, excessive hours or other exploitation that does not rise to the legal definition of trafficking."@en .
+
+:TraffickingRisk a owl:Class ;
+    rdfs:subClassOf :RiskClassification ;
+    rdfs:label "Trafficking recruitment risk"@en, "Riesgo de reclutamiento para trata"@es ;
+    rdfs:comment "Risk that the offer is recruitment for trafficking in persons in the sense of the Palermo Protocol: for forced labour, sexual exploitation, forced criminality, forced marriage or organ removal."@en .
+
+:SurvivorTestimonyPattern a owl:Class ;
+    rdfs:label "Survivor testimony pattern"@en, "Patrón de testimonio de sobreviviente"@es ;
+    rdfs:comment "A recurring linguistic or logistical pattern extracted from survivor interviews or documented cases."@en .
+
+#################################################################
+#    Classes aligned to HUTRO (generalisable fragment)
+#################################################################
+
+:RecruitmentMethod a owl:Class ;
+    rdfs:label "Recruitment method"@en, "Método de reclutamiento"@es ;
+    rdfs:comment "The mechanism by which a potential victim is initially approached and enlisted into a trafficking or fraudulent-employment scheme."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROrecruitment_method> .
+
+:TypeOfExploitation a owl:Class ;
+    rdfs:label "Type of exploitation"@en, "Tipo de explotación"@es ;
+    rdfs:comment "The exploitation outcome associated with a trafficking case. Controlled vocabulary covers labour, sexual, forced criminality, forced marriage, organ removal, mixed."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation> .
+
+:VulnerabilityFactor a owl:Class ;
+    rdfs:label "Vulnerability factor"@en, "Factor de vulnerabilidad"@es ;
+    rdfs:comment "A socioeconomic, demographic or situational factor that increases the probability of a candidate accepting a high-risk offer."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor> .
+
+:TransportationMeans a owl:Class ;
+    rdfs:label "Transportation means"@en, "Medio de transporte"@es ;
+    rdfs:comment "The means of transport used at a stage of the trafficking route."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROtransportation_means> .
+
+:CommunicationTool a owl:Class ;
+    rdfs:label "Communication tool"@en, "Herramienta de comunicación"@es ;
+    rdfs:comment "A tool used for communication between recruiters, smugglers, traffickers or victims. Distinct from Platform because it describes the tool itself, not the platform it runs on."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROsmuggler_and_trafficker_communication_tools> .
+
+:DocumentationType a owl:Class ;
+    rdfs:label "Documentation type"@en, "Tipo de documentación"@es ;
+    rdfs:comment "An identity or travel document demanded or withheld during recruitment. Includes the case of falsified documents."@en ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type> .
+
+:FalseDocumentation a owl:Class ;
+    rdfs:subClassOf :DocumentationType ;
+    rdfs:label "False documentation"@en, "Documentación falsa"@es ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation> .
+
+#################################################################
+#    Victim and demographic classes (new in v1.0)
+#################################################################
+
+:Victim a owl:Class ;
+    rdfs:label "Victim"@en, "Víctima"@es ;
+    rdfs:comment "A person documented as having been exploited or attempted-to-be-exploited in a trafficking or fraudulent-employment scheme. Sourced from anonymised CTDC records and publicly reported press cases."@en .
+
+:DemographicProfile a owl:Class ;
+    rdfs:label "Demographic profile"@en, "Perfil demográfico"@es ;
+    rdfs:comment "An anonymised demographic description of a victim or candidate, covering age group, gender, nationality and education."@en .
+
+:AgeGroup a owl:Class ;
+    rdfs:label "Age group"@en, "Grupo etario"@es ;
+    rdfs:comment "A coarse age bucket aligned to CTDC: 0-8, 9-17, 18-20, 21-23, 24-26, 27-29, 30-38, 39-47, 48+."@en .
+
+:Gender a owl:Class ;
+    rdfs:label "Gender"@en, "Género"@es .
+
+#################################################################
+#    Routes, countries, sources
+#################################################################
+
+:TraffickingRoute a owl:Class ;
+    rdfs:label "Trafficking route"@en, "Ruta de trata"@es ;
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places> .
+
+:Country a owl:Class ;
+    rdfs:label "Country"@en, "País"@es .
+
+:Language a owl:Class ;
+    rdfs:label "Language"@en, "Idioma"@es .
+
+:EvidenceSource a owl:Class ;
+    rdfs:label "Evidence source"@en, "Fuente de evidencia"@es ;
+    rdfs:comment "A public document or case file from which a pattern, route, offer or victim record was derived (e.g. press article, CTDC record, NGO report)."@en .
+
+:PressArticle a owl:Class ;
+    rdfs:subClassOf :EvidenceSource ;
+    rdfs:label "Press article"@en, "Artículo de prensa"@es .
+
+:OpenDatasetRecord a owl:Class ;
+    rdfs:subClassOf :EvidenceSource ;
+    rdfs:label "Open dataset record"@en, "Registro de dataset abierto"@es ;
+    rdfs:comment "A single anonymised case record drawn from an open anti-trafficking dataset such as CTDC or UNODC."@en .
+
+#################################################################
+#    Object properties — Offer-centric
+#################################################################
+
+:offeredBy a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :Agent ;
+    rdfs:label "offered by"@en .
+
+:offeredByRecruiter a owl:ObjectProperty ;
+    rdfs:subPropertyOf :offeredBy ;
+    rdfs:domain :JobOffer ; rdfs:range :Recruiter ;
+    rdfs:label "offered by recruiter"@en .
+
+:offeredByEmployer a owl:ObjectProperty ;
+    rdfs:subPropertyOf :offeredBy ;
+    rdfs:domain :JobOffer ; rdfs:range :Employer ;
+    rdfs:label "offered by employer"@en .
+
+:postedVia a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :Platform ;
+    rdfs:label "posted via"@en .
+
+:hasRedFlag a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :RedFlag ;
+    rdfs:label "has red flag"@en .
+
+:matchesPattern a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :SurvivorTestimonyPattern ;
+    rdfs:label "matches pattern"@en .
+
+:hasRiskClassification a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :RiskClassification ;
+    rdfs:label "has risk classification"@en .
+
+:inCountry a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :Country ;
+    rdfs:label "in country"@en .
+
+:inLanguage a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :Language ;
+    rdfs:label "in language"@en .
+
+:associatedWithRoute a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :TraffickingRoute ;
+    rdfs:label "associated with route"@en .
+
+:hasRecruitmentMethod a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :RecruitmentMethod ;
+    rdfs:label "has recruitment method"@en .
+
+:leadsToExploitation a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :TypeOfExploitation ;
+    rdfs:label "leads to exploitation"@en ;
+    rdfs:comment "Only asserted when the offer has been confirmed to have produced an exploitation outcome (from press case or dataset confirmation)."@en .
+
+#################################################################
+#    Object properties — Victim-centric (new in v1.0)
+#################################################################
+
+:victimOfOffer a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :JobOffer ;
+    rdfs:label "victim of offer"@en .
+
+:victimOfExploitation a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :TypeOfExploitation ;
+    rdfs:label "victim of exploitation type"@en .
+
+:hasDemographicProfile a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :DemographicProfile ;
+    rdfs:label "has demographic profile"@en .
+
+:hasAgeGroup a owl:ObjectProperty ;
+    rdfs:domain :DemographicProfile ; rdfs:range :AgeGroup ;
+    rdfs:label "has age group"@en .
+
+:hasGender a owl:ObjectProperty ;
+    rdfs:domain :DemographicProfile ; rdfs:range :Gender ;
+    rdfs:label "has gender"@en .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :DemographicProfile ; rdfs:range :Country ;
+    rdfs:label "has nationality"@en .
+
+:hasVulnerabilityFactor a owl:ObjectProperty ;
+    rdfs:domain :DemographicProfile ; rdfs:range :VulnerabilityFactor ;
+    rdfs:label "has vulnerability factor"@en .
+
+:recruitedVia a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :RecruitmentMethod ;
+    rdfs:label "recruited via"@en .
+
+:contactedThrough a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :CommunicationTool ;
+    rdfs:label "contacted through"@en .
+
+:transportedBy a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :TransportationMeans ;
+    rdfs:label "transported by"@en .
+
+:travelledWith a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :DocumentationType ;
+    rdfs:label "travelled with documentation"@en .
+
+#################################################################
+#    Object properties — Route and agents
+#################################################################
+
+:originCountry a owl:ObjectProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range :Country ;
+    rdfs:label "origin country"@en .
+
+:destinationCountry a owl:ObjectProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range :Country ;
+    rdfs:label "destination country"@en .
+
+:platformCountry a owl:ObjectProperty ;
+    rdfs:domain :Platform ; rdfs:range :Country ;
+    rdfs:label "platform country"@en .
+
+:recruiterCountry a owl:ObjectProperty ;
+    rdfs:domain :Recruiter ; rdfs:range :Country ;
+    rdfs:label "recruiter country"@en .
+
+:submittedBy a owl:ObjectProperty ;
+    rdfs:domain :Submission ; rdfs:range :Candidate ;
+    rdfs:label "submitted by"@en .
+
+:submittedOffer a owl:ObjectProperty ;
+    rdfs:domain :Submission ; rdfs:range :JobOffer ;
+    rdfs:label "submitted offer"@en .
+
+:evidenceFor a owl:ObjectProperty ;
+    rdfs:domain :EvidenceSource ;
+    rdfs:label "evidence for"@en ;
+    rdfs:comment "Links an evidence source to the pattern, route, offer or victim it documents."@en .
+
+:derivedFrom a owl:ObjectProperty ;
+    rdfs:range :EvidenceSource ;
+    rdfs:label "derived from"@en .
+
+#################################################################
+#    Datatype properties — JobOffer
+#################################################################
+
+:hasTitle a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string .
+
+:hasRawText a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string .
+
+:postedOn a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:date .
+
+:offeredSalaryMXN a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
+    rdfs:comment "Weekly salary in MXN as advertised in the offer."@en .
+
+:offeredRole a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string .
+
+:offeredLocation a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string .
+
+:riskScore a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:decimal .
+
+#################################################################
+#    Datatype properties — Platform, Agent, flag, classification
+#################################################################
+
+:platformName a owl:DatatypeProperty ;
+    rdfs:domain :Platform ; rdfs:range xsd:string .
+
+:platformType a owl:DatatypeProperty ;
+    rdfs:domain :Platform ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: whatsapp, telegram, messenger, sms, facebook, tiktok, marketplace, classifieds, tiktok, other."@en .
+
+:agentName a owl:DatatypeProperty ;
+    rdfs:domain :Agent ; rdfs:range xsd:string .
+
+:contactHash a owl:DatatypeProperty ;
+    rdfs:domain :Recruiter ; rdfs:range xsd:string .
+
+:historicalOfferCount a owl:DatatypeProperty ;
+    rdfs:domain :Agent ; rdfs:range xsd:integer .
+
+:historicalFlagCount a owl:DatatypeProperty ;
+    rdfs:domain :Agent ; rdfs:range xsd:integer .
+
+:hasVerifiedIdentity a owl:DatatypeProperty ;
+    rdfs:domain :Employer ; rdfs:range xsd:boolean .
+
+:flagType a owl:DatatypeProperty ;
+    rdfs:domain :RedFlag ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary of 7 red flags defined by Ramona AI: sueldo_alto, horarios_flexibles, sin_experiencia, pago_adelantado, aceptacion_urgente, entrevista_lejana_traslado, empleo_fuera_estado."@en .
+
+:flagConfidence a owl:DatatypeProperty ;
+    rdfs:domain :RedFlag ; rdfs:range xsd:decimal .
+
+:detectedBy a owl:DatatypeProperty ;
+    rdfs:domain :RedFlag ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: rule, nlp, human."@en .
+
+:riskLevel a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: safe, suspicious, high-risk, fraudulent."@en .
+
+:explanationText a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:string .
+
+:classifiedOn a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:date .
+
+:classifierVersion a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:string .
+
+:patternName a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string .
+
+:patternDescription a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string .
+
+#################################################################
+#    Datatype properties — Route, country, language
+#################################################################
+
+:routeName a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:string .
+
+:knownSince a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:date .
+
+:countryName a owl:DatatypeProperty ;
+    rdfs:domain :Country ; rdfs:range xsd:string .
+
+:countryISOCode a owl:DatatypeProperty ;
+    rdfs:domain :Country ; rdfs:range xsd:string .
+
+:languageName a owl:DatatypeProperty ;
+    rdfs:domain :Language ; rdfs:range xsd:string .
+
+:languageISOCode a owl:DatatypeProperty ;
+    rdfs:domain :Language ; rdfs:range xsd:string .
+
+#################################################################
+#    Datatype properties — HUTRO-aligned concepts
+#################################################################
+
+:recruitmentMethodName a owl:DatatypeProperty ;
+    rdfs:domain :RecruitmentMethod ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: personal_network, false_job_offer, social_media_contact, abduction, sale_by_family, debt_bondage, other."@en .
+
+:exploitationType a owl:DatatypeProperty ;
+    rdfs:domain :TypeOfExploitation ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: labour, sexual, forced_criminality, forced_marriage, organ_removal, mixed, unknown."@en .
+
+:vulnerabilityFactorName a owl:DatatypeProperty ;
+    rdfs:domain :VulnerabilityFactor ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: economic, migrant_status, minor, prior_abuse, low_education, single_parent, displaced, indigenous, other."@en .
+
+:transportationMeansName a owl:DatatypeProperty ;
+    rdfs:domain :TransportationMeans ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: bus, car, foot, boat, air, train, truck, mixed, unknown."@en .
+
+:communicationToolName a owl:DatatypeProperty ;
+    rdfs:domain :CommunicationTool ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: whatsapp, messenger, telegram, sms, voice_call, in_person, email, other."@en .
+
+:documentationTypeName a owl:DatatypeProperty ;
+    rdfs:domain :DocumentationType ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: national_id, passport, visa, work_permit, none, confiscated, false."@en .
+
+#################################################################
+#    Datatype properties — Victim and demographics
+#################################################################
+
+:victimId a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:comment "Anonymised case identifier. For CTDC records, the CTDC victim id. For press cases, an outlet-specific hash."@en .
+
+:yearOfRegistration a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:gYear .
+
+:ageGroupName a owl:DatatypeProperty ;
+    rdfs:domain :AgeGroup ; rdfs:range xsd:string .
+
+:genderName a owl:DatatypeProperty ;
+    rdfs:domain :Gender ; rdfs:range xsd:string ;
+    rdfs:comment "Controlled vocabulary: female, male, non_binary, unknown."@en .
+
+#################################################################
+#    Datatype properties — Evidence sources
+#################################################################
+
+:sourceTitle a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string .
+
+:sourceOutlet a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string .
+
+:sourceUrl a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:anyURI .
+
+:sourceDate a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:date .
+
+:sourceAuthor a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string .
+
+:datasetName a owl:DatatypeProperty ;
+    rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string ;
+    rdfs:comment "Name of the open dataset (e.g. CTDC, UNODC-GLOTIP, RNPDNO)."@en .
+
+:datasetRecordId a owl:DatatypeProperty ;
+    rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string .

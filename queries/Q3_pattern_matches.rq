@@ -1,0 +1,14 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q3. Offers whose language or logistics match a known
+# SurvivorTestimonyPattern, plus the source that documents the pattern.
+# Operational question: trazabilidad a evidencia publica.
+
+SELECT ?offer ?patternName ?sourceOutlet ?sourceTitle WHERE {
+  ?offer :matchesPattern ?pattern .
+  ?pattern :patternName ?patternName ;
+           :derivedFrom ?source .
+  ?source :sourceOutlet ?sourceOutlet ;
+          :sourceTitle ?sourceTitle .
+}
+ORDER BY ?patternName

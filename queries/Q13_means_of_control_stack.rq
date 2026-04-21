@@ -1,0 +1,17 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q13 — Stack of means of control observed per exploitation type. For each
+# exploitation type, counts how often each means of control is attested.
+# Useful for: "In labour trafficking, which means of control dominate? And
+# in sexual exploitation?"
+
+SELECT ?exploitationType ?means (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim a :Victim ;
+          :victimOfExploitation ?exp ;
+          :hasMeansOfControl ?means .
+  ?exp :exploitationType ?exploitationType .
+}
+GROUP BY ?exploitationType ?means
+ORDER BY ?exploitationType DESC(?victims)

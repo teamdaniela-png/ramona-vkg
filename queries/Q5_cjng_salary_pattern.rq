@@ -1,0 +1,16 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q5. Offers that match the CJNG post-Rancho Izaguirre recruitment pattern:
+# weekly salary in 4,000 - 12,000 MXN AND offered as private security.
+# Source: El Sol de Mexico (2026-03-14) + Yahoo Noticias (2025-03-20).
+
+SELECT ?offer ?role ?location ?salary ?posted WHERE {
+  ?offer :offeredSalaryMXN ?salary ;
+         :offeredRole ?role ;
+         :offeredLocation ?location ;
+         :postedOn ?posted .
+  FILTER(?salary >= 4000 && ?salary <= 12000)
+  FILTER(CONTAINS(LCASE(?role), "seguridad") || CONTAINS(LCASE(?role), "guardia"))
+}
+ORDER BY DESC(?salary)
