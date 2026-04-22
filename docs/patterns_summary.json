@@ -1,0 +1,309 @@
+{
+  "total_articles": 1332,
+  "patterns": [
+    {
+      "pattern_name": "aceptacion_urgente",
+      "pattern_kind": "classic_a",
+      "pattern_description": "Oferta exige contratación inmediata o presión de decisión rápida.",
+      "observed_count": 184,
+      "pct_of_cases": 13.81,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "sin_experiencia",
+      "pattern_kind": "classic_a",
+      "pattern_description": "Oferta anuncia que no se requiere experiencia.",
+      "observed_count": 6,
+      "pct_of_cases": 0.45,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "pago_adelantado",
+      "pattern_kind": "classic_a",
+      "pattern_description": "Oferta menciona pago adelantado o bono inicial en efectivo.",
+      "observed_count": 1,
+      "pct_of_cases": 0.08,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "empleo_fuera_estado",
+      "pattern_kind": "classic_a",
+      "pattern_description": "Oferta implica mudarse fuera del estado o del país.",
+      "observed_count": 2,
+      "pct_of_cases": 0.15,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "entrevista_lejana_traslado",
+      "pattern_kind": "classic_a",
+      "pattern_description": "Oferta pide entrevista fuera de la ciudad con traslado pagado.",
+      "observed_count": 1,
+      "pct_of_cases": 0.08,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "filtro_datos_personales",
+      "pattern_kind": "credible_b",
+      "pattern_description": "Se solicitan datos personales sensibles (CURP, INE, estado civil, lazos familiares) antes del contrato.",
+      "observed_count": 719,
+      "pct_of_cases": 53.98,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "rol_plausible_limpieza_hosteleria",
+      "pattern_kind": "credible_b",
+      "pattern_description": "Rol ofrecido es plausible (limpieza, mesera, recepción, cocina) pero acompañado de patrones Type B.",
+      "observed_count": 10,
+      "pct_of_cases": 0.75,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "solicita_sin_identificacion",
+      "pattern_kind": "credible_b",
+      "pattern_description": "El reclutador pide que la candidata no lleve identificación oficial.",
+      "observed_count": 3,
+      "pct_of_cases": 0.23,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "cita_edificio_multiusos",
+      "pattern_kind": "credible_b",
+      "pattern_description": "La cita se programa en un edificio multiusos, bodega, sótano o departamento particular.",
+      "observed_count": 48,
+      "pct_of_cases": 3.6,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "messenger_to_whatsapp",
+      "pattern_kind": "credible_b",
+      "pattern_description": "Primer contacto en Facebook Messenger migrado rápidamente a WhatsApp.",
+      "observed_count": 4,
+      "pct_of_cases": 0.3,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "horario_atipico",
+      "pattern_kind": "credible_b",
+      "pattern_description": "La cita se programa en horario no laboral: noche, domingo, madrugada.",
+      "observed_count": 22,
+      "pct_of_cases": 1.65,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "solicita_ir_sola",
+      "pattern_kind": "credible_b",
+      "pattern_description": "El reclutador insiste en que la candidata acuda sola.",
+      "observed_count": 2,
+      "pct_of_cases": 0.15,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "comm_telegram",
+      "pattern_kind": "communication",
+      "pattern_description": "Primer contacto o reclutamiento a través de Telegram.",
+      "observed_count": 80,
+      "pct_of_cases": 6.01,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "comm_whatsapp",
+      "pattern_kind": "communication",
+      "pattern_description": "Primer contacto o reclutamiento a través de WhatsApp.",
+      "observed_count": 247,
+      "pct_of_cases": 18.54,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "comm_sms",
+      "pattern_kind": "communication",
+      "pattern_description": "Contacto inicial por mensaje de texto.",
+      "observed_count": 24,
+      "pct_of_cases": 1.8,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "comm_in_person",
+      "pattern_kind": "communication",
+      "pattern_description": "Contacto inicial en persona.",
+      "observed_count": 32,
+      "pct_of_cases": 2.4,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "comm_email",
+      "pattern_kind": "communication",
+      "pattern_description": "Contacto inicial por correo electrónico.",
+      "observed_count": 66,
+      "pct_of_cases": 4.95,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "comm_voice_call",
+      "pattern_kind": "communication",
+      "pattern_description": "Contacto inicial por llamada telefónica directa.",
+      "observed_count": 5,
+      "pct_of_cases": 0.38,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "comm_messenger",
+      "pattern_kind": "communication",
+      "pattern_description": "Primer contacto a través de Facebook Messenger.",
+      "observed_count": 13,
+      "pct_of_cases": 0.98,
+      "dominance_bucket": "cold"
+    },
+    {
+      "pattern_name": "recr_social_media",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Reclutamiento a través de redes sociales (Facebook, Instagram, TikTok, Marketplace).",
+      "observed_count": 535,
+      "pct_of_cases": 40.17,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_family",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Reclutamiento a través de un miembro de la familia de la víctima.",
+      "observed_count": 384,
+      "pct_of_cases": 28.83,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_labour_broker",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Reclutador tipo enganchador o 'labour broker'.",
+      "observed_count": 74,
+      "pct_of_cases": 5.56,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_abduction",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Secuestro directo o reclutamiento forzado sin pretexto laboral.",
+      "observed_count": 146,
+      "pct_of_cases": 10.96,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_intimate_partner",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Reclutamiento a través de la pareja sentimental de la víctima.",
+      "observed_count": 87,
+      "pct_of_cases": 6.53,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_friend",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Reclutamiento a través de un amigo cercano.",
+      "observed_count": 121,
+      "pct_of_cases": 9.08,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_false_job_offer",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Oferta de trabajo falsa anunciada explícitamente (aparece en título o cuerpo del artículo).",
+      "observed_count": 69,
+      "pct_of_cases": 5.18,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "recr_in_person_street",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Abordaje en la calle sin intermediación digital.",
+      "observed_count": 21,
+      "pct_of_cases": 1.58,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "recr_classifieds",
+      "pattern_kind": "recruitment",
+      "pattern_description": "Oferta publicada en avisos clasificados o sitios tipo Marketplace.",
+      "observed_count": 51,
+      "pct_of_cases": 3.83,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_labour_construction",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación laboral en construcción u obra.",
+      "observed_count": 203,
+      "pct_of_cases": 15.24,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "exp_labour_hospitality",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación laboral en hospitalidad: meseros, cocina, hotelería.",
+      "observed_count": 659,
+      "pct_of_cases": 49.47,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "exp_labour_other",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación laboral de tipo no especificado.",
+      "observed_count": 243,
+      "pct_of_cases": 18.24,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "exp_sex_prostitution",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación sexual forzada, prostitución.",
+      "observed_count": 360,
+      "pct_of_cases": 27.03,
+      "dominance_bucket": "hot"
+    },
+    {
+      "pattern_name": "exp_sex_pornography",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación sexual en producción de material pornográfico.",
+      "observed_count": 37,
+      "pct_of_cases": 2.78,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_labour_domestic",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación en trabajo doméstico, incluyendo niñeras y cuidadoras.",
+      "observed_count": 14,
+      "pct_of_cases": 1.05,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_forced_criminality",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Trabajo forzado en estructuras criminales: halcones, sicariato, 'seguridad privada'.",
+      "observed_count": 59,
+      "pct_of_cases": 4.43,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_labour_agriculture",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Explotación laboral agrícola, jornaleros, corte de caña u hortalizas.",
+      "observed_count": 35,
+      "pct_of_cases": 2.63,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_organ_removal",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Extracción forzada de órganos o pretexto médico como lure.",
+      "observed_count": 45,
+      "pct_of_cases": 3.38,
+      "dominance_bucket": "warm"
+    },
+    {
+      "pattern_name": "exp_forced_marriage",
+      "pattern_kind": "exploitation",
+      "pattern_description": "Matrimonio forzado.",
+      "observed_count": 11,
+      "pct_of_cases": 0.83,
+      "dominance_bucket": "cold"
+    }
+  ]
+}

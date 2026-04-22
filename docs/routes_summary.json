@@ -1,0 +1,707 @@
+{
+  "total_records": 257969,
+  "total_routes": 1304,
+  "min_victims_threshold": 5,
+  "top_20_routes_by_victims": [
+    {
+      "origin": "USA",
+      "destination": "USA",
+      "victims": 10927,
+      "year_range": [
+        2012,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "sex_generic",
+          9331
+        ],
+        [
+          "sex_prostitution",
+          3666
+        ],
+        [
+          "labour_other",
+          1596
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          9293
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          1964
+        ]
+      ]
+    },
+    {
+      "origin": "UKR",
+      "destination": "UKR",
+      "victims": 7603,
+      "year_range": [
+        2003,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          318
+        ],
+        [
+          "labour_agriculture",
+          177
+        ],
+        [
+          "sex_generic",
+          145
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          3809
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          2056
+        ]
+      ]
+    },
+    {
+      "origin": "MEX",
+      "destination": "USA",
+      "victims": 7037,
+      "year_range": [
+        2015,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          5712
+        ],
+        [
+          "labour_agriculture",
+          3587
+        ],
+        [
+          "sex_generic",
+          890
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          3707
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          219
+        ]
+      ]
+    },
+    {
+      "origin": "MDA",
+      "destination": "MDA",
+      "victims": 5772,
+      "year_range": [
+        2002,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "sex_generic",
+          105
+        ],
+        [
+          "labour_other",
+          42
+        ],
+        [
+          "other_exploit",
+          9
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          4125
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          1349
+        ]
+      ]
+    },
+    {
+      "origin": "UKR",
+      "destination": "RUS",
+      "victims": 4099,
+      "year_range": [
+        2004,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          3028
+        ],
+        [
+          "labour_construction",
+          1149
+        ],
+        [
+          "sex_generic",
+          405
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          2123
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          1105
+        ]
+      ]
+    },
+    {
+      "origin": "PHL",
+      "destination": "PHL",
+      "victims": 1994,
+      "year_range": [
+        2016,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "other_exploit",
+          1064
+        ],
+        [
+          "labour_other",
+          702
+        ],
+        [
+          "labour_domestic",
+          492
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          1310
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          22
+        ]
+      ]
+    },
+    {
+      "origin": "NGA",
+      "destination": "LBY",
+      "victims": 1692,
+      "year_range": [
+        2006,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          701
+        ],
+        [
+          "sex_generic",
+          325
+        ],
+        [
+          "other_exploit",
+          185
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          1164
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          285
+        ]
+      ]
+    },
+    {
+      "origin": "PHL",
+      "destination": "USA",
+      "victims": 1212,
+      "year_range": [
+        2002,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          596
+        ],
+        [
+          "labour_domestic",
+          167
+        ],
+        [
+          "sex_generic",
+          124
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          665
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          40
+        ]
+      ]
+    },
+    {
+      "origin": "BLR",
+      "destination": "RUS",
+      "victims": 1159,
+      "year_range": [
+        2003,
+        2022
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          682
+        ],
+        [
+          "sex_generic",
+          294
+        ],
+        [
+          "labour_construction",
+          243
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          553
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          213
+        ]
+      ]
+    },
+    {
+      "origin": "VNM",
+      "destination": "CHN",
+      "victims": 1100,
+      "year_range": [
+        2012,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "other_exploit",
+          555
+        ],
+        [
+          "labour_other",
+          133
+        ],
+        [
+          "sex_generic",
+          124
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          938
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          188
+        ]
+      ]
+    },
+    {
+      "origin": "UKR",
+      "destination": "POL",
+      "victims": 1036,
+      "year_range": [
+        2004,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          602
+        ],
+        [
+          "sex_generic",
+          224
+        ],
+        [
+          "labour_agriculture",
+          171
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          638
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          237
+        ]
+      ]
+    },
+    {
+      "origin": "CHN",
+      "destination": "USA",
+      "victims": 1030,
+      "year_range": [
+        2002,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "sex_generic",
+          843
+        ],
+        [
+          "sex_prostitution",
+          589
+        ],
+        [
+          "labour_other",
+          209
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          864
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          50
+        ]
+      ]
+    },
+    {
+      "origin": "NGA",
+      "destination": "MLI",
+      "victims": 958,
+      "year_range": [
+        2012,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "sex_generic",
+          539
+        ],
+        [
+          "sex_prostitution",
+          146
+        ],
+        [
+          "labour_other",
+          37
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          830
+        ]
+      ],
+      "top_age_group": [
+        [
+          "18--20",
+          339
+        ]
+      ]
+    },
+    {
+      "origin": "MMR",
+      "destination": "IDN",
+      "victims": 942,
+      "year_range": [
+        2012,
+        2021
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          758
+        ],
+        [
+          "other_exploit",
+          2
+        ],
+        [
+          "sex_generic",
+          1
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          899
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          258
+        ]
+      ]
+    },
+    {
+      "origin": "GTM",
+      "destination": "USA",
+      "victims": 842,
+      "year_range": [
+        2009,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          515
+        ],
+        [
+          "sex_generic",
+          203
+        ],
+        [
+          "labour_agriculture",
+          53
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          374
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          242
+        ]
+      ]
+    },
+    {
+      "origin": "KHM",
+      "destination": "KHM",
+      "victims": 826,
+      "year_range": [
+        2017,
+        2019
+      ],
+      "top_exploitation": [
+        [
+          "sex_generic",
+          692
+        ],
+        [
+          "sex_prostitution",
+          41
+        ],
+        [
+          "labour_other",
+          11
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          430
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          309
+        ]
+      ]
+    },
+    {
+      "origin": "MDA",
+      "destination": "UKR",
+      "victims": 666,
+      "year_range": [
+        2003,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          15
+        ],
+        [
+          "labour_hospitality",
+          4
+        ],
+        [
+          "labour_construction",
+          1
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          256
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          69
+        ]
+      ]
+    },
+    {
+      "origin": "IDN",
+      "destination": "MYS",
+      "victims": 627,
+      "year_range": [
+        2005,
+        2022
+      ],
+      "top_exploitation": [
+        [
+          "labour_domestic",
+          152
+        ],
+        [
+          "labour_other",
+          144
+        ],
+        [
+          "sex_generic",
+          33
+        ]
+      ],
+      "top_gender": [
+        [
+          "Woman",
+          488
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          140
+        ]
+      ]
+    },
+    {
+      "origin": "MMR",
+      "destination": "BGD",
+      "victims": 625,
+      "year_range": [
+        2007,
+        2023
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          477
+        ],
+        [
+          "labour_domestic",
+          133
+        ],
+        [
+          "labour_agriculture",
+          50
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          314
+        ]
+      ],
+      "top_age_group": [
+        [
+          "09--17",
+          122
+        ]
+      ]
+    },
+    {
+      "origin": "KGZ",
+      "destination": "RUS",
+      "victims": 600,
+      "year_range": [
+        2008,
+        2020
+      ],
+      "top_exploitation": [
+        [
+          "labour_other",
+          494
+        ],
+        [
+          "labour_construction",
+          120
+        ],
+        [
+          "sex_generic",
+          26
+        ]
+      ],
+      "top_gender": [
+        [
+          "Man",
+          345
+        ]
+      ],
+      "top_age_group": [
+        [
+          "30--38",
+          131
+        ]
+      ]
+    }
+  ]
+}
