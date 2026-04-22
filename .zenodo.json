@@ -1,0 +1,93 @@
+{
+  "title": "RATR-O: Ramona Anti-Trafficking and Recruitment-fraud Ontology, with Virtual Knowledge Graph observatory",
+  "description": "<p>RATR-O is a domain ontology in OWL 2 QL for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America, with particular attention to Mexico.</p><p>The repository ships the ontology in Turtle and in navigable HTML, an Ontop OBDA mapping and a W3C R2RML mapping over Ramona AI's operational Postgres schema, a Dockerised Virtual Knowledge Graph demonstrator, and a dataset pipeline that ingests the CTDC Global Synthetic Dataset v2025 (IOM) and a press observatory of Google-News-indexed Latin-American articles. The ontology aligns with four international frameworks: HUTRO (BioPortal), the UN Palermo Protocol Article 3 (2000), ICS-TIP (IOM and UNODC 2023), and UNODC GLOTIP.</p><p>Prepared for the Dialogue Residency at TU Wien, Institute of Logic and Computation, May to July 2026, under the framework of Xiao, Ding, Cogrel and Calvanese (2019).</p><p>v1.6.1 passes an independent-style rigorous audit with zero BLOCKER and zero SHOULD findings. Every claim is traceable to its source; every external URL verifies; every statistical claim is computed from committed data by a committed script.</p>",
+  "creators": [
+    {
+      "name": "Camberos, Daniela",
+      "affiliation": "Ramona AI",
+      "orcid": ""
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Ortiz, Magdalena",
+      "affiliation": "TU Wien, Institute of Logic and Computation",
+      "type": "Supervisor"
+    }
+  ],
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "ontology",
+    "OWL 2 QL",
+    "DL-Lite",
+    "Virtual Knowledge Graph",
+    "VKG",
+    "OBDA",
+    "R2RML",
+    "human trafficking",
+    "labour fraud",
+    "recruitment fraud",
+    "Latin America",
+    "Mexico",
+    "public-interest AI",
+    "knowledge representation",
+    "SPARQL",
+    "Ontop",
+    "CTDC",
+    "Palermo Protocol",
+    "HUTRO",
+    "ICS-TIP"
+  ],
+  "language": "eng",
+  "upload_type": "software",
+  "related_identifiers": [
+    {
+      "identifier": "https://bioportal.bioontology.org/ontologies/HUTRO",
+      "relation": "isDerivedFrom",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "10.1162/dint_a_00011",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s10817-007-9078-x",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.3233/SW-160217",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/978-3-642-33158-9_1",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://www.ctdatacollaborative.org/page/global-synthetic-dataset",
+      "relation": "references",
+      "resource_type": "dataset"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "knowledge-representation"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Knowledge representation (Information theory)",
+      "identifier": "http://id.loc.gov/authorities/subjects/sh90006099",
+      "scheme": "url"
+    },
+    {
+      "term": "Human trafficking",
+      "identifier": "http://id.loc.gov/authorities/subjects/sh85063033",
+      "scheme": "url"
+    }
+  ]
+}
