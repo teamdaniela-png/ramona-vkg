@@ -1,0 +1,15 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q25 — Tendencia temporal de víctimas registradas por año.
+# Usa la variable yearOfRegistration de CTDC para línea de tiempo 2002-2023.
+# Utile como visualización inicial en el dashboard del observatorio.
+
+SELECT ?year (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim a :Victim ;
+          :yearOfRegistration ?year ;
+          :derivedFrom ?source .
+  ?source :datasetName "CTDC Global Synthetic Dataset v2025" .
+}
+GROUP BY ?year
+ORDER BY ?year

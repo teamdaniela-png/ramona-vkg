@@ -1,0 +1,19 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q21 — Pares de patrones que co-ocurren en el mismo artículo.
+# ¿Qué combinaciones son la firma de un esquema concreto?
+# Base para reglas de detección compuestas (ej. ir_sola + sin_identificacion
+# + edificio_multiusos = firma Edith-Guadalupe).
+
+SELECT ?pattern1 ?pattern2 (COUNT(DISTINCT ?source) AS ?coOccurrences)
+WHERE {
+  ?offer :derivedFrom ?source ;
+         :matchesPattern ?p1 , ?p2 .
+  ?p1 :patternName ?pattern1 .
+  ?p2 :patternName ?pattern2 .
+  FILTER(STR(?pattern1) < STR(?pattern2))
+}
+GROUP BY ?pattern1 ?pattern2
+HAVING (COUNT(DISTINCT ?source) >= 3)
+ORDER BY DESC(?coOccurrences)
+LIMIT 50

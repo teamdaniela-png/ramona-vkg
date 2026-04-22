@@ -1,0 +1,29 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q30 — FraudSchemes atestados en AMBAS fuentes (CTDC + prensa).
+# La intersección entre lo que reporta IOM/CTDC y lo que documenta la prensa
+# independiente. Los schemes que aparecen en ambos lados son los de mayor
+# nivel de evidencia documental combinada.
+# Los que aparecen solo en prensa son 'emergentes'. Los que aparecen solo en
+# CTDC pero no en prensa reciente son 'históricos u opacos'.
+
+SELECT ?schemeCode
+       (COUNT(DISTINCT ?ctdcVictim) AS ?ctdcVictims)
+       (COUNT(DISTINCT ?pressOffer) AS ?pressOffers)
+WHERE {
+  ?scheme a :FraudScheme .
+  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  OPTIONAL {
+    ?ctdcVictim :victimOfFraudScheme ?scheme ;
+                :derivedFrom ?ctdcSrc .
+    ?ctdcSrc :datasetName "CTDC Global Synthetic Dataset v2025" .
+  }
+  OPTIONAL {
+    ?pressOffer :exhibitsFraudScheme ?scheme ;
+                :derivedFrom ?pressSrc .
+    ?pressSrc a :PressArticle .
+  }
+  FILTER (BOUND(?ctdcVictim) || BOUND(?pressOffer))
+}
+GROUP BY ?schemeCode
+ORDER BY DESC(?pressOffers) DESC(?ctdcVictims)

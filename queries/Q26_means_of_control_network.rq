@@ -1,0 +1,19 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q26 — Red de co-ocurrencia de Means of Control.
+# Pares de medios de control que aparecen juntos en la misma víctima CTDC.
+# Input para grafo de red de técnicas; base de regla para detectar combos
+# severos (ej. documents_withheld + threats + excessive_hours = alto riesgo).
+
+SELECT ?means1 ?means2 (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim a :Victim ;
+          :hasMeansOfControl ?m1 , ?m2 .
+  FILTER(STR(?m1) < STR(?m2))
+  BIND(?m1 AS ?means1)
+  BIND(?m2 AS ?means2)
+}
+GROUP BY ?means1 ?means2
+HAVING (COUNT(DISTINCT ?victim) >= 50)
+ORDER BY DESC(?victims)
+LIMIT 50

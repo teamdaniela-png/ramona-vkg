@@ -1,0 +1,16 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q16 — Cobertura del triángulo Palermo (Action × Means × Purpose)
+# en los eventos TIP documentados. Una TIP Event completa debe exhibir
+# al menos una Acción, un Medio y un Propósito (Palermo Protocol, Art. 3).
+# Esta query lista eventos que cumplen los 3 ejes y los que no.
+
+SELECT ?event ?hasAction ?hasMeans ?hasPurpose
+WHERE {
+  ?event a :TIPEvent .
+  BIND(EXISTS { ?event :tipEventHasAction  ?a } AS ?hasAction)
+  BIND(EXISTS { ?event :tipEventHasMeans   ?m } AS ?hasMeans)
+  BIND(EXISTS { ?event :tipEventHasPurpose ?p } AS ?hasPurpose)
+}
+ORDER BY DESC(?hasAction) DESC(?hasMeans) DESC(?hasPurpose)
