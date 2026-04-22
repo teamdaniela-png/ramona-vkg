@@ -20,7 +20,7 @@
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.2" ;
+    owl:versionInfo "1.3" ;
     dct:issued "2026-04-21"^^xsd:date ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
@@ -184,6 +184,75 @@
 :candidateDefraudedBy a owl:ObjectProperty ;
     rdfs:domain :Candidate ; rdfs:range :FraudScheme ;
     rdfs:label "candidate defrauded by scheme"@en .
+
+#################################################################
+#    v1.3 — Observatory measurement layer
+#    Properties and subclasses that enable empirical statements on top
+#    of the ontology (counts, frequency buckets, earliest year, etc.)
+#################################################################
+
+:ClassicRedFlagPattern a owl:Class ;
+    rdfs:subClassOf :SurvivorTestimonyPattern ;
+    rdfs:label "Classic red-flag pattern"@en, "Patrón de bandera roja clásica"@es ;
+    rdfs:comment "A survivor-testimony pattern drawn from Ramona's 7-flag canonical taxonomy (high salary, flexible hours, no experience, upfront pay, urgent acceptance, distant interview, out-of-state job)."@en .
+
+:CredibleLethalPattern a owl:Class ;
+    rdfs:subClassOf :SurvivorTestimonyPattern ;
+    rdfs:label "Credible-lethal pattern"@en, "Patrón creíble-letal"@es ;
+    rdfs:comment "A survivor-testimony pattern where the offer itself looks plausible and the risk sits in the logistics of the first contact (nameless WhatsApp, multi-use building, 'come alone', 'no ID', Messenger-to-WhatsApp funnel, personal-data filter). Type B in Ramona's dual-track classification."@en .
+
+:CommunicationPattern a owl:Class ;
+    rdfs:subClassOf :SurvivorTestimonyPattern ;
+    rdfs:label "Communication pattern"@en, "Patrón de comunicación"@es ;
+    rdfs:comment "A pattern describing which communication tool was used for the first or dominant contact (WhatsApp, Messenger, Telegram, SMS, in-person, etc.)."@en .
+
+:RecruitmentPattern a owl:Class ;
+    rdfs:subClassOf :SurvivorTestimonyPattern ;
+    rdfs:label "Recruitment pattern"@en, "Patrón de reclutamiento"@es ;
+    rdfs:comment "A pattern describing how the recruiter established contact with the candidate (social media, family, friend, intimate partner, abduction, classifieds, street)."@en .
+
+:ExploitationPattern a owl:Class ;
+    rdfs:subClassOf :SurvivorTestimonyPattern ;
+    rdfs:label "Exploitation pattern"@en, "Patrón de explotación"@es ;
+    rdfs:comment "A pattern describing the final exploitation outcome attested or suggested in the evidence source (labour hospitality, sexual, forced criminality, organ removal)."@en .
+
+:DominanceBucket a owl:Class ;
+    rdfs:label "Dominance bucket"@en, "Rango de dominancia"@es ;
+    rdfs:comment "A qualitative frequency bucket used to describe how often a pattern is observed in the observatory corpus. Values: hot (>= 5 percent of cases), warm (1 to 5 percent), cold (< 1 percent)."@en .
+
+# Datatype properties for observatory measurement
+
+:observedCount a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:integer ;
+    rdfs:label "observed count"@en, "frecuencia observada"@es ;
+    rdfs:comment "Number of case-relevant evidence sources in which the pattern was detected."@en .
+
+:pctOfCases a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:decimal ;
+    rdfs:label "percentage of cases"@en, "porcentaje de casos"@es .
+
+:dominanceBucketValue a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
+    rdfs:label "dominance bucket value"@en, "valor de rango de dominancia"@es ;
+    rdfs:comment "hot, warm, or cold."@en .
+
+:routeVictimCount a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:integer ;
+    rdfs:label "route victim count"@en, "número de víctimas en la ruta"@es ;
+    rdfs:comment "Number of CTDC-registered victims attested on this (origin, destination) pair."@en .
+
+:routeEarliestYear a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:gYear ;
+    rdfs:label "route earliest year"@en, "año más temprano de la ruta"@es .
+
+:routeLatestYear a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:gYear ;
+    rdfs:label "route latest year"@en, "año más reciente de la ruta"@es .
+
+:routeDominantExploitation a owl:ObjectProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range :TypeOfExploitation ;
+    rdfs:label "route dominant exploitation"@en, "explotación dominante de la ruta"@es ;
+    rdfs:comment "The single exploitation type attested for the majority of victims on this route."@en .
 
 
 # Link properties: an offer or a victim can exhibit one or more FraudSchemes.
