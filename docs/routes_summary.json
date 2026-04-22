@@ -1,7 +1,7 @@
 {
   "total_records": 257969,
-  "total_routes": 1304,
-  "min_victims_threshold": 5,
+  "total_routes": 1771,
+  "min_victims_threshold": 3,
   "top_20_routes_by_victims": [
     {
       "origin": "USA",

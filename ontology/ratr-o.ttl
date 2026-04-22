@@ -20,7 +20,7 @@
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.5" ;
+    owl:versionInfo "1.6" ;
     dct:issued "2026-04-21"^^xsd:date ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
@@ -178,6 +178,86 @@
     rdfs:subClassOf :FraudScheme ;
     rdfs:label "Foreign-language teacher scheme"@en, "Esquema de maestro de idiomas en el extranjero"@es ;
     rdfs:comment "The candidate is offered a teaching position abroad (typically Spanish in Asia or English in Latin America) with housing, visa and flight paid by the agency. On arrival the promised contract does not exist: the candidate is placed in a different role, forced to pay back 'travel expenses', has documents retained, or finds the school is a front for sex tourism or forced domestic work. Documented corridors include Mexico-China, Mexico-Korea, and Peru-Japan."@en .
+
+#################################################################
+#    v1.6 — Eight additional FraudSchemes with rigorous documentation
+#    Each scheme cites at least one official source
+#    (UNODC, UNICEF, UN Women, ILO, FIFPro, REDIM, Palermo Protocol).
+#################################################################
+
+:ForcedChildMarriageScheme a owl:Class ;
+    rdfs:subClassOf :DebtBondageTraffickingScheme ;
+    rdfs:label "Forced child marriage scheme"@en, "Esquema de matrimonio infantil forzado"@es ;
+    rdfs:comment "The offer frames a minor's placement as marriage or an 'informal union' under customary practice (usos y costumbres). The Secretaría de las Mujeres de Oaxaca recognises this explicitly as a form of human trafficking. According to ENADID 2014, 44.82% of women in Chiapas, 42.41% in Guerrero and 39.17% in Oaxaca reported child marriage or early union. Recognised by UNICEF as a harmful practice and by UN Women as a form of gender-based violence. Maps to :PurposeServitude in the Palermo Protocol."@en ;
+    rdfs:seeAlso <https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
+                 <https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/> .
+
+:OrganRemovalRecruitmentScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Organ removal recruitment scheme"@en, "Esquema de reclutamiento para extracción de órganos"@es ;
+    rdfs:comment "The offer promises medical treatment, paid egg donation, or a health procedure. The real purpose is extraction of organs (most commonly kidneys) or tissue for sale on the black market. Traffickers promise US$500 to US$10,000 that the victim often never receives. Documented in detail by the UNODC Assessment Toolkit on Trafficking in Persons for the Purpose of Organ Removal (2015, 60+ pages). Explicitly named as a purpose of trafficking by Article 3(a) of the Palermo Protocol (2000). Recruitment uses social media, word of mouth in vulnerable communities, and classifieds."@en ;
+    rdfs:seeAlso <https://www.unodc.org/documents/human-trafficking/2015/UNODC_Assessment_Toolkit_TIP_for_the_Purpose_of_Organ_Removal.pdf> .
+
+:ChildRecruitmentCriminalScheme a owl:Class ;
+    rdfs:subClassOf :ForcedCriminalityScheme ;
+    rdfs:label "Child recruitment into criminal organisations"@en,
+               "Esquema de reclutamiento infantil por grupos delictivos"@es ;
+    rdfs:comment "Recruitment of minors by organised-crime organisations as halcones (lookouts), runners, enforcers, or in the production and logistics of drug trafficking. Extensively documented in Mexico by REDIM (Red por los Derechos de la Infancia en México) in their 2010-2024 series. Recognised by the CNDH and ongoing federal legislative debate. Entry points include offers disguised as 'security', 'warehouse work' or 'deliveries', plus in-school contact and social-media grooming. UNICEF treats recruitment of minors by armed groups as a grave violation."@en ;
+    rdfs:seeAlso <https://blog.derechosinfancia.org.mx/2025/12/09/reclutamiento-y-utilizacion-de-ninas-ninos-y-adolescentes-por-agrupaciones-delictivas-en-mexico-2010-2024/> ,
+                 <https://blog.derechosinfancia.org.mx/2025/12/10/reclutamiento-y-utilizacion-de-ninas-ninos-y-adolescentes-por-agrupaciones-delictivas-en-michoacan-2010-2024/> .
+
+:CentralAmericanMigrantLabourScheme a owl:Class ;
+    rdfs:subClassOf :DebtBondageTraffickingScheme ;
+    rdfs:label "Central-American migrant labour exploitation scheme"@en,
+               "Esquema de explotación laboral de migrantes centroamericanos"@es ;
+    rdfs:comment "Offer of work in the United States or northern Mexico, targeted at Guatemalan, Honduran or Salvadoran candidates, that routes the victim via Tapachula and the Mexican migration corridor. On arrival, the victim is placed in construction, agriculture or hospitality under conditions of debt bondage: smuggling fees, document retention, threats of denunciation to immigration authorities. CTDC documents the GTM-USA corridor with 842 victims 2009-2023 and the HND and SLV citizenship clusters. Recognised by UNODC GLOTIP as a principal Latin-American corridor."@en ;
+    rdfs:seeAlso <https://www.ctdatacollaborative.org/page/global-synthetic-dataset> ,
+                 <https://www.unodc.org/unodc/data-and-analysis/glotip.html> .
+
+:AgriculturalBondageScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Agricultural labour bondage scheme"@en,
+               "Esquema de servidumbre en trabajo agrícola"@es ;
+    rdfs:comment "Offer of seasonal agricultural work (jornalero, harvest, produce packing) that leads to wage theft, deductions for housing and food that exceed the wage, confiscation of identification documents, and restriction of movement through geographic isolation. Documented by ILO, UNODC and the Polaris Project in the US-Mexico corridor (fresh produce, coffee, tomato) and in internal Mexican migration from southern states to Sinaloa, Sonora and Baja California. The CTDC dataset registers :labour_agriculture as a distinct exploitation subtype."@en ;
+    rdfs:seeAlso <https://www.unodc.org/documents/human-trafficking/2015/Recruitment_Fees_Report-Final-22_June_2015_AG_Final.pdf> ,
+                 <https://polarisproject.org/> .
+
+:FishingVesselLabourScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Fishing vessel labour scheme"@en,
+               "Esquema de explotación laboral en pesca"@es ;
+    rdfs:comment "Offer of work on deep-sea fishing vessels with promised wages and return dates. Victims are taken to international waters where they are held for months or years without pay, with document confiscation, physical abuse and no possibility of exit. Extensively documented by the International Labour Organization ('Caught at Sea', 2013) and by the Environmental Justice Foundation. Principal victim populations include Myanmar, Cambodia, Indonesia and the Philippines; vessels often registered in Thailand, Taiwan, Korea."@en ;
+    rdfs:seeAlso <https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries> .
+
+:GangRecruitmentSchoolsScheme a owl:Class ;
+    rdfs:subClassOf :ChildRecruitmentCriminalScheme ;
+    rdfs:label "Gang recruitment at schools scheme"@en,
+               "Esquema de reclutamiento de pandillas o cárteles en escuelas"@es ;
+    rdfs:comment "Specific subtype of child recruitment where the entry point is the school ground or school exit. Recruiters are often students slightly older than the target or adults posing as relatives. Common in Central America (MS-13, Barrio 18) and in Mexican states with heavy cartel presence (Michoacán, Guerrero, Jalisco, Tamaulipas). The Gobierno de Zapopan published a public prevention programme in 2026. REDIM documented 26 press articles in the current Ramona observatory corpus alone."@en ;
+    rdfs:seeAlso <https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
+                 <https://blog.derechosinfancia.org.mx/> .
+
+:BeggingRingScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Forced begging ring scheme"@en,
+               "Esquema de mendicidad forzada"@es ;
+    rdfs:comment "Offer of 'help' or 'a job in the city' that leads to forced begging under the control of a ring leader. Common victims are minors, persons with disabilities, and migrants with precarious status. The ring leader confiscates earnings and controls movement. Named explicitly in the UNODC Protocol against Trafficking in Persons glossary and discussed by UNICEF in urban contexts in Mexico, Honduras and Guatemala. Maps to :PurposeForcedLabour or :PurposeSlavery depending on the context."@en ;
+    rdfs:seeAlso <https://www.unodc.org/unodc/en/human-trafficking/faqs.html> .
+
+:ConstructionLabourBondageScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Construction labour bondage scheme"@en,
+               "Esquema de servidumbre en construcción"@es ;
+    rdfs:comment "Offer of construction work abroad or in another state with housing and 'flight to site' included. Upon arrival the worker finds pay deductions for housing, transport and tools that exceed the wage; documents are retained; movement off site is restricted. Documented by ILO in the Gulf States labour corridor (most notoriously Qatar World Cup preparation) and by HRW and Polaris in the US-Mexico corridor for Mexican and Central-American workers. Also attested internally in Mexico for workers displaced from southern states to the northern border."@en ;
+    rdfs:seeAlso <https://www.unodc.org/documents/human-trafficking/2015/Recruitment_Fees_Report-Final-22_June_2015_AG_Final.pdf> ,
+                 <https://www.hrw.org/topic/migrant-and-refugee-rights> .
+
+:SportsTalentScheme a owl:Class ;
+    rdfs:subClassOf :FraudScheme ;
+    rdfs:label "Sports talent recruitment scheme"@en,
+               "Esquema de reclutamiento deportivo fraudulento"@es ;
+    rdfs:comment "Offer to join a 'football academy' in Europe, a 'baseball academy' in the US, or a 'boxing camp' abroad, with flight and training fees. Victim (usually an adolescent) is abandoned at destination when the agency disappears or is placed under exploitative training contracts with no professional outcome. Extensively documented by FIFPro (World Players Union) in its 2018 Africa report and by ILO in the Latin-America to Europe and Asia to Gulf corridors for youth football. Also attested in baseball recruiting in the Dominican Republic and Venezuela."@en ;
+    rdfs:seeAlso <https://fifpro.org/en/industry/player-trafficking> .
 
 # Candidate and victim link to Scheme (extended range)
 
@@ -374,6 +454,199 @@
 # OpenDatasetRecord instances via the ingest pipeline when available).
 
 :Victim rdfs:seeAlso <https://www.unodc.org/unodc/data-and-analysis/glotip.html> .
+
+#################################################################
+#    v1.6 — Additional object and datatype properties
+#    Fine-grained structure for the observatory and paper-grade analytics.
+#################################################################
+
+# Inverse relations (declared verbose in DL-Lite; OWL 2 QL allows inverseOf)
+:offers a owl:ObjectProperty ;
+    rdfs:domain :Agent ; rdfs:range :JobOffer ;
+    owl:inverseOf :offeredBy ;
+    rdfs:label "offers"@en, "ofrece"@es .
+
+:hostsOffer a owl:ObjectProperty ;
+    rdfs:domain :Platform ; rdfs:range :JobOffer ;
+    owl:inverseOf :postedVia ;
+    rdfs:label "hosts offer"@en .
+
+:containsRedFlag a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :RedFlag ;
+    rdfs:label "contains red flag"@en .
+
+:recruitsFor a owl:ObjectProperty ;
+    rdfs:domain :Recruiter ; rdfs:range :FraudScheme ;
+    rdfs:label "recruits for scheme"@en .
+
+:operatesIn a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :Country ;
+    rdfs:label "scheme operates in country"@en .
+
+:schemePreferredTool a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :CommunicationTool ;
+    rdfs:label "preferred communication tool for scheme"@en .
+
+:schemeTargetsAgeGroup a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :AgeGroup ;
+    rdfs:label "scheme targets age group"@en .
+
+:schemeTargetsGender a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :Gender ;
+    rdfs:label "scheme targets gender"@en .
+
+:schemeTypicalRoute a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :TraffickingRoute ;
+    rdfs:label "typical trafficking route for scheme"@en .
+
+:schemeExploitationType a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :TypeOfExploitation ;
+    rdfs:label "scheme leads to exploitation type"@en .
+
+:evidencedByPressArticle a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :PressArticle ;
+    rdfs:label "evidenced by press article"@en .
+
+:observedInCountry a owl:ObjectProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range :Country ;
+    rdfs:label "pattern observed in country"@en .
+
+:patternHasKind a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
+    rdfs:label "pattern kind"@en ;
+    rdfs:comment "classic_a / credible_b / communication / recruitment / exploitation / deep_textual."@en .
+
+# Additional datatype properties
+:offerIsActive a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:boolean ;
+    rdfs:label "offer is active"@en .
+
+:offerLanguage a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "offer language ISO code"@en .
+
+:offerScreenshotUrl a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:anyURI ;
+    rdfs:label "offer screenshot URL"@en .
+
+:offerFirstContactAt a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:dateTime ;
+    rdfs:label "offer first contact timestamp"@en .
+
+:offerClassifierConfidence a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
+    rdfs:label "offer classifier confidence"@en .
+
+:victimCaseOpenedAt a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:date ;
+    rdfs:label "victim case opened at"@en .
+
+:victimCaseClosedAt a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:date ;
+    rdfs:label "victim case closed at"@en .
+
+:victimHasChildrenCount a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:integer ;
+    rdfs:label "number of children"@en ;
+    rdfs:comment "ICS-TIP additional disaggregating variable."@en .
+
+:victimEducationLevel a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:label "education level"@en ;
+    rdfs:comment "ICS-TIP additional disaggregating variable. Controlled vocab: none, primary, secondary, tertiary, postgraduate, unknown."@en .
+
+:victimMaritalStatus a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:label "marital status"@en ;
+    rdfs:comment "ICS-TIP additional disaggregating variable. Controlled vocab: single, married, cohabiting, separated, divorced, widowed, unknown."@en .
+
+:victimPriorEmployment a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:label "prior employment status"@en .
+
+:victimReferralSource a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:label "victim referral source"@en ;
+    rdfs:comment "How the victim was identified: self-report, NGO, law enforcement, embassy, hotline."@en .
+
+:routeIsTransnational a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:boolean ;
+    rdfs:label "route is transnational"@en .
+
+:routeStopoverCountries a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:string ;
+    rdfs:label "route stopover countries (ISO3 list)"@en .
+
+:routeUpdatedAt a owl:DatatypeProperty ;
+    rdfs:domain :TraffickingRoute ; rdfs:range xsd:dateTime ;
+    rdfs:label "route record last updated at"@en .
+
+:schemeNamedAfterCase a owl:DatatypeProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
+    rdfs:label "scheme archetypal case name"@en .
+
+:schemeFirstAttestedYear a owl:DatatypeProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range xsd:gYear ;
+    rdfs:label "scheme first attested year"@en .
+
+:schemeJurisdictionScope a owl:DatatypeProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
+    rdfs:label "scheme jurisdiction scope"@en ;
+    rdfs:comment "local, national, regional, continental, global."@en .
+
+:evidenceStrength a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
+    rdfs:label "evidence strength"@en ;
+    rdfs:comment "primary / secondary / tertiary. Primary = direct survivor testimony, official statistics, court record; secondary = investigative journalism; tertiary = summary or editorial article."@en .
+
+:sourceLanguage a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
+    rdfs:label "source language ISO code"@en .
+
+:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:dateTime ;
+    rdfs:label "source accessed timestamp"@en .
+
+# Additional structural object properties
+:tipEventHappenedIn a owl:ObjectProperty ;
+    rdfs:domain :TIPEvent ; rdfs:range :Country ;
+    rdfs:label "TIP event happened in country"@en .
+:tipEventRegisteredBy a owl:ObjectProperty ;
+    rdfs:domain :TIPEvent ; rdfs:range :Agent ;
+    rdfs:label "TIP event registered by"@en .
+:schemePalermoAction a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :PalermoAction ;
+    rdfs:label "scheme Palermo action"@en .
+:schemePalermoMeans a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :PalermoMeans ;
+    rdfs:label "scheme Palermo means"@en .
+:schemePalermoPurpose a owl:ObjectProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range :PalermoPurpose ;
+    rdfs:label "scheme Palermo purpose"@en .
+:platformModeratedBy a owl:ObjectProperty ;
+    rdfs:domain :Platform ; rdfs:range :Agent ;
+    rdfs:label "platform moderated by"@en .
+
+# Fine-grained datatype properties
+:flagKeywordPattern a owl:DatatypeProperty ;
+    rdfs:domain :RedFlag ; rdfs:range xsd:string ;
+    rdfs:label "flag keyword pattern"@en ;
+    rdfs:comment "Regex used by the rule-based classifier."@en .
+:patternRegex a owl:DatatypeProperty ;
+    rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
+    rdfs:label "pattern regex"@en .
+:riskExplanationEn a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
+    rdfs:label "risk explanation in English"@en .
+:riskExplanationEs a owl:DatatypeProperty ;
+    rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
+    rdfs:label "risk explanation in Spanish"@en .
+:evidenceAccessedOnline a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:boolean ;
+    rdfs:label "evidence accessed online"@en .
+:evidenceArchivedUrl a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:anyURI ;
+    rdfs:label "evidence archived URL (e.g. archive.today)"@en .
 
 
 # Link properties: an offer or a victim can exhibit one or more FraudSchemes.
