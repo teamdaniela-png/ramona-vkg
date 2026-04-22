@@ -28,7 +28,7 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.3</dd>
+  <dt>Version</dt><dd>1.4</dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
   <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
@@ -43,10 +43,10 @@
 <p>A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona&#x27;s domain-specific taxonomy of online recruitment fraud in Mexico and Latin America.</p>
 
 <h2>Table of contents</h2>
-<h3>Classes (54)</h3>
-<ul class="toc"><li><a href="#AgeGroup"><code>:AgeGroup</code></a></li><li><a href="#Agent"><code>:Agent</code></a></li><li><a href="#CallCenterScamScheme"><code>:CallCenterScamScheme</code></a></li><li><a href="#Candidate"><code>:Candidate</code></a></li><li><a href="#ClassicRedFlagPattern"><code>:ClassicRedFlagPattern</code></a></li><li><a href="#CommunicationPattern"><code>:CommunicationPattern</code></a></li><li><a href="#CommunicationTool"><code>:CommunicationTool</code></a></li><li><a href="#Country"><code>:Country</code></a></li><li><a href="#CredibleLethalPattern"><code>:CredibleLethalPattern</code></a></li><li><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></li><li><a href="#DemographicProfile"><code>:DemographicProfile</code></a></li><li><a href="#DocumentationType"><code>:DocumentationType</code></a></li><li><a href="#DomesticWorkerLockInScheme"><code>:DomesticWorkerLockInScheme</code></a></li><li><a href="#DominanceBucket"><code>:DominanceBucket</code></a></li><li><a href="#Employer"><code>:Employer</code></a></li><li><a href="#EvidenceSource"><code>:EvidenceSource</code></a></li><li><a href="#ExploitationPattern"><code>:ExploitationPattern</code></a></li><li><a href="#ExploitationRisk"><code>:ExploitationRisk</code></a></li><li><a href="#FakeMaquilaScheme"><code>:FakeMaquilaScheme</code></a></li><li><a href="#FalseDocumentation"><code>:FalseDocumentation</code></a></li><li><a href="#ForcedCriminalityScheme"><code>:ForcedCriminalityScheme</code></a></li><li><a href="#ForeignLanguageTeacherScheme"><code>:ForeignLanguageTeacherScheme</code></a></li><li><a href="#FraudRisk"><code>:FraudRisk</code></a></li><li><a href="#FraudScheme"><code>:FraudScheme</code></a></li><li><a href="#Gender"><code>:Gender</code></a></li><li><a href="#GigEconomyFakeDriverScheme"><code>:GigEconomyFakeDriverScheme</code></a></li><li><a href="#IdentityTheftScheme"><code>:IdentityTheftScheme</code></a></li><li><a href="#InPersonLureScheme"><code>:InPersonLureScheme</code></a></li><li><a href="#JobOffer"><code>:JobOffer</code></a></li><li><a href="#Language"><code>:Language</code></a></li><li><a href="#MLMHealthBeautyScheme"><code>:MLMHealthBeautyScheme</code></a></li><li><a href="#ModelingAgencyScheme"><code>:ModelingAgencyScheme</code></a></li><li><a href="#OnlineCryptoJobScheme"><code>:OnlineCryptoJobScheme</code></a></li><li><a href="#OnlineInfluencerSalesScheme"><code>:OnlineInfluencerSalesScheme</code></a></li><li><a href="#OnlineRecruitmentChannel"><code>:OnlineRecruitmentChannel</code></a></li><li><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a></li><li><a href="#PayToWorkScheme"><code>:PayToWorkScheme</code></a></li><li><a href="#Platform"><code>:Platform</code></a></li><li><a href="#PressArticle"><code>:PressArticle</code></a></li><li><a href="#PyramidScheme"><code>:PyramidScheme</code></a></li><li><a href="#Recruiter"><code>:Recruiter</code></a></li><li><a href="#RecruitmentMethod"><code>:RecruitmentMethod</code></a></li><li><a href="#RecruitmentPattern"><code>:RecruitmentPattern</code></a></li><li><a href="#RedFlag"><code>:RedFlag</code></a></li><li><a href="#RiskClassification"><code>:RiskClassification</code></a></li><li><a href="#Submission"><code>:Submission</code></a></li><li><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></li><li><a href="#TraffickingRisk"><code>:TraffickingRisk</code></a></li><li><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></li><li><a href="#TransportationMeans"><code>:TransportationMeans</code></a></li><li><a href="#TypeOfExploitation"><code>:TypeOfExploitation</code></a></li><li><a href="#Victim"><code>:Victim</code></a></li><li><a href="#VisaFraudScheme"><code>:VisaFraudScheme</code></a></li><li><a href="#VulnerabilityFactor"><code>:VulnerabilityFactor</code></a></li></ul>
-<h3>Object properties (35)</h3>
-<ul class="toc"><li><a href="#associatedWithRoute"><code>:associatedWithRoute</code></a></li><li><a href="#candidateDefraudedBy"><code>:candidateDefraudedBy</code></a></li><li><a href="#contactedThrough"><code>:contactedThrough</code></a></li><li><a href="#derivedFrom"><code>:derivedFrom</code></a></li><li><a href="#destinationCountry"><code>:destinationCountry</code></a></li><li><a href="#evidenceFor"><code>:evidenceFor</code></a></li><li><a href="#exhibitsFraudScheme"><code>:exhibitsFraudScheme</code></a></li><li><a href="#hasAgeGroup"><code>:hasAgeGroup</code></a></li><li><a href="#hasDemographicProfile"><code>:hasDemographicProfile</code></a></li><li><a href="#hasGender"><code>:hasGender</code></a></li><li><a href="#hasNationality"><code>:hasNationality</code></a></li><li><a href="#hasRecruitmentMethod"><code>:hasRecruitmentMethod</code></a></li><li><a href="#hasRedFlag"><code>:hasRedFlag</code></a></li><li><a href="#hasRiskClassification"><code>:hasRiskClassification</code></a></li><li><a href="#hasVulnerabilityFactor"><code>:hasVulnerabilityFactor</code></a></li><li><a href="#inCountry"><code>:inCountry</code></a></li><li><a href="#inLanguage"><code>:inLanguage</code></a></li><li><a href="#leadsToExploitation"><code>:leadsToExploitation</code></a></li><li><a href="#matchesPattern"><code>:matchesPattern</code></a></li><li><a href="#offeredBy"><code>:offeredBy</code></a></li><li><a href="#offeredByEmployer"><code>:offeredByEmployer</code></a></li><li><a href="#offeredByRecruiter"><code>:offeredByRecruiter</code></a></li><li><a href="#originCountry"><code>:originCountry</code></a></li><li><a href="#platformCountry"><code>:platformCountry</code></a></li><li><a href="#postedVia"><code>:postedVia</code></a></li><li><a href="#recruitedVia"><code>:recruitedVia</code></a></li><li><a href="#recruiterCountry"><code>:recruiterCountry</code></a></li><li><a href="#routeDominantExploitation"><code>:routeDominantExploitation</code></a></li><li><a href="#submittedBy"><code>:submittedBy</code></a></li><li><a href="#submittedOffer"><code>:submittedOffer</code></a></li><li><a href="#transportedBy"><code>:transportedBy</code></a></li><li><a href="#travelledWith"><code>:travelledWith</code></a></li><li><a href="#victimOfExploitation"><code>:victimOfExploitation</code></a></li><li><a href="#victimOfFraudScheme"><code>:victimOfFraudScheme</code></a></li><li><a href="#victimOfOffer"><code>:victimOfOffer</code></a></li></ul>
+<h3>Classes (76)</h3>
+<ul class="toc"><li><a href="#AgeGroup"><code>:AgeGroup</code></a></li><li><a href="#Agent"><code>:Agent</code></a></li><li><a href="#CallCenterScamScheme"><code>:CallCenterScamScheme</code></a></li><li><a href="#Candidate"><code>:Candidate</code></a></li><li><a href="#ClassicRedFlagPattern"><code>:ClassicRedFlagPattern</code></a></li><li><a href="#CommunicationPattern"><code>:CommunicationPattern</code></a></li><li><a href="#CommunicationTool"><code>:CommunicationTool</code></a></li><li><a href="#Country"><code>:Country</code></a></li><li><a href="#CredibleLethalPattern"><code>:CredibleLethalPattern</code></a></li><li><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></li><li><a href="#DemographicProfile"><code>:DemographicProfile</code></a></li><li><a href="#DocumentationType"><code>:DocumentationType</code></a></li><li><a href="#DomesticWorkerLockInScheme"><code>:DomesticWorkerLockInScheme</code></a></li><li><a href="#DominanceBucket"><code>:DominanceBucket</code></a></li><li><a href="#Employer"><code>:Employer</code></a></li><li><a href="#EvidenceSource"><code>:EvidenceSource</code></a></li><li><a href="#ExploitationPattern"><code>:ExploitationPattern</code></a></li><li><a href="#ExploitationRisk"><code>:ExploitationRisk</code></a></li><li><a href="#FakeMaquilaScheme"><code>:FakeMaquilaScheme</code></a></li><li><a href="#FalseDocumentation"><code>:FalseDocumentation</code></a></li><li><a href="#ForcedCriminalityScheme"><code>:ForcedCriminalityScheme</code></a></li><li><a href="#ForeignLanguageTeacherScheme"><code>:ForeignLanguageTeacherScheme</code></a></li><li><a href="#FraudRisk"><code>:FraudRisk</code></a></li><li><a href="#FraudScheme"><code>:FraudScheme</code></a></li><li><a href="#Gender"><code>:Gender</code></a></li><li><a href="#GigEconomyFakeDriverScheme"><code>:GigEconomyFakeDriverScheme</code></a></li><li><a href="#Harbouring"><code>:Harbouring</code></a></li><li><a href="#IdentityTheftScheme"><code>:IdentityTheftScheme</code></a></li><li><a href="#InPersonLureScheme"><code>:InPersonLureScheme</code></a></li><li><a href="#JobOffer"><code>:JobOffer</code></a></li><li><a href="#Language"><code>:Language</code></a></li><li><a href="#MLMHealthBeautyScheme"><code>:MLMHealthBeautyScheme</code></a></li><li><a href="#MeansAbduction"><code>:MeansAbduction</code></a></li><li><a href="#MeansAbuseOfPower"><code>:MeansAbuseOfPower</code></a></li><li><a href="#MeansAbuseOfVulnerability"><code>:MeansAbuseOfVulnerability</code></a></li><li><a href="#MeansCoercion"><code>:MeansCoercion</code></a></li><li><a href="#MeansDeception"><code>:MeansDeception</code></a></li><li><a href="#MeansFraud"><code>:MeansFraud</code></a></li><li><a href="#MeansPaymentOrBenefit"><code>:MeansPaymentOrBenefit</code></a></li><li><a href="#MeansThreatOfForce"><code>:MeansThreatOfForce</code></a></li><li><a href="#ModelingAgencyScheme"><code>:ModelingAgencyScheme</code></a></li><li><a href="#OnlineCryptoJobScheme"><code>:OnlineCryptoJobScheme</code></a></li><li><a href="#OnlineInfluencerSalesScheme"><code>:OnlineInfluencerSalesScheme</code></a></li><li><a href="#OnlineRecruitmentChannel"><code>:OnlineRecruitmentChannel</code></a></li><li><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a></li><li><a href="#PalermoAction"><code>:PalermoAction</code></a></li><li><a href="#PalermoMeans"><code>:PalermoMeans</code></a></li><li><a href="#PalermoPurpose"><code>:PalermoPurpose</code></a></li><li><a href="#PayToWorkScheme"><code>:PayToWorkScheme</code></a></li><li><a href="#Platform"><code>:Platform</code></a></li><li><a href="#PressArticle"><code>:PressArticle</code></a></li><li><a href="#PurposeForcedLabour"><code>:PurposeForcedLabour</code></a></li><li><a href="#PurposeOrganRemoval"><code>:PurposeOrganRemoval</code></a></li><li><a href="#PurposeServitude"><code>:PurposeServitude</code></a></li><li><a href="#PurposeSexualExploitation"><code>:PurposeSexualExploitation</code></a></li><li><a href="#PurposeSlavery"><code>:PurposeSlavery</code></a></li><li><a href="#PyramidScheme"><code>:PyramidScheme</code></a></li><li><a href="#Receipt"><code>:Receipt</code></a></li><li><a href="#Recruiter"><code>:Recruiter</code></a></li><li><a href="#Recruitment"><code>:Recruitment</code></a></li><li><a href="#RecruitmentMethod"><code>:RecruitmentMethod</code></a></li><li><a href="#RecruitmentPattern"><code>:RecruitmentPattern</code></a></li><li><a href="#RedFlag"><code>:RedFlag</code></a></li><li><a href="#RiskClassification"><code>:RiskClassification</code></a></li><li><a href="#Submission"><code>:Submission</code></a></li><li><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></li><li><a href="#TIPEvent"><code>:TIPEvent</code></a></li><li><a href="#TraffickingRisk"><code>:TraffickingRisk</code></a></li><li><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></li><li><a href="#Transfer"><code>:Transfer</code></a></li><li><a href="#Transportation"><code>:Transportation</code></a></li><li><a href="#TransportationMeans"><code>:TransportationMeans</code></a></li><li><a href="#TypeOfExploitation"><code>:TypeOfExploitation</code></a></li><li><a href="#Victim"><code>:Victim</code></a></li><li><a href="#VisaFraudScheme"><code>:VisaFraudScheme</code></a></li><li><a href="#VulnerabilityFactor"><code>:VulnerabilityFactor</code></a></li></ul>
+<h3>Object properties (42)</h3>
+<ul class="toc"><li><a href="#associatedWithRoute"><code>:associatedWithRoute</code></a></li><li><a href="#candidateDefraudedBy"><code>:candidateDefraudedBy</code></a></li><li><a href="#contactedThrough"><code>:contactedThrough</code></a></li><li><a href="#derivedFrom"><code>:derivedFrom</code></a></li><li><a href="#destinationCountry"><code>:destinationCountry</code></a></li><li><a href="#evidenceFor"><code>:evidenceFor</code></a></li><li><a href="#exhibitsAction"><code>:exhibitsAction</code></a></li><li><a href="#exhibitsFraudScheme"><code>:exhibitsFraudScheme</code></a></li><li><a href="#exhibitsMeans"><code>:exhibitsMeans</code></a></li><li><a href="#exhibitsPurpose"><code>:exhibitsPurpose</code></a></li><li><a href="#hasAgeGroup"><code>:hasAgeGroup</code></a></li><li><a href="#hasDemographicProfile"><code>:hasDemographicProfile</code></a></li><li><a href="#hasGender"><code>:hasGender</code></a></li><li><a href="#hasNationality"><code>:hasNationality</code></a></li><li><a href="#hasRecruitmentMethod"><code>:hasRecruitmentMethod</code></a></li><li><a href="#hasRedFlag"><code>:hasRedFlag</code></a></li><li><a href="#hasRiskClassification"><code>:hasRiskClassification</code></a></li><li><a href="#hasVulnerabilityFactor"><code>:hasVulnerabilityFactor</code></a></li><li><a href="#inCountry"><code>:inCountry</code></a></li><li><a href="#inLanguage"><code>:inLanguage</code></a></li><li><a href="#leadsToExploitation"><code>:leadsToExploitation</code></a></li><li><a href="#matchesPattern"><code>:matchesPattern</code></a></li><li><a href="#offeredBy"><code>:offeredBy</code></a></li><li><a href="#offeredByEmployer"><code>:offeredByEmployer</code></a></li><li><a href="#offeredByRecruiter"><code>:offeredByRecruiter</code></a></li><li><a href="#originCountry"><code>:originCountry</code></a></li><li><a href="#platformCountry"><code>:platformCountry</code></a></li><li><a href="#postedVia"><code>:postedVia</code></a></li><li><a href="#recruitedVia"><code>:recruitedVia</code></a></li><li><a href="#recruiterCountry"><code>:recruiterCountry</code></a></li><li><a href="#routeDominantExploitation"><code>:routeDominantExploitation</code></a></li><li><a href="#submittedBy"><code>:submittedBy</code></a></li><li><a href="#submittedOffer"><code>:submittedOffer</code></a></li><li><a href="#tipEventHasAction"><code>:tipEventHasAction</code></a></li><li><a href="#tipEventHasMeans"><code>:tipEventHasMeans</code></a></li><li><a href="#tipEventHasPurpose"><code>:tipEventHasPurpose</code></a></li><li><a href="#tipEventInvolves"><code>:tipEventInvolves</code></a></li><li><a href="#transportedBy"><code>:transportedBy</code></a></li><li><a href="#travelledWith"><code>:travelledWith</code></a></li><li><a href="#victimOfExploitation"><code>:victimOfExploitation</code></a></li><li><a href="#victimOfFraudScheme"><code>:victimOfFraudScheme</code></a></li><li><a href="#victimOfOffer"><code>:victimOfOffer</code></a></li></ul>
 <h3>Datatype properties (52)</h3>
 <ul class="toc"><li><a href="#ageGroupName"><code>:ageGroupName</code></a></li><li><a href="#agentName"><code>:agentName</code></a></li><li><a href="#classifiedOn"><code>:classifiedOn</code></a></li><li><a href="#classifierVersion"><code>:classifierVersion</code></a></li><li><a href="#communicationToolName"><code>:communicationToolName</code></a></li><li><a href="#contactHash"><code>:contactHash</code></a></li><li><a href="#countryISOCode"><code>:countryISOCode</code></a></li><li><a href="#countryName"><code>:countryName</code></a></li><li><a href="#datasetName"><code>:datasetName</code></a></li><li><a href="#datasetRecordId"><code>:datasetRecordId</code></a></li><li><a href="#detectedBy"><code>:detectedBy</code></a></li><li><a href="#documentationTypeName"><code>:documentationTypeName</code></a></li><li><a href="#dominanceBucketValue"><code>:dominanceBucketValue</code></a></li><li><a href="#explanationText"><code>:explanationText</code></a></li><li><a href="#exploitationType"><code>:exploitationType</code></a></li><li><a href="#flagConfidence"><code>:flagConfidence</code></a></li><li><a href="#flagType"><code>:flagType</code></a></li><li><a href="#genderName"><code>:genderName</code></a></li><li><a href="#hasRawText"><code>:hasRawText</code></a></li><li><a href="#hasTitle"><code>:hasTitle</code></a></li><li><a href="#hasVerifiedIdentity"><code>:hasVerifiedIdentity</code></a></li><li><a href="#historicalFlagCount"><code>:historicalFlagCount</code></a></li><li><a href="#historicalOfferCount"><code>:historicalOfferCount</code></a></li><li><a href="#knownSince"><code>:knownSince</code></a></li><li><a href="#languageISOCode"><code>:languageISOCode</code></a></li><li><a href="#languageName"><code>:languageName</code></a></li><li><a href="#observedCount"><code>:observedCount</code></a></li><li><a href="#offeredLocation"><code>:offeredLocation</code></a></li><li><a href="#offeredRole"><code>:offeredRole</code></a></li><li><a href="#offeredSalaryMXN"><code>:offeredSalaryMXN</code></a></li><li><a href="#patternDescription"><code>:patternDescription</code></a></li><li><a href="#patternName"><code>:patternName</code></a></li><li><a href="#pctOfCases"><code>:pctOfCases</code></a></li><li><a href="#platformName"><code>:platformName</code></a></li><li><a href="#platformType"><code>:platformType</code></a></li><li><a href="#postedOn"><code>:postedOn</code></a></li><li><a href="#recruitmentMethodName"><code>:recruitmentMethodName</code></a></li><li><a href="#riskLevel"><code>:riskLevel</code></a></li><li><a href="#riskScore"><code>:riskScore</code></a></li><li><a href="#routeEarliestYear"><code>:routeEarliestYear</code></a></li><li><a href="#routeLatestYear"><code>:routeLatestYear</code></a></li><li><a href="#routeName"><code>:routeName</code></a></li><li><a href="#routeVictimCount"><code>:routeVictimCount</code></a></li><li><a href="#sourceAuthor"><code>:sourceAuthor</code></a></li><li><a href="#sourceDate"><code>:sourceDate</code></a></li><li><a href="#sourceOutlet"><code>:sourceOutlet</code></a></li><li><a href="#sourceTitle"><code>:sourceTitle</code></a></li><li><a href="#sourceUrl"><code>:sourceUrl</code></a></li><li><a href="#transportationMeansName"><code>:transportationMeansName</code></a></li><li><a href="#victimId"><code>:victimId</code></a></li><li><a href="#vulnerabilityFactorName"><code>:vulnerabilityFactorName</code></a></li><li><a href="#yearOfRegistration"><code>:yearOfRegistration</code></a></li></ul>
 
@@ -240,6 +240,13 @@
 <tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
 </table>
 </div>
+<div class="term" id="Harbouring">
+<h3><code>:Harbouring</code> &mdash; Harbouring (act)</h3>
+<p class="lang">es: <em>Acogida (acción)</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
 <div class="term" id="IdentityTheftScheme">
 <h3><code>:IdentityTheftScheme</code> &mdash; Identity theft scheme</h3>
 <p class="lang">es: <em>Esquema de robo de identidad</em></p>
@@ -271,6 +278,62 @@
 <p class="comment">A multi-level marketing operation centred on nutritional supplements, cosmetics, slimming products or wellness programmes. Presented as an employment or business opportunity, in practice the participant earns only by recruiting further &#x27;distributors&#x27; and by purchasing inventory that cannot be sold on the open market. Canonical examples in Latin America include product lines marketed through Facebook groups and WhatsApp chains.</p>
 <table class='meta'>
 <tr><th>Subclass of</th><td><code>:PyramidScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansAbduction">
+<h3><code>:MeansAbduction</code> &mdash; Abduction</h3>
+<p class="lang">es: <em>Rapto</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansAbuseOfPower">
+<h3><code>:MeansAbuseOfPower</code> &mdash; Abuse of power</h3>
+<p class="lang">es: <em>Abuso de poder</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansAbuseOfVulnerability">
+<h3><code>:MeansAbuseOfVulnerability</code> &mdash; Abuse of a position of vulnerability</h3>
+<p class="lang">es: <em>Abuso de una posición de vulnerabilidad</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansCoercion">
+<h3><code>:MeansCoercion</code> &mdash; Coercion</h3>
+<p class="lang">es: <em>Coacción</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansDeception">
+<h3><code>:MeansDeception</code> &mdash; Deception</h3>
+<p class="lang">es: <em>Engaño</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansFraud">
+<h3><code>:MeansFraud</code> &mdash; Fraud</h3>
+<p class="lang">es: <em>Fraude</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansPaymentOrBenefit">
+<h3><code>:MeansPaymentOrBenefit</code> &mdash; Giving or receiving of payments or benefits to obtain consent</h3>
+<p class="lang">es: <em>Dar o recibir pagos o beneficios para obtener consentimiento</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="MeansThreatOfForce">
+<h3><code>:MeansThreatOfForce</code> &mdash; Threat or use of force</h3>
+<p class="lang">es: <em>Amenaza o uso de la fuerza</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoMeans</code></td></tr>
 </table>
 </div>
 <div class="term" id="ModelingAgencyScheme">
@@ -313,6 +376,30 @@
 <tr><th>Subclass of</th><td><code>:EvidenceSource</code></td></tr>
 </table>
 </div>
+<div class="term" id="PalermoAction">
+<h3><code>:PalermoAction</code> &mdash; Palermo Action</h3>
+<p class="lang">es: <em>Acción (Palermo)</em></p>
+<p class="comment">The ACT element of the Palermo Protocol Article 3(a) definition of trafficking in persons: &#x27;the recruitment, transportation, transfer, harbouring or receipt of persons&#x27;.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:Harbouring</code>, <code>:Receipt</code>, <code>:Recruitment</code>, <code>:Transfer</code>, <code>:Transportation</code></td></tr>
+</table>
+</div>
+<div class="term" id="PalermoMeans">
+<h3><code>:PalermoMeans</code> &mdash; Palermo Means</h3>
+<p class="lang">es: <em>Medio (Palermo)</em></p>
+<p class="comment">The MEANS element of the Palermo Protocol Article 3(a) definition: &#x27;the threat or use of force or other forms of coercion, of abduction, of fraud, of deception, of the abuse of power or of a position of vulnerability or of the giving or receiving of payments or benefits to achieve the consent of a person having control over another person&#x27;.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:MeansAbduction</code>, <code>:MeansAbuseOfPower</code>, <code>:MeansAbuseOfVulnerability</code>, <code>:MeansCoercion</code>, <code>:MeansDeception</code>, <code>:MeansFraud</code>, <code>:MeansPaymentOrBenefit</code>, <code>:MeansThreatOfForce</code></td></tr>
+</table>
+</div>
+<div class="term" id="PalermoPurpose">
+<h3><code>:PalermoPurpose</code> &mdash; Palermo Purpose</h3>
+<p class="lang">es: <em>Finalidad (Palermo)</em></p>
+<p class="comment">The PURPOSE element of the Palermo Protocol Article 3(a): &#x27;for the purpose of exploitation&#x27;, which the Protocol exemplifies as &#x27;the exploitation of the prostitution of others or other forms of sexual exploitation, forced labour or services, slavery or practices similar to slavery, servitude or the removal of organs&#x27;.</p>
+<table class='meta'>
+<tr><th>Superclass of</th><td><code>:PurposeForcedLabour</code>, <code>:PurposeOrganRemoval</code>, <code>:PurposeServitude</code>, <code>:PurposeSexualExploitation</code>, <code>:PurposeSlavery</code></td></tr>
+</table>
+</div>
 <div class="term" id="PayToWorkScheme">
 <h3><code>:PayToWorkScheme</code> &mdash; Pay-to-work scheme</h3>
 <p class="lang">es: <em>Esquema de pago por trabajar</em></p>
@@ -335,6 +422,41 @@
 <tr><th>Subclass of</th><td><code>:EvidenceSource</code></td></tr>
 </table>
 </div>
+<div class="term" id="PurposeForcedLabour">
+<h3><code>:PurposeForcedLabour</code> &mdash; Forced labour or services</h3>
+<p class="lang">es: <em>Trabajo o servicios forzados</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="PurposeOrganRemoval">
+<h3><code>:PurposeOrganRemoval</code> &mdash; Removal of organs</h3>
+<p class="lang">es: <em>Extracción de órganos</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="PurposeServitude">
+<h3><code>:PurposeServitude</code> &mdash; Servitude</h3>
+<p class="lang">es: <em>Servidumbre</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="PurposeSexualExploitation">
+<h3><code>:PurposeSexualExploitation</code> &mdash; Sexual exploitation</h3>
+<p class="lang">es: <em>Explotación sexual</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="PurposeSlavery">
+<h3><code>:PurposeSlavery</code> &mdash; Slavery or practices similar to slavery</h3>
+<p class="lang">es: <em>Esclavitud o prácticas análogas</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
 <div class="term" id="PyramidScheme">
 <h3><code>:PyramidScheme</code> &mdash; Pyramid / MLM scheme</h3>
 <p class="lang">es: <em>Esquema piramidal / multinivel</em></p>
@@ -344,11 +466,25 @@
 <tr><th>Superclass of</th><td><code>:MLMHealthBeautyScheme</code></td></tr>
 </table>
 </div>
+<div class="term" id="Receipt">
+<h3><code>:Receipt</code> &mdash; Receipt of persons (act)</h3>
+<p class="lang">es: <em>Recepción de personas (acción)</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
 <div class="term" id="Recruiter">
 <h3><code>:Recruiter</code> &mdash; Recruiter</h3>
 <p class="lang">es: <em>Reclutador</em></p>
 <table class='meta'>
 <tr><th>Subclass of</th><td><code>:Agent</code></td></tr>
+</table>
+</div>
+<div class="term" id="Recruitment">
+<h3><code>:Recruitment</code> &mdash; Recruitment (act)</h3>
+<p class="lang">es: <em>Reclutamiento (acción)</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoAction</code></td></tr>
 </table>
 </div>
 <div class="term" id="RecruitmentMethod">
@@ -393,6 +529,11 @@
 <tr><th>Superclass of</th><td><code>:ClassicRedFlagPattern</code>, <code>:CommunicationPattern</code>, <code>:CredibleLethalPattern</code>, <code>:ExploitationPattern</code>, <code>:RecruitmentPattern</code></td></tr>
 </table>
 </div>
+<div class="term" id="TIPEvent">
+<h3><code>:TIPEvent</code> &mdash; TIP event</h3>
+<p class="lang">es: <em>Evento de trata de personas</em></p>
+<p class="comment">A trafficking-in-persons event as defined by the International Classification Standard for Administrative Data on Trafficking in Persons (ICS-TIP, IOM and UNODC, 2023). The TIP event is the central unit of classification in ICS-TIP. In RATR-O a TIPEvent aggregates one victim with at least one Palermo Action, at least one Palermo Means, and at least one Palermo Purpose.</p>
+</div>
 <div class="term" id="TraffickingRisk">
 <h3><code>:TraffickingRisk</code> &mdash; Trafficking recruitment risk</h3>
 <p class="lang">es: <em>Riesgo de reclutamiento para trata</em></p>
@@ -406,6 +547,20 @@
 <p class="lang">es: <em>Ruta de trata</em></p>
 <table class='meta'>
 <tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places">https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places</a></td></tr>
+</table>
+</div>
+<div class="term" id="Transfer">
+<h3><code>:Transfer</code> &mdash; Transfer (act)</h3>
+<p class="lang">es: <em>Traslado (acción)</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
+<div class="term" id="Transportation">
+<h3><code>:Transportation</code> &mdash; Transportation (act)</h3>
+<p class="lang">es: <em>Transporte (acción)</em></p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:PalermoAction</code></td></tr>
 </table>
 </div>
 <div class="term" id="TransportationMeans">
@@ -487,12 +642,33 @@
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 </table>
 </div>
+<div class="term" id="exhibitsAction">
+<h3><code>:exhibitsAction</code> &mdash; exhibits Palermo action</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
 <div class="term" id="exhibitsFraudScheme">
 <h3><code>:exhibitsFraudScheme</code> &mdash; exhibits fraud scheme</h3>
 <p class="lang">es: <em>presenta esquema de fraude</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="exhibitsMeans">
+<h3><code>:exhibitsMeans</code> &mdash; exhibits Palermo means</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="exhibitsPurpose">
+<h3><code>:exhibitsPurpose</code> &mdash; exhibits Palermo purpose</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoPurpose</code></td></tr>
 </table>
 </div>
 <div class="term" id="hasAgeGroup">
@@ -659,6 +835,34 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Submission</code></td></tr>
 <tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventHasAction">
+<h3><code>:tipEventHasAction</code> &mdash; TIP event has action</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventHasMeans">
+<h3><code>:tipEventHasMeans</code> &mdash; TIP event has means</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventHasPurpose">
+<h3><code>:tipEventHasPurpose</code> &mdash; TIP event has purpose</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventInvolves">
+<h3><code>:tipEventInvolves</code> &mdash; TIP event involves victim</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:Victim</code></td></tr>
 </table>
 </div>
 <div class="term" id="transportedBy">

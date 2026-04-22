@@ -1,6 +1,18 @@
-# Ramona VKG — Dataset statistics (v1.3)
+# Ramona VKG — Dataset statistics (v1.4)
 
-Updated: 22 April 2026 (scraper finished, full classifier pass).
+Updated: 22 April 2026 (v1.4: Palermo Protocol + ICS-TIP + GLOTIP alignments + full enrichment).
+
+## v1.4 additions in this iteration
+
+- **Palermo Protocol Article 3 formally modelled** as three class hierarchies: `:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose`, each with verbatim sub-concepts from the UN Protocol text (coercion, abduction, fraud, deception, abuse of power, abuse of vulnerability, payment-for-consent; sexual exploitation, forced labour, slavery, servitude, organ removal).
+- **`:TIPEvent` class** introduced as the central unit of classification from ICS-TIP (IOM and UNODC, 2023), with object properties linking it to victims, actions, means and purposes.
+- **ICS-TIP close-match alignment** via `rdfs:seeAlso` on `:RecruitmentMethod`, `:TypeOfExploitation`, `:VulnerabilityFactor`, `:TraffickingRoute`.
+- **UNODC GLOTIP alignment** via `rdfs:seeAlso` on `:Victim`.
+- **Countries table enriched from 8 to 92 countries** with ISO3 codes and Spanish + English names, built from every unique citizenship and country-of-exploitation observed in the 257,969 CTDC records.
+- **FraudScheme exemplars (31 real press articles) linked** across 8 schemes: every scheme has up to 5 representative documented cases with URL attribution. Loaded via `db/09_fraudscheme_examples.sql`.
+- **50 deep textual patterns** extracted from the full text of case-relevant press articles via extended regex analysis. Loaded via `db/10_deep_patterns.sql`. 12 of them have attested matches in the corpus already.
+- RATR-O v1.4 ontology now stands at **76 classes, 42 object properties, 52 datatype properties, 709 triples.** OWL 2 QL profile validated.
+
 
 ## Sources summary
 
