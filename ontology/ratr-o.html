@@ -28,7 +28,7 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.6</dd>
+  <dt>Version</dt><dd>1.6.1</dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
   <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
@@ -714,7 +714,9 @@
 </div>
 <div class="term" id="derivedFrom">
 <h3><code>:derivedFrom</code> &mdash; derived from</h3>
+<p class="lang">es: <em>derivado de</em></p>
 <table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 <tr><th>Range</th><td><code>:EvidenceSource</code></td></tr>
 </table>
 </div>
@@ -727,9 +729,11 @@
 </div>
 <div class="term" id="evidenceFor">
 <h3><code>:evidenceFor</code> &mdash; evidence for</h3>
+<p class="lang">es: <em>evidencia de</em></p>
 <p class="comment">Links an evidence source to the pattern, route, offer or victim it documents.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 </table>
 </div>
 <div class="term" id="evidencedByPressArticle">
@@ -1113,35 +1117,40 @@
 </div>
 <h2>Datatype properties</h2>
 <div class="term" id="ageGroupName">
-<h3><code>:ageGroupName</code> &mdash; :ageGroupName</h3>
+<h3><code>:ageGroupName</code> &mdash; age group name</h3>
+<p class="lang">es: <em>nombre del grupo etario</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:AgeGroup</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="agentName">
-<h3><code>:agentName</code> &mdash; :agentName</h3>
+<h3><code>:agentName</code> &mdash; agent name</h3>
+<p class="lang">es: <em>nombre del agente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Agent</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="classifiedOn">
-<h3><code>:classifiedOn</code> &mdash; :classifiedOn</h3>
+<h3><code>:classifiedOn</code> &mdash; classified on</h3>
+<p class="lang">es: <em>clasificado el</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
 <tr><th>Range</th><td><code>date</code></td></tr>
 </table>
 </div>
 <div class="term" id="classifierVersion">
-<h3><code>:classifierVersion</code> &mdash; :classifierVersion</h3>
+<h3><code>:classifierVersion</code> &mdash; classifier version</h3>
+<p class="lang">es: <em>versión del clasificador</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="communicationToolName">
-<h3><code>:communicationToolName</code> &mdash; :communicationToolName</h3>
+<h3><code>:communicationToolName</code> &mdash; communication tool name</h3>
+<p class="lang">es: <em>nombre de la herramienta de comunicación</em></p>
 <p class="comment">Controlled vocabulary: whatsapp, messenger, telegram, sms, voice_call, in_person, email, other.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:CommunicationTool</code></td></tr>
@@ -1149,28 +1158,32 @@
 </table>
 </div>
 <div class="term" id="contactHash">
-<h3><code>:contactHash</code> &mdash; :contactHash</h3>
+<h3><code>:contactHash</code> &mdash; contact hash</h3>
+<p class="lang">es: <em>hash de contacto</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Recruiter</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="countryISOCode">
-<h3><code>:countryISOCode</code> &mdash; :countryISOCode</h3>
+<h3><code>:countryISOCode</code> &mdash; country ISO code</h3>
+<p class="lang">es: <em>código ISO del país</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Country</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="countryName">
-<h3><code>:countryName</code> &mdash; :countryName</h3>
+<h3><code>:countryName</code> &mdash; country name</h3>
+<p class="lang">es: <em>nombre del país</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Country</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="datasetName">
-<h3><code>:datasetName</code> &mdash; :datasetName</h3>
+<h3><code>:datasetName</code> &mdash; dataset name</h3>
+<p class="lang">es: <em>nombre del dataset</em></p>
 <p class="comment">Name of the open dataset (e.g. CTDC, UNODC-GLOTIP, RNPDNO).</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:OpenDatasetRecord</code></td></tr>
@@ -1178,14 +1191,16 @@
 </table>
 </div>
 <div class="term" id="datasetRecordId">
-<h3><code>:datasetRecordId</code> &mdash; :datasetRecordId</h3>
+<h3><code>:datasetRecordId</code> &mdash; dataset record id</h3>
+<p class="lang">es: <em>identificador de registro del dataset</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:OpenDatasetRecord</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="detectedBy">
-<h3><code>:detectedBy</code> &mdash; :detectedBy</h3>
+<h3><code>:detectedBy</code> &mdash; detected by</h3>
+<p class="lang">es: <em>detectado por</em></p>
 <p class="comment">Controlled vocabulary: rule, nlp, human.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
@@ -1193,7 +1208,8 @@
 </table>
 </div>
 <div class="term" id="documentationTypeName">
-<h3><code>:documentationTypeName</code> &mdash; :documentationTypeName</h3>
+<h3><code>:documentationTypeName</code> &mdash; documentation type name</h3>
+<p class="lang">es: <em>nombre del tipo de documentación</em></p>
 <p class="comment">Controlled vocabulary: national_id, passport, visa, work_permit, none, confiscated, false.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:DocumentationType</code></td></tr>
@@ -1232,14 +1248,16 @@
 </table>
 </div>
 <div class="term" id="explanationText">
-<h3><code>:explanationText</code> &mdash; :explanationText</h3>
+<h3><code>:explanationText</code> &mdash; explanation text</h3>
+<p class="lang">es: <em>texto explicativo</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="exploitationType">
-<h3><code>:exploitationType</code> &mdash; :exploitationType</h3>
+<h3><code>:exploitationType</code> &mdash; exploitation type</h3>
+<p class="lang">es: <em>tipo de explotación</em></p>
 <p class="comment">Controlled vocabulary: labour, sexual, forced_criminality, forced_marriage, organ_removal, mixed, unknown.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TypeOfExploitation</code></td></tr>
@@ -1247,7 +1265,8 @@
 </table>
 </div>
 <div class="term" id="flagConfidence">
-<h3><code>:flagConfidence</code> &mdash; :flagConfidence</h3>
+<h3><code>:flagConfidence</code> &mdash; flag confidence</h3>
+<p class="lang">es: <em>confianza de la bandera</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
 <tr><th>Range</th><td><code>decimal</code></td></tr>
@@ -1262,7 +1281,8 @@
 </table>
 </div>
 <div class="term" id="flagType">
-<h3><code>:flagType</code> &mdash; :flagType</h3>
+<h3><code>:flagType</code> &mdash; flag type</h3>
+<p class="lang">es: <em>tipo de bandera</em></p>
 <p class="comment">Controlled vocabulary of 7 red flags defined by Ramona AI: sueldo_alto, horarios_flexibles, sin_experiencia, pago_adelantado, aceptacion_urgente, entrevista_lejana_traslado, empleo_fuera_estado.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
@@ -1270,7 +1290,8 @@
 </table>
 </div>
 <div class="term" id="genderName">
-<h3><code>:genderName</code> &mdash; :genderName</h3>
+<h3><code>:genderName</code> &mdash; gender name</h3>
+<p class="lang">es: <em>nombre del género</em></p>
 <p class="comment">Controlled vocabulary: female, male, non_binary, unknown.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Gender</code></td></tr>
@@ -1278,56 +1299,64 @@
 </table>
 </div>
 <div class="term" id="hasRawText">
-<h3><code>:hasRawText</code> &mdash; :hasRawText</h3>
+<h3><code>:hasRawText</code> &mdash; offer raw text</h3>
+<p class="lang">es: <em>texto crudo de la oferta</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="hasTitle">
-<h3><code>:hasTitle</code> &mdash; :hasTitle</h3>
+<h3><code>:hasTitle</code> &mdash; offer title</h3>
+<p class="lang">es: <em>título de la oferta</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="hasVerifiedIdentity">
-<h3><code>:hasVerifiedIdentity</code> &mdash; :hasVerifiedIdentity</h3>
+<h3><code>:hasVerifiedIdentity</code> &mdash; has verified identity</h3>
+<p class="lang">es: <em>tiene identidad verificada</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Employer</code></td></tr>
 <tr><th>Range</th><td><code>boolean</code></td></tr>
 </table>
 </div>
 <div class="term" id="historicalFlagCount">
-<h3><code>:historicalFlagCount</code> &mdash; :historicalFlagCount</h3>
+<h3><code>:historicalFlagCount</code> &mdash; historical flag count</h3>
+<p class="lang">es: <em>banderas históricas</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Agent</code></td></tr>
 <tr><th>Range</th><td><code>integer</code></td></tr>
 </table>
 </div>
 <div class="term" id="historicalOfferCount">
-<h3><code>:historicalOfferCount</code> &mdash; :historicalOfferCount</h3>
+<h3><code>:historicalOfferCount</code> &mdash; historical offer count</h3>
+<p class="lang">es: <em>ofertas históricas</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Agent</code></td></tr>
 <tr><th>Range</th><td><code>integer</code></td></tr>
 </table>
 </div>
 <div class="term" id="knownSince">
-<h3><code>:knownSince</code> &mdash; :knownSince</h3>
+<h3><code>:knownSince</code> &mdash; known since</h3>
+<p class="lang">es: <em>conocida desde</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
 <tr><th>Range</th><td><code>date</code></td></tr>
 </table>
 </div>
 <div class="term" id="languageISOCode">
-<h3><code>:languageISOCode</code> &mdash; :languageISOCode</h3>
+<h3><code>:languageISOCode</code> &mdash; language ISO code</h3>
+<p class="lang">es: <em>código ISO del idioma</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Language</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="languageName">
-<h3><code>:languageName</code> &mdash; :languageName</h3>
+<h3><code>:languageName</code> &mdash; language name</h3>
+<p class="lang">es: <em>nombre del idioma</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Language</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -1378,21 +1407,24 @@
 </table>
 </div>
 <div class="term" id="offeredLocation">
-<h3><code>:offeredLocation</code> &mdash; :offeredLocation</h3>
+<h3><code>:offeredLocation</code> &mdash; offered location</h3>
+<p class="lang">es: <em>ubicación ofrecida</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="offeredRole">
-<h3><code>:offeredRole</code> &mdash; :offeredRole</h3>
+<h3><code>:offeredRole</code> &mdash; offered role</h3>
+<p class="lang">es: <em>rol ofrecido</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="offeredSalaryMXN">
-<h3><code>:offeredSalaryMXN</code> &mdash; :offeredSalaryMXN</h3>
+<h3><code>:offeredSalaryMXN</code> &mdash; offered salary in MXN</h3>
+<p class="lang">es: <em>salario ofrecido en MXN</em></p>
 <p class="comment">Weekly salary in MXN as advertised in the offer.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
@@ -1400,7 +1432,8 @@
 </table>
 </div>
 <div class="term" id="patternDescription">
-<h3><code>:patternDescription</code> &mdash; :patternDescription</h3>
+<h3><code>:patternDescription</code> &mdash; pattern description</h3>
+<p class="lang">es: <em>descripción del patrón</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -1415,7 +1448,8 @@
 </table>
 </div>
 <div class="term" id="patternName">
-<h3><code>:patternName</code> &mdash; :patternName</h3>
+<h3><code>:patternName</code> &mdash; pattern name</h3>
+<p class="lang">es: <em>nombre del patrón</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -1437,14 +1471,16 @@
 </table>
 </div>
 <div class="term" id="platformName">
-<h3><code>:platformName</code> &mdash; :platformName</h3>
+<h3><code>:platformName</code> &mdash; platform name</h3>
+<p class="lang">es: <em>nombre de la plataforma</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Platform</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="platformType">
-<h3><code>:platformType</code> &mdash; :platformType</h3>
+<h3><code>:platformType</code> &mdash; platform type</h3>
+<p class="lang">es: <em>tipo de plataforma</em></p>
 <p class="comment">Controlled vocabulary: whatsapp, telegram, messenger, sms, facebook, tiktok, marketplace, classifieds, tiktok, other.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Platform</code></td></tr>
@@ -1452,14 +1488,16 @@
 </table>
 </div>
 <div class="term" id="postedOn">
-<h3><code>:postedOn</code> &mdash; :postedOn</h3>
+<h3><code>:postedOn</code> &mdash; posted on</h3>
+<p class="lang">es: <em>publicado el</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>date</code></td></tr>
 </table>
 </div>
 <div class="term" id="recruitmentMethodName">
-<h3><code>:recruitmentMethodName</code> &mdash; :recruitmentMethodName</h3>
+<h3><code>:recruitmentMethodName</code> &mdash; recruitment method name</h3>
+<p class="lang">es: <em>nombre del método de reclutamiento</em></p>
 <p class="comment">Controlled vocabulary: personal_network, false_job_offer, social_media_contact, abduction, sale_by_family, debt_bondage, other.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RecruitmentMethod</code></td></tr>
@@ -1481,7 +1519,8 @@
 </table>
 </div>
 <div class="term" id="riskLevel">
-<h3><code>:riskLevel</code> &mdash; :riskLevel</h3>
+<h3><code>:riskLevel</code> &mdash; risk level</h3>
+<p class="lang">es: <em>nivel de riesgo</em></p>
 <p class="comment">Controlled vocabulary: safe, suspicious, high-risk, fraudulent.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
@@ -1489,7 +1528,8 @@
 </table>
 </div>
 <div class="term" id="riskScore">
-<h3><code>:riskScore</code> &mdash; :riskScore</h3>
+<h3><code>:riskScore</code> &mdash; risk score</h3>
+<p class="lang">es: <em>puntuación de riesgo</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
 <tr><th>Range</th><td><code>decimal</code></td></tr>
@@ -1519,7 +1559,8 @@
 </table>
 </div>
 <div class="term" id="routeName">
-<h3><code>:routeName</code> &mdash; :routeName</h3>
+<h3><code>:routeName</code> &mdash; route name</h3>
+<p class="lang">es: <em>nombre de la ruta</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -1578,14 +1619,16 @@
 </table>
 </div>
 <div class="term" id="sourceAuthor">
-<h3><code>:sourceAuthor</code> &mdash; :sourceAuthor</h3>
+<h3><code>:sourceAuthor</code> &mdash; source author</h3>
+<p class="lang">es: <em>autor de la fuente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="sourceDate">
-<h3><code>:sourceDate</code> &mdash; :sourceDate</h3>
+<h3><code>:sourceDate</code> &mdash; source date</h3>
+<p class="lang">es: <em>fecha de la fuente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>date</code></td></tr>
@@ -1599,28 +1642,32 @@
 </table>
 </div>
 <div class="term" id="sourceOutlet">
-<h3><code>:sourceOutlet</code> &mdash; :sourceOutlet</h3>
+<h3><code>:sourceOutlet</code> &mdash; source outlet</h3>
+<p class="lang">es: <em>medio de la fuente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="sourceTitle">
-<h3><code>:sourceTitle</code> &mdash; :sourceTitle</h3>
+<h3><code>:sourceTitle</code> &mdash; source title</h3>
+<p class="lang">es: <em>título de la fuente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="sourceUrl">
-<h3><code>:sourceUrl</code> &mdash; :sourceUrl</h3>
+<h3><code>:sourceUrl</code> &mdash; source URL</h3>
+<p class="lang">es: <em>URL de la fuente</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>anyURI</code></td></tr>
 </table>
 </div>
 <div class="term" id="transportationMeansName">
-<h3><code>:transportationMeansName</code> &mdash; :transportationMeansName</h3>
+<h3><code>:transportationMeansName</code> &mdash; transportation means name</h3>
+<p class="lang">es: <em>nombre del medio de transporte</em></p>
 <p class="comment">Controlled vocabulary: bus, car, foot, boat, air, train, truck, mixed, unknown.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TransportationMeans</code></td></tr>
@@ -1658,7 +1705,8 @@
 </table>
 </div>
 <div class="term" id="victimId">
-<h3><code>:victimId</code> &mdash; :victimId</h3>
+<h3><code>:victimId</code> &mdash; victim id</h3>
+<p class="lang">es: <em>identificador de víctima</em></p>
 <p class="comment">Anonymised case identifier. For CTDC records, the CTDC victim id. For press cases, an outlet-specific hash.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Victim</code></td></tr>
@@ -1689,7 +1737,8 @@
 </table>
 </div>
 <div class="term" id="vulnerabilityFactorName">
-<h3><code>:vulnerabilityFactorName</code> &mdash; :vulnerabilityFactorName</h3>
+<h3><code>:vulnerabilityFactorName</code> &mdash; vulnerability factor name</h3>
+<p class="lang">es: <em>nombre del factor de vulnerabilidad</em></p>
 <p class="comment">Controlled vocabulary: economic, migrant_status, minor, prior_abuse, low_education, single_parent, displaced, indigenous, other.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:VulnerabilityFactor</code></td></tr>
@@ -1697,7 +1746,8 @@
 </table>
 </div>
 <div class="term" id="yearOfRegistration">
-<h3><code>:yearOfRegistration</code> &mdash; :yearOfRegistration</h3>
+<h3><code>:yearOfRegistration</code> &mdash; year of registration</h3>
+<p class="lang">es: <em>año de registro</em></p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Victim</code></td></tr>
 <tr><th>Range</th><td><code>gYear</code></td></tr>
