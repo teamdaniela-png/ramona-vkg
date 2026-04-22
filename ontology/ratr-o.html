@@ -28,7 +28,7 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.5</dd>
+  <dt>Version</dt><dd>1.6</dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
   <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
@@ -43,12 +43,12 @@
 <p>A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona&#x27;s domain-specific taxonomy of online recruitment fraud in Mexico and Latin America.</p>
 
 <h2>Table of contents</h2>
-<h3>Classes (76)</h3>
-<ul class="toc"><li><a href="#AgeGroup"><code>:AgeGroup</code></a></li><li><a href="#Agent"><code>:Agent</code></a></li><li><a href="#CallCenterScamScheme"><code>:CallCenterScamScheme</code></a></li><li><a href="#Candidate"><code>:Candidate</code></a></li><li><a href="#ClassicRedFlagPattern"><code>:ClassicRedFlagPattern</code></a></li><li><a href="#CommunicationPattern"><code>:CommunicationPattern</code></a></li><li><a href="#CommunicationTool"><code>:CommunicationTool</code></a></li><li><a href="#Country"><code>:Country</code></a></li><li><a href="#CredibleLethalPattern"><code>:CredibleLethalPattern</code></a></li><li><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></li><li><a href="#DemographicProfile"><code>:DemographicProfile</code></a></li><li><a href="#DocumentationType"><code>:DocumentationType</code></a></li><li><a href="#DomesticWorkerLockInScheme"><code>:DomesticWorkerLockInScheme</code></a></li><li><a href="#DominanceBucket"><code>:DominanceBucket</code></a></li><li><a href="#Employer"><code>:Employer</code></a></li><li><a href="#EvidenceSource"><code>:EvidenceSource</code></a></li><li><a href="#ExploitationPattern"><code>:ExploitationPattern</code></a></li><li><a href="#ExploitationRisk"><code>:ExploitationRisk</code></a></li><li><a href="#FakeMaquilaScheme"><code>:FakeMaquilaScheme</code></a></li><li><a href="#FalseDocumentation"><code>:FalseDocumentation</code></a></li><li><a href="#ForcedCriminalityScheme"><code>:ForcedCriminalityScheme</code></a></li><li><a href="#ForeignLanguageTeacherScheme"><code>:ForeignLanguageTeacherScheme</code></a></li><li><a href="#FraudRisk"><code>:FraudRisk</code></a></li><li><a href="#FraudScheme"><code>:FraudScheme</code></a></li><li><a href="#Gender"><code>:Gender</code></a></li><li><a href="#GigEconomyFakeDriverScheme"><code>:GigEconomyFakeDriverScheme</code></a></li><li><a href="#Harbouring"><code>:Harbouring</code></a></li><li><a href="#IdentityTheftScheme"><code>:IdentityTheftScheme</code></a></li><li><a href="#InPersonLureScheme"><code>:InPersonLureScheme</code></a></li><li><a href="#JobOffer"><code>:JobOffer</code></a></li><li><a href="#Language"><code>:Language</code></a></li><li><a href="#MLMHealthBeautyScheme"><code>:MLMHealthBeautyScheme</code></a></li><li><a href="#MeansAbduction"><code>:MeansAbduction</code></a></li><li><a href="#MeansAbuseOfPower"><code>:MeansAbuseOfPower</code></a></li><li><a href="#MeansAbuseOfVulnerability"><code>:MeansAbuseOfVulnerability</code></a></li><li><a href="#MeansCoercion"><code>:MeansCoercion</code></a></li><li><a href="#MeansDeception"><code>:MeansDeception</code></a></li><li><a href="#MeansFraud"><code>:MeansFraud</code></a></li><li><a href="#MeansPaymentOrBenefit"><code>:MeansPaymentOrBenefit</code></a></li><li><a href="#MeansThreatOfForce"><code>:MeansThreatOfForce</code></a></li><li><a href="#ModelingAgencyScheme"><code>:ModelingAgencyScheme</code></a></li><li><a href="#OnlineCryptoJobScheme"><code>:OnlineCryptoJobScheme</code></a></li><li><a href="#OnlineInfluencerSalesScheme"><code>:OnlineInfluencerSalesScheme</code></a></li><li><a href="#OnlineRecruitmentChannel"><code>:OnlineRecruitmentChannel</code></a></li><li><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a></li><li><a href="#PalermoAction"><code>:PalermoAction</code></a></li><li><a href="#PalermoMeans"><code>:PalermoMeans</code></a></li><li><a href="#PalermoPurpose"><code>:PalermoPurpose</code></a></li><li><a href="#PayToWorkScheme"><code>:PayToWorkScheme</code></a></li><li><a href="#Platform"><code>:Platform</code></a></li><li><a href="#PressArticle"><code>:PressArticle</code></a></li><li><a href="#PurposeForcedLabour"><code>:PurposeForcedLabour</code></a></li><li><a href="#PurposeOrganRemoval"><code>:PurposeOrganRemoval</code></a></li><li><a href="#PurposeServitude"><code>:PurposeServitude</code></a></li><li><a href="#PurposeSexualExploitation"><code>:PurposeSexualExploitation</code></a></li><li><a href="#PurposeSlavery"><code>:PurposeSlavery</code></a></li><li><a href="#PyramidScheme"><code>:PyramidScheme</code></a></li><li><a href="#Receipt"><code>:Receipt</code></a></li><li><a href="#Recruiter"><code>:Recruiter</code></a></li><li><a href="#Recruitment"><code>:Recruitment</code></a></li><li><a href="#RecruitmentMethod"><code>:RecruitmentMethod</code></a></li><li><a href="#RecruitmentPattern"><code>:RecruitmentPattern</code></a></li><li><a href="#RedFlag"><code>:RedFlag</code></a></li><li><a href="#RiskClassification"><code>:RiskClassification</code></a></li><li><a href="#Submission"><code>:Submission</code></a></li><li><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></li><li><a href="#TIPEvent"><code>:TIPEvent</code></a></li><li><a href="#TraffickingRisk"><code>:TraffickingRisk</code></a></li><li><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></li><li><a href="#Transfer"><code>:Transfer</code></a></li><li><a href="#Transportation"><code>:Transportation</code></a></li><li><a href="#TransportationMeans"><code>:TransportationMeans</code></a></li><li><a href="#TypeOfExploitation"><code>:TypeOfExploitation</code></a></li><li><a href="#Victim"><code>:Victim</code></a></li><li><a href="#VisaFraudScheme"><code>:VisaFraudScheme</code></a></li><li><a href="#VulnerabilityFactor"><code>:VulnerabilityFactor</code></a></li></ul>
-<h3>Object properties (42)</h3>
-<ul class="toc"><li><a href="#associatedWithRoute"><code>:associatedWithRoute</code></a></li><li><a href="#candidateDefraudedBy"><code>:candidateDefraudedBy</code></a></li><li><a href="#contactedThrough"><code>:contactedThrough</code></a></li><li><a href="#derivedFrom"><code>:derivedFrom</code></a></li><li><a href="#destinationCountry"><code>:destinationCountry</code></a></li><li><a href="#evidenceFor"><code>:evidenceFor</code></a></li><li><a href="#exhibitsAction"><code>:exhibitsAction</code></a></li><li><a href="#exhibitsFraudScheme"><code>:exhibitsFraudScheme</code></a></li><li><a href="#exhibitsMeans"><code>:exhibitsMeans</code></a></li><li><a href="#exhibitsPurpose"><code>:exhibitsPurpose</code></a></li><li><a href="#hasAgeGroup"><code>:hasAgeGroup</code></a></li><li><a href="#hasDemographicProfile"><code>:hasDemographicProfile</code></a></li><li><a href="#hasGender"><code>:hasGender</code></a></li><li><a href="#hasNationality"><code>:hasNationality</code></a></li><li><a href="#hasRecruitmentMethod"><code>:hasRecruitmentMethod</code></a></li><li><a href="#hasRedFlag"><code>:hasRedFlag</code></a></li><li><a href="#hasRiskClassification"><code>:hasRiskClassification</code></a></li><li><a href="#hasVulnerabilityFactor"><code>:hasVulnerabilityFactor</code></a></li><li><a href="#inCountry"><code>:inCountry</code></a></li><li><a href="#inLanguage"><code>:inLanguage</code></a></li><li><a href="#leadsToExploitation"><code>:leadsToExploitation</code></a></li><li><a href="#matchesPattern"><code>:matchesPattern</code></a></li><li><a href="#offeredBy"><code>:offeredBy</code></a></li><li><a href="#offeredByEmployer"><code>:offeredByEmployer</code></a></li><li><a href="#offeredByRecruiter"><code>:offeredByRecruiter</code></a></li><li><a href="#originCountry"><code>:originCountry</code></a></li><li><a href="#platformCountry"><code>:platformCountry</code></a></li><li><a href="#postedVia"><code>:postedVia</code></a></li><li><a href="#recruitedVia"><code>:recruitedVia</code></a></li><li><a href="#recruiterCountry"><code>:recruiterCountry</code></a></li><li><a href="#routeDominantExploitation"><code>:routeDominantExploitation</code></a></li><li><a href="#submittedBy"><code>:submittedBy</code></a></li><li><a href="#submittedOffer"><code>:submittedOffer</code></a></li><li><a href="#tipEventHasAction"><code>:tipEventHasAction</code></a></li><li><a href="#tipEventHasMeans"><code>:tipEventHasMeans</code></a></li><li><a href="#tipEventHasPurpose"><code>:tipEventHasPurpose</code></a></li><li><a href="#tipEventInvolves"><code>:tipEventInvolves</code></a></li><li><a href="#transportedBy"><code>:transportedBy</code></a></li><li><a href="#travelledWith"><code>:travelledWith</code></a></li><li><a href="#victimOfExploitation"><code>:victimOfExploitation</code></a></li><li><a href="#victimOfFraudScheme"><code>:victimOfFraudScheme</code></a></li><li><a href="#victimOfOffer"><code>:victimOfOffer</code></a></li></ul>
-<h3>Datatype properties (52)</h3>
-<ul class="toc"><li><a href="#ageGroupName"><code>:ageGroupName</code></a></li><li><a href="#agentName"><code>:agentName</code></a></li><li><a href="#classifiedOn"><code>:classifiedOn</code></a></li><li><a href="#classifierVersion"><code>:classifierVersion</code></a></li><li><a href="#communicationToolName"><code>:communicationToolName</code></a></li><li><a href="#contactHash"><code>:contactHash</code></a></li><li><a href="#countryISOCode"><code>:countryISOCode</code></a></li><li><a href="#countryName"><code>:countryName</code></a></li><li><a href="#datasetName"><code>:datasetName</code></a></li><li><a href="#datasetRecordId"><code>:datasetRecordId</code></a></li><li><a href="#detectedBy"><code>:detectedBy</code></a></li><li><a href="#documentationTypeName"><code>:documentationTypeName</code></a></li><li><a href="#dominanceBucketValue"><code>:dominanceBucketValue</code></a></li><li><a href="#explanationText"><code>:explanationText</code></a></li><li><a href="#exploitationType"><code>:exploitationType</code></a></li><li><a href="#flagConfidence"><code>:flagConfidence</code></a></li><li><a href="#flagType"><code>:flagType</code></a></li><li><a href="#genderName"><code>:genderName</code></a></li><li><a href="#hasRawText"><code>:hasRawText</code></a></li><li><a href="#hasTitle"><code>:hasTitle</code></a></li><li><a href="#hasVerifiedIdentity"><code>:hasVerifiedIdentity</code></a></li><li><a href="#historicalFlagCount"><code>:historicalFlagCount</code></a></li><li><a href="#historicalOfferCount"><code>:historicalOfferCount</code></a></li><li><a href="#knownSince"><code>:knownSince</code></a></li><li><a href="#languageISOCode"><code>:languageISOCode</code></a></li><li><a href="#languageName"><code>:languageName</code></a></li><li><a href="#observedCount"><code>:observedCount</code></a></li><li><a href="#offeredLocation"><code>:offeredLocation</code></a></li><li><a href="#offeredRole"><code>:offeredRole</code></a></li><li><a href="#offeredSalaryMXN"><code>:offeredSalaryMXN</code></a></li><li><a href="#patternDescription"><code>:patternDescription</code></a></li><li><a href="#patternName"><code>:patternName</code></a></li><li><a href="#pctOfCases"><code>:pctOfCases</code></a></li><li><a href="#platformName"><code>:platformName</code></a></li><li><a href="#platformType"><code>:platformType</code></a></li><li><a href="#postedOn"><code>:postedOn</code></a></li><li><a href="#recruitmentMethodName"><code>:recruitmentMethodName</code></a></li><li><a href="#riskLevel"><code>:riskLevel</code></a></li><li><a href="#riskScore"><code>:riskScore</code></a></li><li><a href="#routeEarliestYear"><code>:routeEarliestYear</code></a></li><li><a href="#routeLatestYear"><code>:routeLatestYear</code></a></li><li><a href="#routeName"><code>:routeName</code></a></li><li><a href="#routeVictimCount"><code>:routeVictimCount</code></a></li><li><a href="#sourceAuthor"><code>:sourceAuthor</code></a></li><li><a href="#sourceDate"><code>:sourceDate</code></a></li><li><a href="#sourceOutlet"><code>:sourceOutlet</code></a></li><li><a href="#sourceTitle"><code>:sourceTitle</code></a></li><li><a href="#sourceUrl"><code>:sourceUrl</code></a></li><li><a href="#transportationMeansName"><code>:transportationMeansName</code></a></li><li><a href="#victimId"><code>:victimId</code></a></li><li><a href="#vulnerabilityFactorName"><code>:vulnerabilityFactorName</code></a></li><li><a href="#yearOfRegistration"><code>:yearOfRegistration</code></a></li></ul>
+<h3>Classes (86)</h3>
+<ul class="toc"><li><a href="#AgeGroup"><code>:AgeGroup</code></a></li><li><a href="#Agent"><code>:Agent</code></a></li><li><a href="#AgriculturalBondageScheme"><code>:AgriculturalBondageScheme</code></a></li><li><a href="#BeggingRingScheme"><code>:BeggingRingScheme</code></a></li><li><a href="#CallCenterScamScheme"><code>:CallCenterScamScheme</code></a></li><li><a href="#Candidate"><code>:Candidate</code></a></li><li><a href="#CentralAmericanMigrantLabourScheme"><code>:CentralAmericanMigrantLabourScheme</code></a></li><li><a href="#ChildRecruitmentCriminalScheme"><code>:ChildRecruitmentCriminalScheme</code></a></li><li><a href="#ClassicRedFlagPattern"><code>:ClassicRedFlagPattern</code></a></li><li><a href="#CommunicationPattern"><code>:CommunicationPattern</code></a></li><li><a href="#CommunicationTool"><code>:CommunicationTool</code></a></li><li><a href="#ConstructionLabourBondageScheme"><code>:ConstructionLabourBondageScheme</code></a></li><li><a href="#Country"><code>:Country</code></a></li><li><a href="#CredibleLethalPattern"><code>:CredibleLethalPattern</code></a></li><li><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></li><li><a href="#DemographicProfile"><code>:DemographicProfile</code></a></li><li><a href="#DocumentationType"><code>:DocumentationType</code></a></li><li><a href="#DomesticWorkerLockInScheme"><code>:DomesticWorkerLockInScheme</code></a></li><li><a href="#DominanceBucket"><code>:DominanceBucket</code></a></li><li><a href="#Employer"><code>:Employer</code></a></li><li><a href="#EvidenceSource"><code>:EvidenceSource</code></a></li><li><a href="#ExploitationPattern"><code>:ExploitationPattern</code></a></li><li><a href="#ExploitationRisk"><code>:ExploitationRisk</code></a></li><li><a href="#FakeMaquilaScheme"><code>:FakeMaquilaScheme</code></a></li><li><a href="#FalseDocumentation"><code>:FalseDocumentation</code></a></li><li><a href="#FishingVesselLabourScheme"><code>:FishingVesselLabourScheme</code></a></li><li><a href="#ForcedChildMarriageScheme"><code>:ForcedChildMarriageScheme</code></a></li><li><a href="#ForcedCriminalityScheme"><code>:ForcedCriminalityScheme</code></a></li><li><a href="#ForeignLanguageTeacherScheme"><code>:ForeignLanguageTeacherScheme</code></a></li><li><a href="#FraudRisk"><code>:FraudRisk</code></a></li><li><a href="#FraudScheme"><code>:FraudScheme</code></a></li><li><a href="#GangRecruitmentSchoolsScheme"><code>:GangRecruitmentSchoolsScheme</code></a></li><li><a href="#Gender"><code>:Gender</code></a></li><li><a href="#GigEconomyFakeDriverScheme"><code>:GigEconomyFakeDriverScheme</code></a></li><li><a href="#Harbouring"><code>:Harbouring</code></a></li><li><a href="#IdentityTheftScheme"><code>:IdentityTheftScheme</code></a></li><li><a href="#InPersonLureScheme"><code>:InPersonLureScheme</code></a></li><li><a href="#JobOffer"><code>:JobOffer</code></a></li><li><a href="#Language"><code>:Language</code></a></li><li><a href="#MLMHealthBeautyScheme"><code>:MLMHealthBeautyScheme</code></a></li><li><a href="#MeansAbduction"><code>:MeansAbduction</code></a></li><li><a href="#MeansAbuseOfPower"><code>:MeansAbuseOfPower</code></a></li><li><a href="#MeansAbuseOfVulnerability"><code>:MeansAbuseOfVulnerability</code></a></li><li><a href="#MeansCoercion"><code>:MeansCoercion</code></a></li><li><a href="#MeansDeception"><code>:MeansDeception</code></a></li><li><a href="#MeansFraud"><code>:MeansFraud</code></a></li><li><a href="#MeansPaymentOrBenefit"><code>:MeansPaymentOrBenefit</code></a></li><li><a href="#MeansThreatOfForce"><code>:MeansThreatOfForce</code></a></li><li><a href="#ModelingAgencyScheme"><code>:ModelingAgencyScheme</code></a></li><li><a href="#OnlineCryptoJobScheme"><code>:OnlineCryptoJobScheme</code></a></li><li><a href="#OnlineInfluencerSalesScheme"><code>:OnlineInfluencerSalesScheme</code></a></li><li><a href="#OnlineRecruitmentChannel"><code>:OnlineRecruitmentChannel</code></a></li><li><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a></li><li><a href="#OrganRemovalRecruitmentScheme"><code>:OrganRemovalRecruitmentScheme</code></a></li><li><a href="#PalermoAction"><code>:PalermoAction</code></a></li><li><a href="#PalermoMeans"><code>:PalermoMeans</code></a></li><li><a href="#PalermoPurpose"><code>:PalermoPurpose</code></a></li><li><a href="#PayToWorkScheme"><code>:PayToWorkScheme</code></a></li><li><a href="#Platform"><code>:Platform</code></a></li><li><a href="#PressArticle"><code>:PressArticle</code></a></li><li><a href="#PurposeForcedLabour"><code>:PurposeForcedLabour</code></a></li><li><a href="#PurposeOrganRemoval"><code>:PurposeOrganRemoval</code></a></li><li><a href="#PurposeServitude"><code>:PurposeServitude</code></a></li><li><a href="#PurposeSexualExploitation"><code>:PurposeSexualExploitation</code></a></li><li><a href="#PurposeSlavery"><code>:PurposeSlavery</code></a></li><li><a href="#PyramidScheme"><code>:PyramidScheme</code></a></li><li><a href="#Receipt"><code>:Receipt</code></a></li><li><a href="#Recruiter"><code>:Recruiter</code></a></li><li><a href="#Recruitment"><code>:Recruitment</code></a></li><li><a href="#RecruitmentMethod"><code>:RecruitmentMethod</code></a></li><li><a href="#RecruitmentPattern"><code>:RecruitmentPattern</code></a></li><li><a href="#RedFlag"><code>:RedFlag</code></a></li><li><a href="#RiskClassification"><code>:RiskClassification</code></a></li><li><a href="#SportsTalentScheme"><code>:SportsTalentScheme</code></a></li><li><a href="#Submission"><code>:Submission</code></a></li><li><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></li><li><a href="#TIPEvent"><code>:TIPEvent</code></a></li><li><a href="#TraffickingRisk"><code>:TraffickingRisk</code></a></li><li><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></li><li><a href="#Transfer"><code>:Transfer</code></a></li><li><a href="#Transportation"><code>:Transportation</code></a></li><li><a href="#TransportationMeans"><code>:TransportationMeans</code></a></li><li><a href="#TypeOfExploitation"><code>:TypeOfExploitation</code></a></li><li><a href="#Victim"><code>:Victim</code></a></li><li><a href="#VisaFraudScheme"><code>:VisaFraudScheme</code></a></li><li><a href="#VulnerabilityFactor"><code>:VulnerabilityFactor</code></a></li></ul>
+<h3>Object properties (60)</h3>
+<ul class="toc"><li><a href="#associatedWithRoute"><code>:associatedWithRoute</code></a></li><li><a href="#candidateDefraudedBy"><code>:candidateDefraudedBy</code></a></li><li><a href="#contactedThrough"><code>:contactedThrough</code></a></li><li><a href="#containsRedFlag"><code>:containsRedFlag</code></a></li><li><a href="#derivedFrom"><code>:derivedFrom</code></a></li><li><a href="#destinationCountry"><code>:destinationCountry</code></a></li><li><a href="#evidenceFor"><code>:evidenceFor</code></a></li><li><a href="#evidencedByPressArticle"><code>:evidencedByPressArticle</code></a></li><li><a href="#exhibitsAction"><code>:exhibitsAction</code></a></li><li><a href="#exhibitsFraudScheme"><code>:exhibitsFraudScheme</code></a></li><li><a href="#exhibitsMeans"><code>:exhibitsMeans</code></a></li><li><a href="#exhibitsPurpose"><code>:exhibitsPurpose</code></a></li><li><a href="#hasAgeGroup"><code>:hasAgeGroup</code></a></li><li><a href="#hasDemographicProfile"><code>:hasDemographicProfile</code></a></li><li><a href="#hasGender"><code>:hasGender</code></a></li><li><a href="#hasNationality"><code>:hasNationality</code></a></li><li><a href="#hasRecruitmentMethod"><code>:hasRecruitmentMethod</code></a></li><li><a href="#hasRedFlag"><code>:hasRedFlag</code></a></li><li><a href="#hasRiskClassification"><code>:hasRiskClassification</code></a></li><li><a href="#hasVulnerabilityFactor"><code>:hasVulnerabilityFactor</code></a></li><li><a href="#hostsOffer"><code>:hostsOffer</code></a></li><li><a href="#inCountry"><code>:inCountry</code></a></li><li><a href="#inLanguage"><code>:inLanguage</code></a></li><li><a href="#leadsToExploitation"><code>:leadsToExploitation</code></a></li><li><a href="#matchesPattern"><code>:matchesPattern</code></a></li><li><a href="#observedInCountry"><code>:observedInCountry</code></a></li><li><a href="#offeredBy"><code>:offeredBy</code></a></li><li><a href="#offeredByEmployer"><code>:offeredByEmployer</code></a></li><li><a href="#offeredByRecruiter"><code>:offeredByRecruiter</code></a></li><li><a href="#offers"><code>:offers</code></a></li><li><a href="#operatesIn"><code>:operatesIn</code></a></li><li><a href="#originCountry"><code>:originCountry</code></a></li><li><a href="#platformCountry"><code>:platformCountry</code></a></li><li><a href="#platformModeratedBy"><code>:platformModeratedBy</code></a></li><li><a href="#postedVia"><code>:postedVia</code></a></li><li><a href="#recruitedVia"><code>:recruitedVia</code></a></li><li><a href="#recruiterCountry"><code>:recruiterCountry</code></a></li><li><a href="#recruitsFor"><code>:recruitsFor</code></a></li><li><a href="#routeDominantExploitation"><code>:routeDominantExploitation</code></a></li><li><a href="#schemeExploitationType"><code>:schemeExploitationType</code></a></li><li><a href="#schemePalermoAction"><code>:schemePalermoAction</code></a></li><li><a href="#schemePalermoMeans"><code>:schemePalermoMeans</code></a></li><li><a href="#schemePalermoPurpose"><code>:schemePalermoPurpose</code></a></li><li><a href="#schemePreferredTool"><code>:schemePreferredTool</code></a></li><li><a href="#schemeTargetsAgeGroup"><code>:schemeTargetsAgeGroup</code></a></li><li><a href="#schemeTargetsGender"><code>:schemeTargetsGender</code></a></li><li><a href="#schemeTypicalRoute"><code>:schemeTypicalRoute</code></a></li><li><a href="#submittedBy"><code>:submittedBy</code></a></li><li><a href="#submittedOffer"><code>:submittedOffer</code></a></li><li><a href="#tipEventHappenedIn"><code>:tipEventHappenedIn</code></a></li><li><a href="#tipEventHasAction"><code>:tipEventHasAction</code></a></li><li><a href="#tipEventHasMeans"><code>:tipEventHasMeans</code></a></li><li><a href="#tipEventHasPurpose"><code>:tipEventHasPurpose</code></a></li><li><a href="#tipEventInvolves"><code>:tipEventInvolves</code></a></li><li><a href="#tipEventRegisteredBy"><code>:tipEventRegisteredBy</code></a></li><li><a href="#transportedBy"><code>:transportedBy</code></a></li><li><a href="#travelledWith"><code>:travelledWith</code></a></li><li><a href="#victimOfExploitation"><code>:victimOfExploitation</code></a></li><li><a href="#victimOfFraudScheme"><code>:victimOfFraudScheme</code></a></li><li><a href="#victimOfOffer"><code>:victimOfOffer</code></a></li></ul>
+<h3>Datatype properties (80)</h3>
+<ul class="toc"><li><a href="#ageGroupName"><code>:ageGroupName</code></a></li><li><a href="#agentName"><code>:agentName</code></a></li><li><a href="#classifiedOn"><code>:classifiedOn</code></a></li><li><a href="#classifierVersion"><code>:classifierVersion</code></a></li><li><a href="#communicationToolName"><code>:communicationToolName</code></a></li><li><a href="#contactHash"><code>:contactHash</code></a></li><li><a href="#countryISOCode"><code>:countryISOCode</code></a></li><li><a href="#countryName"><code>:countryName</code></a></li><li><a href="#datasetName"><code>:datasetName</code></a></li><li><a href="#datasetRecordId"><code>:datasetRecordId</code></a></li><li><a href="#detectedBy"><code>:detectedBy</code></a></li><li><a href="#documentationTypeName"><code>:documentationTypeName</code></a></li><li><a href="#dominanceBucketValue"><code>:dominanceBucketValue</code></a></li><li><a href="#evidenceAccessedOnline"><code>:evidenceAccessedOnline</code></a></li><li><a href="#evidenceArchivedUrl"><code>:evidenceArchivedUrl</code></a></li><li><a href="#evidenceStrength"><code>:evidenceStrength</code></a></li><li><a href="#explanationText"><code>:explanationText</code></a></li><li><a href="#exploitationType"><code>:exploitationType</code></a></li><li><a href="#flagConfidence"><code>:flagConfidence</code></a></li><li><a href="#flagKeywordPattern"><code>:flagKeywordPattern</code></a></li><li><a href="#flagType"><code>:flagType</code></a></li><li><a href="#genderName"><code>:genderName</code></a></li><li><a href="#hasRawText"><code>:hasRawText</code></a></li><li><a href="#hasTitle"><code>:hasTitle</code></a></li><li><a href="#hasVerifiedIdentity"><code>:hasVerifiedIdentity</code></a></li><li><a href="#historicalFlagCount"><code>:historicalFlagCount</code></a></li><li><a href="#historicalOfferCount"><code>:historicalOfferCount</code></a></li><li><a href="#knownSince"><code>:knownSince</code></a></li><li><a href="#languageISOCode"><code>:languageISOCode</code></a></li><li><a href="#languageName"><code>:languageName</code></a></li><li><a href="#observedCount"><code>:observedCount</code></a></li><li><a href="#offerClassifierConfidence"><code>:offerClassifierConfidence</code></a></li><li><a href="#offerFirstContactAt"><code>:offerFirstContactAt</code></a></li><li><a href="#offerIsActive"><code>:offerIsActive</code></a></li><li><a href="#offerLanguage"><code>:offerLanguage</code></a></li><li><a href="#offerScreenshotUrl"><code>:offerScreenshotUrl</code></a></li><li><a href="#offeredLocation"><code>:offeredLocation</code></a></li><li><a href="#offeredRole"><code>:offeredRole</code></a></li><li><a href="#offeredSalaryMXN"><code>:offeredSalaryMXN</code></a></li><li><a href="#patternDescription"><code>:patternDescription</code></a></li><li><a href="#patternHasKind"><code>:patternHasKind</code></a></li><li><a href="#patternName"><code>:patternName</code></a></li><li><a href="#patternRegex"><code>:patternRegex</code></a></li><li><a href="#pctOfCases"><code>:pctOfCases</code></a></li><li><a href="#platformName"><code>:platformName</code></a></li><li><a href="#platformType"><code>:platformType</code></a></li><li><a href="#postedOn"><code>:postedOn</code></a></li><li><a href="#recruitmentMethodName"><code>:recruitmentMethodName</code></a></li><li><a href="#riskExplanationEn"><code>:riskExplanationEn</code></a></li><li><a href="#riskExplanationEs"><code>:riskExplanationEs</code></a></li><li><a href="#riskLevel"><code>:riskLevel</code></a></li><li><a href="#riskScore"><code>:riskScore</code></a></li><li><a href="#routeEarliestYear"><code>:routeEarliestYear</code></a></li><li><a href="#routeIsTransnational"><code>:routeIsTransnational</code></a></li><li><a href="#routeLatestYear"><code>:routeLatestYear</code></a></li><li><a href="#routeName"><code>:routeName</code></a></li><li><a href="#routeStopoverCountries"><code>:routeStopoverCountries</code></a></li><li><a href="#routeUpdatedAt"><code>:routeUpdatedAt</code></a></li><li><a href="#routeVictimCount"><code>:routeVictimCount</code></a></li><li><a href="#schemeFirstAttestedYear"><code>:schemeFirstAttestedYear</code></a></li><li><a href="#schemeJurisdictionScope"><code>:schemeJurisdictionScope</code></a></li><li><a href="#schemeNamedAfterCase"><code>:schemeNamedAfterCase</code></a></li><li><a href="#sourceAccessedAt"><code>:sourceAccessedAt</code></a></li><li><a href="#sourceAuthor"><code>:sourceAuthor</code></a></li><li><a href="#sourceDate"><code>:sourceDate</code></a></li><li><a href="#sourceLanguage"><code>:sourceLanguage</code></a></li><li><a href="#sourceOutlet"><code>:sourceOutlet</code></a></li><li><a href="#sourceTitle"><code>:sourceTitle</code></a></li><li><a href="#sourceUrl"><code>:sourceUrl</code></a></li><li><a href="#transportationMeansName"><code>:transportationMeansName</code></a></li><li><a href="#victimCaseClosedAt"><code>:victimCaseClosedAt</code></a></li><li><a href="#victimCaseOpenedAt"><code>:victimCaseOpenedAt</code></a></li><li><a href="#victimEducationLevel"><code>:victimEducationLevel</code></a></li><li><a href="#victimHasChildrenCount"><code>:victimHasChildrenCount</code></a></li><li><a href="#victimId"><code>:victimId</code></a></li><li><a href="#victimMaritalStatus"><code>:victimMaritalStatus</code></a></li><li><a href="#victimPriorEmployment"><code>:victimPriorEmployment</code></a></li><li><a href="#victimReferralSource"><code>:victimReferralSource</code></a></li><li><a href="#vulnerabilityFactorName"><code>:vulnerabilityFactorName</code></a></li><li><a href="#yearOfRegistration"><code>:yearOfRegistration</code></a></li></ul>
 
 <h2>Classes</h2>
 
@@ -65,6 +65,22 @@
 <tr><th>Superclass of</th><td><code>:Employer</code>, <code>:Recruiter</code></td></tr>
 </table>
 </div>
+<div class="term" id="AgriculturalBondageScheme">
+<h3><code>:AgriculturalBondageScheme</code> &mdash; Agricultural labour bondage scheme</h3>
+<p class="lang">es: <em>Esquema de servidumbre en trabajo agrícola</em></p>
+<p class="comment">Offer of seasonal agricultural work (jornalero, harvest, produce packing) that leads to wage theft, deductions for housing and food that exceed the wage, confiscation of identification documents, and restriction of movement through geographic isolation. Documented by ILO, UNODC and the Polaris Project in the US-Mexico corridor (fresh produce, coffee, tomato) and in internal Mexican migration from southern states to Sinaloa, Sonora and Baja California. The CTDC dataset registers :labour_agriculture as a distinct exploitation subtype.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="BeggingRingScheme">
+<h3><code>:BeggingRingScheme</code> &mdash; Forced begging ring scheme</h3>
+<p class="lang">es: <em>Esquema de mendicidad forzada</em></p>
+<p class="comment">Offer of &#x27;help&#x27; or &#x27;a job in the city&#x27; that leads to forced begging under the control of a ring leader. Common victims are minors, persons with disabilities, and migrants with precarious status. The ring leader confiscates earnings and controls movement. Named explicitly in the UNODC Protocol against Trafficking in Persons glossary and discussed by UNICEF in urban contexts in Mexico, Honduras and Guatemala. Maps to :PurposeForcedLabour or :PurposeSlavery depending on the context.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="CallCenterScamScheme">
 <h3><code>:CallCenterScamScheme</code> &mdash; Call-centre scam employment scheme</h3>
 <p class="lang">es: <em>Esquema de empleo en call center estafador</em></p>
@@ -77,6 +93,23 @@
 <h3><code>:Candidate</code> &mdash; Candidate</h3>
 <p class="lang">es: <em>Candidato</em></p>
 <p class="comment">User who submitted an offer to Ramona for verification.</p>
+</div>
+<div class="term" id="CentralAmericanMigrantLabourScheme">
+<h3><code>:CentralAmericanMigrantLabourScheme</code> &mdash; Central-American migrant labour exploitation scheme</h3>
+<p class="lang">es: <em>Esquema de explotación laboral de migrantes centroamericanos</em></p>
+<p class="comment">Offer of work in the United States or northern Mexico, targeted at Guatemalan, Honduran or Salvadoran candidates, that routes the victim via Tapachula and the Mexican migration corridor. On arrival, the victim is placed in construction, agriculture or hospitality under conditions of debt bondage: smuggling fees, document retention, threats of denunciation to immigration authorities. CTDC documents the GTM-USA corridor with 842 victims 2009-2023 and the HND and SLV citizenship clusters. Recognised by UNODC GLOTIP as a principal Latin-American corridor.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:DebtBondageTraffickingScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="ChildRecruitmentCriminalScheme">
+<h3><code>:ChildRecruitmentCriminalScheme</code> &mdash; Child recruitment into criminal organisations</h3>
+<p class="lang">es: <em>Esquema de reclutamiento infantil por grupos delictivos</em></p>
+<p class="comment">Recruitment of minors by organised-crime organisations as halcones (lookouts), runners, enforcers, or in the production and logistics of drug trafficking. Extensively documented in Mexico by REDIM (Red por los Derechos de la Infancia en México) in their 2010-2024 series. Recognised by the CNDH and ongoing federal legislative debate. Entry points include offers disguised as &#x27;security&#x27;, &#x27;warehouse work&#x27; or &#x27;deliveries&#x27;, plus in-school contact and social-media grooming. UNICEF treats recruitment of minors by armed groups as a grave violation.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:ForcedCriminalityScheme</code></td></tr>
+<tr><th>Superclass of</th><td><code>:GangRecruitmentSchoolsScheme</code></td></tr>
+</table>
 </div>
 <div class="term" id="ClassicRedFlagPattern">
 <h3><code>:ClassicRedFlagPattern</code> &mdash; Classic red-flag pattern</h3>
@@ -102,6 +135,14 @@
 <tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROsmuggler_and_trafficker_communication_tools">https://bioportal.bioontology.org/ontologies/HUTROsmuggler_and_trafficker_communication_tools</a></td></tr>
 </table>
 </div>
+<div class="term" id="ConstructionLabourBondageScheme">
+<h3><code>:ConstructionLabourBondageScheme</code> &mdash; Construction labour bondage scheme</h3>
+<p class="lang">es: <em>Esquema de servidumbre en construcción</em></p>
+<p class="comment">Offer of construction work abroad or in another state with housing and &#x27;flight to site&#x27; included. Upon arrival the worker finds pay deductions for housing, transport and tools that exceed the wage; documents are retained; movement off site is restricted. Documented by ILO in the Gulf States labour corridor (most notoriously Qatar World Cup preparation) and by HRW and Polaris in the US-Mexico corridor for Mexican and Central-American workers. Also attested internally in Mexico for workers displaced from southern states to the northern border.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="Country">
 <h3><code>:Country</code> &mdash; Country</h3>
 <p class="lang">es: <em>País</em></p>
@@ -120,6 +161,7 @@
 <p class="comment">The offer relocates the candidate to a destination where exploitation is performed, often across borders, and binds the victim through a manufactured debt: smuggling fees, transportation, housing, paperwork. Covers the Tapachula-to-United States labour-exploitation corridor, the Latin-America-to-Western-Europe sex-trafficking pattern (e.g. falsely advertised childcare jobs in Paris), and domestic-work trafficking with document retention.</p>
 <table class='meta'>
 <tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Superclass of</th><td><code>:CentralAmericanMigrantLabourScheme</code>, <code>:ForcedChildMarriageScheme</code></td></tr>
 </table>
 </div>
 <div class="term" id="DemographicProfile">
@@ -196,12 +238,29 @@
 <tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation">https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation</a></td></tr>
 </table>
 </div>
+<div class="term" id="FishingVesselLabourScheme">
+<h3><code>:FishingVesselLabourScheme</code> &mdash; Fishing vessel labour scheme</h3>
+<p class="lang">es: <em>Esquema de explotación laboral en pesca</em></p>
+<p class="comment">Offer of work on deep-sea fishing vessels with promised wages and return dates. Victims are taken to international waters where they are held for months or years without pay, with document confiscation, physical abuse and no possibility of exit. Extensively documented by the International Labour Organization (&#x27;Caught at Sea&#x27;, 2013) and by the Environmental Justice Foundation. Principal victim populations include Myanmar, Cambodia, Indonesia and the Philippines; vessels often registered in Thailand, Taiwan, Korea.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="ForcedChildMarriageScheme">
+<h3><code>:ForcedChildMarriageScheme</code> &mdash; Forced child marriage scheme</h3>
+<p class="lang">es: <em>Esquema de matrimonio infantil forzado</em></p>
+<p class="comment">The offer frames a minor&#x27;s placement as marriage or an &#x27;informal union&#x27; under customary practice (usos y costumbres). The Secretaría de las Mujeres de Oaxaca recognises this explicitly as a form of human trafficking. According to ENADID 2014, 44.82% of women in Chiapas, 42.41% in Guerrero and 39.17% in Oaxaca reported child marriage or early union. Recognised by UNICEF as a harmful practice and by UN Women as a form of gender-based violence. Maps to :PurposeServitude in the Palermo Protocol.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:DebtBondageTraffickingScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="ForcedCriminalityScheme">
 <h3><code>:ForcedCriminalityScheme</code> &mdash; Forced criminality scheme</h3>
 <p class="lang">es: <em>Esquema de reclutamiento para criminalidad forzada</em></p>
 <p class="comment">Offer advertised as &#x27;private security&#x27;, &#x27;bodyguard&#x27;, &#x27;armed escort&#x27;, &#x27;watchman at a ranch&#x27; or &#x27;warehouse security&#x27; with atypically high salary. The real purpose is enlistment into organised-crime armed structures, most notably as halcones, sicarios, or coca-processing labour. Archetypal Mexican case: the CJNG Rancho Izaguirre (Teuchitlán, Jalisco) recruiting scheme of 2024-2025.</p>
 <table class='meta'>
 <tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Superclass of</th><td><code>:ChildRecruitmentCriminalScheme</code></td></tr>
 </table>
 </div>
 <div class="term" id="ForeignLanguageTeacherScheme">
@@ -225,7 +284,15 @@
 <p class="lang">es: <em>Esquema de fraude</em></p>
 <p class="comment">A named operational pattern by which a fraudulent job offer harms the candidate. Independent of the RiskClassification axes: a single offer can exhibit one or more named schemes.</p>
 <table class='meta'>
-<tr><th>Superclass of</th><td><code>:CallCenterScamScheme</code>, <code>:DebtBondageTraffickingScheme</code>, <code>:DomesticWorkerLockInScheme</code>, <code>:FakeMaquilaScheme</code>, <code>:ForcedCriminalityScheme</code>, <code>:ForeignLanguageTeacherScheme</code>, <code>:GigEconomyFakeDriverScheme</code>, <code>:IdentityTheftScheme</code>, <code>:InPersonLureScheme</code>, <code>:ModelingAgencyScheme</code>, <code>:OnlineCryptoJobScheme</code>, <code>:OnlineInfluencerSalesScheme</code>, <code>:PayToWorkScheme</code>, <code>:PyramidScheme</code>, <code>:VisaFraudScheme</code></td></tr>
+<tr><th>Superclass of</th><td><code>:AgriculturalBondageScheme</code>, <code>:BeggingRingScheme</code>, <code>:CallCenterScamScheme</code>, <code>:ConstructionLabourBondageScheme</code>, <code>:DebtBondageTraffickingScheme</code>, <code>:DomesticWorkerLockInScheme</code>, <code>:FakeMaquilaScheme</code>, <code>:FishingVesselLabourScheme</code>, <code>:ForcedCriminalityScheme</code>, <code>:ForeignLanguageTeacherScheme</code>, <code>:GigEconomyFakeDriverScheme</code>, <code>:IdentityTheftScheme</code>, <code>:InPersonLureScheme</code>, <code>:ModelingAgencyScheme</code>, <code>:OnlineCryptoJobScheme</code>, <code>:OnlineInfluencerSalesScheme</code>, <code>:OrganRemovalRecruitmentScheme</code>, <code>:PayToWorkScheme</code>, <code>:PyramidScheme</code>, <code>:SportsTalentScheme</code>, <code>:VisaFraudScheme</code></td></tr>
+</table>
+</div>
+<div class="term" id="GangRecruitmentSchoolsScheme">
+<h3><code>:GangRecruitmentSchoolsScheme</code> &mdash; Gang recruitment at schools scheme</h3>
+<p class="lang">es: <em>Esquema de reclutamiento de pandillas o cárteles en escuelas</em></p>
+<p class="comment">Specific subtype of child recruitment where the entry point is the school ground or school exit. Recruiters are often students slightly older than the target or adults posing as relatives. Common in Central America (MS-13, Barrio 18) and in Mexican states with heavy cartel presence (Michoacán, Guerrero, Jalisco, Tamaulipas). The Gobierno de Zapopan published a public prevention programme in 2026. REDIM documented 26 press articles in the current Ramona observatory corpus alone.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:ChildRecruitmentCriminalScheme</code></td></tr>
 </table>
 </div>
 <div class="term" id="Gender">
@@ -376,6 +443,14 @@
 <tr><th>Subclass of</th><td><code>:EvidenceSource</code></td></tr>
 </table>
 </div>
+<div class="term" id="OrganRemovalRecruitmentScheme">
+<h3><code>:OrganRemovalRecruitmentScheme</code> &mdash; Organ removal recruitment scheme</h3>
+<p class="lang">es: <em>Esquema de reclutamiento para extracción de órganos</em></p>
+<p class="comment">The offer promises medical treatment, paid egg donation, or a health procedure. The real purpose is extraction of organs (most commonly kidneys) or tissue for sale on the black market. Traffickers promise US$500 to US$10,000 that the victim often never receives. Documented in detail by the UNODC Assessment Toolkit on Trafficking in Persons for the Purpose of Organ Removal (2015, 60+ pages). Explicitly named as a purpose of trafficking by Article 3(a) of the Palermo Protocol (2000). Recruitment uses social media, word of mouth in vulnerable communities, and classifieds.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="PalermoAction">
 <h3><code>:PalermoAction</code> &mdash; Palermo Action</h3>
 <p class="lang">es: <em>Acción (Palermo)</em></p>
@@ -516,6 +591,14 @@
 <tr><th>Superclass of</th><td><code>:ExploitationRisk</code>, <code>:FraudRisk</code>, <code>:TraffickingRisk</code></td></tr>
 </table>
 </div>
+<div class="term" id="SportsTalentScheme">
+<h3><code>:SportsTalentScheme</code> &mdash; Sports talent recruitment scheme</h3>
+<p class="lang">es: <em>Esquema de reclutamiento deportivo fraudulento</em></p>
+<p class="comment">Offer to join a &#x27;football academy&#x27; in Europe, a &#x27;baseball academy&#x27; in the US, or a &#x27;boxing camp&#x27; abroad, with flight and training fees. Victim (usually an adolescent) is abandoned at destination when the agency disappears or is placed under exploitative training contracts with no professional outcome. Extensively documented by FIFPro (World Players Union) in its 2018 Africa report and by ILO in the Latin-America to Europe and Asia to Gulf corridors for youth football. Also attested in baseball recruiting in the Dominican Republic and Venezuela.</p>
+<table class='meta'>
+<tr><th>Subclass of</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="Submission">
 <h3><code>:Submission</code> &mdash; Submission</h3>
 <p class="lang">es: <em>Solicitud</em></p>
@@ -622,6 +705,13 @@
 <tr><th>Range</th><td><code>:CommunicationTool</code></td></tr>
 </table>
 </div>
+<div class="term" id="containsRedFlag">
+<h3><code>:containsRedFlag</code> &mdash; contains red flag</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>:RedFlag</code></td></tr>
+</table>
+</div>
 <div class="term" id="derivedFrom">
 <h3><code>:derivedFrom</code> &mdash; derived from</h3>
 <table class='meta'>
@@ -640,6 +730,13 @@
 <p class="comment">Links an evidence source to the pattern, route, offer or victim it documents.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+</table>
+</div>
+<div class="term" id="evidencedByPressArticle">
+<h3><code>:evidencedByPressArticle</code> &mdash; evidenced by press article</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:PressArticle</code></td></tr>
 </table>
 </div>
 <div class="term" id="exhibitsAction">
@@ -727,6 +824,13 @@
 <tr><th>Range</th><td><code>:VulnerabilityFactor</code></td></tr>
 </table>
 </div>
+<div class="term" id="hostsOffer">
+<h3><code>:hostsOffer</code> &mdash; hosts offer</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Platform</code></td></tr>
+<tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
 <div class="term" id="inCountry">
 <h3><code>:inCountry</code> &mdash; in country</h3>
 <table class='meta'>
@@ -756,6 +860,13 @@
 <tr><th>Range</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 </table>
 </div>
+<div class="term" id="observedInCountry">
+<h3><code>:observedInCountry</code> &mdash; pattern observed in country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
 <div class="term" id="offeredBy">
 <h3><code>:offeredBy</code> &mdash; offered by</h3>
 <table class='meta'>
@@ -779,6 +890,21 @@
 <tr><th>Subproperty of</th><td><code>:offeredBy</code></td></tr>
 </table>
 </div>
+<div class="term" id="offers">
+<h3><code>:offers</code> &mdash; offers</h3>
+<p class="lang">es: <em>ofrece</em></p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Agent</code></td></tr>
+<tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
+<div class="term" id="operatesIn">
+<h3><code>:operatesIn</code> &mdash; scheme operates in country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
 <div class="term" id="originCountry">
 <h3><code>:originCountry</code> &mdash; origin country</h3>
 <table class='meta'>
@@ -791,6 +917,13 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Platform</code></td></tr>
 <tr><th>Range</th><td><code>:Country</code></td></tr>
+</table>
+</div>
+<div class="term" id="platformModeratedBy">
+<h3><code>:platformModeratedBy</code> &mdash; platform moderated by</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Platform</code></td></tr>
+<tr><th>Range</th><td><code>:Agent</code></td></tr>
 </table>
 </div>
 <div class="term" id="postedVia">
@@ -814,6 +947,13 @@
 <tr><th>Range</th><td><code>:Country</code></td></tr>
 </table>
 </div>
+<div class="term" id="recruitsFor">
+<h3><code>:recruitsFor</code> &mdash; recruits for scheme</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Recruiter</code></td></tr>
+<tr><th>Range</th><td><code>:FraudScheme</code></td></tr>
+</table>
+</div>
 <div class="term" id="routeDominantExploitation">
 <h3><code>:routeDominantExploitation</code> &mdash; route dominant exploitation</h3>
 <p class="lang">es: <em>explotación dominante de la ruta</em></p>
@@ -821,6 +961,62 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
 <tr><th>Range</th><td><code>:TypeOfExploitation</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeExploitationType">
+<h3><code>:schemeExploitationType</code> &mdash; scheme leads to exploitation type</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:TypeOfExploitation</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemePalermoAction">
+<h3><code>:schemePalermoAction</code> &mdash; scheme Palermo action</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoAction</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemePalermoMeans">
+<h3><code>:schemePalermoMeans</code> &mdash; scheme Palermo means</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoMeans</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemePalermoPurpose">
+<h3><code>:schemePalermoPurpose</code> &mdash; scheme Palermo purpose</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:PalermoPurpose</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemePreferredTool">
+<h3><code>:schemePreferredTool</code> &mdash; preferred communication tool for scheme</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:CommunicationTool</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeTargetsAgeGroup">
+<h3><code>:schemeTargetsAgeGroup</code> &mdash; scheme targets age group</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:AgeGroup</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeTargetsGender">
+<h3><code>:schemeTargetsGender</code> &mdash; scheme targets gender</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:Gender</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeTypicalRoute">
+<h3><code>:schemeTypicalRoute</code> &mdash; typical trafficking route for scheme</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>:TraffickingRoute</code></td></tr>
 </table>
 </div>
 <div class="term" id="submittedBy">
@@ -835,6 +1031,13 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Submission</code></td></tr>
 <tr><th>Range</th><td><code>:JobOffer</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventHappenedIn">
+<h3><code>:tipEventHappenedIn</code> &mdash; TIP event happened in country</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:Country</code></td></tr>
 </table>
 </div>
 <div class="term" id="tipEventHasAction">
@@ -863,6 +1066,13 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
 <tr><th>Range</th><td><code>:Victim</code></td></tr>
+</table>
+</div>
+<div class="term" id="tipEventRegisteredBy">
+<h3><code>:tipEventRegisteredBy</code> &mdash; TIP event registered by</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TIPEvent</code></td></tr>
+<tr><th>Range</th><td><code>:Agent</code></td></tr>
 </table>
 </div>
 <div class="term" id="transportedBy">
@@ -999,6 +1209,28 @@
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
+<div class="term" id="evidenceAccessedOnline">
+<h3><code>:evidenceAccessedOnline</code> &mdash; evidence accessed online</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>boolean</code></td></tr>
+</table>
+</div>
+<div class="term" id="evidenceArchivedUrl">
+<h3><code>:evidenceArchivedUrl</code> &mdash; evidence archived URL (e.g. archive.today)</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>anyURI</code></td></tr>
+</table>
+</div>
+<div class="term" id="evidenceStrength">
+<h3><code>:evidenceStrength</code> &mdash; evidence strength</h3>
+<p class="comment">primary / secondary / tertiary. Primary = direct survivor testimony, official statistics, court record; secondary = investigative journalism; tertiary = summary or editorial article.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
 <div class="term" id="explanationText">
 <h3><code>:explanationText</code> &mdash; :explanationText</h3>
 <table class='meta'>
@@ -1019,6 +1251,14 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
 <tr><th>Range</th><td><code>decimal</code></td></tr>
+</table>
+</div>
+<div class="term" id="flagKeywordPattern">
+<h3><code>:flagKeywordPattern</code> &mdash; flag keyword pattern</h3>
+<p class="comment">Regex used by the rule-based classifier.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RedFlag</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="flagType">
@@ -1102,6 +1342,41 @@
 <tr><th>Range</th><td><code>integer</code></td></tr>
 </table>
 </div>
+<div class="term" id="offerClassifierConfidence">
+<h3><code>:offerClassifierConfidence</code> &mdash; offer classifier confidence</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>decimal</code></td></tr>
+</table>
+</div>
+<div class="term" id="offerFirstContactAt">
+<h3><code>:offerFirstContactAt</code> &mdash; offer first contact timestamp</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>dateTime</code></td></tr>
+</table>
+</div>
+<div class="term" id="offerIsActive">
+<h3><code>:offerIsActive</code> &mdash; offer is active</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>boolean</code></td></tr>
+</table>
+</div>
+<div class="term" id="offerLanguage">
+<h3><code>:offerLanguage</code> &mdash; offer language ISO code</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="offerScreenshotUrl">
+<h3><code>:offerScreenshotUrl</code> &mdash; offer screenshot URL</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:JobOffer</code></td></tr>
+<tr><th>Range</th><td><code>anyURI</code></td></tr>
+</table>
+</div>
 <div class="term" id="offeredLocation">
 <h3><code>:offeredLocation</code> &mdash; :offeredLocation</h3>
 <table class='meta'>
@@ -1131,8 +1406,23 @@
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
+<div class="term" id="patternHasKind">
+<h3><code>:patternHasKind</code> &mdash; pattern kind</h3>
+<p class="comment">classic_a / credible_b / communication / recruitment / exploitation / deep_textual.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
 <div class="term" id="patternName">
 <h3><code>:patternName</code> &mdash; :patternName</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="patternRegex">
+<h3><code>:patternRegex</code> &mdash; pattern regex</h3>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:SurvivorTestimonyPattern</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -1176,6 +1466,20 @@
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
+<div class="term" id="riskExplanationEn">
+<h3><code>:riskExplanationEn</code> &mdash; risk explanation in English</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="riskExplanationEs">
+<h3><code>:riskExplanationEs</code> &mdash; risk explanation in Spanish</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:RiskClassification</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
 <div class="term" id="riskLevel">
 <h3><code>:riskLevel</code> &mdash; :riskLevel</h3>
 <p class="comment">Controlled vocabulary: safe, suspicious, high-risk, fraudulent.</p>
@@ -1199,6 +1503,13 @@
 <tr><th>Range</th><td><code>gYear</code></td></tr>
 </table>
 </div>
+<div class="term" id="routeIsTransnational">
+<h3><code>:routeIsTransnational</code> &mdash; route is transnational</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>boolean</code></td></tr>
+</table>
+</div>
 <div class="term" id="routeLatestYear">
 <h3><code>:routeLatestYear</code> &mdash; route latest year</h3>
 <p class="lang">es: <em>año más reciente de la ruta</em></p>
@@ -1214,6 +1525,20 @@
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
+<div class="term" id="routeStopoverCountries">
+<h3><code>:routeStopoverCountries</code> &mdash; route stopover countries (ISO3 list)</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="routeUpdatedAt">
+<h3><code>:routeUpdatedAt</code> &mdash; route record last updated at</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
+<tr><th>Range</th><td><code>dateTime</code></td></tr>
+</table>
+</div>
 <div class="term" id="routeVictimCount">
 <h3><code>:routeVictimCount</code> &mdash; route victim count</h3>
 <p class="lang">es: <em>número de víctimas en la ruta</em></p>
@@ -1221,6 +1546,35 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:TraffickingRoute</code></td></tr>
 <tr><th>Range</th><td><code>integer</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeFirstAttestedYear">
+<h3><code>:schemeFirstAttestedYear</code> &mdash; scheme first attested year</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>gYear</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeJurisdictionScope">
+<h3><code>:schemeJurisdictionScope</code> &mdash; scheme jurisdiction scope</h3>
+<p class="comment">local, national, regional, continental, global.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="schemeNamedAfterCase">
+<h3><code>:schemeNamedAfterCase</code> &mdash; scheme archetypal case name</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:FraudScheme</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceAccessedAt">
+<h3><code>:sourceAccessedAt</code> &mdash; source accessed timestamp</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>dateTime</code></td></tr>
 </table>
 </div>
 <div class="term" id="sourceAuthor">
@@ -1235,6 +1589,13 @@
 <table class='meta'>
 <tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
 <tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="sourceLanguage">
+<h3><code>:sourceLanguage</code> &mdash; source language ISO code</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:EvidenceSource</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
 <div class="term" id="sourceOutlet">
@@ -1266,9 +1627,62 @@
 <tr><th>Range</th><td><code>string</code></td></tr>
 </table>
 </div>
+<div class="term" id="victimCaseClosedAt">
+<h3><code>:victimCaseClosedAt</code> &mdash; victim case closed at</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimCaseOpenedAt">
+<h3><code>:victimCaseOpenedAt</code> &mdash; victim case opened at</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>date</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimEducationLevel">
+<h3><code>:victimEducationLevel</code> &mdash; education level</h3>
+<p class="comment">ICS-TIP additional disaggregating variable. Controlled vocab: none, primary, secondary, tertiary, postgraduate, unknown.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimHasChildrenCount">
+<h3><code>:victimHasChildrenCount</code> &mdash; number of children</h3>
+<p class="comment">ICS-TIP additional disaggregating variable.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>integer</code></td></tr>
+</table>
+</div>
 <div class="term" id="victimId">
 <h3><code>:victimId</code> &mdash; :victimId</h3>
 <p class="comment">Anonymised case identifier. For CTDC records, the CTDC victim id. For press cases, an outlet-specific hash.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimMaritalStatus">
+<h3><code>:victimMaritalStatus</code> &mdash; marital status</h3>
+<p class="comment">ICS-TIP additional disaggregating variable. Controlled vocab: single, married, cohabiting, separated, divorced, widowed, unknown.</p>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimPriorEmployment">
+<h3><code>:victimPriorEmployment</code> &mdash; prior employment status</h3>
+<table class='meta'>
+<tr><th>Domain</th><td><code>:Victim</code></td></tr>
+<tr><th>Range</th><td><code>string</code></td></tr>
+</table>
+</div>
+<div class="term" id="victimReferralSource">
+<h3><code>:victimReferralSource</code> &mdash; victim referral source</h3>
+<p class="comment">How the victim was identified: self-report, NGO, law enforcement, embassy, hotline.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><code>:Victim</code></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
