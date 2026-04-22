@@ -101,6 +101,23 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 | `Q13_means_of_control_stack.rq` | Means of control by exploitation type. |
 | `Q14_mexico_press_vs_ctdc.rq` | Mexico: press-documented vs CTDC-registered victims (cross-source federation). |
 
+| `Q15_fraudscheme_by_country.rq` | Distribución de FraudSchemes por país (cross-source). |
+| `Q16_palermo_triad_coverage.rq` | Cobertura del triángulo Palermo (Action × Means × Purpose) por TIPEvent. |
+| `Q17_scheme_vs_tool_heatmap.rq` | Heatmap FraudScheme × CommunicationTool. |
+| `Q18_age_gender_per_scheme.rq` | Perfil demográfico (edad × género) por FraudScheme. |
+| `Q19_outlets_by_scheme.rq` | Outlets de prensa que más documentan cada esquema. |
+| `Q20_type_b_over_a_by_country.rq` | Ratio Type-B:Type-A por país. |
+| `Q21_pattern_cooccurrence.rq` | Pares de patrones que co-ocurren en el mismo artículo. |
+| `Q22_recruitment_x_exploitation.rq` | Método de reclutamiento × tipo de explotación (CTDC). |
+| `Q23_whatsapp_funnel_schemes.rq` | Esquemas que comparten WhatsApp como primer canal. |
+| `Q24_new_routes_from_press.rq` | Rutas nuevas documentadas por prensa aún no atestadas en CTDC. |
+| `Q25_trend_by_year.rq` | Tendencia 2002-2023 de víctimas registradas en CTDC. |
+| `Q26_means_of_control_network.rq` | Red de co-ocurrencia de Means of Control (CTDC). |
+| `Q27_vulnerability_x_exploitation.rq` | Factor de vulnerabilidad × tipo de explotación. |
+| `Q28_crossborder_with_press.rq` | Corredores transfronterizos con prensa reciente. |
+| `Q29_edith_cohort.rq` | Cohorte Edith Guadalupe (Type-B-only explícito). |
+| `Q30_schemes_in_both_sources.rq` | FraudSchemes atestados en CTDC y prensa (intersección). |
+
 ## Layout
 
 ```

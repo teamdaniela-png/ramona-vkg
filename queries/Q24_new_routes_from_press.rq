@@ -1,0 +1,24 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q24 — Rutas nuevas documentadas por prensa que aún no están en CTDC.
+# Prensa reciente puede atestiguar corredores que CTDC todavía no registra
+# (porque CTDC requiere asistencia por IOM/Polaris; prensa detecta antes).
+# Esta query es la capacidad de alerta temprana del observatorio Ramona.
+
+SELECT DISTINCT ?origin ?destination ?source ?outletName
+WHERE {
+  ?source a :PressArticle ;
+          :sourceOutlet ?outletName .
+  ?offer :derivedFrom ?source ;
+         :associatedWithRoute ?route .
+  ?route :originCountry/:countryISOCode ?origin ;
+         :destinationCountry/:countryISOCode ?destination .
+  FILTER NOT EXISTS {
+    ?ctdcRecord a :OpenDatasetRecord ;
+                :datasetName "CTDC Global Synthetic Dataset v2025" .
+    ?ctdcVictim :derivedFrom ?ctdcRecord ;
+                :associatedWithRoute ?route .
+  }
+}
+ORDER BY ?origin ?destination
+LIMIT 100

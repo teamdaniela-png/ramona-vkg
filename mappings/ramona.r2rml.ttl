@@ -1,0 +1,701 @@
+# Ramona VKG — W3C R2RML mapping
+# Converted from mappings/ramona.obda (Ontop native format) by scripts/obda_to_r2rml.py
+# Licence: Apache 2.0.
+
+@prefix rr:   <http://www.w3.org/ns/r2rml#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <https://ramona.ai/ont#> .
+@prefix ont: <https://ramona.ai/ont#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<#TM_M_Country> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT country_code, country_name FROM ramona.countries""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/country/{country_code}" ;
+        rr:class :Country ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :countryName ;
+        rr:objectMap [ rr:column "country_name" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :countryISOCode ;
+        rr:objectMap [ rr:column "country_code" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Language> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT language_code, language_name FROM ramona.languages""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/language/{language_code}" ;
+        rr:class :Language ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :languageName ;
+        rr:objectMap [ rr:column "language_name" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :languageISOCode ;
+        rr:objectMap [ rr:column "language_code" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Platform> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT platform_id, platform_name, platform_type FROM ramona.platforms""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/platform/{platform_id}" ;
+        rr:class :Platform ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :platformName ;
+        rr:objectMap [ rr:column "platform_name" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :platformType ;
+        rr:objectMap [ rr:column "platform_type" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Platform_Country> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT platform_id, platform_country FROM ramona.platforms WHERE platform_country IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/platform/{platform_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :platformCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{platform_country}" ]
+    ] .
+
+<#TM_M_EvidenceSource> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, source_title, source_outlet, source_date FROM ramona.evidence_sources""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence/{source_id}" ;
+        rr:class :EvidenceSource ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceTitle ;
+        rr:objectMap [ rr:column "source_title" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceOutlet ;
+        rr:objectMap [ rr:column "source_outlet" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceDate ;
+        rr:objectMap [ rr:column "source_date" ; rr:datatype xsd:date ]
+    ] .
+
+<#TM_M_EvidenceSource_URL> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, source_url FROM ramona.evidence_sources WHERE source_url IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence/{source_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceUrl ;
+        rr:objectMap [ rr:column "source_url" ; rr:datatype xsd:anyURI ]
+    ] .
+
+<#TM_M_Route> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT route_id, route_name, origin_country, destination_country FROM ramona.trafficking_routes""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/route/{route_id}" ;
+        rr:class :TraffickingRoute ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :routeName ;
+        rr:objectMap [ rr:column "route_name" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :originCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{origin_country}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :destinationCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{destination_country}" ]
+    ] .
+
+<#TM_M_Route_KnownSince> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT route_id, known_since FROM ramona.trafficking_routes WHERE known_since IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/route/{route_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :knownSince ;
+        rr:objectMap [ rr:column "known_since" ; rr:datatype xsd:date ]
+    ] .
+
+<#TM_M_Route_Evidence> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT route_id, evidence_source FROM ramona.trafficking_routes WHERE evidence_source IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/route/{route_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :derivedFrom ;
+        rr:objectMap [ rr:template "https://ramona.ai/evidence/{evidence_source}" ]
+    ] .
+
+<#TM_M_Pattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id, pattern_name, pattern_description FROM ramona.survivor_patterns""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/pattern/{pattern_id}" ;
+        rr:class :SurvivorTestimonyPattern ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :patternName ;
+        rr:objectMap [ rr:column "pattern_name" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :patternDescription ;
+        rr:objectMap [ rr:column "pattern_description" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Pattern_Evidence> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id, evidence_source FROM ramona.survivor_patterns WHERE evidence_source IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/pattern/{pattern_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :derivedFrom ;
+        rr:objectMap [ rr:template "https://ramona.ai/evidence/{evidence_source}" ]
+    ] .
+
+<#TM_M_Employer> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT employer_id, has_verified_identity, historical_offer_count, historical_flag_count FROM ramona.employers""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/employer/{employer_id}" ;
+        rr:class :Employer ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasVerifiedIdentity ;
+        rr:objectMap [ rr:column "has_verified_identity" ; rr:datatype xsd:boolean ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :historicalOfferCount ;
+        rr:objectMap [ rr:column "historical_offer_count" ; rr:datatype xsd:integer ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :historicalFlagCount ;
+        rr:objectMap [ rr:column "historical_flag_count" ; rr:datatype xsd:integer ]
+    ] .
+
+<#TM_M_Employer_Name> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT employer_id, employer_name FROM ramona.employers WHERE employer_name IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/employer/{employer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :agentName ;
+        rr:objectMap [ rr:column "employer_name" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Recruiter> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT recruiter_id, historical_offer_count, historical_flag_count FROM ramona.recruiters""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/recruiter/{recruiter_id}" ;
+        rr:class :Recruiter ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :historicalOfferCount ;
+        rr:objectMap [ rr:column "historical_offer_count" ; rr:datatype xsd:integer ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :historicalFlagCount ;
+        rr:objectMap [ rr:column "historical_flag_count" ; rr:datatype xsd:integer ]
+    ] .
+
+<#TM_M_Recruiter_Contact> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT recruiter_id, contact_hash FROM ramona.recruiters WHERE contact_hash IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/recruiter/{recruiter_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :contactHash ;
+        rr:objectMap [ rr:column "contact_hash" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Recruiter_Name> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT recruiter_id, agent_name FROM ramona.recruiters WHERE agent_name IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/recruiter/{recruiter_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :agentName ;
+        rr:objectMap [ rr:column "agent_name" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Recruiter_Country> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT recruiter_id, recruiter_country FROM ramona.recruiters WHERE recruiter_country IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/recruiter/{recruiter_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :recruiterCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{recruiter_country}" ]
+    ] .
+
+<#TM_M_Candidate> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT candidate_id FROM ramona.candidates""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/candidate/{candidate_id}" ;
+        rr:class :Candidate ;
+    ] .
+
+<#TM_M_Classification> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT classification_id, risk_level, classified_at, classifier_version FROM ramona.classifications""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/classification/{classification_id}" ;
+        rr:class :RiskClassification ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :riskLevel ;
+        rr:objectMap [ rr:column "risk_level" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :classifiedOn ;
+        rr:objectMap [ rr:column "classified_at" ; rr:datatype xsd:date ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :classifierVersion ;
+        rr:objectMap [ rr:column "classifier_version" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Classification_Explanation> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT classification_id, explanation_text FROM ramona.classifications WHERE explanation_text IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/classification/{classification_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :explanationText ;
+        rr:objectMap [ rr:column "explanation_text" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Offer> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, raw_text, posted_at, source_platform, country_code, language_code FROM ramona.offers""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+        rr:class :JobOffer ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasRawText ;
+        rr:objectMap [ rr:column "raw_text" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :postedOn ;
+        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:date ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :postedVia ;
+        rr:objectMap [ rr:template "https://ramona.ai/platform/{source_platform}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :inCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{country_code}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :inLanguage ;
+        rr:objectMap [ rr:template "https://ramona.ai/language/{language_code}" ]
+    ] .
+
+<#TM_M_Offer_Role> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, offered_role FROM ramona.offers WHERE offered_role IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredRole ;
+        rr:objectMap [ rr:column "offered_role" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Offer_Location> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, offered_location FROM ramona.offers WHERE offered_location IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredLocation ;
+        rr:objectMap [ rr:column "offered_location" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Offer_Salary> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, offered_salary_mxn FROM ramona.offers WHERE offered_salary_mxn IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredSalaryMXN ;
+        rr:objectMap [ rr:column "offered_salary_mxn" ; rr:datatype xsd:decimal ]
+    ] .
+
+<#TM_M_Offer_RiskScore> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, risk_score FROM ramona.offers WHERE risk_score IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :riskScore ;
+        rr:objectMap [ rr:column "risk_score" ; rr:datatype xsd:decimal ]
+    ] .
+
+<#TM_M_Offer_Recruiter> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, recruiter_id FROM ramona.offers WHERE recruiter_id IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredByRecruiter ;
+        rr:objectMap [ rr:template "https://ramona.ai/recruiter/{recruiter_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredBy ;
+        rr:objectMap [ rr:template "https://ramona.ai/recruiter/{recruiter_id}" ]
+    ] .
+
+<#TM_M_Offer_Employer> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, employer_id FROM ramona.offers WHERE employer_id IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredByEmployer ;
+        rr:objectMap [ rr:template "https://ramona.ai/employer/{employer_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredBy ;
+        rr:objectMap [ rr:template "https://ramona.ai/employer/{employer_id}" ]
+    ] .
+
+<#TM_M_Offer_Classification> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, classification_id FROM ramona.offers WHERE classification_id IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasRiskClassification ;
+        rr:objectMap [ rr:template "https://ramona.ai/classification/{classification_id}" ]
+    ] .
+
+<#TM_M_RedFlag> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT flag_id, flag_type, flag_confidence, detected_by FROM ramona.red_flags""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/flag/{flag_id}" ;
+        rr:class :RedFlag ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :flagType ;
+        rr:objectMap [ rr:column "flag_type" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :flagConfidence ;
+        rr:objectMap [ rr:column "flag_confidence" ; rr:datatype xsd:decimal ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :detectedBy ;
+        rr:objectMap [ rr:column "detected_by" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Offer_RedFlag> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT flag_id, offer_id FROM ramona.red_flags""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasRedFlag ;
+        rr:objectMap [ rr:template "https://ramona.ai/flag/{flag_id}" ]
+    ] .
+
+<#TM_M_Offer_Pattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, pattern_id FROM ramona.offer_patterns""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :matchesPattern ;
+        rr:objectMap [ rr:template "https://ramona.ai/pattern/{pattern_id}" ]
+    ] .
+
+<#TM_M_Offer_Route> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, route_id FROM ramona.offer_routes""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :associatedWithRoute ;
+        rr:objectMap [ rr:template "https://ramona.ai/route/{route_id}" ]
+    ] .
+
+<#TM_M_Submission> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT submission_id, candidate_id, offer_id FROM ramona.submissions""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/submission/{submission_id}" ;
+        rr:class :Submission ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :submittedBy ;
+        rr:objectMap [ rr:template "https://ramona.ai/candidate/{candidate_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :submittedOffer ;
+        rr:objectMap [ rr:template "https://ramona.ai/offer/{offer_id}" ]
+    ] .
+
+<#TM_M_AgeGroup> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT age_group_code, age_group_label FROM public.age_group""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/agegroup/{age_group_code}" ;
+        rr:class :AgeGroup ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :ageGroupName ;
+        rr:objectMap [ rr:column "age_group_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Gender> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT gender_code, gender_label FROM public.gender""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/gender/{gender_code}" ;
+        rr:class :Gender ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :genderName ;
+        rr:objectMap [ rr:column "gender_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_RecruitmentMethod> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT recruitment_method_code, recruitment_method_label FROM public.recruitment_method""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/recruitmentmethod/{recruitment_method_code}" ;
+        rr:class :RecruitmentMethod ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :recruitmentMethodName ;
+        rr:objectMap [ rr:column "recruitment_method_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_ExploitationType> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT exploitation_type_code, exploitation_type_label FROM public.exploitation_type""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/exploitation/{exploitation_type_code}" ;
+        rr:class :TypeOfExploitation ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exploitationType ;
+        rr:objectMap [ rr:column "exploitation_type_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Vulnerability> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT vulnerability_code, vulnerability_label FROM public.vulnerability_factor""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/vulnerability/{vulnerability_code}" ;
+        rr:class :VulnerabilityFactor ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :vulnerabilityFactorName ;
+        rr:objectMap [ rr:column "vulnerability_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_CommunicationTool> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT tool_code, tool_label FROM public.communication_tool""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/tool/{tool_code}" ;
+        rr:class :CommunicationTool ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :communicationToolName ;
+        rr:objectMap [ rr:column "tool_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_TransportationMeans> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT tm_code, tm_label FROM public.transportation_means""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/transport/{tm_code}" ;
+        rr:class :TransportationMeans ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :transportationMeansName ;
+        rr:objectMap [ rr:column "tm_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_DocumentationType> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT doc_code, doc_label FROM public.documentation_type""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/doc/{doc_code}" ;
+        rr:class :DocumentationType ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :documentationTypeName ;
+        rr:objectMap [ rr:column "doc_label" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_EvidenceSourceExtended> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, title, outlet FROM public.evidence_source_extended""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence-ext/{source_id}" ;
+        rr:class :EvidenceSource ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceTitle ;
+        rr:objectMap [ rr:column "title" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceOutlet ;
+        rr:objectMap [ rr:column "outlet" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_EvidenceSource_Kind> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, source_kind FROM public.evidence_source_extended""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence-ext/{source_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :datasetName ;
+        rr:objectMap [ rr:column "source_kind" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_PressArticle> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, url FROM public.evidence_source_extended WHERE source_kind = 'press' AND url IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence-ext/{source_id}" ;
+        rr:class :PressArticle ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceUrl ;
+        rr:objectMap [ rr:column "url" ; rr:datatype xsd:anyURI ]
+    ] .
+
+<#TM_M_OpenDatasetRecord> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, dataset_name FROM public.evidence_source_extended WHERE source_kind IN ('ctdc','unodc','rnpdno')""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/evidence-ext/{source_id}" ;
+        rr:class :OpenDatasetRecord ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :datasetName ;
+        rr:objectMap [ rr:column "dataset_name" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Victim> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, external_id, year_of_registration FROM public.victim WHERE year_of_registration IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+        rr:class :Victim ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :victimId ;
+        rr:objectMap [ rr:column "external_id" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :yearOfRegistration ;
+        rr:objectMap [ rr:column "year_of_registration" ; rr:datatype xsd:gYear ]
+    ] .
+
+<#TM_M_Victim_NoYear> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, external_id FROM public.victim WHERE year_of_registration IS NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+        rr:class :Victim ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :victimId ;
+        rr:objectMap [ rr:column "external_id" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Victim_Source> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, source_id FROM public.victim WHERE source_id IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :derivedFrom ;
+        rr:objectMap [ rr:template "https://ramona.ai/evidence-ext/{source_id}" ]
+    ] .
+
+<#TM_M_Victim_Age> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, age_group_code FROM public.victim WHERE age_group_code IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasAgeGroup ;
+        rr:objectMap [ rr:template "https://ramona.ai/agegroup/{age_group_code}" ]
+    ] .
+
+<#TM_M_Victim_Gender> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, gender_code FROM public.victim WHERE gender_code IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasGender ;
+        rr:objectMap [ rr:template "https://ramona.ai/gender/{gender_code}" ]
+    ] .
+
+<#TM_M_Victim_Citizenship> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, citizenship_iso3 FROM public.victim WHERE citizenship_iso3 IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasNationality ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{citizenship_iso3}" ]
+    ] .
+
+<#TM_M_Victim_CoE> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, country_of_exploitation_iso3 FROM public.victim WHERE country_of_exploitation_iso3 IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :inCountry ;
+        rr:objectMap [ rr:template "https://ramona.ai/country/{country_of_exploitation_iso3}" ]
+    ] .
+
+<#TM_M_Victim_Recruitment> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, recruitment_method_code FROM public.victim WHERE recruitment_method_code IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :recruitedVia ;
+        rr:objectMap [ rr:template "https://ramona.ai/recruitmentmethod/{recruitment_method_code}" ]
+    ] .
+
+<#TM_M_Victim_CommunicationTool> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, communication_tool_code FROM public.victim WHERE communication_tool_code IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :contactedThrough ;
+        rr:objectMap [ rr:template "https://ramona.ai/tool/{communication_tool_code}" ]
+    ] .
+
+<#TM_M_Victim_Exploitation> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, exploitation_type_code FROM public.victim_exploitation""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :victimOfExploitation ;
+        rr:objectMap [ rr:template "https://ramona.ai/exploitation/{exploitation_type_code}" ]
+    ] .
+
+<#TM_M_Victim_Means> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, means_code FROM public.victim_means_of_control""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasMeansOfControl ;
+        rr:objectMap [ rr:column "means_code" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Victim_Vulnerability> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT victim_id, vulnerability_code FROM public.victim_vulnerability""" ] ;
+    rr:subjectMap [
+        rr:template "https://ramona.ai/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasVulnerabilityFactor ;
+        rr:objectMap [ rr:template "https://ramona.ai/vulnerability/{vulnerability_code}" ]
+    ] .

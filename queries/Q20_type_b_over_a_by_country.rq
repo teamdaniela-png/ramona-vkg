@@ -1,0 +1,25 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q20 — Ratio Type-B:Type-A por país.
+# La estadística central del observatorio (9.9x global) desagregada por país.
+# ¿En qué país es más grave la invisibilidad del patrón creíble-letal?
+
+SELECT ?countryIso
+       (COUNT(DISTINCT ?bOnly) AS ?typeBOnly)
+       (COUNT(DISTINCT ?aOnly) AS ?typeAOnly)
+WHERE {
+  {
+    ?bOnly :inCountry ?country ;
+           :matchesPattern ?patternB .
+    ?patternB a :CredibleLethalPattern .
+    FILTER NOT EXISTS { ?bOnly :matchesPattern [ a :ClassicRedFlagPattern ] }
+  } UNION {
+    ?aOnly :inCountry ?country ;
+           :matchesPattern ?patternA .
+    ?patternA a :ClassicRedFlagPattern .
+    FILTER NOT EXISTS { ?aOnly :matchesPattern [ a :CredibleLethalPattern ] }
+  }
+  ?country :countryISOCode ?countryIso .
+}
+GROUP BY ?countryIso
+ORDER BY DESC(?typeBOnly)

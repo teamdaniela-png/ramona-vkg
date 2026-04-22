@@ -1,0 +1,15 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q23 — Esquemas que comparten WhatsApp como primer canal.
+# ¿Qué esquemas usan WhatsApp como punto de entrada? La respuesta informa
+# políticas de moderación y cooperación con plataformas.
+
+SELECT ?schemeCode (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim :victimOfFraudScheme ?scheme ;
+          :contactedThrough ?tool .
+  ?tool :communicationToolName "WhatsApp" .
+  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+}
+GROUP BY ?schemeCode
+ORDER BY DESC(?victims)

@@ -1,0 +1,19 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q17 — Heatmap esquema × herramienta de comunicación.
+# Correlaciona cada FraudScheme con el CommunicationTool usado en el primer
+# contacto. Permite responder: ¿qué herramienta predomina para cada tipo de
+# esquema? (Hipótesis: WhatsApp domina IdentityTheft; Messenger domina
+# InPersonLure por embudo Messenger->WhatsApp.)
+
+SELECT ?schemeLabel ?toolLabel (COUNT(DISTINCT ?victim) AS ?cases)
+WHERE {
+  ?victim :victimOfFraudScheme ?scheme ;
+          :contactedThrough ?tool .
+  ?scheme a :FraudScheme ;
+          <http://www.w3.org/2000/01/rdf-schema#label> ?schemeLabel .
+  ?tool :communicationToolName ?toolLabel .
+  FILTER(LANG(?schemeLabel) = "en")
+}
+GROUP BY ?schemeLabel ?toolLabel
+ORDER BY ?schemeLabel DESC(?cases)

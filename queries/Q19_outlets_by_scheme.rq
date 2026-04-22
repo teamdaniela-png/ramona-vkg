@@ -1,0 +1,17 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q19 — Outlets de prensa que más documentan cada esquema.
+# ¿Qué medio es la referencia para Rancho Izaguirre? ¿Quién cubre crypto-job?
+# Útil para priorizar alianzas con medios y para validación cruzada de
+# hallazgos en el paper.
+
+SELECT ?schemeCode ?outlet (COUNT(DISTINCT ?exemplar) AS ?articles)
+WHERE {
+  ?exemplar a :PressArticle ;
+            :sourceOutlet ?outlet .
+  ?offer :derivedFrom ?exemplar ;
+         :exhibitsFraudScheme ?scheme .
+  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+}
+GROUP BY ?schemeCode ?outlet
+ORDER BY ?schemeCode DESC(?articles)

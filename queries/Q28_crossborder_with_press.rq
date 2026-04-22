@@ -1,0 +1,26 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q28 — Rutas transfronterizas con al menos un caso atestado en prensa.
+# Cruza los 1,304 corredores CTDC con los artículos de prensa del observatorio.
+# Rutas con prensa reciente = rutas activas y monitoreables;
+# rutas sin prensa reciente = rutas históricas cuya visibilidad se perdió.
+
+SELECT ?origin ?destination ?victims ?pressArticles
+WHERE {
+  ?route a :TraffickingRoute ;
+         :originCountry/:countryISOCode ?origin ;
+         :destinationCountry/:countryISOCode ?destination ;
+         :routeVictimCount ?victims .
+  FILTER(?origin != ?destination)
+  {
+    SELECT ?route (COUNT(DISTINCT ?article) AS ?pressArticles)
+    WHERE {
+      ?offer :associatedWithRoute ?route ;
+             :derivedFrom ?article .
+      ?article a :PressArticle .
+    }
+    GROUP BY ?route
+  }
+}
+ORDER BY DESC(?pressArticles) DESC(?victims)
+LIMIT 50

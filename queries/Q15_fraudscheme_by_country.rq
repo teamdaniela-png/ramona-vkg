@@ -1,0 +1,18 @@
+PREFIX : <https://ramona.ai/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q15 — Distribución de FraudSchemes por país.
+# ¿Qué esquemas de fraude dominan en cada país del observatorio?
+# Demuestra federación entre el catálogo de esquemas (RATR-O) y los
+# exemplars atestados (tabla fraudscheme_exemplars, fuente: prensa).
+
+SELECT ?countryIso ?schemeCode (COUNT(DISTINCT ?exemplar) AS ?cases)
+WHERE {
+  ?exemplar :exhibitsFraudScheme ?scheme ;
+            :inCountry ?country .
+  ?scheme a :FraudScheme .
+  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  ?country :countryISOCode ?countryIso .
+}
+GROUP BY ?countryIso ?schemeCode
+ORDER BY ?countryIso DESC(?cases)

@@ -1,0 +1,23 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q29 — Cohorte Edith Guadalupe.
+# Ofertas que matchean patrones creíble-letales pero NINGUNA de las 7 red
+# flags clásicas. Es exactamente la cohorte que la opinión pública no ve.
+# La query que alimenta el estadístico central del observatorio (Type-B-only).
+
+SELECT ?offer ?source ?outlet ?title ?country
+WHERE {
+  ?offer :derivedFrom ?source ;
+         :matchesPattern ?patternB ;
+         :inCountry/:countryISOCode ?country .
+  ?patternB a :CredibleLethalPattern .
+  ?source a :PressArticle ;
+          :sourceOutlet ?outlet ;
+          :sourceTitle ?title .
+  FILTER NOT EXISTS {
+    ?offer :matchesPattern ?patternA .
+    ?patternA a :ClassicRedFlagPattern .
+  }
+}
+ORDER BY ?country ?outlet
+LIMIT 200

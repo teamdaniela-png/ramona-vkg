@@ -1,0 +1,19 @@
+PREFIX : <https://ramona.ai/ont#>
+
+# Q18 — Perfil demográfico por FraudScheme.
+# Quién es la víctima más frecuente de cada esquema: grupo etario y género.
+# Entrega material para focalización de campañas de prevención.
+
+SELECT ?schemeCode ?ageGroup ?gender (COUNT(DISTINCT ?victim) AS ?victims)
+WHERE {
+  ?victim :victimOfFraudScheme ?scheme ;
+          :hasDemographicProfile ?prof .
+  ?prof :hasAgeGroup ?ag ;
+        :hasGender ?g .
+  ?ag :ageGroupName ?ageGroup .
+  ?g  :genderName ?gender .
+  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+}
+GROUP BY ?schemeCode ?ageGroup ?gender
+HAVING (COUNT(DISTINCT ?victim) >= 2)
+ORDER BY ?schemeCode DESC(?victims)
