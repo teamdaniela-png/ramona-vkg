@@ -4,7 +4,26 @@
 
 This file is the repo-side counterpart of `~/.claude/projects/-Users-danielacamberos-Downloads/memory/ramona_vkg_residency.md`, which is the persistent Claude memory entry. Both should be kept in sync.
 
-Last updated: 21 April 2026.
+Last updated: 26 June 2026 (state-sync). Original: 21 April 2026.
+
+## CURRENT STATE SNAPSHOT (26 June 2026) — read this block first
+
+The week plan below was largely executed. Repo is at **RATR-O v1.6.1** (last commit `742d4f2`, 22 Apr). Verified metrics and gap:
+
+**DONE and audited:**
+- **O1 Ontology** v1.6.1: 86 classes, 60 object properties, 80 datatype properties, ~24 named FraudScheme classes. OWL 2 QL validated. Audit passed with 0 blockers / 0 SHOULDs (`docs/AUDIT_O1.md`, `docs/AUDIT_O1_SUMMARY.md`). Aligned to HUTRO + Palermo Protocol + ICS-TIP + UNODC GLOTIP.
+- **O2 Mapping**: both `mappings/ramona.obda` and `mappings/ramona.r2rml.ttl` (W3C R2RML) exist.
+- **30 SPARQL queries** in `queries/*.rq` (target 30+, met).
+- **Paper-grade artefacts**: `docs/COMPETENCY_QUESTIONS.md`, `docs/HUTRO_vs_RATRO_comparison.md`, `docs/RIGOR_STATEMENT.md`, `docs/ZENODO_SETUP.md`, `.zenodo.json`.
+- **Datasets**: CTDC 257,969 records present locally; press scrape at 1,400 articles, 1,332 case-relevant.
+- **Tags shipped**: v1.1, v1.3, v1.4, v1.5, v1.6, v1.6.1.
+
+**STILL PENDING (the gap to "todo completo" for Vienna):**
+1. **The paper** — never written. No `docs/paper_draft*`. Highest-value remaining item.
+2. **O3 demonstrator** — Docker is NOT running; the Ontop VKG was never booted or queried over real data. `docker-compose.yml` (Postgres 16 + Ontop 5.2.0) is ready to go. Known risk: Docker Desktop on the Mac.
+3. **`docs/READY_FOR_VIENNA.md`** — not created.
+
+**Corrected headline number:** Type-B-only = 625 vs Type-A-only = 63 over 1,332 case-relevant articles → **~9.9x** (NOT 10.4x; that older figure came from a smaller 1,127-article set). Use 9.9x. Source: `data/processed/press_summary.json`.
 
 ## Project summary
 
