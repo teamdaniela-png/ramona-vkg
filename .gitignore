@@ -6,3 +6,6 @@ data/raw/*.log
 data/processed/*.jsonl
 .DS_Store
 *.swp
+
+# Datos operativos reales de Ramona (pueden contener PII) - NUNCA subir
+data/operational/private/
