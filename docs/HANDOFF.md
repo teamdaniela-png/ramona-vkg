@@ -15,15 +15,15 @@ The week plan below was largely executed. Repo is at **RATR-O v1.6.1** (last com
 - **O2 Mapping**: both `mappings/ramona.obda` and `mappings/ramona.r2rml.ttl` (W3C R2RML) exist.
 - **30 SPARQL queries** in `queries/*.rq` (target 30+, met).
 - **Paper-grade artefacts**: `docs/COMPETENCY_QUESTIONS.md`, `docs/HUTRO_vs_RATRO_comparison.md`, `docs/RIGOR_STATEMENT.md`, `docs/ZENODO_SETUP.md`, `.zenodo.json`.
-- **Datasets**: CTDC 257,969 records present locally; press scrape at 1,400 articles, 1,332 case-relevant.
-- **Tags shipped**: v1.1, v1.3, v1.4, v1.5, v1.6, v1.6.1.
+- **Datasets**: CTDC 257,969 records present locally; press scrape **expanded to 2,591 articles, 2,418 case-relevant, 18 countries** (v1.7, 26 Jun: scraper grew 23→70 queries covering all LatAm + Brazil + Spain + platforms + cyber-trafficking).
+- **Tags shipped**: v1.1, v1.3, v1.4, v1.5, v1.6, v1.6.1, v1.7.
 
 **STILL PENDING (the gap to "todo completo" for Vienna):**
 1. **The paper** — never written. No `docs/paper_draft*`. Highest-value remaining item.
 2. **O3 demonstrator** — Docker is NOT running; the Ontop VKG was never booted or queried over real data. `docker-compose.yml` (Postgres 16 + Ontop 5.2.0) is ready to go. Known risk: Docker Desktop on the Mac.
 3. **`docs/READY_FOR_VIENNA.md`** — not created.
 
-**Corrected headline number:** Type-B-only = 625 vs Type-A-only = 63 over 1,332 case-relevant articles → **~9.9x** (NOT 10.4x; that older figure came from a smaller 1,127-article set). Use 9.9x. Source: `data/processed/press_summary.json`.
+**Headline number (v1.7):** Type-B-only = 1,106 vs Type-A-only = 111 over 2,418 case-relevant articles → **10.0x**. Re-validated after nearly doubling the press base (was 9.9x on 1,332 articles; do NOT cite the old 10.4x). Source: `data/processed/press_summary.json`.
 
 ## Project summary
 
