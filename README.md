@@ -23,7 +23,7 @@ The observatory publishes two parallel classifications for every case:
 | **Type A — classic red flags** | The 7 red flags from Ramona's public infographic: high salary, flexible hours, no experience needed, advance payment, urgent acceptance, distant interview with paid travel, job in another state. | Obvious scam-style offers. |
 | **Type B — credible-lethal patterns** | Plausible offers (market salary, realistic role) whose signal is logistic: no company logo, nameless WhatsApp, meet at a multi-use building, come alone, no ID, Messenger-to-WhatsApp funnel, personal-data filtering, atypical hours, last-minute relocation. | The Edith Guadalupe family of cases. |
 
-**Preliminary result on the first ~550 scraped press articles:** roughly ten times more Type-B-only cases than Type-A-only cases. Ramona's contribution to the VKG observatory is making this distribution visible, at scale, with provenance.
+**On measuring the Type-A vs Type-B distribution:** an earlier draft reported ~10x more Type-B-only than Type-A-only cases from press. That figure was withdrawn after validation: press articles describe outcomes, not offer terms (an LLM read found only ~8% of articles contain the offer), so the ratio cannot be measured from press. See `docs/CLASSIFIER_VALIDATION.md`. The Type-A/Type-B distinction is a modelling contribution of the ontology; its empirical distribution will be measured from Ramona's operational reports, where the offer text exists. The press observatory's measurable contributions are geographic coverage (18 countries), volume, provenance, and a documented-case corpus.
 
 ## Prerequisites
 

@@ -1,17 +1,17 @@
 {
   "total_articles": 2591,
-  "case_relevant": 2418,
-  "type_a_only": 111,
-  "type_b_only": 1106,
-  "type_a_and_b": 212,
+  "case_relevant": 2379,
+  "type_a_only": 299,
+  "type_b_only": 152,
+  "type_a_and_b": 24,
   "top_outlets": [
     [
       "Infobae",
-      296
+      291
     ],
     [
       "El Sol de México",
-      67
+      64
     ],
     [
       "La Jornada",
@@ -35,7 +35,7 @@
     ],
     [
       "United Nations Office on Drugs and Crime",
-      41
+      40
     ],
     [
       "Argentina.gob.ar",
@@ -54,16 +54,16 @@
       27
     ],
     [
-      "El Informador",
-      27
-    ],
-    [
       "Blog de datos e incidencia política de REDIM",
       26
     ],
     [
-      "El Financiero",
+      "El Informador",
       26
+    ],
+    [
+      "El Financiero",
+      25
     ],
     [
       "LatinUS",
@@ -74,54 +74,54 @@
       22
     ],
     [
-      "TV Azteca",
-      21
-    ],
-    [
       "El Economista",
-      20
+      19
     ],
     [
-      "El Heraldo de México",
+      "TV Azteca",
+      19
+    ],
+    [
+      "BBC",
       19
     ]
   ],
   "countries": [
     [
       "MEX",
-      1283
+      1264
     ],
     [
       "COL",
-      401
+      399
     ],
     [
       "USA",
-      331
+      328
     ],
     [
       "ARG",
-      233
+      232
     ],
     [
       "PER",
-      214
+      210
     ],
     [
       "BOL",
-      166
+      162
     ],
     [
       "ECU",
-      161
+      158
     ],
     [
       "ESP",
-      138
+      136
     ],
     [
       "CHL",
-      130
+      128
     ],
     [
       "VEN",
@@ -129,31 +129,31 @@
     ],
     [
       "BRA",
-      92
+      90
     ],
     [
       "PRY",
-      61
+      60
     ],
     [
       "DOM",
-      55
+      54
     ],
     [
       "GTM",
-      51
+      49
     ],
     [
       "HND",
-      38
+      36
     ],
     [
       "SLV",
-      34
+      32
     ],
     [
       "CRI",
-      21
+      20
     ],
     [
       "NIC",
@@ -161,10 +161,6 @@
     ]
   ],
   "exploitation_types": [
-    [
-      "labour_hospitality",
-      1157
-    ],
     [
       "sex_prostitution",
       657
@@ -174,8 +170,12 @@
       372
     ],
     [
+      "labour_hospitality",
+      251
+    ],
+    [
       "labour_construction",
-      344
+      188
     ],
     [
       "forced_criminality",

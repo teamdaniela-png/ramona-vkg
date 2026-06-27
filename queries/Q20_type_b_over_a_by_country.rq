@@ -1,8 +1,10 @@
 PREFIX : <https://ramona.ai/ont#>
 
-# Q20 — Ratio Type-B:Type-A por país.
-# La estadística central del observatorio (9.9x global) desagregada por país.
-# ¿En qué país es más grave la invisibilidad del patrón creíble-letal?
+# Q20 — Ratio Type-B:Type-A por país (competency question).
+# NOTA: el ratio global desde prensa fue retirado (ver docs/CLASSIFIER_VALIDATION.md):
+# la prensa no contiene el texto de la oferta. Esta query sigue siendo una pregunta de
+# competencia válida y dará un ratio real cuando se cargue la base operativa de Ramona
+# (ofertas reportadas por usuarios), no la prensa.
 
 SELECT ?countryIso
        (COUNT(DISTINCT ?bOnly) AS ?typeBOnly)

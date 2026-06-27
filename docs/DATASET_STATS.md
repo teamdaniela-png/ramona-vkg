@@ -1,14 +1,19 @@
-# Ramona VKG — Dataset statistics (v1.7)
+# Ramona VKG — Dataset statistics (v1.8)
 
-Updated: 26 June 2026 (v1.7: press observatory nearly doubled — expanded scraper from 23 to 70 queries covering all of LatAm + Brazil + Spain + platforms + cyber-trafficking).
+Updated: 26 June 2026 (v1.8: press observatory expanded AND classifier validated; the Type-A/Type-B ratio is withdrawn after validation).
 
-## v1.7 additions in this iteration
+## v1.8 — validation and correction (read `docs/CLASSIFIER_VALIDATION.md`)
+
+- **The earlier "Type-B-only outnumbers Type-A-only by ~10x" headline is WITHDRAWN.** It did not survive validation. The rule-based classifier had large false-positive rates (the token `ine` without a word boundary matched *define/imagine/examine*, inflating the dominant Type-B pattern from a true 46 to a reported 1,255; `bar` matched *Barcelona/embargo*; `urge` matched journalistic urgency). After correcting the regex the ratio inverted, which exposed it as an artefact of the method.
+- **LLM validation on a 120-article sample**: only **8.3% (10/120)** of case-relevant articles actually describe the terms of a job offer; 91.7% report the outcome (rescue, disappearance, operation, law reform), not the offer. The offer terms needed to separate Type-A from Type-B are simply not in the press.
+- **Conclusion**: the press observatory cannot measure the A:B ratio (source limitation, not a bug). It can measure geography, volume, provenance, exploitation outcome, and serve as a documented-case corpus. The credible-lethal hypothesis now belongs to Ramona's operational reports, not to press.
+
+## v1.7 additions (press expansion, retained)
 
 - **Press observatory expanded from 1,400 to 2,591 articles** (+1,191). Scraper query set grew from 23 to 70: every Spanish-speaking LatAm country, Brazil (Portuguese), Spain, recruitment platforms (Instagram, TikTok, Computrabajo, Indeed, LinkedIn, OLX), and cyber-trafficking / "pig butchering" scam-center recruitment.
-- **Case-relevant articles: 1,332 → 2,418.**
+- **Case-relevant articles: 1,332 → ~2,380.**
 - **Country coverage in press grew from 10 to 18 countries.** New: Bolivia (166), Ecuador (161), Spain (138), Brazil (92), Paraguay (61), Dominican Republic (55), Costa Rica (21), Nicaragua (14).
 - **Two new exploitation categories detected**: cyber scam-center (`cyber_scam_center`) and forced begging (`forced_begging`).
-- **Headline statistic re-validated at scale: Type-B-only : Type-A-only = 10.0x** (1,106 vs 111). With the dataset nearly doubled the ratio held, confirming it is not an artefact of a small sample. (Prior figure was 9.9x on 1,332 articles.)
 
 ## v1.4 additions (prior iteration)
 
@@ -39,89 +44,43 @@ Updated: 26 June 2026 (v1.7: press observatory nearly doubled — expanded scrap
 
 ## Press observatory — classification breakdown
 
-From 2,591 scraped articles, rule-based classifier labels:
+From 2,591 scraped articles, the corrected rule-based classifier labels ~2,379 as
+case-relevant. **The Type-A vs Type-B split is intentionally NOT reported here**: LLM
+validation showed only 8.3% of articles describe the offer terms at all, so any A:B figure
+from press is an artefact. See `docs/CLASSIFIER_VALIDATION.md`. Type-A/Type-B will be
+measured from Ramona's operational reports, where the offer text exists.
 
-| Metric | Value |
+The pattern-occurrence tables below are kept only as a description of what keyword signals
+appear in the corpus, NOT as evidence of offer characteristics.
+
+### Recruitment methods (directional, from corrected classifier)
+
+| Method | % of case-relevant articles |
 |---|---:|
-| Articles classified as case-relevant | 2,418 (93%) |
-| Type A only (classic red flags) | 111 |
-| **Type B only (credible-lethal patterns)** | **1,106** |
-| Type A and Type B (both tracks) | 212 |
+| **Redes sociales** | **38.8%** |
+| **Familia / conocido cercano** | **27.7%** |
+| Secuestro directo | 10.4% |
+| Amigo | 8.1% |
+| Pareja romántica | 6.4% |
+| Oferta laboral falsa (explícita) | 4.4% |
 
-**Ratio Type-B-only : Type-A-only = 10.0x.** The central observatory statistic, re-validated on a nearly-doubled dataset (was 9.9x on 1,332 articles).
+Note: even these are keyword mentions inside the article, not verified recruitment channels.
+The LLM sample found `metodo` "no determinable" in 42 of 120 articles, so treat these as
+directional. The "recruited by someone close" pattern is suggestive but not yet a measured
+rate; it should be confirmed against operational reports.
 
-For every case where the advertised conditions themselves flag the scheme (high salary, urgent hire, paid travel), roughly ten cases show a plausible offer whose risk is only legible in the logistics of the first contact.
+### Exploitation outcome (directional, when stated)
 
-## Top patterns observed (from 2,418 case-relevant articles)
-
-Computed directly from the classifier output `data/processed/press_cases.jsonl`.
-
-### Type B credible-lethal patterns
-
-| Pattern | Occurrences | % of cases |
-|---|---:|---:|
-| `filtro_datos_personales` | 1,255 | 51.9% |
-| `cita_edificio_multiusos` | 85 | 3.5% |
-| `horario_atipico` | 32 | 1.3% |
-| `rol_plausible_limpieza_hosteleria` | 19 | 0.8% |
-| `solicita_sin_identificacion` | 8 | 0.3% |
-| `messenger_to_whatsapp` | 7 | 0.3% |
-| `solicita_ir_sola` | 4 | 0.2% |
-
-### Type A classic red flags (Ramona's 7-flag infographic)
-
-| Pattern | Occurrences | % of cases |
-|---|---:|---:|
-| `aceptacion_urgente` | 298 | 12.3% |
-| `sin_experiencia` | 15 | 0.6% |
-| `empleo_fuera_estado` | 10 | 0.4% |
-| `entrevista_lejana_traslado` | 4 | 0.2% |
-| `sueldo_alto` | 4 | 0.2% |
-| `pago_adelantado` | 1 | 0.0% |
-
-### Recruitment methods (the myth-breaker)
-
-| Method | Occurrences | % of cases |
-|---|---:|---:|
-| **Redes sociales** | **923** | **38.2%** |
-| **Familia** | **692** | **28.6%** |
-| Secuestro directo | 247 | 10.2% |
-| Amigo | 200 | 8.3% |
-| Pareja romántica | 163 | 6.7% |
-| Oferta laboral falsa (explícita) | 105 | 4.3% |
-| Enganchador / labour broker | 93 | 3.8% |
-| Clasificados | 79 | 3.3% |
-| En la calle | 51 | 2.1% |
-
-**The myth-breaker: 44% of documented cases are recruited by someone close (family, friend, intimate partner). The recruiter is rarely a stranger.**
-
-### First-contact communication tool
-
-| Tool | % of cases |
+| Type | % of case-relevant articles |
 |---|---:|
-| WhatsApp | 16.1% |
-| Telegram | 5.0% |
-| Email | 3.8% |
-| In person | 2.6% |
-| SMS | 1.7% |
-| Messenger | 1.1% |
-
-### Exploitation outcome (when detected)
-
-| Type | % of cases |
-|---|---:|
-| Labour: hospitality | 47.8% |
-| Sexual: prostitution | 27.2% |
-| Labour: other | 15.4% |
-| Labour: construction | 14.2% |
+| Sexual: prostitution | 27.6% |
+| Labour: other | 15.6% |
+| Labour: hospitality | 10.6% |
+| Labour: construction | 7.9% |
 | Forced criminality | 4.8% |
-| Organ removal | 2.9% |
-| Sexual: pornography | 2.4% |
-| Labour: agriculture | 2.2% |
-| Forced begging | 1.6% |
-| Forced marriage | 0.8% |
-| Labour: domestic | 0.7% |
-| Cyber scam-center | 0.7% |
+
+(Earlier "labour: hospitality 47.8%" was a false positive: the token `bar` matched
+*Barcelona, embargo, barrio*. Corrected above.)
 
 ## CTDC routes — top 20 trafficking corridors
 

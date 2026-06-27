@@ -81,9 +81,13 @@ FLAGS_B = {
         r"messenger.+whatsapp", r"(facebook|fb).{0,20}messenger.{0,80}whatsapp",
     ],
     "filtro_datos_personales": [
-        r"pidieron.+datos\s+personales", r"filtro\s+de\s+datos",
-        r"curp|ine|acta\s+de\s+nacimiento", r"estado\s+civil",
-        r"con\s+quién\s+vives",
+        # Requiere el CONTEXTO de solicitud, no solo la mención del documento.
+        # Antes: r"curp|ine|..." sin \b matcheaba "define", "imagine", etc. (1,210 falsos positivos).
+        r"pid(?:ió|ieron|en|e)\b.{0,40}(datos\s+personales|\bcurp\b|\bine\b|acta\s+de\s+nacimiento)",
+        r"(solicit|exig)\w*\b.{0,40}(datos\s+personales|\bcurp\b|\bine\b)",
+        r"filtro\s+de\s+datos",
+        r"\bestado\s+civil\b",
+        r"con\s+qui[eé]n\s+vives",
     ],
     "horario_atipico": [
         r"(cita|entrevista).+(noche|domingo|madrugada|20:|21:|22:|23:)",
@@ -111,8 +115,8 @@ COMM_TOOL_PATTERNS = {
 EXPLOITATION_PATTERNS = {
     "labour_domestic":     r"trabajo\s+doméstico|empleada\s+doméstica",
     "labour_agriculture":  r"jornalero|campo\s+agrícola|cosecha",
-    "labour_construction": r"construcción|obra",
-    "labour_hospitality":  r"mesera|mesero|bar|hotel|cocinera",
+    "labour_construction": r"construcción|\bobra\b|\bobras\b|albañil",
+    "labour_hospitality":  r"mesera|mesero|\bbar\b|\bbares\b|hotel|cocinera|restaurante",
     "labour_other":        r"trabajo\s+forzad|explotación\s+laboral",
     "sex_prostitution":    r"explotación\s+sexual|prostitución|lenocinio",
     "sex_pornography":     r"pornograf",
@@ -127,9 +131,9 @@ RECRUIT_METHOD_PATTERNS = {
     "false_job_offer":   r"oferta\s+de\s+trabajo\s+falsa|falsa\s+oferta\s+de\s+trabajo|oferta\s+laboral\s+falsa",
     "social_media":      r"redes\s+sociales|facebook|instagram|tiktok",
     "classifieds":       r"marketplace|clasificad|avisos\s+de\s+ocasión",
-    "intimate_partner":  r"novio|pareja",
-    "friend":            r"amig[oa]",
-    "family":            r"familiar|prim[oa]",
+    "intimate_partner":  r"\bnovi[oa]\b|\bpareja\b|\bnoviazgo\b",
+    "friend":            r"\bamig[oa]s?\b",
+    "family":            r"\bfamiliar(?:es)?\b|\bprim[oa]s?\b",
     "labour_broker":     r"engancha(dor)?|enganche\s+laboral",
     "in_person_street":  r"en\s+la\s+calle|aborda(do|ron)\s+en\s+la\s+calle",
     "abduction":         r"secuestr",
