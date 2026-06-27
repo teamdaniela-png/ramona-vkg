@@ -23,7 +23,7 @@ The week plan below was largely executed. Repo is at **RATR-O v1.6.1** (last com
 2. **O3 demonstrator** — Docker is NOT running; the Ontop VKG was never booted or queried over real data. `docker-compose.yml` (Postgres 16 + Ontop 5.2.0) is ready to go. Known risk: Docker Desktop on the Mac.
 3. **`docs/READY_FOR_VIENNA.md`** — not created.
 
-**Headline number (v1.7):** Type-B-only = 1,106 vs Type-A-only = 111 over 2,418 case-relevant articles → **10.0x**. Re-validated after nearly doubling the press base (was 9.9x on 1,332 articles; do NOT cite the old 10.4x). Source: `data/processed/press_summary.json`.
+**Headline number — WITHDRAWN (v1.8, 26 Jun 2026).** The Type-B:Type-A ratio (claimed 10.4x, then 9.9x, then 10.0x) is NOT measurable from press and has been retired. Validation (`docs/CLASSIFIER_VALIDATION.md`): the rule-based classifier had large false positives (`ine`→define/imagine inflated the dominant Type-B pattern 1,255 vs true 46; `bar`→Barcelona; `urge`→journalistic urgency), and an LLM read of 120 articles found only 8.3% actually describe the offer terms. Press reports outcomes, not offers. Do NOT cite any A:B ratio from press anywhere. The credible-lethal hypothesis must be measured from Ramona's operational reports via `scripts/classify_llm.py`. Press observatory's real contributions: 18-country coverage, volume (2,591 articles), provenance, documented-case corpus.
 
 ## Project summary
 

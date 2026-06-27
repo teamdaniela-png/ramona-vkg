@@ -73,7 +73,7 @@ Both replacements return HTTP 200.
 | GTM → USA: 842 victims, 2009-2023 | CTDC Global Synthetic Dataset v2025 | ✓ EXACT match (recomputed from CSV) |
 | MEX → USA: 7,037 victims, 2015-2023 | CTDC Global Synthetic Dataset v2025 | ✓ EXACT match |
 | ENADID 2014: Chiapas 44.82%, Guerrero 42.41%, Oaxaca 39.17% | INEGI / SCJN / SMO Oaxaca | ✓ verified against three independent official sources |
-| Type-B-only : Type-A-only ratio 9.9x | Ramona observatory classifier on 1,332 press articles | ✓ reproducible by running `scripts/classify_press.py` |
+| ~~Type-B-only : Type-A-only ratio 9.9x~~ **WITHDRAWN 26 Jun 2026** | Was rule-based classifier on press | ✗ failed validation; press does not contain offer terms (LLM read: ~8% of articles), so the ratio is not measurable from this source. See `docs/CLASSIFIER_VALIDATION.md` |
 | 1,771 trafficking routes with ≥3 victims | Ramona observatory extractor on CTDC | ✓ reproducible by running `scripts/extract_routes.py --min-victims 3` |
 | 1,332 case-relevant press articles | Ramona observatory | ✓ counted in `data/processed/press_cases.jsonl` |
 
