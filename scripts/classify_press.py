@@ -119,6 +119,8 @@ EXPLOITATION_PATTERNS = {
     "forced_marriage":     r"matrimonio\s+forzado",
     "forced_criminality":  r"sicari|seguridad\s+privada\s+cjng|forzad.+delinquir",
     "organ_removal":       r"tráfico\s+de\s+órganos|extracción\s+de\s+órganos",
+    "cyber_scam_center":   r"centro\s+de\s+estafas|pig\s+butchering|estafa\s+con\s+cripto|Camboya|Myanmar|fraude\s+en\s+línea\s+forzad",
+    "forced_begging":      r"mendicidad\s+forzada|obligad.+pedir\s+limosna",
 }
 
 RECRUIT_METHOD_PATTERNS = {
@@ -144,6 +146,14 @@ COUNTRY_PATTERNS = {
     "PER": r"Perú",
     "CHL": r"Chile",
     "VEN": r"Venezuela",
+    "ECU": r"Ecuador|Guayaquil|Quito",
+    "BOL": r"Bolivia|La\s+Paz|Santa\s+Cruz\s+de\s+la\s+Sierra",
+    "PRY": r"Paraguay|Asunción",
+    "DOM": r"República\s+Dominicana|Santo\s+Domingo",
+    "BRA": r"Brasil|Brasília|São\s+Paulo|Rio\s+de\s+Janeiro",
+    "ESP": r"España|Madrid|Barcelona|Valencia",
+    "NIC": r"Nicaragua|Managua",
+    "CRI": r"Costa\s+Rica|San\s+José\s+de\s+Costa\s+Rica",
 }
 
 CASE_MARKERS = [

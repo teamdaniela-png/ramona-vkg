@@ -41,23 +41,77 @@ QUERIES = [
     '"desapareció" "oferta de trabajo"',
     '"desaparecida" "entrevista de trabajo"',
     '"desaparecido" "cita de trabajo"',
+    '"se fue a una entrevista" desapareció',
+    '"no regresó" "oferta de trabajo"',
     # specific documented cases
     '"rancho izaguirre" reclutamiento',
     '"edith guadalupe" trata',
     '"edificio revolución 829"',
-    # country-specific
+    '"hotel" reclutamiento trata jalisco',
+    # country-specific Mexico
     '"trata de personas" México',
     '"trata laboral" México',
     '"reclutamiento CJNG" jalisco',
+    '"reclutamiento forzado" cartel',
     '"seguridad privada" reclutamiento trata',
-    # other LatAm
+    '"víctimas de trata" México',
+    '"explotación laboral" México',
+    # other LatAm (Spanish)
     '"trata de personas" Colombia',
     '"trata de personas" Perú',
     '"trata de personas" Argentina',
-    # UNODC / official
-    '"víctimas de trata" México',
-    '"explotación laboral" México',
+    '"trata de personas" Chile',
+    '"trata de personas" Ecuador',
+    '"trata de personas" Bolivia',
+    '"trata de personas" Venezuela',
+    '"trata de personas" Guatemala',
+    '"trata de personas" Honduras',
+    '"trata de personas" "El Salvador"',
+    '"trata de personas" Paraguay',
+    '"trata de personas" "República Dominicana"',
+    '"oferta de trabajo" falsa Colombia',
+    '"oferta de trabajo" falsa Argentina',
+    '"oferta laboral" falsa Perú',
+    # Brazil (Portuguese)
+    '"tráfico de pessoas" recrutamento',
+    '"vaga de emprego" falsa golpe',
+    '"oferta de emprego" tráfico Brasil',
+    '"trabalho escravo" aliciamento',
+    # Spain
+    '"trata de personas" España oferta trabajo',
+    '"oferta de empleo" falsa estafa España',
+    # platforms / channels
+    '"instagram" reclutamiento trata',
+    '"tiktok" reclutamiento trata',
+    '"computrabajo" estafa oferta',
+    '"indeed" oferta falsa estafa',
+    '"linkedin" oferta falsa estafa',
+    '"olx" oferta trabajo estafa',
+    # exploitation types
     '"explotación sexual" reclutamiento',
+    '"explotación laboral" oferta trabajo',
+    '"trabajo doméstico" trata explotación',
+    '"mendicidad forzada" trata',
+    '"servidumbre" trata laboral',
+    '"matrimonio forzado" trata',
+    '"trabajo agrícola" explotación trata',
+    '"call center" reclutamiento engaño',
+    # modus operandi / lures
+    '"modelo webcam" engaño trata',
+    '"azafata" oferta falsa trata',
+    '"niñera" extranjero estafa trata',
+    '"trabajo en el extranjero" estafa reclutamiento',
+    '"visa de trabajo" fraude reclutamiento',
+    '"crucero" oferta trabajo estafa',
+    '"Dubái" trabajo engaño trata',
+    '"sueldo alto" "sin experiencia" estafa empleo',
+    '"empleo bien pagado" desaparición',
+    # cyber-trafficking / pig butchering / scam centers
+    '"estafa laboral" criptomonedas reclutamiento',
+    '"trabajo remoto" estafa secuestro',
+    '"centro de estafas" reclutamiento latinoamericano',
+    '"Camboya" OR "Myanmar" trabajo engaño latinoamericanos',
+    '"fraude" oferta empleo redes sociales',
 ]
 
 
