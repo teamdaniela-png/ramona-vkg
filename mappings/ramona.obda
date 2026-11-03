@@ -392,4 +392,240 @@ mappingId   M-Social-SignalType-FatalismSignal
 target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo> a :FatalismSignal .
 source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'
 
+mappingId   M-Press-Offer
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> a :JobOffer ; :extractionConfidence {confidence}^^xsd:string .
+source      SELECT offer_uid, confidence FROM ramona.press_offers
+
+mappingId   M-Press-Role
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offeredRole {job_title}^^xsd:string .
+source      SELECT offer_uid, job_title FROM ramona.press_offers WHERE job_title IS NOT NULL
+
+mappingId   M-Press-Location
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offeredLocation {offer_location}^^xsd:string .
+source      SELECT offer_uid, offer_location FROM ramona.press_offers WHERE offer_location IS NOT NULL
+
+mappingId   M-Press-Country
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :inCountry <https://w3id.org/ratr-o/data/country/{country_code}> .
+source      SELECT offer_uid, country_code FROM ramona.press_offers WHERE country_code IS NOT NULL
+
+mappingId   M-Press-Platform
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :postedVia <https://w3id.org/ratr-o/data/platform/{platform_id}> .
+source      SELECT offer_uid, platform_id FROM ramona.press_offers WHERE platform_id IS NOT NULL
+
+mappingId   M-Press-Pay
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerPayAmount {pay_amount}^^xsd:decimal ; :offerPayCurrency {pay_currency}^^xsd:string .
+source      SELECT offer_uid, pay_amount, pay_currency FROM ramona.press_offers WHERE pay_amount IS NOT NULL AND pay_currency IS NOT NULL
+
+mappingId   M-Press-PayPeriod
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerPayPeriod {pay_period}^^xsd:string .
+source      SELECT offer_uid, pay_period FROM ramona.press_offers WHERE pay_period IS NOT NULL
+
+mappingId   M-Press-WeeklyMXN
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offeredSalaryMXN {weekly_mxn}^^xsd:decimal .
+source      SELECT offer_uid, weekly_mxn FROM ramona.press_offers WHERE weekly_mxn IS NOT NULL
+
+mappingId   M-Press-Target
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerTargetProfile {target_profile}^^xsd:string .
+source      SELECT offer_uid, target_profile FROM ramona.press_offers WHERE target_profile IS NOT NULL
+
+mappingId   M-Press-Quote
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerVerbatimQuote {verbatim_quote}^^xsd:string .
+source      SELECT offer_uid, verbatim_quote FROM ramona.press_offers WHERE verbatim_quote IS NOT NULL
+
+mappingId   M-Press-Summary
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerSummary {paraphrase}^^xsd:string .
+source      SELECT offer_uid, paraphrase FROM ramona.press_offers WHERE paraphrase IS NOT NULL
+
+mappingId   M-Press-Outcome
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerOutcome {outcome}^^xsd:string .
+source      SELECT offer_uid, outcome FROM ramona.press_offers WHERE outcome IS NOT NULL
+
+mappingId   M-Press-Criminal
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> a :CriminalRecruitmentOffer .
+source      SELECT offer_uid FROM ramona.press_offers WHERE criminal_recruitment
+
+mappingId   M-Press-Article
+target      <https://w3id.org/ratr-o/data/press/{article_key}> a :PressArticle ; :sourceUrl {url}^^xsd:string ; :sourceOutlet {outlet}^^xsd:string .
+source      SELECT article_key, url, outlet FROM ramona.press_articles
+
+mappingId   M-Press-Source
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerDocumentedIn <https://w3id.org/ratr-o/data/press/{article_key}> .
+source      SELECT offer_uid, article_key FROM ramona.press_offer_sources
+
+mappingId   M-Press-Flag
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :hasRedFlag <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> .
+source      SELECT offer_uid, flag FROM ramona.press_offer_flags
+
+mappingId   M-Press-FlagType
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> :flagType {flag}^^xsd:string .
+source      SELECT offer_uid, flag FROM ramona.press_offer_flags
+
+mappingId   M-Press-FlagA
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> a :ClassicRedFlag .
+source      SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'A'
+
+mappingId   M-Press-FlagB
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> a :CredibleLethalRedFlag .
+source      SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'B'
+
+mappingId   M-Press-Scheme-IdentityTheftScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'IdentityTheftScheme'
+
+mappingId   M-Press-SchemeType-IdentityTheftScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :IdentityTheftScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'IdentityTheftScheme'
+
+mappingId   M-Press-Scheme-PyramidScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PyramidScheme'
+
+mappingId   M-Press-SchemeType-PyramidScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :PyramidScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PyramidScheme'
+
+mappingId   M-Press-Scheme-PayToWorkScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PayToWorkScheme'
+
+mappingId   M-Press-SchemeType-PayToWorkScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :PayToWorkScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PayToWorkScheme'
+
+mappingId   M-Press-Scheme-VisaFraudScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'VisaFraudScheme'
+
+mappingId   M-Press-SchemeType-VisaFraudScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :VisaFraudScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'VisaFraudScheme'
+
+mappingId   M-Press-Scheme-InPersonLureScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'InPersonLureScheme'
+
+mappingId   M-Press-SchemeType-InPersonLureScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :InPersonLureScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'InPersonLureScheme'
+
+mappingId   M-Press-Scheme-DebtBondageTraffickingScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DebtBondageTraffickingScheme'
+
+mappingId   M-Press-SchemeType-DebtBondageTraffickingScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :DebtBondageTraffickingScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DebtBondageTraffickingScheme'
+
+mappingId   M-Press-Scheme-DomesticWorkerLockInScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DomesticWorkerLockInScheme'
+
+mappingId   M-Press-SchemeType-DomesticWorkerLockInScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :DomesticWorkerLockInScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DomesticWorkerLockInScheme'
+
+mappingId   M-Press-Scheme-OnlineCryptoJobScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineCryptoJobScheme'
+
+mappingId   M-Press-SchemeType-OnlineCryptoJobScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :OnlineCryptoJobScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineCryptoJobScheme'
+
+mappingId   M-Press-Scheme-ModelingAgencyScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ModelingAgencyScheme'
+
+mappingId   M-Press-SchemeType-ModelingAgencyScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ModelingAgencyScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ModelingAgencyScheme'
+
+mappingId   M-Press-Scheme-CallCenterScamScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CallCenterScamScheme'
+
+mappingId   M-Press-SchemeType-CallCenterScamScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :CallCenterScamScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CallCenterScamScheme'
+
+mappingId   M-Press-Scheme-FakeMaquilaScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'FakeMaquilaScheme'
+
+mappingId   M-Press-SchemeType-FakeMaquilaScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :FakeMaquilaScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'FakeMaquilaScheme'
+
+mappingId   M-Press-Scheme-MLMHealthBeautyScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'MLMHealthBeautyScheme'
+
+mappingId   M-Press-SchemeType-MLMHealthBeautyScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :MLMHealthBeautyScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'MLMHealthBeautyScheme'
+
+mappingId   M-Press-Scheme-GigEconomyFakeDriverScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'GigEconomyFakeDriverScheme'
+
+mappingId   M-Press-SchemeType-GigEconomyFakeDriverScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :GigEconomyFakeDriverScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'GigEconomyFakeDriverScheme'
+
+mappingId   M-Press-Scheme-ForcedCriminalityScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForcedCriminalityScheme'
+
+mappingId   M-Press-SchemeType-ForcedCriminalityScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ForcedCriminalityScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForcedCriminalityScheme'
+
+mappingId   M-Press-Scheme-OnlineInfluencerSalesScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineInfluencerSalesScheme'
+
+mappingId   M-Press-SchemeType-OnlineInfluencerSalesScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :OnlineInfluencerSalesScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineInfluencerSalesScheme'
+
+mappingId   M-Press-Scheme-ForeignLanguageTeacherScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForeignLanguageTeacherScheme'
+
+mappingId   M-Press-SchemeType-ForeignLanguageTeacherScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ForeignLanguageTeacherScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForeignLanguageTeacherScheme'
+
+mappingId   M-Press-Scheme-ChildRecruitmentCriminalScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ChildRecruitmentCriminalScheme'
+
+mappingId   M-Press-SchemeType-ChildRecruitmentCriminalScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ChildRecruitmentCriminalScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ChildRecruitmentCriminalScheme'
+
+mappingId   M-Press-Scheme-CentralAmericanMigrantLabourScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CentralAmericanMigrantLabourScheme'
+
+mappingId   M-Press-SchemeType-CentralAmericanMigrantLabourScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :CentralAmericanMigrantLabourScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CentralAmericanMigrantLabourScheme'
+
+mappingId   M-Press-Scheme-AgriculturalBondageScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'AgriculturalBondageScheme'
+
+mappingId   M-Press-SchemeType-AgriculturalBondageScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :AgriculturalBondageScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'AgriculturalBondageScheme'
+
+mappingId   M-Press-Scheme-ConstructionLabourBondageScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'
+
+mappingId   M-Press-SchemeType-ConstructionLabourBondageScheme
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ConstructionLabourBondageScheme .
+source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'
+
 ]]

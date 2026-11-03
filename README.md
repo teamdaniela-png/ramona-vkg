@@ -5,10 +5,11 @@ A running Virtual Knowledge Graph (VKG) over a public-interest human-trafficking
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (10 tables: offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.9** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (111 classes, 65 object properties, 92 datatype properties), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) via `skos:closeMatch`.
+- **RATR-O v1.9** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 66 object properties, 100 datatype properties), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) via `skos:closeMatch`.
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **SPARQL endpoint** served by Ontop on port 8080.
-- **35 reference SPARQL queries** (`queries/Q1..Q35`) answering 31 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **40 reference SPARQL queries** (`queries/Q1..Q40`) answering 36 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **Real offer corpus (v1.10)**: 352 real offer descriptions (215 in Mexico) extracted from press, with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`).
 - **Social-media criminal-recruitment module (v1.9)**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
 - **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
 - **Evidence source catalogue** (`docs/EVIDENCE_SOURCES.md`) and **CTDC–HUTRO–RATR-O mapping workbook** (`docs/CTDC_HUTRO_RATRO_mapping.xlsx`).

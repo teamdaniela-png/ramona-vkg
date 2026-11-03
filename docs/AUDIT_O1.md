@@ -4,167 +4,165 @@ Independent rigorous self-audit of Objective 1 (ontology) in the style of Ortiz 
 
 **Summary**
 
-- Classes: 111
-- Object properties: 65
-- Datatype properties: 92
-- Triples: 1343
+- Classes: 114
+- Object properties: 66
+- Datatype properties: 100
+- Triples: 1414
 - skos:closeMatch edges: 8
-- R2RML mapping triples: 1025
+- R2RML mapping triples: 1511
 
 **Findings by severity**
 
 - BLOCKER: 0
 - SHOULD:  0
-- NIT:     67
-- NOTE:    5
+- NIT:     69
+- NOTE:    2
 
 ---
 
 ## NIT
 
 - **Class declared but never used in a property or subclass axiom**
-  - :MinorAgeMentionSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :FalseDocumentation
-- **Class declared but never used in a property or subclass axiom**
-  - :FakeMaquilaScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :ExploitationRisk
-- **Class declared but never used in a property or subclass axiom**
-  - :PayToWorkScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :EnrolInCrimeStoryPost
-- **Class declared but never used in a property or subclass axiom**
-  - :FraudRisk
-- **Class declared but never used in a property or subclass axiom**
-  - :HighWeeklyPaySignal
-- **Class declared but never used in a property or subclass axiom**
-  - :Transfer
-- **Class declared but never used in a property or subclass axiom**
-  - :InPersonLureScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :FamilyAppealSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :PurposeOrganRemoval
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansAbuseOfVulnerability
-- **Class declared but never used in a property or subclass axiom**
-  - :RecruitmentHashtagSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :SportsTalentScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :ForeignLanguageTeacherScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :CommunicationPattern
-- **Class declared but never used in a property or subclass axiom**
-  - :OnlineRecruitmentChannel
-- **Class declared but never used in a property or subclass axiom**
-  - :PurposeSlavery
-- **Class declared but never used in a property or subclass axiom**
-  - :PrivateChannelCallSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :FatalismSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansPaymentOrBenefit
-- **Class declared but never used in a property or subclass axiom**
-  - :Recruitment
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansAbuseOfPower
-- **Class declared but never used in a property or subclass axiom**
-  - :PurposeForcedLabour
-- **Class declared but never used in a property or subclass axiom**
-  - :BeggingRingScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :AgriculturalBondageScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :GroupCodeSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :Transportation
-- **Class declared but never used in a property or subclass axiom**
-  - :SelfApplicationComment
-- **Class declared but never used in a property or subclass axiom**
-  - :GigEconomyFakeDriverScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansCoercion
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansFraud
-- **Class declared but never used in a property or subclass axiom**
-  - :WomenInvitationSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansDeception
-- **Class declared but never used in a property or subclass axiom**
-  - :ForcedChildMarriageScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :CallCenterScamScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :OrganRemovalRecruitmentScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :PurposeServitude
-- **Class declared but never used in a property or subclass axiom**
-  - :ExploitationPattern
-- **Class declared but never used in a property or subclass axiom**
-  - :MeansThreatOfForce
-- **Class declared but never used in a property or subclass axiom**
-  - :EmotionalConnectionStoryPost
-- **Class declared but never used in a property or subclass axiom**
-  - :RecruitmentPattern
-- **Class declared but never used in a property or subclass axiom**
-  - :RecruiterReplyComment
-- **Class declared but never used in a property or subclass axiom**
-  - :Harbouring
-- **Class declared but never used in a property or subclass axiom**
-  - :CentralAmericanMigrantLabourScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :MLMHealthBeautyScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :GangRecruitmentSchoolsScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :VisaFraudScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :CredibleLethalPattern
-- **Class declared but never used in a property or subclass axiom**
-  - :TraffickingRisk
-- **Class declared but never used in a property or subclass axiom**
-  - :PurposeSexualExploitation
-- **Class declared but never used in a property or subclass axiom**
-  - :Receipt
-- **Class declared but never used in a property or subclass axiom**
-  - :OnlineCryptoJobScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :GroupEmojiSignal
-- **Class declared but never used in a property or subclass axiom**
-  - :DominanceBucket
+  - :FishingVesselLabourScheme
 - **Class declared but never used in a property or subclass axiom**
   - :MeansAbduction
 - **Class declared but never used in a property or subclass axiom**
-  - :OnlineInfluencerSalesScheme
+  - :FalseDocumentation
 - **Class declared but never used in a property or subclass axiom**
-  - :FishingVesselLabourScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :IdentityTheftScheme
-- **Class declared but never used in a property or subclass axiom**
-  - :ResearchReport
-- **Class declared but never used in a property or subclass axiom**
-  - :DomesticWorkerLockInScheme
+  - :MeansAbuseOfVulnerability
 - **Class declared but never used in a property or subclass axiom**
   - :ClassicRedFlagPattern
 - **Class declared but never used in a property or subclass axiom**
-  - :ModelingAgencyScheme
+  - :CallCenterScamScheme
 - **Class declared but never used in a property or subclass axiom**
-  - :ConstructionLabourBondageScheme
+  - :PurposeForcedLabour
+- **Class declared but never used in a property or subclass axiom**
+  - :OrganRemovalRecruitmentScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansDeception
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansThreatOfForce
+- **Class declared but never used in a property or subclass axiom**
+  - :WomenInvitationSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :Transfer
+- **Class declared but never used in a property or subclass axiom**
+  - :SportsTalentScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :Transportation
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansPaymentOrBenefit
+- **Class declared but never used in a property or subclass axiom**
+  - :MinorAgeMentionSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :VisaFraudScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :CentralAmericanMigrantLabourScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :ExploitationPattern
 - **Class declared but never used in a property or subclass axiom**
   - :BelicoStoryPost
 - **Class declared but never used in a property or subclass axiom**
+  - :RecruiterReplyComment
+- **Class declared but never used in a property or subclass axiom**
+  - :PrivateChannelCallSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :ForcedChildMarriageScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :EnrolInCrimeStoryPost
+- **Class declared but never used in a property or subclass axiom**
+  - :RecruitmentPattern
+- **Class declared but never used in a property or subclass axiom**
+  - :PurposeServitude
+- **Class declared but never used in a property or subclass axiom**
+  - :OnlineCryptoJobScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :PurposeOrganRemoval
+- **Class declared but never used in a property or subclass axiom**
+  - :OnlineRecruitmentChannel
+- **Class declared but never used in a property or subclass axiom**
+  - :ExploitationRisk
+- **Class declared but never used in a property or subclass axiom**
+  - :InPersonLureScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :EmotionalConnectionStoryPost
+- **Class declared but never used in a property or subclass axiom**
+  - :ForeignLanguageTeacherScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :Harbouring
+- **Class declared but never used in a property or subclass axiom**
+  - :RecruitmentHashtagSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansCoercion
+- **Class declared but never used in a property or subclass axiom**
+  - :GigEconomyFakeDriverScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :BeggingRingScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansFraud
+- **Class declared but never used in a property or subclass axiom**
+  - :CommunicationPattern
+- **Class declared but never used in a property or subclass axiom**
+  - :DominanceBucket
+- **Class declared but never used in a property or subclass axiom**
+  - :CredibleLethalPattern
+- **Class declared but never used in a property or subclass axiom**
+  - :ConstructionLabourBondageScheme
+- **Class declared but never used in a property or subclass axiom**
   - :NationalReachSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :GangRecruitmentSchoolsScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :FraudRisk
+- **Class declared but never used in a property or subclass axiom**
+  - :TraffickingRisk
+- **Class declared but never used in a property or subclass axiom**
+  - :Recruitment
+- **Class declared but never used in a property or subclass axiom**
+  - :Receipt
+- **Class declared but never used in a property or subclass axiom**
+  - :FatalismSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :MeansAbuseOfPower
+- **Class declared but never used in a property or subclass axiom**
+  - :MLMHealthBeautyScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :HighWeeklyPaySignal
+- **Class declared but never used in a property or subclass axiom**
+  - :CredibleLethalRedFlag
+- **Class declared but never used in a property or subclass axiom**
+  - :ResearchReport
+- **Class declared but never used in a property or subclass axiom**
+  - :PurposeSlavery
+- **Class declared but never used in a property or subclass axiom**
+  - :ModelingAgencyScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :OnlineInfluencerSalesScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :DomesticWorkerLockInScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :FamilyAppealSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :GroupEmojiSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :ClassicRedFlag
+- **Class declared but never used in a property or subclass axiom**
+  - :PayToWorkScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :PurposeSexualExploitation
+- **Class declared but never used in a property or subclass axiom**
+  - :AgriculturalBondageScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :SelfApplicationComment
+- **Class declared but never used in a property or subclass axiom**
+  - :GroupCodeSignal
+- **Class declared but never used in a property or subclass axiom**
+  - :FakeMaquilaScheme
+- **Class declared but never used in a property or subclass axiom**
+  - :IdentityTheftScheme
 
 ## NOTE
 
-- **FraudScheme ':IdentityTheftScheme' is declared in ontology but not materialised in OBDA mapping**
-  - This is expected if instances come from db/09_fraudscheme_examples, which will be wired in v1.7.
-- **FraudScheme ':PyramidScheme' is declared in ontology but not materialised in OBDA mapping**
-  - This is expected if instances come from db/09_fraudscheme_examples, which will be wired in v1.7.
-- **FraudScheme ':VisaFraudScheme' is declared in ontology but not materialised in OBDA mapping**
-  - This is expected if instances come from db/09_fraudscheme_examples, which will be wired in v1.7.
 - **FraudScheme ':OrganRemovalRecruitmentScheme' is declared in ontology but not materialised in OBDA mapping**
   - This is expected if instances come from db/09_fraudscheme_examples, which will be wired in v1.7.
 - **FraudScheme ':ForcedChildMarriageScheme' is declared in ontology but not materialised in OBDA mapping**
