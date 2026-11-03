@@ -9,3 +9,9 @@ data/processed/*.jsonl
 
 # Datos operativos reales de Ramona (pueden contener PII) - NUNCA subir
 data/operational/private/
+
+# Corpus real de ofertas (contiene texto de prensa) y cache del Consejo Ciudadano
+data/processed/offers/snippets.jsonl
+data/processed/offers/batch_*.jsonl
+data/raw/consejo/
+data/processed/consejo/documentos_relevantes.jsonl
