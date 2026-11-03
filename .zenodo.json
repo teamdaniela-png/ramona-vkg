@@ -4,8 +4,7 @@
   "creators": [
     {
       "name": "Camberos, Daniela",
-      "affiliation": "Ramona AI",
-      "orcid": ""
+      "affiliation": "Ramona AI"
     }
   ],
   "contributors": [
@@ -90,5 +89,5 @@
       "scheme": "url"
     }
   ],
-  "version": "1.9"
+  "version": "1.9.1"
 }
