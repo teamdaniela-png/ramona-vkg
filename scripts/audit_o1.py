@@ -66,6 +66,18 @@ for s, p, o in g.triples((None, RDF.type, None)):
         log("BLOCKER", "OWL 2 QL violation: disallowed property type",
             f"{s} is a {o}")
 
+# Datatypes: OWL 2 QL admits only the datatypes of its datatype map (OWL 2 Profiles, sec. 3.2).
+# xsd:boolean, xsd:date, xsd:gYear, xsd:double, xsd:float are NOT in it. This check was missing
+# before v1.9 and the ROBOT/OWL API profile checker caught 16 such ranges.
+QL_DATATYPES = {RDFS.Literal, URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"),
+                URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"), OWL.real, OWL.rational}
+QL_DATATYPES |= {URIRef("http://www.w3.org/2001/XMLSchema#" + t) for t in (
+    "decimal integer nonNegativeInteger string normalizedString token Name NCName NMTOKEN "
+    "hexBinary base64Binary anyURI dateTime dateTimeStamp").split()}
+for s_, _, o_ in g.triples((None, RDFS.range, None)):
+    if (s_, RDF.type, OWL.DatatypeProperty) in g and o_ not in QL_DATATYPES:
+        log("BLOCKER", "OWL 2 QL violation: data range outside the QL datatype map", f"{s_} range {o_}")
+
 # Check for existentials on LHS of subClassOf (owl:someValuesFrom only allowed on RHS in QL)
 for s, p, o in g.triples((None, OWL.someValuesFrom, None)):
     # Check whether s appears on the left side of rdfs:subClassOf
