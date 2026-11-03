@@ -49,3 +49,18 @@ java -jar robot.jar merge --input ontology/ratr-o.ttl --input /tmp/press.ttl --i
   reason --reasoner hermit --axiom-generators "ClassAssertion" --include-indirect true --output /tmp/all.ttl
 # then run queries/Q36..Q40 against /tmp/all.ttl
 ```
+
+## External benchmark: Consejo Ciudadano (CDMX), public figures
+
+`scripts/scrape_consejo_ciudadano.py` read 503 bulletins and 192 PDF reports (695 documents, 164 on topic,
+739 sentences with figures: `data/processed/consejo/cifras_consejo.csv`). 21 key figures, each verified against
+its source sentence, are in `data/real/consejo_cifras_clave.csv`.
+
+Share of trafficking cases reported to the National Anti-Trafficking Hotline (LNCTP) where the lure was a
+fake job offer, as published by the Consejo: 47% (2019-2020 analysis), 44% (Jul 2021), 41% (2021), 35% (Jul 2022),
+30.6% (4th annual report, Jul 2024), 34.8% among adult women (6th report, 2025-2026), about 30% (Apr 2026).
+Among victims recruited through fake job offers: 75% women, 56% destined to prostitution, 52% aged 18 to 31 (Apr 2026).
+Fake job offers are the first recruitment method in every annual report since the pandemic.
+
+These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
+frame for the press-offer corpus above.
