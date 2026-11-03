@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q18 — Perfil demográfico por FraudScheme.
 # Quién es la víctima más frecuente de cada esquema: grupo etario y género.

@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q8. Confirmed-fraudulent offers by country, with average risk score.
 # Operational question: geographic distribution of confirmed cases.

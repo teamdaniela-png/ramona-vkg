@@ -1,5 +1,5 @@
-@prefix :      <https://ramona.ai/ont#> .
-@prefix ont:   <https://ramona.ai/ont#> .
+@prefix :      <https://w3id.org/ratr-o#> .
+@prefix ont:   <https://w3id.org/ratr-o#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -14,14 +14,17 @@
 #    Ontology metadata
 #################################################################
 
-<https://ramona.ai/ont> a owl:Ontology ;
+<https://w3id.org/ratr-o> a owl:Ontology ;
     dc:title "Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O)"@en ;
     dc:title "Ontología Ramona contra el Reclutamiento Fraudulento y la Trata (RATR-O)"@es ;
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.6.1" ;
+    owl:versionInfo "1.9" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.9> ;
     dct:issued "2026-04-21"^^xsd:date ;
+    dct:modified "2026-11-03"^^xsd:date ;
+    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
@@ -1158,3 +1161,209 @@
 
 # Disjointness (OWL 2 QL permits super-class disjointness declarations)
 :Employer owl:disjointWith :Recruiter .
+
+
+#################################################################
+#    v1.9 — Social-media criminal-recruitment module
+#
+#    Source: Arias Vasquez, A. (coord.), Pena Gonzalez, R. (dir.) and
+#    Aguayo Quezada, S. (coord. gral.) (2025). "Del scroll al 'jale':
+#    como se recluta en TikTok". Seminario sobre Violencia y Paz,
+#    El Colegio de Mexico. Corpus: 100 TikTok videos collected
+#    15 March to 31 August 2025, analysed with crisp-set QCA.
+#
+#    Modelling decision (OWL 2 QL boundary). The report defines three
+#    recruitment stories as CONJUNCTIONS of four conditions, e.g.
+#    EnrolInCrime = NR AND ECC. OWL 2 QL forbids conjunctions on the
+#    left-hand side of a subclass axiom, so only the necessary direction
+#    (story => each condition) is axiomatised here. The sufficient
+#    direction (NR AND ECC => story) is computed in the mapping layer
+#    (SQL WHERE clause in mappings/ramona.obda). See
+#    docs/MODULE_SOCIAL_RECRUITMENT.md.
+#################################################################
+
+:ColmexScrollAlJale2025 a owl:NamedIndividual , :ResearchReport ;
+    rdfs:label "Del scroll al 'jale': como se recluta en TikTok (El Colegio de Mexico, 2025)"@es ;
+    :sourceTitle "Del scroll al 'jale': como se recluta en TikTok" ;
+    :sourceOutlet "Seminario sobre Violencia y Paz, El Colegio de Mexico" ;
+    :sourceAuthor "Arias Vasquez, A. (coord.); Pena Gonzalez, R. (dir.); Aguayo Quezada, S. (coord. gral.)" .
+
+:ResearchReport a owl:Class ;
+    rdfs:subClassOf :EvidenceSource ;
+    rdfs:label "Research report"@en, "Informe de investigacion"@es ;
+    rdfs:comment "A published academic or civil-society research report used as evidence for patterns, lexicon terms or schemes."@en .
+
+# --- Items ----------------------------------------------------------
+
+:SocialMediaItem a owl:Class ;
+    rdfs:label "Social-media item"@en, "Contenido en red social"@es ;
+    rdfs:comment "A unit of content observed on a social-media platform: a post (video, image, caption) or a comment under a post."@en .
+
+:SocialMediaPost a owl:Class ;
+    rdfs:subClassOf :SocialMediaItem ;
+    rdfs:label "Social-media post"@en, "Publicacion en red social"@es ;
+    rdfs:comment "A video or image post with its overlay text, caption, hashtags and audio. Unit of analysis of the Colmex 2025 corpus."@en .
+
+:SocialMediaComment a owl:Class ;
+    rdfs:subClassOf :SocialMediaItem ;
+    rdfs:label "Social-media comment"@en, "Comentario en red social"@es ;
+    rdfs:comment "A comment published under a post. Colmex 2025 documents that recruitment interaction frequently happens in comments rather than in the post itself."@en .
+
+:SocialMediaPost owl:disjointWith :SocialMediaComment .
+
+:SelfApplicationComment a owl:Class ;
+    rdfs:subClassOf :SocialMediaComment ;
+    rdfs:label "Self-application comment"@en, "Comentario de autopostulacion"@es ;
+    rdfs:comment "A comment in which a user asks to join or offers themself to a criminal group (e.g. 'busco jale', 'que se ocupa para entrar', 'puedo entrar con 16'). Colmex 2025, images 2, 4, 13-15, 20 and 22."@en .
+
+:RecruiterReplyComment a owl:Class ;
+    rdfs:subClassOf :SocialMediaComment ;
+    rdfs:label "Recruiter reply comment"@en, "Respuesta del reclutador"@es ;
+    rdfs:comment "A short reply by the post author or an associated account redirecting to a private channel or welcoming the applicant (e.g. 'manda mensaje', 'DM', 'bienvenido cuando quieras'). Colmex 2025, images 4, 13-14 and 18."@en .
+
+# --- Colmex QCA conditions as classes of posts ------------------------
+
+:DirectRecruitmentPost a owl:Class ;
+    rdfs:subClassOf :SocialMediaPost , :JobOffer ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :exhibitsFraudScheme ; owl:someValuesFrom :ForcedCriminalityScheme ] ;
+    rdfs:label "Direct recruitment post (NR)"@en, "Publicacion con narrativa de reclutamiento directo (NR)"@es ;
+    rdfs:comment "Condition NR of Colmex 2025: the post explicitly invites the audience to join a criminal group (e.g. 'Quieres jale? Todavia hay plazas', 'seguimos con el reclutamiento activo'). Such a post is a job offer, and every such offer exhibits some forced-criminality scheme (existential axiom, allowed on the right-hand side in OWL 2 QL)."@en .
+
+:CriminalCultureExaltationPost a owl:Class ;
+    rdfs:subClassOf :SocialMediaPost ;
+    rdfs:label "Criminal-culture exaltation post (ECC)"@en, "Publicacion con exaltacion de la cultura criminal (ECC)"@es ;
+    rdfs:comment "Condition ECC of Colmex 2025: the post uses at least one iconographic symbol of criminal identity (weapons, armoured 'monstruas', tactical vests, convoys, group emblems)."@en .
+
+:CriminalLifeAspirationPost a owl:Class ;
+    rdfs:subClassOf :SocialMediaPost ;
+    rdfs:label "Criminal-life aspiration post (AVC)"@en, "Publicacion con aspiracion a la vida criminal (AVC)"@es ;
+    rdfs:comment "Condition AVC of Colmex 2025: the post expresses the desire to join criminal life as a life project (e.g. 'Al unico circulo social que me interesa pertenecer (en proceso)', 'Disfruto mi vida quizas manana ya no este')."@en .
+
+:AcousticFramingPost a owl:Class ;
+    rdfs:subClassOf :SocialMediaPost ;
+    rdfs:label "Acoustic framing post (A)"@en, "Publicacion con acustica (A)"@es ;
+    rdfs:comment "Condition A of Colmex 2025: background music or sound (corridos belicos, gunfire, radio chatter) that gives an emotional frame to criminal activity."@en .
+
+# --- The three recruitment stories (necessary direction only) --------
+
+:EnrolInCrimeStoryPost a owl:Class ;
+    rdfs:subClassOf :DirectRecruitmentPost , :CriminalCultureExaltationPost ;
+    rdfs:label "Story: enrol in crime (NR*ECC)"@en, "Relato: enrolarse en lo criminal (NR*ECC)"@es ;
+    rdfs:comment "First recruitment story of Colmex 2025 (pp. 41-43). Sufficient condition NR AND ECC is not expressible in OWL 2 QL and is computed in the mapping."@en .
+
+:EmotionalConnectionStoryPost a owl:Class ;
+    rdfs:subClassOf :DirectRecruitmentPost , :AcousticFramingPost ;
+    rdfs:label "Story: emotional connection (NR*A)"@en, "Relato: conexion emocional (NR*A)"@es ;
+    rdfs:comment "Second recruitment story of Colmex 2025 (pp. 43-47). Sufficient condition NR AND A is computed in the mapping."@en .
+
+:BelicoStoryPost a owl:Class ;
+    rdfs:subClassOf :CriminalCultureExaltationPost , :AcousticFramingPost , :CriminalLifeAspirationPost ;
+    rdfs:label "Story: belicos (ECC*A*AVC)"@en, "Relato: belicos (ECC*A*AVC)"@es ;
+    rdfs:comment "Third recruitment story of Colmex 2025 (pp. 47-50). Persuades without an explicit offer (no NR). Sufficient condition ECC AND A AND AVC is computed in the mapping."@en .
+
+# --- Signals ----------------------------------------------------------
+
+:SocialMediaRecruitmentSignal a owl:Class ;
+    rdfs:subClassOf :RedFlag ;
+    rdfs:label "Social-media recruitment signal"@en, "Senal de reclutamiento en redes"@es ;
+    rdfs:comment "A textual or symbolic cue in a social-media item associated with criminal recruitment. Derived from the lexicon in data/lexicon/tiktok_reclutamiento_lexicon.csv (Colmex 2025)."@en .
+
+:GroupCodeSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Group code"@en, "Codigo de grupo"@es ;
+    rdfs:comment "Coded reference to a criminal group ('4L', 'las 4 letras', NG emoji, 'la maña', 'la mz'). Colmex 2025, images 3, 4, 19, 22."@en .
+:GroupEmojiSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Group emoji"@en, "Emoji de grupo"@es ;
+    rdfs:comment "Emojis used as identity markers (devil, ninja, skull, salute, rooster). Colmex 2025, images 10, 17, 18, 19, 22."@en .
+:PrivateChannelCallSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Call to private channel"@en, "Llamado al privado"@es ;
+    rdfs:comment "Redirects the audience to a private message ('escribe al privado', 'manda DM'). Colmex 2025, images 10, 13, 14, 19, 21."@en .
+:HighWeeklyPaySignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "High weekly pay"@en, "Pago semanal alto"@es ;
+    rdfs:comment "Weekly pay promise far above the local labour market ('pagamos 10mil a 15mil pesos semanales'). Colmex 2025, image 3."@en .
+:FamilyAppealSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Family appeal"@en, "Apela a la familia"@es ;
+    rdfs:comment "Frames joining as sacrifice for the family ('que harias por tu mama', 'sacar a mi jefita adelante'). Colmex 2025, pp. 23 and 51."@en .
+:MinorAgeMentionSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Minor age mention"@en, "Menciona edad de menor"@es ;
+    rdfs:comment "The item mentions an age under 18 ('puedo entrar con 16'). Colmex 2025, image 22. Links the item to child recruitment."@en .
+:WomenInvitationSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Invites women"@en, "Invita a mujeres"@es ;
+    rdfs:comment "Explicitly invites or accepts women ('trabajo para hombres y mujeres', 'mujeres tambien entran'). Colmex 2025, images 4 and 19."@en .
+:NationalReachSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "National reach"@en, "Alcance nacional"@es ;
+    rdfs:comment "Recruits from anywhere in the country ('todo Mexico'). Colmex 2025, image 10."@en .
+:RecruitmentHashtagSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Recruitment hashtag"@en, "Hashtag de reclutamiento"@es ;
+    rdfs:comment "Hashtag #reclutamiento, used by Colmex 2025 as an entry point to the corpus (p. 27)."@en .
+:FatalismSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
+    rdfs:label "Fatalism"@en, "Fatalismo"@es ;
+    rdfs:comment "Normalises early death or no exit ('quizas manana ya no este', 'de aqui ya no sales'). Colmex 2025, images 16 and 18."@en .
+
+# --- Lexicon ----------------------------------------------------------
+
+:LexiconTerm a owl:Class ;
+    rdfs:label "Lexicon term"@en, "Termino del lexico"@es ;
+    rdfs:comment "A word, phrase, emoji or hashtag used in recruitment content, with a detection pattern and provenance. Instances are loaded from data/lexicon/tiktok_reclutamiento_lexicon.csv."@en .
+
+# --- Object properties --------------------------------------------------
+
+:itemPostedOn a owl:ObjectProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range :Platform ;
+    rdfs:label "item posted on"@en, "publicado en"@es .
+
+:commentsOn a owl:ObjectProperty ;
+    rdfs:domain :SocialMediaComment ; rdfs:range :SocialMediaPost ;
+    rdfs:label "comments on"@en, "comenta en"@es .
+
+:itemHasSignal a owl:ObjectProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range :SocialMediaRecruitmentSignal ;
+    rdfs:label "item has signal"@en, "tiene senal"@es .
+
+:itemMatchesTerm a owl:ObjectProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range :LexiconTerm ;
+    rdfs:label "item matches lexicon term"@en, "coincide con termino"@es .
+
+:termDocumentedIn a owl:ObjectProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range :EvidenceSource ;
+    rdfs:label "term documented in"@en, "documentado en"@es .
+
+# --- Datatype properties ------------------------------------------------
+
+:itemText a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range xsd:string ;
+    rdfs:label "item text"@en, "texto del contenido"@es .
+:itemPostedAt a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range xsd:dateTime ;
+    rdfs:label "item posted at"@en, "fecha de publicacion"@es .
+:itemIsSynthetic a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range xsd:boolean ;
+    rdfs:label "item is synthetic"@en, "es sintetico"@es .
+:itemHashtags a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaItem ; rdfs:range xsd:string ;
+    rdfs:label "item hashtags"@en, "hashtags"@es .
+:audioDescription a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaPost ; rdfs:range xsd:string ;
+    rdfs:label "audio description"@en, "descripcion del audio"@es .
+:visualDescription a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaPost ; rdfs:range xsd:string ;
+    rdfs:label "visual description"@en, "descripcion visual"@es .
+:promisedWeeklyPayMXN a owl:DatatypeProperty ;
+    rdfs:domain :SocialMediaPost ; rdfs:range xsd:decimal ;
+    rdfs:label "promised weekly pay (MXN)"@en, "pago semanal prometido (MXN)"@es .
+:lexiconTermText a owl:DatatypeProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
+    rdfs:label "term text"@en, "texto del termino"@es .
+:lexiconPattern a owl:DatatypeProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
+    rdfs:label "detection pattern (regex)"@en, "patron de deteccion (regex)"@es .
+:lexiconCategory a owl:DatatypeProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
+    rdfs:label "lexicon category"@en, "categoria del lexico"@es .
+:lexiconIsVerbatim a owl:DatatypeProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range xsd:boolean ;
+    rdfs:label "verbatim from source"@en, "textual de la fuente"@es ;
+    rdfs:comment "true if the term appears literally in the source report; false if it is a project variant (spelling, generic hashtag)."@en .
+:lexiconSourceLocation a owl:DatatypeProperty ;
+    rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
+    rdfs:label "location in source"@en, "ubicacion en la fuente"@es ;
+    rdfs:comment "Page and image number in the source report."@en .

@@ -1,12 +1,12 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q7. Messenger-to-WhatsApp funnel: offers that match the pattern of
 # first contact on Messenger, migration to WhatsApp, and data filtering
 # before interview.
 
 SELECT ?offer ?platformName ?role ?posted WHERE {
-  ?offer :matchesPattern <https://ramona.ai/pattern/1> ,  # messenger_to_whatsapp
-                         <https://ramona.ai/pattern/2> ;  # filtro_datos_personales
+  ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/1> ,  # messenger_to_whatsapp
+                         <https://w3id.org/ratr-o/data/pattern/2> ;  # filtro_datos_personales
          :postedVia ?platform ;
          :postedOn ?posted ;
          :offeredRole ?role .

@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q4. Offers on a documented TraffickingRoute that have NOT yet been
 # classified by Ramona. These are priority cases for manual review.

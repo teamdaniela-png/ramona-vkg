@@ -1,0 +1,15 @@
+PREFIX : <https://w3id.org/ratr-o#>
+
+# Q34 (CQ30). How many posts fall into each of the three Colmex recruitment
+# stories, and how many direct-recruitment posts are also job offers?
+# Ontology machinery exercised: class hierarchy. EnrolInCrimeStoryPost and
+# EmotionalConnectionStoryPost are subclasses of DirectRecruitmentPost, which
+# is a subclass of JobOffer, so these posts are retrieved as JobOffer without
+# any mapping that says so. The story classes themselves are populated by the
+# mapping (conjunctions of conditions, see docs/MODULE_SOCIAL_RECRUITMENT.md).
+
+SELECT ?story (COUNT(DISTINCT ?post) AS ?n) WHERE {
+  VALUES ?story { :EnrolInCrimeStoryPost :EmotionalConnectionStoryPost :BelicoStoryPost }
+  ?post a ?story .
+}
+GROUP BY ?story

@@ -1,0 +1,13 @@
+PREFIX : <https://w3id.org/ratr-o#>
+
+# Q32 (CQ28). Which comments are adolescents offering themselves to a
+# criminal group (self-application that mentions an age under 18)?
+# Operational question: the earliest point where an intervention can reach
+# a minor ("puedo entrar con 16", Colmex 2025, image 22).
+
+SELECT ?comment ?text WHERE {
+  ?comment a :SelfApplicationComment ;
+           :itemText ?text ;
+           :itemHasSignal ?s .
+  ?s a :MinorAgeMentionSignal .
+}

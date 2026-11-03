@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q3. Offers whose language or logistics match a known
 # SurvivorTestimonyPattern, plus the source that documents the pattern.

@@ -150,6 +150,33 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Why it matters:** input for a control-network visualization in the paper.
 **Ontology machinery exercised:** self-join on `:hasMeansOfControl`.
 
+## E. Social-media criminal recruitment (v1.9, Colmex 2025 module)
+
+### CQ27. Which posts combine a call to a private channel with a coded group reference?
+**Why it matters:** in Colmex 2025 this pair marks the move from public persuasion to private recruitment.
+**Answered by:** `Q31_tiktok_dm_plus_group_code.rq`.
+**Ontology machinery exercised:** signal subclasses of `:RedFlag`, self-join on `:itemHasSignal`.
+
+### CQ28. Which comments are adolescents offering themselves to a criminal group?
+**Why it matters:** earliest point where an intervention can reach a minor.
+**Answered by:** `Q32_minor_self_application.rq`.
+**Ontology machinery exercised:** `:SelfApplicationComment` plus `:MinorAgeMentionSignal`.
+
+### CQ29. Which offers exhibit some forced-criminality scheme, even when no scheme is recorded?
+**Why it matters:** demonstrates certain-answer semantics over incomplete data.
+**Answered by:** `Q33_existential_forced_criminality.rq`.
+**Ontology machinery exercised:** existential on the right-hand side (`:DirectRecruitmentPost SubClassOf :exhibitsFraudScheme some :ForcedCriminalityScheme`), anonymous witnesses.
+
+### CQ30. How many posts fall into each Colmex recruitment story?
+**Why it matters:** reproduces the three QCA configurations of the source report over the VKG.
+**Answered by:** `Q34_recruitment_stories.rq`.
+**Ontology machinery exercised:** subclass reasoning (story ⊑ DirectRecruitmentPost ⊑ JobOffer); conjunctions computed in the mapping.
+
+### CQ31. Which keywords also fire on non-recruitment posts?
+**Why it matters:** shows that keyword lists alone are not a detector.
+**Answered by:** `Q35_lexicon_false_positive_rate.rq`.
+**Ontology machinery exercised:** `:itemMatchesTerm`, negation in SPARQL (outside OWL 2 QL, evaluated by the endpoint).
+
 ## Coverage summary
 
 | CQ group | Questions | Answered by |
@@ -158,9 +185,10 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | B. Observatory | 6 (CQ9-CQ14) | Q9-Q14 |
 | C. FraudScheme | 6 (CQ15-CQ20) | Q15-Q20 |
 | D. Pattern and trend | 6 (CQ21-CQ26) | Q21-Q26 |
-| **Total** | **26 CQs** | **26 SPARQL queries** |
+| E. Social-media recruitment (v1.9) | 5 (CQ27-CQ31) | Q31-Q35 |
+| **Total** | **31 CQs** | **31 SPARQL queries** |
 
-Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 30 SPARQL queries against 26 competency questions, a 1.15× coverage ratio.
+Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 35 SPARQL queries against 31 competency questions.
 
 ## What RATR-O cannot answer (honest boundary)
 

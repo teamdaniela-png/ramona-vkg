@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q30 — FraudSchemes atestados en AMBAS fuentes (CTDC + prensa).
 # La intersección entre lo que reporta IOM/CTDC y lo que documenta la prensa

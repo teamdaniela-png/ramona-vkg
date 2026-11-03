@@ -1,14 +1,15 @@
 # Ramona AI — Virtual Knowledge Graph Observatory
 
-A running Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observatory, built on the ontology-based-data-access paradigm of Xiao, Ding, Cogrel and Calvanese (2019). Prepared for the Dialogue Residency at the Institute of Logic and Computation, TU Wien, May to July 2026.
+A running Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observatory, built on the ontology-based-data-access paradigm of Xiao, Ding, Cogrel and Calvanese (2019). Prepared for the BMEIA Dialogue Residency at the Institute of Logic and Computation, TU Wien, 2 November to 2 December 2026.
 
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (10 tables: offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.0** (`ontology/ratr-o.ttl`): the Ramona Anti-Trafficking Recruitment Ontology in OWL 2 QL, aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) via `skos:closeMatch`.
+- **RATR-O v1.9** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (111 classes, 65 object properties, 92 datatype properties), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) via `skos:closeMatch`.
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **SPARQL endpoint** served by Ontop on port 8080.
-- **Fourteen reference SPARQL queries** (`queries/Q1..Q14`) covering Ramona operational questions and observatory statistics.
+- **35 reference SPARQL queries** (`queries/Q1..Q35`) answering 31 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **Social-media criminal-recruitment module (v1.9)**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
 - **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
 - **Evidence source catalogue** (`docs/EVIDENCE_SOURCES.md`) and **CTDC–HUTRO–RATR-O mapping workbook** (`docs/CTDC_HUTRO_RATRO_mapping.xlsx`).
 
