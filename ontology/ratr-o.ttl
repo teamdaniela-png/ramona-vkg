@@ -20,13 +20,29 @@
     dc:creator "Daniela Camberos, Ramona AI" ;
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.9" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.9> ;
+    dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
+    owl:versionInfo "1.9.1" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.9.1> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-03"^^xsd:date ;
-    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale."@en ;
+    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
+
+#################################################################
+#    Annotation properties (declared so the file is in the OWL 2 QL profile
+#    under the OWL API checker; they carry no logical meaning)
+#################################################################
+
+dc:title a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dct:contributor a owl:AnnotationProperty .
+dct:license a owl:AnnotationProperty .
+dct:issued a owl:AnnotationProperty .
+dct:modified a owl:AnnotationProperty .
+skos:note a owl:AnnotationProperty .
+skos:closeMatch a owl:AnnotationProperty .
 
 #################################################################
 #    Core Classes — Agents, offers, submissions
@@ -325,11 +341,13 @@
     rdfs:comment "Number of CTDC-registered victims attested on this (origin, destination) pair."@en .
 
 :routeEarliestYear a owl:DatatypeProperty ;
-    rdfs:domain :TraffickingRoute ; rdfs:range xsd:gYear ;
+    rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
     rdfs:label "route earliest year"@en, "año más temprano de la ruta"@es .
 
 :routeLatestYear a owl:DatatypeProperty ;
-    rdfs:domain :TraffickingRoute ; rdfs:range xsd:gYear ;
+    rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
     rdfs:label "route latest year"@en, "año más reciente de la ruta"@es .
 
 :routeDominantExploitation a owl:ObjectProperty ;
@@ -521,7 +539,8 @@
 
 # Additional datatype properties
 :offerIsActive a owl:DatatypeProperty ;
-    rdfs:domain :JobOffer ; rdfs:range xsd:boolean ;
+    rdfs:domain :JobOffer ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "offer is active"@en .
 
 :offerLanguage a owl:DatatypeProperty ;
@@ -541,11 +560,13 @@
     rdfs:label "offer classifier confidence"@en .
 
 :victimCaseOpenedAt a owl:DatatypeProperty ;
-    rdfs:domain :Victim ; rdfs:range xsd:date ;
+    rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "victim case opened at"@en .
 
 :victimCaseClosedAt a owl:DatatypeProperty ;
-    rdfs:domain :Victim ; rdfs:range xsd:date ;
+    rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "victim case closed at"@en .
 
 :victimHasChildrenCount a owl:DatatypeProperty ;
@@ -573,7 +594,8 @@
     rdfs:comment "How the victim was identified: self-report, NGO, law enforcement, embassy, hotline."@en .
 
 :routeIsTransnational a owl:DatatypeProperty ;
-    rdfs:domain :TraffickingRoute ; rdfs:range xsd:boolean ;
+    rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "route is transnational"@en .
 
 :routeStopoverCountries a owl:DatatypeProperty ;
@@ -589,7 +611,8 @@
     rdfs:label "scheme archetypal case name"@en .
 
 :schemeFirstAttestedYear a owl:DatatypeProperty ;
-    rdfs:domain :FraudScheme ; rdfs:range xsd:gYear ;
+    rdfs:domain :FraudScheme ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
     rdfs:label "scheme first attested year"@en .
 
 :schemeJurisdictionScope a owl:DatatypeProperty ;
@@ -645,7 +668,8 @@
     rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
     rdfs:label "risk explanation in Spanish"@en .
 :evidenceAccessedOnline a owl:DatatypeProperty ;
-    rdfs:domain :EvidenceSource ; rdfs:range xsd:boolean ;
+    rdfs:domain :EvidenceSource ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "evidence accessed online"@en .
 :evidenceArchivedUrl a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:anyURI ;
@@ -907,7 +931,8 @@
     rdfs:label "offer raw text"@en, "texto crudo de la oferta"@es .
 
 :postedOn a owl:DatatypeProperty ;
-    rdfs:domain :JobOffer ; rdfs:range xsd:date ;
+    rdfs:domain :JobOffer ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "posted on"@en, "publicado el"@es .
 
 :offeredSalaryMXN a owl:DatatypeProperty ;
@@ -957,7 +982,8 @@
     rdfs:label "historical flag count"@en, "banderas históricas"@es .
 
 :hasVerifiedIdentity a owl:DatatypeProperty ;
-    rdfs:domain :Employer ; rdfs:range xsd:boolean ;
+    rdfs:domain :Employer ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "has verified identity"@en, "tiene identidad verificada"@es .
 
 :flagType a owl:DatatypeProperty ;
@@ -984,7 +1010,8 @@
     rdfs:label "explanation text"@en, "texto explicativo"@es .
 
 :classifiedOn a owl:DatatypeProperty ;
-    rdfs:domain :RiskClassification ; rdfs:range xsd:date ;
+    rdfs:domain :RiskClassification ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "classified on"@en, "clasificado el"@es .
 
 :classifierVersion a owl:DatatypeProperty ;
@@ -1008,7 +1035,8 @@
     rdfs:label "route name"@en, "nombre de la ruta"@es .
 
 :knownSince a owl:DatatypeProperty ;
-    rdfs:domain :TraffickingRoute ; rdfs:range xsd:date ;
+    rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "known since"@en, "conocida desde"@es .
 
 :countryName a owl:DatatypeProperty ;
@@ -1071,7 +1099,8 @@
     rdfs:label "victim id"@en, "identificador de víctima"@es .
 
 :yearOfRegistration a owl:DatatypeProperty ;
-    rdfs:domain :Victim ; rdfs:range xsd:gYear ;
+    rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
     rdfs:label "year of registration"@en, "año de registro"@es .
 
 :ageGroupName a owl:DatatypeProperty ;
@@ -1100,7 +1129,8 @@
     rdfs:label "source URL"@en, "URL de la fuente"@es .
 
 :sourceDate a owl:DatatypeProperty ;
-    rdfs:domain :EvidenceSource ; rdfs:range xsd:date ;
+    rdfs:domain :EvidenceSource ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
     rdfs:label "source date"@en, "fecha de la fuente"@es .
 
 :sourceAuthor a owl:DatatypeProperty ;
@@ -1156,7 +1186,6 @@
 
 :EvidenceSource skos:note "Provenance chain: every observatory fact traces to at least one evidence source (press article, CTDC record, primary document)."@en .
 
-:hutro rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
 
 # Disjointness (OWL 2 QL permits super-class disjointness declarations)
@@ -1336,7 +1365,8 @@
     rdfs:domain :SocialMediaItem ; rdfs:range xsd:dateTime ;
     rdfs:label "item posted at"@en, "fecha de publicacion"@es .
 :itemIsSynthetic a owl:DatatypeProperty ;
-    rdfs:domain :SocialMediaItem ; rdfs:range xsd:boolean ;
+    rdfs:domain :SocialMediaItem ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "item is synthetic"@en, "es sintetico"@es .
 :itemHashtags a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range xsd:string ;
@@ -1360,7 +1390,8 @@
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
     rdfs:label "lexicon category"@en, "categoria del lexico"@es .
 :lexiconIsVerbatim a owl:DatatypeProperty ;
-    rdfs:domain :LexiconTerm ; rdfs:range xsd:boolean ;
+    rdfs:domain :LexiconTerm ; rdfs:range rdfs:Literal ;
+    skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
     rdfs:label "verbatim from source"@en, "textual de la fuente"@es ;
     rdfs:comment "true if the term appears literally in the source report; false if it is a project variant (spelling, generic hashtag)."@en .
 :lexiconSourceLocation a owl:DatatypeProperty ;

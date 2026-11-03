@@ -92,7 +92,12 @@ post as a certain answer, with an anonymous scheme as witness. Over plain SPARQL
 data the same query returns zero. This is the clearest demonstration in the repository of why a
 VKG with DL-Lite reasoning answers more than the database alone.
 
-**4. Negation is not in the TBox.**
+**4. Datatypes outside the QL datatype map.**
+`xsd:date`, `xsd:gYear` and `xsd:boolean` are not in the OWL 2 QL datatype map. Ranges using them
+are declared `rdfs:Literal` in the TBox and the mapping emits the concrete type. Caught by the
+OWL API profile checker in v1.9.1 (`docs/validation/VALIDATION_REPORT.md`).
+
+**5. Negation is not in the TBox.**
 `Q35` ("which keywords fire on non-recruitment posts") uses `FILTER NOT EXISTS`, evaluated by
 the SPARQL endpoint under closed-world semantics. It is a query-level operation, not an
 ontological claim.
@@ -115,7 +120,7 @@ python3 scripts/build_social_module.py
 
 ## Status
 
-- Ontology: in OWL 2 QL, audit 0 BLOCKER / 0 SHOULD (`docs/AUDIT_O1.md`).
+- Ontology: in OWL 2 QL under the OWL API checker (ROBOT 1.9.11), consistent under HermiT with the 1,500 synthetic items (`docs/validation/VALIDATION_REPORT.md`).
 - Mappings: OBDA and R2RML regenerated, R2RML parses.
 - **Not yet executed against Postgres + Ontop** (Docker not running as of 3 Nov 2026).
   Q31 to Q35 are syntactically valid; their results are pending the O3 boot.
