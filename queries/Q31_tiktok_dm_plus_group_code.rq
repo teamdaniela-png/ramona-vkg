@@ -1,0 +1,15 @@
+PREFIX : <https://w3id.org/ratr-o#>
+
+# Q31 (CQ27). Which social-media posts combine a call to a private channel
+# with a coded reference to a criminal group?
+# Operational question: the two signals that, in Colmex 2025, mark the step
+# from public persuasion to private recruitment ("escribe al privado" + "4L").
+
+SELECT ?item ?text WHERE {
+  ?item a :SocialMediaPost ;
+        :itemText ?text ;
+        :itemHasSignal ?s1 , ?s2 .
+  ?s1 a :PrivateChannelCallSignal .
+  ?s2 a :GroupCodeSignal .
+}
+ORDER BY ?item

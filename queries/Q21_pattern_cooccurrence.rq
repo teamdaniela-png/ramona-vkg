@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q21 — Pares de patrones que co-ocurren en el mismo artículo.
 # ¿Qué combinaciones son la firma de un esquema concreto?

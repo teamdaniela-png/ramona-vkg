@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q20 — Ratio Type-B:Type-A por país (competency question).
 # NOTA: el ratio global desde prensa fue retirado (ver docs/CLASSIFIER_VALIDATION.md):

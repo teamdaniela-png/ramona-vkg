@@ -9,7 +9,7 @@ R2RML output follows the W3C Recommendation (https://www.w3.org/TR/r2rml/).
 
 Limitations of this converter:
   - OBDA allows pattern-based target atoms like
-      <https://ramona.ai/offer/{offer_id}> a :JobOffer ; :hasTitle {title} .
+      <https://w3id.org/ratr-o/data/offer/{offer_id}> a :JobOffer ; :hasTitle {title} .
     R2RML requires explicit rr:TriplesMap blocks with rr:subjectMap and
     rr:predicateObjectMap. We produce one rr:TriplesMap per OBDA mappingId.
   - Typed literals {value}^^xsd:int are emitted as rr:datatype.
@@ -65,7 +65,7 @@ def parse_obda(text: str):
     return prefixes, mappings
 
 
-# regex to match URI templates like <https://ramona.ai/offer/{offer_id}>
+# regex to match URI templates like <https://w3id.org/ratr-o/data/offer/{offer_id}>
 URI_TEMPLATE_RE = re.compile(r"<([^>]+\{[^}]+\}[^>]*)>")
 # regex to match typed literal like {value}^^xsd:int
 TYPED_LIT_RE = re.compile(r"\{([^}]+)\}\^\^([\w:]+)")

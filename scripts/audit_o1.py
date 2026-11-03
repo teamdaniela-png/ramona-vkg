@@ -27,7 +27,7 @@ TTL = ROOT / "ontology" / "ratr-o.ttl"
 OBDA = ROOT / "mappings" / "ramona.obda"
 R2RML = ROOT / "mappings" / "ramona.r2rml.ttl"
 
-NS = rdflib.Namespace("https://ramona.ai/ont#")
+NS = rdflib.Namespace("https://w3id.org/ratr-o#")
 
 g = rdflib.Graph()
 g.parse(TTL, "turtle")
@@ -231,7 +231,7 @@ for s, p, o in g.triples((None, SKOS.closeMatch, None)):
         log("BLOCKER", "skos:closeMatch target is not a URL", str(o))
 
 # 4c. Ontology header must include dc:creator, dct:license, owl:versionInfo
-header = URIRef("https://ramona.ai/ont")
+header = URIRef("https://w3id.org/ratr-o")
 if not list(g.objects(header, DC.creator)):
     log("SHOULD", "Ontology header missing dc:creator")
 if not list(g.objects(header, DCTERMS.license)):

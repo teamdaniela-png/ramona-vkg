@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 # Q16 — Cobertura del triángulo Palermo (Action × Means × Purpose)

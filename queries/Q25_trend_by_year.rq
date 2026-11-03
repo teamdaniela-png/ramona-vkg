@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q25 — Tendencia temporal de víctimas registradas por año.
 # Usa la variable yearOfRegistration de CTDC para línea de tiempo 2002-2023.

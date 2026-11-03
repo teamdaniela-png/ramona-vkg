@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q28 — Rutas transfronterizas con al menos un caso atestado en prensa.
 # Cruza los 1,304 corredores CTDC con los artículos de prensa del observatorio.

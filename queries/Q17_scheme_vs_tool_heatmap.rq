@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q17 — Heatmap esquema × herramienta de comunicación.
 # Correlaciona cada FraudScheme con el CommunicationTool usado en el primer

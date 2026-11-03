@@ -1,4 +1,4 @@
-PREFIX : <https://ramona.ai/ont#>
+PREFIX : <https://w3id.org/ratr-o#>
 
 # Q6. Offers that combine ALL four "Edith Guadalupe" patterns:
 # (a) cita en edificio multiusos,
@@ -8,12 +8,12 @@ PREFIX : <https://ramona.ai/ont#>
 # Source: N+ (2026-04-17).
 
 SELECT DISTINCT ?offer ?posted ?platformName WHERE {
-  ?offer :matchesPattern <https://ramona.ai/pattern/3> ,   # solicita_ir_sola
-                         <https://ramona.ai/pattern/9> ;   # cita_edificio_multiusos
+  ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/3> ,   # solicita_ir_sola
+                         <https://w3id.org/ratr-o/data/pattern/9> ;   # cita_edificio_multiusos
          :postedOn ?posted ;
          :postedVia ?platform .
   ?platform :platformName ?platformName .
-  OPTIONAL { ?offer :matchesPattern <https://ramona.ai/pattern/4> . } # sin_identificacion
-  OPTIONAL { ?offer :matchesPattern <https://ramona.ai/pattern/5> . } # empresa_sin_nombre
+  OPTIONAL { ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/4> . } # sin_identificacion
+  OPTIONAL { ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/5> . } # empresa_sin_nombre
 }
 ORDER BY DESC(?posted)
