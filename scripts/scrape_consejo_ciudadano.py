@@ -51,8 +51,16 @@ def norm(s):
 def get(session, url, path, binary=False):
     if path.exists():
         return path.read_bytes() if binary else path.read_text(encoding="utf-8", errors="replace")
-    time.sleep(1.0)
-    r = session.get(url, headers=UA, timeout=40)
+    for attempt in range(3):
+        time.sleep(1.0 + 2 * attempt)
+        try:
+            r = session.get(url, headers=UA, timeout=120)
+            break
+        except requests.RequestException as e:
+            print(f"  reintento {attempt + 1} {url}: {type(e).__name__}", flush=True)
+    else:
+        print(f"  OMITIDO tras 3 intentos: {url}", flush=True)
+        return None
     if r.status_code != 200:
         return None
     path.parent.mkdir(parents=True, exist_ok=True)
