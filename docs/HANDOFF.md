@@ -14,7 +14,7 @@ Daniela arrived in Vienna 1 Nov. Residency runs 2 Nov to 2 Dec 2026 (Paris Peace
 - `data/lexicon/tiktok_reclutamiento_lexicon.csv`: 79 terms (71 verbatim) from Colmex SVP 2025 "Del scroll al jale", each with page and image. The real wording lives in the screenshots, not the body text.
 - `data/synthetic/tiktok_reclutamiento_sintetico.csv/.jsonl`: 1,500 synthetic rows (operational schema + extras), mapped to `:ForcedCriminalityScheme` / `:ChildRecruitmentCriminalScheme`. Includes 450 hard negatives (legit jobs with the same slang, corrido fan content). See `data/synthetic/README.md` for limits.
 - Generator: `scripts/build_tiktok_synthetic.py` (deterministic, seed 2026, no API key).
-- NOT pushed to the public repo yet: Daniela decides (topic overlaps the Satyarthi white paper; keep IP boundary clean).
+- Pushed 3 Nov with Daniela's ok. This is Vienna work, separate from Satyarthi.
 
 **Still pending for the residency:** paper draft, O3 demonstrator (Docker still not running on the Mac as of 3 Nov), `docs/READY_FOR_VIENNA.md`.
 
