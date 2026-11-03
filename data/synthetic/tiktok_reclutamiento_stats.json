@@ -1,0 +1,41 @@
+{
+  "seed": 2026,
+  "n_rows": 1500,
+  "n_lexicon_terms": 79,
+  "n_lexicon_verbatim": 71,
+  "by_label": {
+    "reclutamiento_directo": 600,
+    "autopostulacion": 250,
+    "aspiracion_belica": 150,
+    "cultura_sin_reclutamiento": 150,
+    "legitima_control": 300,
+    "respuesta_reclutador": 50
+  },
+  "by_relato": {
+    "enrolarse_en_lo_criminal": 321,
+    "-": 750,
+    "belicos": 150,
+    "conexion_emocional": 279
+  },
+  "by_scheme": {
+    ":ForcedCriminalityScheme": 1039,
+    "-": 450,
+    ":ChildRecruitmentCriminalScheme": 11
+  },
+  "crim_flags": {
+    "llamado_privado": 724,
+    "emoji_grupo": 574,
+    "codigo_grupo": 369,
+    "apela_familia": 203,
+    "pago_semanal_alto": 193,
+    "invita_mujeres": 93,
+    "alcance_nacional": 123,
+    "fatalismo": 31,
+    "hashtag_reclutamiento": 158,
+    "menciona_edad_menor": 11
+  },
+  "lexicon_terms_never_hit": [
+    "L057"
+  ],
+  "legit_with_lexicon_hit_pct": 77.7
+}

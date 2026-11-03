@@ -1,0 +1,80 @@
+term_id,termino,patron_regex,categoria,tipo,fuente,pagina,elemento
+L001,jale,\bjale\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","41,49,70","Imagenes 2, 17, 22; titulo"
+L002,¿Quieres jale?,\bquieres jale\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22
+L003,todavía hay plazas,\btodavia (hay|ahi) plazas?\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22 (escrito 'ahi')
+L004,plaza,\bplazas?\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",49,"Texto: 'si hay jale, trabajo, plaza'"
+L005,no tienes trabajo y estás buscando,\bno tienes trabajo\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",24,Imagen 3
+L006,estamos buscando personal,\bbuscando personal\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",24,Imagen 3
+L007,seguimos con el reclutamiento activo,\breclutamiento activo\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",41,Imagen 10
+L008,sigue reclutando,\bsigue(n)? reclutando\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L009,andamos reclutando,\b(andamos|anda) reclutando\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","47,57",Imagenes 15 y 21
+L010,no pierdas la oportunidad,\bno pierdas la oportunidad\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L011,trabajo para hombres y mujeres,\bhombres y mujeres\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L012,esta es tu oportunidad para salir adelante,\bsalir adelante\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L013,¿quién se quiere unir?,\bse quiere unir\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",47,Imagen 14
+L014,kien le entra,\b(kien|quien) le entra\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",26,Imagen 4
+L015,gente de 🥚🥚 conscientes del trabajo,\bcon?sc?ientes del trabajo\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",41,Imagen 10 (escrito 'consientes')
+L016,todo México,\btodo mexico\b,oferta_alcance,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",41,Imagen 10
+L017,no rajarse,\bno (te )?rajes?\b|\bno se raje\b|\bno rajarse\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",30,Texto sobre NR directo
+L018,chamba,\bchambas?\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",44,Texto: 'conseguir chamba'
+L019,chambear,\bchambear\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",57,Imagen 20
+L020,seguimos laborando,\bseguimos laborando\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",45,Cancion en Imagen 11
+L021,únete a la fila,\b(unete|une te) a la fila\b,oferta_llamado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",57,Imagen 21 ('une te ala fila')
+L030,pagamos 10mil a 15mil pesos semanales,\bpagamos \d+ ?mil\b,pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",24,Imagen 3
+L031,pesos semanales / pagos semanales,\b(pesos|pagos?) semanal(es)?\b,pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","23,24",Imagen 3; video del reclutador
+L032,vacaciones,\bvacaciones\b,pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",23,Video del reclutador: 'pagos semanales y vacaciones'
+L033,feria,\bferia\b,pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L034,ocupamos dinero,\bocupamos dinero\b,pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",23,Video del reclutador
+L040,escribe al privado,\b(escribe|manda|manden|mandar) (mensaje )?al privado\b,contacto_privado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","56,57",Imagenes 19 y 21
+L041,comenta para inf,\bcomenta para inf,contacto_privado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L042,para más info mandar mensaje,\b(mandar|manda|manden) mensaje\b,contacto_privado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","41,47",Imagenes 10 y 14
+L043,DM,\bdm\b,contacto_privado,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",47,Imagen 13
+L050,4 letras / 4L,\b4 ?l\b|\b4 letras\b|\bcuatro letras\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","26,52,56",Imagenes 4 y 19; cancion 'Doble R'
+L051,NG / 🆖,\bng\b|🆖,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","24,56,70","Imagenes 3, 19, 22"
+L052,los Jaliscos,\blos jaliscos\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",24,Imagen 3
+L053,la maña,\b(la|ala|a la) mana\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","44,50,51,52","Imagenes 11, 18; trend 'arriba la maña'"
+L054,arriba la maña,\barriba la mana\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",52,Trend con 'Doble R'
+L055,la mz,\bla mz\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",22,Imagen 2 (comentario)
+L056,plebada bélica,\bplebada\b|\bbelik?c?a\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",46,Imagen 12
+L057,monstruas,\bmonstruas?\b,codigo_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",33,Texto: autos blindados
+L058,🐓 (gallo),🐓,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22
+L060,👹 / 😈 (diablo),👹|😈|👿,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","34,41,49,51,56","Imagenes 10, 17, 18, 19"
+L061,🥷 (encapuchado),🥷,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","49,56",Imagenes 17 y 19
+L062,😎,😎,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",49,Imagenes 16 y 17
+L063,🫡 (saludo),🫡,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",56,Imagen 19
+L064,💀,💀,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L065,🥚🥚 (huevos = valor),🥚,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",41,Imagen 10
+L066,🇲🇽,🇲🇽,emoji_grupo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","24,41",Imagenes 3 y 10
+L067,💵 / 💸 (dinero),💵|💸|💰,emoji_pago,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",24,Imagen 3
+L070,#reclutamiento,#reclutamiento\b,hashtag,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","23,27",Video del reclutador; ruta de navegacion
+L080,disfruto mi vida quizás mañana ya no esté,\bmanana ya no\b,aspiracion_fatalismo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","48,49",Imagen 16
+L081,al único círculo social que me interesa pertenecer,\bcirculo social\b,aspiracion_fatalismo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",32,Imagen 6
+L082,de aquí ya no sales,\bde aqui ya no sales\b,aspiracion_fatalismo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L083,qué harías por tu mamá,\bque harias por tu (mama|jefita)\b,aspiracion_familia,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Texto sobre Imagen 18
+L084,sacar a mi jefita adelante,\bjefita\b,aspiracion_familia,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L085,entramos aquí para nuestras familias,\b(nuestras|tu|tus) familias?\b,aspiracion_familia,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",23,Video del reclutador
+L086,bienvenido cuando quieras,\bbienvenido cuando quieras\b,respuesta_reclutador,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L087,le pedí chamba a la maña,\bpedi chamba\b,aspiracion_fatalismo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",44,Imagen 11
+L088,mi compa me pide que le consiga jale,\bconsig(a|ua) jale\b,aspiracion_fatalismo,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","48,49",Imagen 17
+L090,yo quiero trabajar para,\b(yo )?(quiero|kiero) trabajar\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","22,70",Imagenes 2 y 22
+L091,busco jale,\bbusco jale\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",22,Imagen 2
+L092,mujeres también entran,\bmujeres tambien entran\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",26,Imagen 4
+L093,cómo se le hace para entrar,\bpara entra(r)?\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",26,Imagen 4
+L094,qué se ocupa para entrar,\bque se ocupa\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",26,Imagen 4
+L095,quiero entrar / le quiero entrar,\b(quiero|kiero) entrar\b|\ble quiero entrar\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale","47,57",Imagenes 15 y 20
+L096,fui antiguo ex militar,\bex ?militar\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",57,Imagen 20
+L097,¿alguien anda reclutando? soy de ...,\bsoy de\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",47,Imagen 15 (Nogales)
+L098,puedo entrar con 16,\bentrar con 1[0-7]\b|\btengo 1[0-7]\b,menciona_menor,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22
+L099,"a la orden, qué hay que hacer para merecer",\ba la orden\b|\bala orden\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22
+L100,"jalo, ¿vienen por uno o a dónde hay que ir?",\bjalo\b|\bvienen por uno\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",70,Imagen 22
+L101,si me puedo meter a la maña,\bmeter a ?la mana\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",51,Imagen 18
+L102,puedo,^puedo\W*$,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",47,Imagen 14
+L103,is this a job offer?,\bjob offer\b,autopostulacion,verbatim_colmex,"Colmex SVP 2025, Del scroll al jale",47,Imagen 13
+V001,jalar / jalas,\bjala(r|s)?\b,oferta_llamado,variante_sintetica,,,Forma verbal de 'jale' (Colmex p.44 cita 'jalar')
+V002,se ocupa gente,\bse ocupa gente\b,oferta_llamado,variante_sintetica,,,Regionalismo 'ocupar' = necesitar
+V003,no se ocupa experiencia,\bno se ocupa experiencia\b|\bsin experiencia\b,oferta_requisito,variante_sintetica,,,Mapea a type_a_flags.sin_experiencia
+V004,de todos los estados,\btodos los estados\b,oferta_alcance,variante_sintetica,,,Variante de 'todo Mexico'
+V005,info / inf,\binfo?\b,contacto_privado,variante_sintetica,,,Abreviatura
+V006,#parati / #fyp,#parati\b|#fyp\b|#foryou\b,hashtag,variante_sintetica,,,Hashtags genericos de alcance en TikTok
+V007,#jale / #chamba,#jale\b|#chamba\b,hashtag,variante_sintetica,,,Hashtag derivado del lexico
+V008,raza / plebes,\braza\b|\bplebes?\b,codigo_grupo,variante_sintetica,,,'Raza' aparece en Imagen 21

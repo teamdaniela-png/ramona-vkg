@@ -4,7 +4,19 @@
 
 This file is the repo-side counterpart of `~/.claude/projects/-Users-danielacamberos-Downloads/memory/ramona_vkg_residency.md`, which is the persistent Claude memory entry. Both should be kept in sync.
 
-Last updated: 26 June 2026 (state-sync). Original: 21 April 2026.
+Last updated: 3 November 2026 (Vienna week 1). Original: 21 April 2026.
+
+## VIENNA WEEK 1 (3 Nov 2026) — read this block first
+
+Daniela arrived in Vienna 1 Nov. Residency runs 2 Nov to 2 Dec 2026 (Paris Peace Forum 9 to 12 Nov in the middle).
+
+**New on 3 Nov: TikTok criminal-recruitment lexicon + synthetic data.**
+- `data/lexicon/tiktok_reclutamiento_lexicon.csv`: 79 terms (71 verbatim) from Colmex SVP 2025 "Del scroll al jale", each with page and image. The real wording lives in the screenshots, not the body text.
+- `data/synthetic/tiktok_reclutamiento_sintetico.csv/.jsonl`: 1,500 synthetic rows (operational schema + extras), mapped to `:ForcedCriminalityScheme` / `:ChildRecruitmentCriminalScheme`. Includes 450 hard negatives (legit jobs with the same slang, corrido fan content). See `data/synthetic/README.md` for limits.
+- Generator: `scripts/build_tiktok_synthetic.py` (deterministic, seed 2026, no API key).
+- NOT pushed to the public repo yet: Daniela decides (topic overlaps the Satyarthi white paper; keep IP boundary clean).
+
+**Still pending for the residency:** paper draft, O3 demonstrator (Docker still not running on the Mac as of 3 Nov), `docs/READY_FOR_VIENNA.md`.
 
 ## CURRENT STATE SNAPSHOT (26 June 2026) — read this block first
 
