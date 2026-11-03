@@ -1,4 +1,4 @@
-# Borrador del pull request a perma-id/w3id.org (NO enviado)
+# Pull request a perma-id/w3id.org: ENVIADO 3-nov-2026, https://github.com/perma-id/w3id.org/pull/7067
 
 Archivo a crear en el fork: `ids/ratr-o/.htaccess` (contenido = `htaccess.ratr-o` de esta carpeta).
 
