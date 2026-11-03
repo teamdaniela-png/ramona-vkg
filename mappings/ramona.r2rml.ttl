@@ -1065,3 +1065,534 @@
         rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo" ;
         rr:class :FatalismSignal ;
     ] .
+
+<#TM_M_Press_Offer> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, confidence FROM ramona.press_offers""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+        rr:class :JobOffer ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :extractionConfidence ;
+        rr:objectMap [ rr:column "confidence" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Role> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, job_title FROM ramona.press_offers WHERE job_title IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredRole ;
+        rr:objectMap [ rr:column "job_title" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Location> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, offer_location FROM ramona.press_offers WHERE offer_location IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredLocation ;
+        rr:objectMap [ rr:column "offer_location" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Country> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, country_code FROM ramona.press_offers WHERE country_code IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :inCountry ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/country/{country_code}" ]
+    ] .
+
+<#TM_M_Press_Platform> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, platform_id FROM ramona.press_offers WHERE platform_id IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :postedVia ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{platform_id}" ]
+    ] .
+
+<#TM_M_Press_Pay> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, pay_amount, pay_currency FROM ramona.press_offers WHERE pay_amount IS NOT NULL AND pay_currency IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerPayAmount ;
+        rr:objectMap [ rr:column "pay_amount" ; rr:datatype xsd:decimal ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerPayCurrency ;
+        rr:objectMap [ rr:column "pay_currency" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_PayPeriod> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, pay_period FROM ramona.press_offers WHERE pay_period IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerPayPeriod ;
+        rr:objectMap [ rr:column "pay_period" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_WeeklyMXN> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, weekly_mxn FROM ramona.press_offers WHERE weekly_mxn IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offeredSalaryMXN ;
+        rr:objectMap [ rr:column "weekly_mxn" ; rr:datatype xsd:decimal ]
+    ] .
+
+<#TM_M_Press_Target> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, target_profile FROM ramona.press_offers WHERE target_profile IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerTargetProfile ;
+        rr:objectMap [ rr:column "target_profile" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Quote> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, verbatim_quote FROM ramona.press_offers WHERE verbatim_quote IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerVerbatimQuote ;
+        rr:objectMap [ rr:column "verbatim_quote" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Summary> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, paraphrase FROM ramona.press_offers WHERE paraphrase IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerSummary ;
+        rr:objectMap [ rr:column "paraphrase" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Outcome> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, outcome FROM ramona.press_offers WHERE outcome IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerOutcome ;
+        rr:objectMap [ rr:column "outcome" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Criminal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE criminal_recruitment""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+        rr:class :CriminalRecruitmentOffer ;
+    ] .
+
+<#TM_M_Press_Article> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT article_key, url, outlet FROM ramona.press_articles""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press/{article_key}" ;
+        rr:class :PressArticle ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceUrl ;
+        rr:objectMap [ rr:column "url" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceOutlet ;
+        rr:objectMap [ rr:column "outlet" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_Source> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, article_key FROM ramona.press_offer_sources""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerDocumentedIn ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press/{article_key}" ]
+    ] .
+
+<#TM_M_Press_Flag> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, flag FROM ramona.press_offer_flags""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasRedFlag ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}" ]
+    ] .
+
+<#TM_M_Press_FlagType> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, flag FROM ramona.press_offer_flags""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :flagType ;
+        rr:objectMap [ rr:column "flag" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Press_FlagA> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'A'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}" ;
+        rr:class :ClassicRedFlag ;
+    ] .
+
+<#TM_M_Press_FlagB> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'B'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}" ;
+        rr:class :CredibleLethalRedFlag ;
+    ] .
+
+<#TM_M_Press_Scheme_IdentityTheftScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'IdentityTheftScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_IdentityTheftScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'IdentityTheftScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :IdentityTheftScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_PyramidScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PyramidScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_PyramidScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PyramidScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :PyramidScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_PayToWorkScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PayToWorkScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_PayToWorkScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'PayToWorkScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :PayToWorkScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_VisaFraudScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'VisaFraudScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_VisaFraudScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'VisaFraudScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :VisaFraudScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_InPersonLureScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'InPersonLureScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_InPersonLureScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'InPersonLureScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :InPersonLureScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_DebtBondageTraffickingScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DebtBondageTraffickingScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_DebtBondageTraffickingScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DebtBondageTraffickingScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :DebtBondageTraffickingScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_DomesticWorkerLockInScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DomesticWorkerLockInScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_DomesticWorkerLockInScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'DomesticWorkerLockInScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :DomesticWorkerLockInScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_OnlineCryptoJobScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineCryptoJobScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_OnlineCryptoJobScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineCryptoJobScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :OnlineCryptoJobScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_ModelingAgencyScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ModelingAgencyScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_ModelingAgencyScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ModelingAgencyScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :ModelingAgencyScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_CallCenterScamScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CallCenterScamScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_CallCenterScamScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CallCenterScamScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :CallCenterScamScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_FakeMaquilaScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'FakeMaquilaScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_FakeMaquilaScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'FakeMaquilaScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :FakeMaquilaScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_MLMHealthBeautyScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'MLMHealthBeautyScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_MLMHealthBeautyScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'MLMHealthBeautyScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :MLMHealthBeautyScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_GigEconomyFakeDriverScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'GigEconomyFakeDriverScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_GigEconomyFakeDriverScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'GigEconomyFakeDriverScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :GigEconomyFakeDriverScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_ForcedCriminalityScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForcedCriminalityScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_ForcedCriminalityScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForcedCriminalityScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :ForcedCriminalityScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_OnlineInfluencerSalesScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineInfluencerSalesScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_OnlineInfluencerSalesScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'OnlineInfluencerSalesScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :OnlineInfluencerSalesScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_ForeignLanguageTeacherScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForeignLanguageTeacherScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_ForeignLanguageTeacherScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ForeignLanguageTeacherScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :ForeignLanguageTeacherScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_ChildRecruitmentCriminalScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ChildRecruitmentCriminalScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_ChildRecruitmentCriminalScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ChildRecruitmentCriminalScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :ChildRecruitmentCriminalScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_CentralAmericanMigrantLabourScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CentralAmericanMigrantLabourScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_CentralAmericanMigrantLabourScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'CentralAmericanMigrantLabourScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :CentralAmericanMigrantLabourScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_AgriculturalBondageScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'AgriculturalBondageScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_AgriculturalBondageScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'AgriculturalBondageScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :AgriculturalBondageScheme ;
+    ] .
+
+<#TM_M_Press_Scheme_ConstructionLabourBondageScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :exhibitsFraudScheme ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ]
+    ] .
+
+<#TM_M_Press_SchemeType_ConstructionLabourBondageScheme> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+        rr:class :ConstructionLabourBondageScheme ;
+    ] .

@@ -11,6 +11,7 @@ Before v1.9.1 the ontology was checked only by the repository script `scripts/au
 | TBox consistency | `robot reason --reasoner hermit` | **Consistent** |
 | Unsatisfiable classes | HermiT, `--dump-unsatisfiable` | **None** (no dump file produced) |
 | TBox + 1,500 synthetic items (24,037 triples) | `robot merge` + HermiT | **Consistent** |
+| TBox v1.10 + 352 real offers + 1,500 synthetic items (50,600 triples) | `robot merge` + HermiT | **Consistent** |
 | Quality report | `robot report` | OBO-convention findings only (see below) |
 
 ## What the standard profile checker found that our script missed

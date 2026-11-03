@@ -177,6 +177,23 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Answered by:** `Q35_lexicon_false_positive_rate.rq`.
 **Ontology machinery exercised:** `:itemMatchesTerm`, negation in SPARQL (outside OWL 2 QL, evaluated by the endpoint).
 
+## F. Real offer corpus (v1.10)
+
+### CQ32. Who do real recruitment offers in Mexico target?
+**Answered by:** `Q36_who_is_targeted_mx.rq`. Results in `docs/results/REAL_OFFERS_RESULTS.md`.
+
+### CQ33. Where are real recruitment offers in Mexico located?
+**Answered by:** `Q37_where_offers_mx.rq`.
+
+### CQ34. What exact words do recruiters use?
+**Answered by:** `Q38_verbatim_wording.rq` (verbatim quote + provenance via `:offerDocumentedIn`).
+
+### CQ35. Do real offers carry classic (Type A) or credible-lethal (Type B) signals?
+**Answered by:** `Q39_type_a_vs_type_b_real.rq`. **Ontology machinery exercised:** disjoint subclasses of `:RedFlag`.
+
+### CQ36. Through which platforms do criminal-recruitment offers arrive?
+**Answered by:** `Q40_criminal_recruitment_channels.rq`. **Ontology machinery exercised:** `:DirectRecruitmentPost ⊑ :CriminalRecruitmentOffer ⊑ :JobOffer`.
+
 ## Coverage summary
 
 | CQ group | Questions | Answered by |
@@ -186,9 +203,10 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | C. FraudScheme | 6 (CQ15-CQ20) | Q15-Q20 |
 | D. Pattern and trend | 6 (CQ21-CQ26) | Q21-Q26 |
 | E. Social-media recruitment (v1.9) | 5 (CQ27-CQ31) | Q31-Q35 |
-| **Total** | **31 CQs** | **31 SPARQL queries** |
+| F. Real offer corpus (v1.10) | 5 (CQ32-CQ36) | Q36-Q40 |
+| **Total** | **36 CQs** | **36 SPARQL queries** |
 
-Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 35 SPARQL queries against 31 competency questions.
+Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 40 SPARQL queries against 36 competency questions.
 
 ## What RATR-O cannot answer (honest boundary)
 

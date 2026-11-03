@@ -6,6 +6,7 @@ el pais de la nota y quita duplicados (el mismo caso contado por varios medios).
 
 Salidas (versionadas: solo metadatos, parafrasis propias y citas cortas del anuncio con su fuente):
   data/real/press_offers.csv
+  data/real/press_offer_sources.csv  (una fila por nota que documenta cada oferta)
   data/real/press_offers_stats.json
 """
 import csv
@@ -58,7 +59,7 @@ def main():
         g = groups.setdefault(k, {"items": []})
         g["items"].append(r)
 
-    out = []
+    out, sources = [], []
     for i, g in enumerate(groups.values(), 1):
         best = max(g["items"], key=lambda r: ({"high": 2, "medium": 1, "low": 0}[r["confidence"]], len(r["verbatim_quote"])))
         ctry = sorted({c for r in g["items"] for c in countries.get(r["article_id"], [])})
@@ -73,12 +74,21 @@ def main():
             "published_first": min(r["published"] for r in g["items"]),
         })
         out.append(o)
+        seen = set()
+        for r in g["items"]:
+            if r["url"] not in seen:
+                seen.add(r["url"])
+                sources.append({"offer_uid": o["offer_uid"], "url": r["url"], "outlet": r["outlet"], "published": r["published"]})
 
     OUT.mkdir(parents=True, exist_ok=True)
     with open(OUT / "press_offers.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(out)
+    with open(OUT / "press_offer_sources.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["offer_uid", "url", "outlet", "published"])
+        w.writeheader()
+        w.writerows(sources)
 
     mx = [o for o in out if "MEX" in o["countries"]]
     stats = {

@@ -21,11 +21,11 @@
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.9.1" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.9.1> ;
+    owl:versionInfo "1.10" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-03"^^xsd:date ;
-    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md."@en ;
+    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
@@ -1398,3 +1398,63 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
     rdfs:label "location in source"@en, "ubicacion en la fuente"@es ;
     rdfs:comment "Page and image number in the source report."@en .
+
+
+#################################################################
+#    v1.10 — Real offer corpus: Type A / Type B flags, criminal
+#    recruitment offers, provenance of each offer
+#################################################################
+
+:ClassicRedFlag a owl:Class ;
+    rdfs:subClassOf :RedFlag ;
+    rdfs:label "Classic red flag (Type A)"@en, "Bandera roja clasica (Tipo A)"@es ;
+    rdfs:comment "One of the classic warning signs of Ramona's public infographic: high salary, no experience needed, urgent hiring, advance payment, paid travel, flexible hours, job in another state. The value is in :flagType."@en .
+
+:CredibleLethalRedFlag a owl:Class ;
+    rdfs:subClassOf :RedFlag ;
+    rdfs:label "Credible-lethal red flag (Type B)"@en, "Bandera roja creible-letal (Tipo B)"@es ;
+    rdfs:comment "A logistic signal inside an otherwise plausible offer: nameless company, WhatsApp without logo, meeting in a multi-use building, asked to come alone or without ID, Messenger-to-WhatsApp funnel, atypical hours, personal-data harvesting, plausible bait role, last-minute relocation. The value is in :flagType."@en .
+
+:ClassicRedFlag owl:disjointWith :CredibleLethalRedFlag .
+
+:CriminalRecruitmentOffer a owl:Class ;
+    rdfs:subClassOf :JobOffer ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :exhibitsFraudScheme ; owl:someValuesFrom :ForcedCriminalityScheme ] ;
+    rdfs:label "Criminal recruitment offer"@en, "Oferta de reclutamiento criminal"@es ;
+    rdfs:comment "A job offer whose purpose is to recruit into organised-crime activity (lookout, hitman, armed 'security', drug logistics), whatever the channel."@en .
+
+:DirectRecruitmentPost rdfs:subClassOf :CriminalRecruitmentOffer .
+
+:offerDocumentedIn a owl:ObjectProperty ;
+    rdfs:domain :JobOffer ; rdfs:range :EvidenceSource ;
+    rdfs:label "offer documented in"@en, "oferta documentada en"@es ;
+    rdfs:comment "Provenance: the evidence source (press article, report) that describes this offer."@en .
+
+:offerSummary a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "offer summary"@en, "resumen de la oferta"@es ;
+    rdfs:comment "One-sentence Spanish paraphrase of the offer as described by the source."@en .
+:offerVerbatimQuote a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "verbatim quote of the offer"@en, "cita textual de la oferta"@es ;
+    rdfs:comment "Exact text of the advertisement or recruiter message as quoted by the source, verified as a literal substring."@en .
+:offerTargetProfile a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "target profile"@en, "perfil buscado"@es .
+:offerOutcome a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "reported outcome"@en, "desenlace reportado"@es ;
+    rdfs:comment "Controlled vocabulary: rescate, desaparicion, explotacion_sexual, explotacion_laboral, fraude_economico, homicidio, detencion_reclutador, other."@en .
+:offerPayAmount a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
+    rdfs:label "offered pay amount"@en, "monto ofrecido"@es .
+:offerPayCurrency a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "offered pay currency"@en, "moneda ofrecida"@es .
+:offerPayPeriod a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "offered pay period"@en, "periodo de pago"@es .
+:extractionConfidence a owl:DatatypeProperty ;
+    rdfs:domain :JobOffer ; rdfs:range xsd:string ;
+    rdfs:label "extraction confidence"@en, "confianza de extraccion"@es ;
+    rdfs:comment "high, medium or low: how clearly the source describes this specific offer."@en .

@@ -1,0 +1,10 @@
+PREFIX : <https://w3id.org/ratr-o#>
+# Q39 (CQ35). Among real offers that carry at least one red flag: how many have only classic (Type A),
+# only credible-lethal (Type B), or both? Press-documented offers: NOT a prevalence estimate.
+SELECT ?profile (COUNT(DISTINCT ?offer) AS ?n) WHERE {
+  ?offer a :JobOffer ; :hasRedFlag ?f .
+  BIND(EXISTS { ?offer :hasRedFlag ?a . ?a a :ClassicRedFlag } AS ?hasA)
+  BIND(EXISTS { ?offer :hasRedFlag ?b . ?b a :CredibleLethalRedFlag } AS ?hasB)
+  BIND(IF(?hasA && ?hasB, "A y B", IF(?hasA, "solo A", "solo B")) AS ?profile)
+}
+GROUP BY ?profile

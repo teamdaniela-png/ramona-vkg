@@ -1,0 +1,7 @@
+PREFIX : <https://w3id.org/ratr-o#>
+# Q38 (CQ34). What exact words do recruiters use? Verbatim quotes of real offers, with the source.
+SELECT ?quote ?outlet ?url WHERE {
+  ?offer :offerVerbatimQuote ?quote ; :offerDocumentedIn ?a .
+  ?a :sourceOutlet ?outlet ; :sourceUrl ?url .
+}
+ORDER BY ?outlet

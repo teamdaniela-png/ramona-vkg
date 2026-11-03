@@ -26,6 +26,8 @@ Daniela arrived in Vienna 1 Nov. Residency runs 2 Nov to 2 Dec 2026 (Paris Peace
 
 **v1.9.1 (3 Nov 2026): standard-tool validation DONE.** ROBOT 1.9.11 at `~/Downloads/_tools/robot/robot.jar`, Java = `/opt/homebrew/opt/openjdk/bin/java` (NOT /usr/bin/java, that is the macOS stub). OWL API found the file NOT in QL (16 ranges xsd:date/gYear/boolean + undeclared annotation props); fixed, now in profile; HermiT consistent with and without the 1,500 synthetic items. Report: `docs/validation/VALIDATION_REPORT.md`. audit_o1.py now checks the QL datatype map.
 
+**v1.10 (3 Nov 2026): REAL data.** 352 real offer descriptions (215 Mexico) extracted from the press corpus (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`), loaded via `db/12_press_offers_real.sql` + 59 `M-Press-*` mappings; new classes ClassicRedFlag / CredibleLethalRedFlag / CriminalRecruitmentOffer, `:offerDocumentedIn`. HermiT-consistent with real + synthetic data. Q36-Q40. Consejo Ciudadano scraper: `scripts/scrape_consejo_ciudadano.py` -> `data/processed/consejo/cifras_consejo.csv`. Daniela is pushing Consejo (unpublished data) and Ramona's own reports.
+
 **Still pending for the residency:** w3id PR merge (perma-id/w3id.org#7067), OOPS!/FOOPS! scans, paper draft, O3 demonstrator (Docker still not running on the Mac), Zenodo DOI, `docs/READY_FOR_VIENNA.md`.
 
 ## CURRENT STATE SNAPSHOT (26 June 2026) — read this block first
