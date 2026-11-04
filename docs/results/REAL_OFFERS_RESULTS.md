@@ -77,3 +77,12 @@ Fake job offers are the first recruitment method in every annual report since th
 
 **Required citation (Consejo Ciudadano, 4 Nov 2026): always cite the source as "Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México", with the document of origin.** These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
 frame for the press-offer corpus above.
+
+## Formality bias (limitation flagged by the Consejo Ciudadano, 4 Nov 2026)
+
+Consejo Ciudadano staff (personal communication, T-002) report that recruitment by organised crime happens mostly
+through informal "chambitas" (supposed motorcycle sales, call centres) that are not even formal companies, and in
+marginalised areas through word of mouth. The legitimate-offer sample (`data/real/legit_offers.csv`) comes from formal
+job boards, so a rule learned from "trap vs legitimate" risks learning "informal vs formal". Mitigation: (1) report the
+contrast as formal-legitimate vs trap, not as legitimate vs trap in general; (2) seek informal legitimate offers
+(e.g. Ramona reports judged legitimate); (3) treat word-of-mouth recruitment as outside what text-based detection can see.
