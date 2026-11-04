@@ -24,7 +24,10 @@ ISO2 = {"MEX": "MX", "COL": "CO", "PER": "PE", "USA": "US", "ESP": "ES", "ARG": 
 PLAT_ID = {"WhatsApp": 1, "Telegram": 2, "TikTok": 5, "OCC Mundial": 6, "CompuTrabajo": 7, "Facebook": 101, "Instagram": 102, "Indeed": 103}
 
 g = rdflib.Graph()
-for o in csv.DictReader(open(ROOT / "data/real/press_offers.csv", encoding="utf-8")):
+VER = {o["offer_uid"] for o in csv.DictReader(open(ROOT / "data/real/press_offers_verified.csv", encoding="utf-8")) if o["audit_status"] == "verificada"}
+for o in csv.DictReader(open(ROOT / "data/real/press_offers_verified.csv", encoding="utf-8")):
+    if o["offer_uid"] not in VER:
+        continue
     u = URIRef(f"{D}/press-offer/{o['offer_uid']}")
     g.add((u, RDF.type, O.JobOffer)); g.add((u, O.extractionConfidence, Literal(o["confidence"])))
     for col, p in (("job_title", O.offeredRole), ("offer_location", O.offeredLocation), ("target_profile", O.offerTargetProfile),
@@ -51,6 +54,8 @@ for o in csv.DictReader(open(ROOT / "data/real/press_offers.csv", encoding="utf-
             fu = URIRef(f"{D}/press-offer/{o['offer_uid']}/flag/{f}")
             g.add((u, O.hasRedFlag, fu)); g.add((fu, RDF.type, cls)); g.add((fu, O.flagType, Literal(f)))
 for s in csv.DictReader(open(ROOT / "data/real/press_offer_sources.csv", encoding="utf-8")):
+    if s["offer_uid"] not in VER:
+        continue
     a = URIRef(f"{D}/press/{hashlib.sha1(s['url'].encode()).hexdigest()[:12]}")
     g.add((URIRef(f"{D}/press-offer/{s['offer_uid']}"), O.offerDocumentedIn, a))
     g.add((a, RDF.type, O.PressArticle)); g.add((a, O.sourceUrl, Literal(s["url"]))); g.add((a, O.sourceOutlet, Literal(s["outlet"])))

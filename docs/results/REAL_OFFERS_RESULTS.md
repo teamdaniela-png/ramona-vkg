@@ -6,49 +6,52 @@
 - 532 articles contain passages describing an offer (`scripts/extract_offer_snippets.py`).
 - Every passage read and structured without inference (job, pay, platform, location, target, requirements,
   contact, verbatim quote, Type A / Type B flags, scheme, outcome). Verbatim quotes are checked as exact substrings.
-- 352 offer descriptions after merging (`data/real/press_offers.csv`), **215 in Mexico**, documented by 321 articles
+- 352 offer descriptions after merging (295 verified after the independent audit below) (`data/real/press_offers.csv`), **215 in Mexico**, documented by 321 articles
   (`data/real/press_offer_sources.csv`). 48 carry a verbatim quote of the ad or recruiter message.
 - Deduplication is conservative: heavily covered cases (e.g. Teuchitlán) may still appear more than once.
 
+## Independent audit (4 Nov 2026)
+
+Every offer was re-read by an independent reviewer against its source text (`data/processed/offers/audit/`,
+instructions in `INSTRUCCIONES_AUDITORIA.md`), and the result was checked by code (`scripts/apply_audit.py`):
+evidence sentences must be literal substrings of the source.
+
+| Status | Offers | Rule |
+|---|---:|---|
+| **verificada** | **295** | reviewer says the offer was deceptive or criminal recruitment AND gives a literal sentence that proves it |
+| dudosa | 55 | the text does not state explicitly that the offer was deceptive (kept, not counted) |
+| descartada | 2 | not a deceptive offer |
+
+77 field values were corrected or emptied in 70 offers (e.g. the place where the victim ended up recorded
+as the offer location; the forced job recorded as the promised job; victim testimony recorded as a recruiter
+quote). Only **verificada** offers are loaded into the VKG (`db/12_press_offers_real.sql`).
+Output: `data/real/press_offers_verified.csv` (columns `audit_status`, `audit_evidence`, `audit_changes`).
+
 ## Reasoning check
 
-Ontology v1.10 + 352 real offers + 1,500 synthetic social-media items (50,600 triples after reasoning):
-**consistent under HermiT** (ROBOT 1.9.11). The ontology remains in the OWL 2 QL profile.
+Ontology v1.10 + 295 verified offers + 1,500 synthetic items: **consistent under HermiT** (ROBOT 1.9.11).
+SPARQL answers over the reasoned graph match the direct counts on the CSV.
 
-## Answers (SPARQL over the HermiT-materialised graph; Ontop run pending Docker)
+## Answers (verified offers only; Ontop run pending Docker)
 
-**Q36. Who is targeted (Mexico, offers that state a profile):** young people 74, women 42, adolescents or minors 25,
-migrants 7, students 7, Indigenous people 4.
+**Q36. Who is targeted (Mexico, 167 verified offers, 103 state a profile):** young people 48, women 27,
+adolescents or minors 22, men 8, migrants 6, students 5, Indigenous people 3.
 
-**Q37. Where (Mexico, offered location as reported):** Jalisco 71, CDMX 21, Chihuahua 15, Puebla 9, Quintana Roo 8,
-Guanajuato 5. Jalisco is inflated by repeated coverage of the Teuchitlán case.
+**Q37. Where the job was said to be (Mexico, 133 state a place):** Jalisco 51, CDMX 9, Puebla 8,
+Quintana Roo 7, Chihuahua 6. Jalisco is inflated by repeated coverage of the Teuchitlán case.
 
-**Q38. Exact wording:** 48 verbatim quotes with outlet and URL, e.g. "tienes que venir sola y sin INE" (La Silla Rota),
-"puras jovencitas" (BajaNews), "estamos reclutando gente… Inbox" (International Crisis Group).
+**Q38. Exact wording:** 39 verified quotes of the ad or recruiter message (victim and witness testimony excluded),
+e.g. "Ocupamos gente hombres que le interesa trabajar para la 'empresa cuatro letras'" (RTVE),
+"Hombres que quieran trabajar para la empresa (nombre del grupo criminal) se les pagará 8 mil por semana"
+(El Informador), "estamos reclutando gente… Inbox" (International Crisis Group).
 
-**Q39. Type A vs Type B (all countries, 229 offers with at least one flag):** only classic flags 141, only
-credible-lethal 46, both 42. **88 of 229 offers (38%) carry at least one credible-lethal signal.**
-This is a property of press-documented offers, not a prevalence estimate; the withdrawn press ratio of v1.7 is
-not reinstated (`docs/CLASSIFIER_VALIDATION.md`).
+**Q39. Type A vs Type B (191 verified offers with at least one flag):** only classic 118, only credible-lethal 38,
+both 35. **73 of 191 (38%) carry at least one credible-lethal signal.** Press-documented offers: not a prevalence.
 
-**Q40. Channels of criminal-recruitment offers:** TikTok 13, Facebook 10, WhatsApp 2 (offers that name a platform).
+**Q40. Channels of criminal-recruitment offers (verified, naming a platform):** TikTok 13, Facebook 9, WhatsApp 2.
 
-## Limits
-
-Press reports cases that reached the news (selection bias towards outcomes such as disappearance and rescue).
-Ramona operational reports and Consejo Ciudadano figures are the next sources.
-
-## Reproduce
-
-```bash
-python3 scripts/build_real_offers.py
-python3 scripts/build_press_offers_module.py
-.venv/bin/python scripts/materialize_press_abox.py /tmp/press.ttl
-.venv/bin/python scripts/materialize_social_abox.py /tmp/social.ttl
-java -jar robot.jar merge --input ontology/ratr-o.ttl --input /tmp/press.ttl --input /tmp/social.ttl \
-  reason --reasoner hermit --axiom-generators "ClassAssertion" --include-indirect true --output /tmp/all.ttl
-# then run queries/Q36..Q40 against /tmp/all.ttl
-```
+Other verified counts (Mexico): 93 of 167 are criminal recruitment; most frequent promised job is security guard
+or private security (45); median promised weekly pay 6,000 MXN (23 offers with weekly MXN pay).
 
 ## External benchmark: Consejo Ciudadano (CDMX), public figures
 
