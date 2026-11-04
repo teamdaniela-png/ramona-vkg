@@ -62,5 +62,5 @@ fake job offer, as published by the Consejo: 47% (2019-2020 analysis), 44% (Jul 
 Among victims recruited through fake job offers: 75% women, 56% destined to prostitution, 52% aged 18 to 31 (Apr 2026).
 Fake job offers are the first recruitment method in every annual report since the pandemic.
 
-These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
+**Required citation (Consejo Ciudadano, 4 Nov 2026): always cite the source as "Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México", with the document of origin.** These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
 frame for the press-offer corpus above.
