@@ -53,6 +53,16 @@ both 35. **73 of 191 (38%) carry at least one credible-lethal signal.** Press-do
 Other verified counts (Mexico): 93 of 167 are criminal recruitment; most frequent promised job is security guard
 or private security (45); median promised weekly pay 6,000 MXN (23 offers with weekly MXN pay).
 
+## Direct testimony (fieldwork, anonymous)
+
+`data/real/testimonios_directos.csv`. T-001: collective of searching mothers, Jalisco (anonymous), events around
+2024, told orally to Daniela Camberos. Offers for driver and security guard jobs, no experience required, found
+on Facebook; victims around 24 years old; most were found dead. Phrases the mothers heard at the prosecutor's
+office (second-hand): "tienes que venir sola y sin INE" and "puras jovencitas". Both phrases also appear in
+independent press reports of other cases (PRESS-0229, PRESS-0232), so the wording is corroborated by two source
+types; the cases themselves are not merged. Age converges with the Consejo Ciudadano figure (52% of people
+recruited through fake job offers are 18 to 31, Apr 2026) and with the press profile (young people 48 vs minors 22).
+
 ## External benchmark: Consejo Ciudadano (CDMX), public figures
 
 `scripts/scrape_consejo_ciudadano.py` read 503 bulletins and 192 PDF reports (695 documents, 164 on topic,
