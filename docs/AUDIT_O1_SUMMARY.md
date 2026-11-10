@@ -44,7 +44,7 @@ reports 4 blockers and 162 SHOULD-grade findings; against v1.10.1, none.
 2. Consistency hygiene — unused classes, missing labels, missing domain or range, near-duplicates.
 3. Coverage — the eight entities named in Magdalena's O1 brief are present.
 4. Provenance — every FraudScheme has an `rdfs:seeAlso` or a substantive `rdfs:comment`; every
-   `skos:closeMatch` points to a URL.
+   external alignment either carries a verified IRI or a `skos:note` saying why it could not be verified.
 5. Naming conventions — UpperCamelCase for classes, lowerCamelCase for properties.
 6. Mapping consistency — OBDA and R2RML exist, parse, and emit datatypes that agree with the
    declared ranges.
@@ -77,7 +77,7 @@ fixed. The 2 NOTEs record that two FraudScheme classes get their instances from
 | Object properties | 66 |
 | Datatype properties | 101 |
 | TBox triples | 1,582 |
-| `skos:closeMatch` alignments to HUTRO | 8 |
+| HUTRO alignments, by concept label in a `skos:note` | 8 |
 | R2RML mapping triples | 1,511 |
 | Competency questions / SPARQL queries | 36 / 40 |
 

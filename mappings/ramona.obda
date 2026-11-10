@@ -9,8 +9,8 @@ owl:    http://www.w3.org/2002/07/owl#
 [MappingDeclaration] @collection [[
 
 mappingId   M-Country
-target      <https://w3id.org/ratr-o/data/country/{country_code}> a :Country ; :countryName {country_name}^^xsd:string ; :countryISOCode {country_code}^^xsd:string .
-source      SELECT country_code, country_name FROM ramona.countries
+target      <https://w3id.org/ratr-o/data/country/{country_iso3}> a :Country ; :countryName {country_name}^^xsd:string ; :countryISOCode {country_iso3}^^xsd:string .
+source      SELECT country_iso3, country_name FROM ramona.countries WHERE country_iso3 IS NOT NULL
 
 mappingId   M-Language
 target      <https://w3id.org/ratr-o/data/language/{language_code}> a :Language ; :languageName {language_name}^^xsd:string ; :languageISOCode {language_code}^^xsd:string .
@@ -21,8 +21,8 @@ target      <https://w3id.org/ratr-o/data/platform/{platform_id}> a :Platform ; 
 source      SELECT platform_id, platform_name, platform_type FROM ramona.platforms
 
 mappingId   M-Platform-Country
-target      <https://w3id.org/ratr-o/data/platform/{platform_id}> :platformCountry <https://w3id.org/ratr-o/data/country/{platform_country}> .
-source      SELECT platform_id, platform_country FROM ramona.platforms WHERE platform_country IS NOT NULL
+target      <https://w3id.org/ratr-o/data/platform/{platform_id}> :platformCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> .
+source      SELECT p.platform_id, c.country_iso3 FROM ramona.platforms p JOIN ramona.countries c ON c.country_code = p.platform_country WHERE c.country_iso3 IS NOT NULL
 
 mappingId   M-EvidenceSource
 target      <https://w3id.org/ratr-o/data/evidence/{source_id}> a :EvidenceSource ; :sourceTitle {source_title}^^xsd:string ; :sourceOutlet {source_outlet}^^xsd:string ; :sourceDate {source_date}^^xsd:date .
@@ -47,6 +47,18 @@ source      SELECT route_id, evidence_source FROM ramona.trafficking_routes WHER
 mappingId   M-Pattern
 target      <https://w3id.org/ratr-o/data/pattern/{pattern_id}> a :SurvivorTestimonyPattern ; :patternName {pattern_name}^^xsd:string ; :patternDescription {pattern_description}^^xsd:string .
 source      SELECT pattern_id, pattern_name, pattern_description FROM ramona.survivor_patterns
+
+mappingId   M-Pattern-Measures
+target      <https://w3id.org/ratr-o/data/pattern/{pattern_id}> :observedCount {observed_count}^^xsd:integer ; :patternHasKind {pattern_kind}^^xsd:string .
+source      SELECT pattern_id, observed_count, pattern_kind FROM ramona.survivor_patterns WHERE observed_count IS NOT NULL AND pattern_kind IS NOT NULL
+
+mappingId   M-Pattern-Bucket
+target      <https://w3id.org/ratr-o/data/pattern/{pattern_id}> :dominanceBucketValue {dominance_bucket}^^xsd:string ; :hasDominanceBucket <https://w3id.org/ratr-o/data/dominance-bucket/{dominance_bucket}> .
+source      SELECT pattern_id, dominance_bucket FROM ramona.survivor_patterns WHERE dominance_bucket IS NOT NULL
+
+mappingId   M-DominanceBucket
+target      <https://w3id.org/ratr-o/data/dominance-bucket/{dominance_bucket}> a :DominanceBucket .
+source      SELECT DISTINCT dominance_bucket FROM ramona.survivor_patterns WHERE dominance_bucket IS NOT NULL
 
 mappingId   M-Pattern-Evidence
 target      <https://w3id.org/ratr-o/data/pattern/{pattern_id}> :derivedFrom <https://w3id.org/ratr-o/data/evidence/{evidence_source}> .
@@ -73,8 +85,8 @@ target      <https://w3id.org/ratr-o/data/recruiter/{recruiter_id}> :agentName {
 source      SELECT recruiter_id, agent_name FROM ramona.recruiters WHERE agent_name IS NOT NULL
 
 mappingId   M-Recruiter-Country
-target      <https://w3id.org/ratr-o/data/recruiter/{recruiter_id}> :recruiterCountry <https://w3id.org/ratr-o/data/country/{recruiter_country}> .
-source      SELECT recruiter_id, recruiter_country FROM ramona.recruiters WHERE recruiter_country IS NOT NULL
+target      <https://w3id.org/ratr-o/data/recruiter/{recruiter_id}> :recruiterCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> .
+source      SELECT r.recruiter_id, c.country_iso3 FROM ramona.recruiters r JOIN ramona.countries c ON c.country_code = r.recruiter_country WHERE c.country_iso3 IS NOT NULL
 
 mappingId   M-Candidate
 target      <https://w3id.org/ratr-o/data/candidate/{candidate_id}> a :Candidate .
@@ -89,8 +101,8 @@ target      <https://w3id.org/ratr-o/data/classification/{classification_id}> :e
 source      SELECT classification_id, explanation_text FROM ramona.classifications WHERE explanation_text IS NOT NULL
 
 mappingId   M-Offer
-target      <https://w3id.org/ratr-o/data/offer/{offer_id}> a :JobOffer ; :hasRawText {raw_text}^^xsd:string ; :postedOn {posted_at}^^xsd:date ; :postedVia <https://w3id.org/ratr-o/data/platform/{source_platform}> ; :inCountry <https://w3id.org/ratr-o/data/country/{country_code}> ; :inLanguage <https://w3id.org/ratr-o/data/language/{language_code}> .
-source      SELECT offer_id, raw_text, posted_at, source_platform, country_code, language_code FROM ramona.offers
+target      <https://w3id.org/ratr-o/data/offer/{offer_id}> a :JobOffer ; :hasRawText {raw_text}^^xsd:string ; :postedOn {posted_at}^^xsd:date ; :postedVia <https://w3id.org/ratr-o/data/platform/{source_platform}> ; :inCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> ; :inLanguage <https://w3id.org/ratr-o/data/language/{language_code}> .
+source      SELECT o.offer_id, o.raw_text, o.posted_at, o.source_platform, c.country_iso3, o.language_code FROM ramona.offers o JOIN ramona.countries c ON c.country_code = o.country_code
 
 mappingId   M-Offer-Role
 target      <https://w3id.org/ratr-o/data/offer/{offer_id}> :offeredRole {offered_role}^^xsd:string .
@@ -179,6 +191,14 @@ source      SELECT doc_code, doc_label FROM public.documentation_type
 mappingId   M-EvidenceSourceExtended
 target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> a :EvidenceSource ; :sourceTitle {title}^^xsd:string ; :sourceOutlet {outlet}^^xsd:string .
 source      SELECT source_id, title, outlet FROM public.evidence_source_extended
+
+mappingId   M-EvidenceSource-Author
+target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :sourceAuthor {author}^^xsd:string .
+source      SELECT source_id, author FROM public.evidence_source_extended WHERE author IS NOT NULL
+
+mappingId   M-EvidenceSource-DatasetRecord
+target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :datasetRecordId {dataset_record_id}^^xsd:string .
+source      SELECT source_id, dataset_record_id FROM public.evidence_source_extended WHERE dataset_record_id IS NOT NULL AND source_kind IN ('ctdc','unodc','rnpdno')
 
 mappingId   M-EvidenceSource-Kind
 target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :datasetName {source_kind}^^xsd:string .
@@ -405,8 +425,8 @@ target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offeredLocat
 source      SELECT offer_uid, offer_location FROM ramona.press_offers WHERE offer_location IS NOT NULL
 
 mappingId   M-Press-Country
-target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :inCountry <https://w3id.org/ratr-o/data/country/{country_code}> .
-source      SELECT offer_uid, country_code FROM ramona.press_offers WHERE country_code IS NOT NULL
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :inCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> .
+source      SELECT p.offer_uid, c.country_iso3 FROM ramona.press_offers p JOIN ramona.countries c ON c.country_code = p.country_code WHERE c.country_iso3 IS NOT NULL
 
 mappingId   M-Press-Platform
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :postedVia <https://w3id.org/ratr-o/data/platform/{platform_id}> .

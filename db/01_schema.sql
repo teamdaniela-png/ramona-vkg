@@ -35,8 +35,10 @@ CREATE TABLE evidence_sources (
 CREATE TABLE trafficking_routes (
     route_id         SERIAL PRIMARY KEY,
     route_name       TEXT NOT NULL,
-    origin_country   CHAR(2) NOT NULL REFERENCES countries(country_code),
-    destination_country CHAR(2) NOT NULL REFERENCES countries(country_code),
+    -- ISO 3166-1 alpha-3, the identifier CTDC uses and the canonical country key of the VKG.
+    -- The foreign keys are added in db/08_enriched_countries.sql, where country_iso3 is populated.
+    origin_country   CHAR(3) NOT NULL,
+    destination_country CHAR(3) NOT NULL,
     known_since      DATE,
     evidence_source  INTEGER REFERENCES evidence_sources(source_id)
 );

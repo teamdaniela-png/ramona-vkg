@@ -1,7 +1,7 @@
 # RATR-O vs HUTRO — Formal comparative analysis
 
 **Prepared for:** Prof. Magdalena Ortiz (TU Wien, Institute of Logic and Computation) as supporting material for the Dialogue Residency proposal, May to July 2026.
-**RATR-O version reviewed:** 1.6.1 (22 April 2026).
+**RATR-O version reviewed:** 1.10.2 (10 November 2026). The first version of this document reviewed 1.6.1 (22 April 2026).
 **HUTRO version reviewed:** as published on BioPortal, upload date 22 April 2025, author Danial Zemchal Tesfahans, status Alpha.
 
 This document addresses the foreseeable reviewer question: *"An ontology for human trafficking already exists on BioPortal (HUTRO). What does RATR-O add, and what does it reuse, and why?"* It answers that question with a point-by-point comparison and a clear decision record.
@@ -18,22 +18,22 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 |---|---|---|
 | **Author** | Danial Zemchal Tesfahans, Addis Ababa (Ethiopia) | Daniela Camberos, Ramona AI (Mexico), with Magdalena Ortiz TU Wien as proposed co-author |
 | **Upload / version date** | 22 April 2025 | 22 April 2026 |
-| **Status declared on BioPortal** | Alpha | Not applicable (this is the ontology's own repository); self-audited with zero blockers and zero SHOULD-grade findings |
+| **Status declared on BioPortal** | Alpha | Not applicable (this is the ontology's own repository); self-audited twice, the second time before delivery, with zero blockers and zero SHOULD-grade findings remaining |
 | **Purpose declared** | "to investigate the trend of human trafficking of Eritrean refugees in Ethiopia" | "detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America" |
-| **Geographic scope** | Horn of Africa (Eritrea to Ethiopia corridor, with ransom-transaction focus) | Latin America, with specific attention to Mexico; alignment to global ISO 3166-1 catalogue (248 countries) |
+| **Geographic scope** | Horn of Africa (Eritrea to Ethiopia corridor, with ransom-transaction focus) | Latin America, with specific attention to Mexico; alignment to the global ISO 3166-1 catalogue (248 countries, keyed on the alpha-3 code, which is the canonical country key of the VKG) |
 | **Formal language** | SKOS ConceptScheme | OWL 2 QL (DL-Lite fragment, Calvanese et al. 2007) |
 | **Reasoning layer** | None (SKOS does not provide logical inference) | Query rewriting under DL-Lite guarantees (Xiao et al. 2019) |
 | **Profile validation** | Not applicable | Validated (no disallowed axioms in the OWL 2 QL profile) |
-| **Classes / top-level concepts** | 37 SKOS concepts | 86 OWL classes |
-| **Object properties** | Default SKOS (broader, narrower, related) | 60 domain-specific object properties |
-| **Datatype properties** | None (SKOS conceptScheme) | 80 domain-specific datatype properties |
-| **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 24 FraudSchemes with official-source citations |
+| **Classes / top-level concepts** | not re-verified: BioPortal is served behind a bot challenge, so the metrics page could not be opened on 10 November 2026. The first version of this document recorded 37 SKOS concepts | 114 OWL classes |
+| **Object properties** | Default SKOS (broader, narrower, related) | 66 domain-specific object properties |
+| **Datatype properties** | None (SKOS conceptScheme) | 101 domain-specific datatype properties |
+| **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 26 FraudSchemes with official-source citations |
 | **Alignment with Palermo Protocol** | Not formalised | `:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose` with verbatim sub-concepts |
-| **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit |
+| **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |
 | **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim` |
 | **Operational database binding (OBDA or R2RML)** | None | Ontop OBDA mapping + W3C R2RML mapping both shipped |
-| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack + 30 reference queries answering 26 competency questions |
-| **Connected open dataset** | None | 257,969 CTDC records (plus 1,332 classified press articles) |
+| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack + 40 reference queries answering 36 competency questions. Not yet executed: Docker does not run on the machine this was built on |
+| **Connected open dataset** | None | 257,969 CTDC records, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
 | **Provenance mechanism for each domain claim** | `inScheme` only | `:derivedFrom :EvidenceSource` on every domain instance |
 | **Documentation** | BioPortal class tree | HTML docs (100+ KB), dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
 | **Reproducibility** | Not applicable (static vocabulary) | Every statistic reproducible by running committed scripts |
@@ -41,18 +41,33 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 
 ## Conceptual reuse from HUTRO to RATR-O
 
-RATR-O imports eight HUTRO concepts via `skos:closeMatch`. "Close match" is the correct SKOS predicate when two concepts are sufficiently similar to be interoperable in many applications but are not identical in scope. For each:
+RATR-O records a close match to eight HUTRO concepts. "Close match" is the right relation when two
+concepts are similar enough to be interoperable in many applications but are not identical in scope.
 
-| RATR-O class | HUTRO concept (URL) | What is reused | What differs |
+**How the alignment is recorded, and why it changed in v1.10.2.** Up to v1.10.1 each of the eight was
+asserted as `skos:closeMatch` against an IRI of the form
+`https://bioportal.bioontology.org/ontologies/HUTRO` + the concept name. Those IRIs are not HUTRO
+identifiers: they are the BioPortal web page URL with a concept name stuck on the end. HUTRO's
+BioPortal submission declares the placeholder namespace `http://www.example.com`, and BioPortal
+serves the site behind a bot challenge, so the real concept IRIs could not be read and checked on
+10 November 2026. The eight assertions are therefore recorded by **concept label**, in a
+`skos:note` on each RATR-O class that states the HUTRO concept, the date of the check and why it
+failed. `skos:closeMatch` will be asserted again once the IRIs are read from the HUTRO SKOS file
+itself. The same correction was applied to the `hutro_concept_label` column of the reference tables
+in `db/04_schema_extension_v1.sql`, which held the same constructed values.
+
+For each:
+
+| RATR-O class | HUTRO concept (label) | What is reused | What differs |
 |---|---|---|---|
-| `:RecruitmentMethod` | `HUTROrecruitment_method` | the notion of categorising how a victim is initially approached | RATR-O uses 13 controlled values (social_media, classifieds, in_person_street, labour_broker, etc.), covering the online-recruitment context that HUTRO does not represent |
-| `:TypeOfExploitation` | `HUTROtype_of_exploitation` | the broad distinction between labour, sexual, and other exploitation | RATR-O adds ISIC-aligned labour subtypes (agriculture, construction, hospitality, domestic) and explicit `:forced_criminality`, `:organ_removal` |
-| `:VulnerabilityFactor` | `HUTROvulnerability_factor` | the idea that a victim's socioeconomic context increases exposure | RATR-O uses ten codes including `migrant_status`, `minor`, `indigenous`, `single_parent` that reflect Latin-American victimology literature |
-| `:TransportationMeans` | `HUTROtransportation_means` | the notion that trafficking routes use attested transport modes | RATR-O uses eight codes plus `unknown`; matches the CTDC vocabulary |
-| `:CommunicationTool` | `HUTROsmuggler_and_trafficker_communication_tools` | that first-contact tool is a first-class entity | RATR-O adds `whatsapp`, `messenger`, `telegram` as primary categories because those are the dominant tools in the Latin-American online-recruitment context |
-| `:DocumentationType` | `HUTROdocumentation_type` | types of identity and travel documents demanded or withheld | RATR-O adds `:FalseDocumentation` as an explicit subclass and aligns with Palermo `:MeansFraud` |
-| `:FalseDocumentation` | `HUTROfalse_documentation` | identical conceptually | same semantic, adopted verbatim |
-| `:TraffickingRoute` | `HUTROtrafficking_transit_places` | the notion of routes with transit stages | RATR-O structures routes with explicit origin and destination countries, victim counts, year ranges |
+| `:RecruitmentMethod` | "recruitment method" | the notion of categorising how a victim is initially approached | RATR-O uses 13 controlled values (social_media, classifieds, in_person_street, labour_broker, etc.), covering the online-recruitment context that HUTRO does not represent |
+| `:TypeOfExploitation` | "type of exploitation" | the broad distinction between labour, sexual, and other exploitation | RATR-O adds ISIC-aligned labour subtypes (agriculture, construction, hospitality, domestic) and explicit `:forced_criminality`, `:organ_removal` |
+| `:VulnerabilityFactor` | "vulnerability factor" | the idea that a victim's socioeconomic context increases exposure | RATR-O uses ten codes including `migrant_status`, `minor`, `indigenous`, `single_parent` that reflect Latin-American victimology literature |
+| `:TransportationMeans` | "transportation means" | the notion that trafficking routes use attested transport modes | RATR-O uses eight codes plus `unknown`; matches the CTDC vocabulary |
+| `:CommunicationTool` | "smuggler and trafficker communication tools" | that first-contact tool is a first-class entity | RATR-O adds `whatsapp`, `messenger`, `telegram` as primary categories because those are the dominant tools in the Latin-American online-recruitment context |
+| `:DocumentationType` | "documentation type" | types of identity and travel documents demanded or withheld | RATR-O adds `:FalseDocumentation` as an explicit subclass and aligns with Palermo `:MeansFraud` |
+| `:FalseDocumentation` | "false documentation" | identical conceptually | same semantic, adopted verbatim |
+| `:TraffickingRoute` | "trafficking transit places" | the notion of routes with transit stages | RATR-O structures routes with explicit origin and destination countries, victim counts, year ranges |
 
 ## What RATR-O introduces that HUTRO does not have
 
@@ -91,7 +106,7 @@ Three reasons:
 
 2. **Formal expressiveness.** SKOS does not offer subclass reasoning, domain and range axioms, or compatibility with OBDA tooling like Ontop. OWL 2 QL does. Since the project requires a Virtual Knowledge Graph running SPARQL over Postgres, OWL 2 QL is the right choice per Xiao, Ding, Cogrel and Calvanese (2019).
 
-3. **Respect for the source.** Overwriting HUTRO as a de-facto replacement would have been uncollegial toward the HUTRO author. `skos:closeMatch` is the canonical way to acknowledge conceptual kinship without claiming authority over the other author's vocabulary.
+3. **Respect for the source.** Overwriting HUTRO as a de-facto replacement would have been uncollegial toward the HUTRO author. A close match is the canonical way to acknowledge conceptual kinship without claiming authority over the other author's vocabulary, which is why the alignment is kept even while its IRIs are unverified.
 
 ## Reviewer anticipation
 

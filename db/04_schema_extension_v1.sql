@@ -3,6 +3,14 @@
 -- and to the HUTRO-aligned fragment of RATR-O v1.0.
 --
 -- Designed to be idempotent: uses CREATE TABLE IF NOT EXISTS.
+--
+-- hutro_concept_label records the HUTRO concept that each controlled vocabulary is
+-- conceptually close to, BY LABEL. It is not an IRI. HUTRO's BioPortal submission declares
+-- the placeholder namespace http://www.example.com and BioPortal serves the ontology behind
+-- a bot challenge, so its concept IRIs could not be dereferenced and verified (checked
+-- 10 November 2026). The column was named hutro_close_match and held values such as
+-- 'hutro:recruitment_method', which read as IRIs under a prefix that in fact resolved to the
+-- BioPortal web page rather than to a concept. Those values are withdrawn.
 
 BEGIN;
 
@@ -58,43 +66,43 @@ ON CONFLICT DO NOTHING;
 CREATE TABLE IF NOT EXISTS recruitment_method (
     recruitment_method_code  TEXT PRIMARY KEY,
     recruitment_method_label TEXT NOT NULL,
-    hutro_close_match        TEXT
+    hutro_concept_label        TEXT
 );
 
-INSERT INTO recruitment_method (recruitment_method_code, recruitment_method_label, hutro_close_match) VALUES
-    ('intimate_partner',     'Recruited by intimate partner',  'hutro:recruitment_method'),
-    ('friend',               'Recruited by friend',            'hutro:recruitment_method'),
-    ('family',               'Recruited by family member',     'hutro:recruitment_method'),
-    ('labour_broker',        'Recruited by labour broker',     'hutro:recruitment_method'),
-    ('social_media',         'Contacted via social media',     'hutro:recruitment_method'),
-    ('classifieds',          'Contacted via online classifieds', 'hutro:recruitment_method'),
-    ('in_person_street',     'Recruited in person on street',  'hutro:recruitment_method'),
-    ('false_job_offer',      'False job offer',                'hutro:recruitment_method'),
-    ('abduction',            'Abduction / forced recruitment', 'hutro:recruitment_method'),
-    ('sale_by_family',       'Sale by family',                 'hutro:recruitment_method'),
-    ('debt_bondage_entry',   'Debt bondage from entry',        'hutro:recruitment_method'),
-    ('other',                'Other',                          'hutro:recruitment_method'),
+INSERT INTO recruitment_method (recruitment_method_code, recruitment_method_label, hutro_concept_label) VALUES
+    ('intimate_partner',     'Recruited by intimate partner',  'recruitment method'),
+    ('friend',               'Recruited by friend',            'recruitment method'),
+    ('family',               'Recruited by family member',     'recruitment method'),
+    ('labour_broker',        'Recruited by labour broker',     'recruitment method'),
+    ('social_media',         'Contacted via social media',     'recruitment method'),
+    ('classifieds',          'Contacted via online classifieds', 'recruitment method'),
+    ('in_person_street',     'Recruited in person on street',  'recruitment method'),
+    ('false_job_offer',      'False job offer',                'recruitment method'),
+    ('abduction',            'Abduction / forced recruitment', 'recruitment method'),
+    ('sale_by_family',       'Sale by family',                 'recruitment method'),
+    ('debt_bondage_entry',   'Debt bondage from entry',        'recruitment method'),
+    ('other',                'Other',                          'recruitment method'),
     ('unknown',              'Unknown',                        NULL)
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS exploitation_type (
     exploitation_type_code   TEXT PRIMARY KEY,
     exploitation_type_label  TEXT NOT NULL,
-    hutro_close_match        TEXT
+    hutro_concept_label        TEXT
 );
 
-INSERT INTO exploitation_type (exploitation_type_code, exploitation_type_label, hutro_close_match) VALUES
-    ('labour_agriculture',    'Forced labour: agriculture',            'hutro:type_of_exploitation'),
-    ('labour_construction',   'Forced labour: construction',           'hutro:type_of_exploitation'),
-    ('labour_domestic',       'Forced labour: domestic work',          'hutro:type_of_exploitation'),
-    ('labour_hospitality',    'Forced labour: hospitality',            'hutro:type_of_exploitation'),
-    ('labour_other',          'Forced labour: other',                  'hutro:type_of_exploitation'),
-    ('sex_prostitution',      'Sexual exploitation: prostitution',     'hutro:type_of_exploitation'),
-    ('sex_pornography',       'Sexual exploitation: pornography',      'hutro:type_of_exploitation'),
-    ('forced_marriage',       'Forced marriage',                       'hutro:type_of_exploitation'),
-    ('forced_criminality',    'Forced criminality',                    'hutro:type_of_exploitation'),
-    ('organ_removal',         'Organ removal',                         'hutro:type_of_exploitation'),
-    ('other',                 'Other exploitation',                    'hutro:type_of_exploitation'),
+INSERT INTO exploitation_type (exploitation_type_code, exploitation_type_label, hutro_concept_label) VALUES
+    ('labour_agriculture',    'Forced labour: agriculture',            'type of exploitation'),
+    ('labour_construction',   'Forced labour: construction',           'type of exploitation'),
+    ('labour_domestic',       'Forced labour: domestic work',          'type of exploitation'),
+    ('labour_hospitality',    'Forced labour: hospitality',            'type of exploitation'),
+    ('labour_other',          'Forced labour: other',                  'type of exploitation'),
+    ('sex_prostitution',      'Sexual exploitation: prostitution',     'type of exploitation'),
+    ('sex_pornography',       'Sexual exploitation: pornography',      'type of exploitation'),
+    ('forced_marriage',       'Forced marriage',                       'type of exploitation'),
+    ('forced_criminality',    'Forced criminality',                    'type of exploitation'),
+    ('organ_removal',         'Organ removal',                         'type of exploitation'),
+    ('other',                 'Other exploitation',                    'type of exploitation'),
     ('unknown',               'Unknown',                               NULL)
 ON CONFLICT DO NOTHING;
 
@@ -118,54 +126,54 @@ ON CONFLICT DO NOTHING;
 CREATE TABLE IF NOT EXISTS vulnerability_factor (
     vulnerability_code   TEXT PRIMARY KEY,
     vulnerability_label  TEXT NOT NULL,
-    hutro_close_match    TEXT
+    hutro_concept_label    TEXT
 );
 
-INSERT INTO vulnerability_factor (vulnerability_code, vulnerability_label, hutro_close_match) VALUES
-    ('economic',           'Economic precarity',               'hutro:vulnerability_factor'),
-    ('migrant_status',     'Migrant or irregular status',      'hutro:vulnerability_factor'),
-    ('minor',              'Minor (under 18)',                 'hutro:vulnerability_factor'),
-    ('prior_abuse',        'Prior history of abuse',           'hutro:vulnerability_factor'),
-    ('low_education',      'Low formal education',             'hutro:vulnerability_factor'),
-    ('single_parent',      'Single parent / caregiver',        'hutro:vulnerability_factor'),
-    ('displaced',          'Internally displaced or refugee',  'hutro:vulnerability_factor'),
-    ('indigenous',         'Indigenous community member',      'hutro:vulnerability_factor'),
-    ('disability',         'Disability',                       'hutro:vulnerability_factor'),
-    ('other',              'Other',                            'hutro:vulnerability_factor')
+INSERT INTO vulnerability_factor (vulnerability_code, vulnerability_label, hutro_concept_label) VALUES
+    ('economic',           'Economic precarity',               'vulnerability factor'),
+    ('migrant_status',     'Migrant or irregular status',      'vulnerability factor'),
+    ('minor',              'Minor (under 18)',                 'vulnerability factor'),
+    ('prior_abuse',        'Prior history of abuse',           'vulnerability factor'),
+    ('low_education',      'Low formal education',             'vulnerability factor'),
+    ('single_parent',      'Single parent / caregiver',        'vulnerability factor'),
+    ('displaced',          'Internally displaced or refugee',  'vulnerability factor'),
+    ('indigenous',         'Indigenous community member',      'vulnerability factor'),
+    ('disability',         'Disability',                       'vulnerability factor'),
+    ('other',              'Other',                            'vulnerability factor')
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS communication_tool (
     tool_code   TEXT PRIMARY KEY,
     tool_label  TEXT NOT NULL,
-    hutro_close_match TEXT
+    hutro_concept_label TEXT
 );
 
-INSERT INTO communication_tool (tool_code, tool_label, hutro_close_match) VALUES
-    ('whatsapp',    'WhatsApp',        'hutro:smuggler_and_trafficker_communication_tools'),
-    ('messenger',   'Facebook Messenger', 'hutro:smuggler_and_trafficker_communication_tools'),
-    ('telegram',    'Telegram',        'hutro:smuggler_and_trafficker_communication_tools'),
-    ('sms',         'SMS',             'hutro:smuggler_and_trafficker_communication_tools'),
-    ('voice_call',  'Voice call',      'hutro:smuggler_and_trafficker_communication_tools'),
-    ('in_person',   'In person',       'hutro:smuggler_and_trafficker_communication_tools'),
-    ('email',       'Email',           'hutro:smuggler_and_trafficker_communication_tools'),
-    ('other',       'Other',           'hutro:smuggler_and_trafficker_communication_tools')
+INSERT INTO communication_tool (tool_code, tool_label, hutro_concept_label) VALUES
+    ('whatsapp',    'WhatsApp',        'smuggler and trafficker communication tools'),
+    ('messenger',   'Facebook Messenger', 'smuggler and trafficker communication tools'),
+    ('telegram',    'Telegram',        'smuggler and trafficker communication tools'),
+    ('sms',         'SMS',             'smuggler and trafficker communication tools'),
+    ('voice_call',  'Voice call',      'smuggler and trafficker communication tools'),
+    ('in_person',   'In person',       'smuggler and trafficker communication tools'),
+    ('email',       'Email',           'smuggler and trafficker communication tools'),
+    ('other',       'Other',           'smuggler and trafficker communication tools')
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS transportation_means (
     tm_code   TEXT PRIMARY KEY,
     tm_label  TEXT NOT NULL,
-    hutro_close_match TEXT
+    hutro_concept_label TEXT
 );
 
-INSERT INTO transportation_means (tm_code, tm_label, hutro_close_match) VALUES
-    ('bus',     'Bus',     'hutro:transportation_means'),
-    ('car',     'Car',     'hutro:transportation_means'),
-    ('foot',    'On foot', 'hutro:transportation_means'),
-    ('boat',    'Boat',    'hutro:transportation_means'),
-    ('air',     'Air',     'hutro:transportation_means'),
-    ('train',   'Train',   'hutro:transportation_means'),
-    ('truck',   'Truck',   'hutro:transportation_means'),
-    ('mixed',   'Mixed',   'hutro:transportation_means'),
+INSERT INTO transportation_means (tm_code, tm_label, hutro_concept_label) VALUES
+    ('bus',     'Bus',     'transportation means'),
+    ('car',     'Car',     'transportation means'),
+    ('foot',    'On foot', 'transportation means'),
+    ('boat',    'Boat',    'transportation means'),
+    ('air',     'Air',     'transportation means'),
+    ('train',   'Train',   'transportation means'),
+    ('truck',   'Truck',   'transportation means'),
+    ('mixed',   'Mixed',   'transportation means'),
     ('unknown', 'Unknown', NULL)
 ON CONFLICT DO NOTHING;
 
@@ -173,17 +181,17 @@ CREATE TABLE IF NOT EXISTS documentation_type (
     doc_code   TEXT PRIMARY KEY,
     doc_label  TEXT NOT NULL,
     is_false   BOOLEAN NOT NULL DEFAULT FALSE,
-    hutro_close_match TEXT
+    hutro_concept_label TEXT
 );
 
-INSERT INTO documentation_type (doc_code, doc_label, is_false, hutro_close_match) VALUES
-    ('national_id', 'National ID',  FALSE, 'hutro:documentation_type'),
-    ('passport',    'Passport',     FALSE, 'hutro:documentation_type'),
-    ('visa',        'Visa',         FALSE, 'hutro:documentation_type'),
-    ('work_permit', 'Work permit',  FALSE, 'hutro:documentation_type'),
-    ('none',        'None',         FALSE, 'hutro:documentation_type'),
-    ('confiscated', 'Confiscated',  FALSE, 'hutro:documentation_type'),
-    ('false_document', 'False documentation', TRUE, 'hutro:false_documentation')
+INSERT INTO documentation_type (doc_code, doc_label, is_false, hutro_concept_label) VALUES
+    ('national_id', 'National ID',  FALSE, 'documentation type'),
+    ('passport',    'Passport',     FALSE, 'documentation type'),
+    ('visa',        'Visa',         FALSE, 'documentation type'),
+    ('work_permit', 'Work permit',  FALSE, 'documentation type'),
+    ('none',        'None',         FALSE, 'documentation type'),
+    ('confiscated', 'Confiscated',  FALSE, 'documentation type'),
+    ('false_document', 'False documentation', TRUE, 'false documentation')
 ON CONFLICT DO NOTHING;
 
 -- =========================================================================

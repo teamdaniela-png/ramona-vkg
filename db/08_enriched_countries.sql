@@ -261,3 +261,13 @@ ON CONFLICT (country_code) DO UPDATE SET
   country_iso3 = EXCLUDED.country_iso3,
   country_name_es = EXCLUDED.country_name_es,
   attested_in_ctdc = EXCLUDED.attested_in_ctdc;
+
+-- country_iso3 is the canonical country key of the VKG, so it is unique and the route table
+-- references it. Both constraints are created here because the column is only populated above.
+ALTER TABLE ramona.countries ADD CONSTRAINT countries_iso3_key UNIQUE (country_iso3);
+ALTER TABLE ramona.trafficking_routes
+  ADD CONSTRAINT routes_origin_iso3_fkey
+  FOREIGN KEY (origin_country) REFERENCES ramona.countries(country_iso3);
+ALTER TABLE ramona.trafficking_routes
+  ADD CONSTRAINT routes_destination_iso3_fkey
+  FOREIGN KEY (destination_country) REFERENCES ramona.countries(country_iso3);

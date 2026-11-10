@@ -383,6 +383,134 @@ for _src, _prop, _dt in _emitted:
         log("BLOCKER", "Mapping emits a datatype that clashes with the declared range",
             f":{_prop} has range xsd:{_r} but {_src} emits xsd:{_dt}; HermiT reports the merged graph inconsistent")
 
+
+# =========================================================================
+# Section 10: Alignments, mapping coverage, IRI templates, SQL widths
+# =========================================================================
+print("=== 10. Alignments, coverage, IRI templates, SQL widths ===")
+
+_PORTAL_PAGE_PREFIXES = (
+    "https://bioportal.bioontology.org/ontologies/",
+    "http://bioportal.bioontology.org/ontologies/",
+    "https://agroportal.lirmm.fr/ontologies/",
+    "https://www.ebi.ac.uk/ols4/ontologies/",
+)
+for _s, _p, _o in g.triples((None, SKOS.closeMatch, None)):
+    _t = str(_o)
+    for _pref in _PORTAL_PAGE_PREFIXES:
+        if _t.startswith(_pref):
+            _rest = _t[len(_pref):]
+            # a portal ontology page is <prefix><ACRONYM>; anything glued after the acronym
+            # is a page URL with a concept name appended, not a concept IRI
+            if _rest and not _rest.strip("/").isupper():
+                log("BLOCKER", "skos:closeMatch target looks like a portal page URL with a concept name appended, not a concept IRI",
+                    f"{str(_s).split('#')[-1]} -> {_t}")
+
+# every class that names an external vocabulary in a note must say when it was checked
+for _s in set(g.subjects(SKOS.note, None)):
+    for _n in g.objects(_s, SKOS.note):
+        _txt = str(_n)
+        if ("HUTRO" in _txt or "archive.org" in _txt) and "2026" not in _txt and "2025" not in _txt:
+            log("SHOULD", "External-alignment or archived-citation note does not record the date of the check",
+                str(_s).split("#")[-1])
+
+# mapping coverage: what the ontology declares but no mapping produces
+_obda_t = OBDA.read_text(encoding="utf-8")
+_r2_t = R2RML.read_text(encoding="utf-8")
+_map_text = _obda_t + _r2_t
+def _mapped(_e):
+    return re.search(r"(?<![\w<#/:])%s(?![\w])" % re.escape(str(_e).split("#")[-1]).join([":", ""]), _map_text) is not None
+_unmapped_p = sorted(str(e).split("#")[-1] for e in (set(obj_props) | set(data_props)) if not _mapped(e))
+_unmapped_c = sorted(str(e).split("#")[-1] for e in classes if not _mapped(e))
+log("NOTE", "Mapping coverage of the declared vocabulary",
+    f"{len(set(obj_props) | set(data_props)) - len(_unmapped_p)} of {len(set(obj_props) | set(data_props))} properties and "
+    f"{len(classes) - len(_unmapped_c)} of {len(classes)} classes are produced by a mapping. The rest are "
+    f"abstract superclasses, controlled values loaded directly by a db/ seed, or vocabulary the demonstrator "
+    f"database has no column for. See docs/MAPPING_COVERAGE.md.")
+
+# one IRI template per class: catches the same real-world entity minted under two different keys
+_tpl = defaultdict(set)
+for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
+    _line = _m.group(1)
+    for _subj, _cls in re.findall(r"<(https://w3id\.org/ratr-o/data/[^>]+)>\s+a\s+(:\w+)", _line):
+        _tpl[_cls].add(re.sub(r"\{[^}]*\}", "{}", _subj))
+    for _obj_iri in re.findall(r"<(https://w3id\.org/ratr-o/data/[^>]+)>", _line):
+        pass
+for _cls, _templates in sorted(_tpl.items()):
+    if len(_templates) > 1:
+        log("NOTE", "A class is minted under more than one IRI template",
+            f"{_cls}: {sorted(_templates)}. This is by design when the templates stand for different "
+            f"source registries (operational offers against press-documented offers, for example). It is a "
+            f"defect only if the same real-world entity can appear in both, which would give it two IRIs.")
+
+# object-property ranges: the IRI template used as object must match the template the range class is minted under
+for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
+    for _prop, _obj in re.findall(r"(:\w+)\s+<(https://w3id\.org/ratr-o/data/[^>]+)>", _m.group(1)):
+        _pr = NS[_prop[1:]]
+        if _pr not in obj_props:
+            continue
+        _rng = next(iter(g.objects(_pr, RDFS.range)), None)
+        if _rng is None:
+            continue
+        # the range is satisfied by the range class or any of its subclasses, so collect
+        # the IRI templates of the whole subtree
+        _sub = {_rng}
+        _frontier = [_rng]
+        while _frontier:
+            _cur = _frontier.pop()
+            for _child in g.subjects(RDFS.subClassOf, _cur):
+                if _child not in _sub:
+                    _sub.add(_child); _frontier.append(_child)
+        _want = set()
+        for _c in _sub:
+            _want |= _tpl.get(":" + str(_c).split("#")[-1], set())
+        if not _want:
+            continue
+        _got = re.sub(r"\{[^}]*\}", "{}", _obj)
+        if _got not in _want:
+            log("BLOCKER", "A mapping points an object property at an IRI template the range class is never minted under",
+                f"{_prop} -> {_got}, but {_rcls} is minted as {sorted(_want)}")
+
+# SQL: string literals wider than the CHAR(n) column they are inserted into
+_sql_cols = {}
+for _f in sorted(ROOT.glob("db/*.sql")):
+    _s = _f.read_text(encoding="utf-8")
+    for _m in re.finditer(r"CREATE TABLE (?:IF NOT EXISTS )?(?:ramona\.)?(\w+)\s*\((.*?)\n\);", _s, re.S):
+        for _line in _m.group(2).split("\n"):
+            _cm = re.match(r"\s*(\w+)\s+(CHAR\((\d+)\)|VARCHAR\((\d+)\))", _line, re.I)
+            if _cm and not re.match(r"\s*(PRIMARY|FOREIGN|UNIQUE|CONSTRAINT|CHECK)", _line, re.I):
+                _sql_cols[(_m.group(1), _cm.group(1))] = int(_cm.group(3) or _cm.group(4))
+_width_bad = Counter()
+for _f in sorted(ROOT.glob("db/*.sql")):
+    _s = _f.read_text(encoding="utf-8")
+    for _m in re.finditer(r"INSERT INTO (?:ramona\.)?(\w+)\s*\(([^)]*)\)\s*VALUES(.*?);\s*$", _s, re.S | re.M):
+        _tb = _m.group(1)
+        _cols = [c.strip() for c in _m.group(2).split(",")]
+        for _row in re.findall(r"\(([^()]*(?:\([^()]*\)[^()]*)*)\)", _m.group(3)):
+            _parts, _cur, _q, _dep = [], "", False, 0
+            for _ch in _row:
+                if _ch == "'":
+                    _q = not _q
+                if _ch == "," and not _q and _dep == 0:
+                    _parts.append(_cur.strip()); _cur = ""
+                else:
+                    if _ch == "(" and not _q: _dep += 1
+                    if _ch == ")" and not _q: _dep -= 1
+                    _cur += _ch
+            _parts.append(_cur.strip())
+            if len(_parts) != len(_cols):
+                continue
+            for _col, _val in zip(_cols, _parts):
+                _n = _sql_cols.get((_tb, _col))
+                if not _n:
+                    continue
+                _lit = re.match(r"^'((?:[^']|'')*)'$", _val)
+                if _lit and len(_lit.group(1)) > _n:
+                    _width_bad[(_f.name, _tb, _col, _n)] += 1
+for (_fn, _tb, _col, _n), _cnt in sorted(_width_bad.items()):
+    log("BLOCKER", "A seed inserts string literals wider than the column accepts, so the file cannot load",
+        f"{_fn}: {_cnt} rows put a value longer than {_n} characters into {_tb}.{_col}")
+
 # =========================================================================
 # Section 8: Final counts
 # =========================================================================
@@ -450,7 +578,10 @@ checks = [
     ("Every FraudScheme subclass cites at least one official source", not any("FraudScheme" in f["finding"] and "lacks rdfs:seeAlso" in f["finding"] for f in by_sev["SHOULD"])),
     ("Ontology header has version, creator, license", not any("Ontology header missing" in f["finding"] for f in findings if f["severity"] in ("BLOCKER", "SHOULD"))),
     ("Every property has domain and range", not any("Property missing" in f["finding"] for f in by_sev["SHOULD"])),
-    ("All skos:closeMatch targets are URLs", not any("skos:closeMatch target is not a URL" in f["finding"] for f in by_sev["BLOCKER"])),
+    ("No skos:closeMatch target is a portal page URL with a concept name appended", not any("portal page URL" in f["finding"] for f in by_sev["BLOCKER"])),
+
+    ("Every object property points at the IRI template its range class is minted under", not any("range class is never minted under" in f["finding"] for f in by_sev["BLOCKER"])),
+    ("Every db/ seed fits the column widths it inserts into", not any("wider than the column accepts" in f["finding"] for f in by_sev["BLOCKER"])),
     ("R2RML parses cleanly", r2rml_triples > 0),
     ("OBDA has enough mappings to populate the VKG", not any("OBDA has only" in f["finding"] for f in by_sev["SHOULD"])),
     ("Every class and property carries an rdfs:comment definition", not any("no rdfs:comment" in f["finding"] for f in by_sev["SHOULD"])),
