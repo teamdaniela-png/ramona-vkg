@@ -1206,7 +1206,7 @@
     ] ;
     rr:predicateObjectMap [
         rr:predicate :sourceUrl ;
-        rr:objectMap [ rr:column "url" ; rr:datatype xsd:string ]
+        rr:objectMap [ rr:column "url" ; rr:datatype xsd:anyURI ]
     ] ;
     rr:predicateObjectMap [
         rr:predicate :sourceOutlet ;

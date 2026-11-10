@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Rigorous self-audit of RATR-O v1.6 as if conducted by an independent
+Rigorous self-audit of RATR-O (version read from the ontology header) as if conducted by an independent
 reviewer in the style of Ortiz & Šimkus 2012. Produces a severity-graded
 report covering OWL 2 QL profile conformance, ontology consistency,
 coverage, provenance, naming, and data-ontology alignment.
@@ -314,8 +314,74 @@ if OBDA.exists():
                    "OrganRemovalRecruitmentScheme", "ForcedChildMarriageScheme"):
         if scheme not in obda_text:
             log("NOTE", f"FraudScheme ':{scheme}' is declared in ontology but not materialised in OBDA mapping",
-                "This is expected if instances come from db/09_fraudscheme_examples, which will be wired in v1.7.")
+                "Expected: instances of this scheme come from db/09_fraudscheme_examples, which is loaded into Postgres, not minted by a mapping assertion.")
 
+
+
+# =========================================================================
+# Section 9: Definitions, dangling references, vocabulary closure, datatypes
+# =========================================================================
+print("=== 9. Definitions, dangling refs, vocabulary closure, datatypes ===")
+
+import glob as _glob
+
+_all_entities = set(classes) | set(obj_props) | set(data_props)
+for _e in sorted(_all_entities):
+    if not list(g.objects(_e, RDFS.comment)):
+        log("SHOULD", "Entity has no rdfs:comment (definition)", str(_e).split("#")[-1])
+
+# dangling :Name references inside annotation text
+_declared_names = {str(e).split("#")[-1] for e in _all_entities}
+_declared_names |= {str(e).split("#")[-1] for e in g.subjects(RDF.type, OWL.NamedIndividual)}
+_ttl_text = TTL.read_text(encoding="utf-8")
+for _lit in re.findall(r'"((?:[^"\\]|\\.)*)"@[a-z]{2}', _ttl_text):
+    for _ref in re.findall(r"(?<![\w:]):([A-Z]\w+|[a-z]\w*)\b", _lit):
+        if _ref not in _declared_names:
+            log("SHOULD", "Annotation text references an undeclared IRI",
+                f":{_ref} is mentioned in an rdfs:comment or skos:note but is not declared in the ontology")
+
+# vocabulary closure over queries and mappings
+_obda_text = OBDA.read_text(encoding="utf-8")
+_r2rml_text = R2RML.read_text(encoding="utf-8")
+_sources = {"mappings/ramona.obda": _obda_text, "mappings/ramona.r2rml.ttl": _r2rml_text}
+for _f in sorted(_glob.glob(str(ROOT / "queries" / "*.rq"))):
+    _raw = Path(_f).read_text(encoding="utf-8")
+    _sources["queries/" + Path(_f).name] = "\n".join(l.split("#")[0] for l in _raw.split("\n"))
+for _name, _text in _sources.items():
+    for _used in sorted(set(re.findall(r"(?<![\w<#/:]):([A-Za-z]\w*)", _text))):
+        if _used not in _declared_names:
+            log("BLOCKER", "Vocabulary used outside the ontology is not declared in it",
+                f":{_used} is used in {_name} but never declared in ratr-o.ttl")
+
+# datatype ranges: QL datatype map and agreement with what the mappings emit
+_QL_DATATYPES = {
+    "string", "integer", "decimal", "dateTime", "dateTimeStamp", "anyURI",
+    "nonNegativeInteger", "normalizedString", "token", "Name", "NCName",
+    "NMTOKEN", "hexBinary", "base64Binary", "real", "rational",
+    "PlainLiteral", "XMLLiteral", "Literal",
+}
+_ranges = {}
+for _p in data_props:
+    for _r in g.objects(_p, RDFS.range):
+        _ranges[str(_p).split("#")[-1]] = str(_r).split("#")[-1].split("/")[-1]
+for _prop, _r in sorted(_ranges.items()):
+    if _r not in _QL_DATATYPES:
+        log("BLOCKER", "Datatype range outside the OWL 2 QL datatype map",
+            f":{_prop} has range xsd:{_r}; OWL 2 Profiles section 3.2 does not admit it in QL")
+_emitted = []
+for _prop, _dt in re.findall(r":(\w+)\s+\{[^}]*\}\^\^xsd:(\w+)", _obda_text):
+    _emitted.append(("mappings/ramona.obda", _prop, _dt))
+_r2 = rdflib.Graph()
+_r2.parse(R2RML, "turtle")
+for _row in _r2.query(
+    """PREFIX rr: <http://www.w3.org/ns/r2rml#>
+       SELECT ?p ?d WHERE { ?pom rr:predicate ?p ; rr:objectMap ?om . ?om rr:datatype ?d }"""):
+    _emitted.append(("mappings/ramona.r2rml.ttl", str(_row.p).split("#")[-1], str(_row.d).split("#")[-1]))
+for _src, _prop, _dt in _emitted:
+    _r = _ranges.get(_prop)
+    if _r and _r != "Literal" and _r != _dt:
+        log("BLOCKER", "Mapping emits a datatype that clashes with the declared range",
+            f":{_prop} has range xsd:{_r} but {_src} emits xsd:{_dt}; HermiT reports the merged graph inconsistent")
 
 # =========================================================================
 # Section 8: Final counts
@@ -330,13 +396,19 @@ print(f"  skos:closeMatch:   {cm_count}")
 # Emit report
 report_path = ROOT / "docs" / "AUDIT_O1.md"
 by_sev = defaultdict(list)
+_seen = set()
 for f in findings:
+    _key = (f["severity"], f["finding"], f["detail"])
+    if _key in _seen:
+        continue
+    _seen.add(_key)
     by_sev[f["severity"]].append(f)
 
+_version = next((str(o) for o in g.objects(URIRef("https://w3id.org/ratr-o"), OWL.versionInfo)), "unversioned")
 lines = [
-    "# Audit O1 — RATR-O v1.6",
+    f"# Audit O1 — RATR-O v{_version}",
     "",
-    "Independent rigorous self-audit of Objective 1 (ontology) in the style of Ortiz & Šimkus (2012) academic reviewer standards. Generated by `/tmp/audit_o1.py` reading `ontology/ratr-o.ttl`, `mappings/ramona.obda`, `mappings/ramona.r2rml.ttl`.",
+    "Independent rigorous self-audit of Objective 1 (ontology) in the style of Ortiz & Šimkus (2012) academic reviewer standards. Generated by `scripts/audit_o1.py` reading `ontology/ratr-o.ttl`, `mappings/ramona.obda`, `mappings/ramona.r2rml.ttl`, and `queries/*.rq`.",
     "",
     "**Summary**",
     "",
@@ -381,6 +453,11 @@ checks = [
     ("All skos:closeMatch targets are URLs", not any("skos:closeMatch target is not a URL" in f["finding"] for f in by_sev["BLOCKER"])),
     ("R2RML parses cleanly", r2rml_triples > 0),
     ("OBDA has enough mappings to populate the VKG", not any("OBDA has only" in f["finding"] for f in by_sev["SHOULD"])),
+    ("Every class and property carries an rdfs:comment definition", not any("no rdfs:comment" in f["finding"] for f in by_sev["SHOULD"])),
+    ("No annotation text references an undeclared IRI", not any("undeclared IRI" in f["finding"] for f in by_sev["SHOULD"])),
+    ("Every term used in the queries and mappings is declared in the ontology", not any("not declared in it" in f["finding"] for f in by_sev["BLOCKER"])),
+    ("Every datatype range is inside the OWL 2 QL datatype map", not any("outside the OWL 2 QL datatype map" in f["finding"] for f in by_sev["BLOCKER"])),
+    ("No mapping emits a datatype that clashes with the declared range", not any("clashes with the declared range" in f["finding"] for f in by_sev["BLOCKER"])),
 ]
 for text, ok in checks:
     mark = "[x]" if ok else "[ ]"

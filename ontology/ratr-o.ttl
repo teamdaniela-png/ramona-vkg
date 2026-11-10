@@ -21,8 +21,8 @@
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10> ;
+    owl:versionInfo "1.10.1" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.1> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-03"^^xsd:date ;
     skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance."@en ;
@@ -54,18 +54,21 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :Recruiter a owl:Class ;
     rdfs:subClassOf :Agent ;
-    rdfs:label "Recruiter"@en, "Reclutador"@es .
+    rdfs:label "Recruiter"@en, "Reclutador"@es ;
+    rdfs:comment "An agent that makes first contact with a candidate and conducts the recruitment interaction, whether or not it is the party that would employ the candidate. Disjoint with :Employer, because in Ramona's casework the deceptive party is typically the recruiter and the named employer either does not exist or is impersonated."@en .
 
 :Employer a owl:Class ;
     rdfs:subClassOf :Agent ;
-    rdfs:label "Employer"@en, "Empleador"@es .
+    rdfs:label "Employer"@en, "Empleador"@es ;
+    rdfs:comment "The organisation or natural person named in a job offer as the party that would employ the candidate. Kept disjoint from :Recruiter so that offers where the two coincide must assert both roles explicitly, and offers that impersonate a real company can be distinguished from offers made by that company."@en .
 
 :JobOffer a owl:Class ;
     rdfs:label "Job offer"@en, "Oferta laboral"@es ;
     rdfs:comment "A posting advertising employment, submitted to Ramona or harvested from public channels."@en .
 
 :Platform a owl:Class ;
-    rdfs:label "Platform"@en, "Plataforma"@es .
+    rdfs:label "Platform"@en, "Plataforma"@es ;
+    rdfs:comment "A digital service on which a job offer or a social-media item is published or through which first contact happens (for example a social network, a messaging application or a job board). Platform identity is recorded because the channel is one of the few attributes present in almost every report Ramona receives."@en .
 
 :OnlineRecruitmentChannel a owl:Class ;
     rdfs:subClassOf :Platform ;
@@ -90,7 +93,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :RiskClassification a owl:Class ;
     rdfs:label "Risk classification"@en, "Clasificación de riesgo"@es ;
-    rdfs:comment "An assessment of an offer along Ramona's risk axes. See :fraudAxis, :exploitationAxis and :traffickingAxis for the three independent dimensions covered."@en .
+    rdfs:comment "An assessment of an offer along Ramona's risk axes. Three independent dimensions are covered, each modelled as a subclass: :FraudRisk, :ExploitationRisk and :TraffickingRisk."@en .
 
 :FraudRisk a owl:Class ;
     rdfs:subClassOf :RiskClassification ;
@@ -209,7 +212,9 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:label "Forced child marriage scheme"@en, "Esquema de matrimonio infantil forzado"@es ;
     rdfs:comment "The offer frames a minor's placement as marriage or an 'informal union' under customary practice (usos y costumbres). The Secretaría de las Mujeres de Oaxaca recognises this explicitly as a form of human trafficking. According to ENADID 2014, 44.82% of women in Chiapas, 42.41% in Guerrero and 39.17% in Oaxaca reported child marriage or early union. Recognised by UNICEF as a harmful practice and by UN Women as a form of gender-based violence. Maps to :PurposeServitude in the Palermo Protocol."@en ;
     rdfs:seeAlso <https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
-                 <https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/> .
+                 <http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
+                 <https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/> ;
+    skos:note "Checked 10 November 2026: the oaxaca.gob.mx page returns HTTP 500. The Internet Archive snapshot of 24 February 2025 is cited alongside it."@en .
 
 :OrganRemovalRecruitmentScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -237,7 +242,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:subClassOf :FraudScheme ;
     rdfs:label "Agricultural labour bondage scheme"@en,
                "Esquema de servidumbre en trabajo agrícola"@es ;
-    rdfs:comment "Offer of seasonal agricultural work (jornalero, harvest, produce packing) that leads to wage theft, deductions for housing and food that exceed the wage, confiscation of identification documents, and restriction of movement through geographic isolation. Documented by ILO, UNODC and the Polaris Project in the US-Mexico corridor (fresh produce, coffee, tomato) and in internal Mexican migration from southern states to Sinaloa, Sonora and Baja California. The CTDC dataset registers :labour_agriculture as a distinct exploitation subtype."@en ;
+    rdfs:comment "Offer of seasonal agricultural work (jornalero, harvest, produce packing) that leads to wage theft, deductions for housing and food that exceed the wage, confiscation of identification documents, and restriction of movement through geographic isolation. Documented by ILO, UNODC and the Polaris Project in the US-Mexico corridor (fresh produce, coffee, tomato) and in internal Mexican migration from southern states to Sinaloa, Sonora and Baja California. The CTDC dataset registers agricultural labour as a distinct exploitation subtype."@en ;
     rdfs:seeAlso <https://www.unodc.org/documents/human-trafficking/2015/Recruitment_Fees_Report-Final-22_June_2015_AG_Final.pdf> ,
                  <https://polarisproject.org/> .
 
@@ -252,9 +257,11 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:subClassOf :ChildRecruitmentCriminalScheme ;
     rdfs:label "Gang recruitment at schools scheme"@en,
                "Esquema de reclutamiento de pandillas o cárteles en escuelas"@es ;
-    rdfs:comment "Specific subtype of child recruitment where the entry point is the school ground or school exit. Recruiters are often students slightly older than the target or adults posing as relatives. Common in Central America (MS-13, Barrio 18) and in Mexican states with heavy cartel presence (Michoacán, Guerrero, Jalisco, Tamaulipas). The Gobierno de Zapopan published a public prevention programme in 2026. REDIM documented 26 press articles in the current Ramona observatory corpus alone."@en ;
+    rdfs:comment "Specific subtype of child recruitment where the entry point is the school ground or school exit. Recruiters are often students slightly older than the target or adults posing as relatives. Common in Central America (MS-13, Barrio 18) and in Mexican states with heavy cartel presence (Michoacán, Guerrero, Jalisco, Tamaulipas). The Gobierno de Zapopan published a public prevention programme in 2026. The Ramona press corpus holds 26 items from REDIM's data and advocacy blog (count recomputed 10 November 2026 from data/processed/press_summary.json)."@en ;
     rdfs:seeAlso <https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
-                 <https://blog.derechosinfancia.org.mx/> .
+                 <http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
+                 <https://blog.derechosinfancia.org.mx/> ;
+    skos:note "Checked 10 November 2026: the zapopan.gob.mx page does not respond. The Internet Archive snapshot of 23 July 2026 is cited alongside it."@en .
 
 :BeggingRingScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -282,7 +289,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :candidateDefraudedBy a owl:ObjectProperty ;
     rdfs:domain :Candidate ; rdfs:range :FraudScheme ;
-    rdfs:label "candidate defrauded by scheme"@en .
+    rdfs:label "candidate defrauded by scheme"@en ;
+    rdfs:comment "Relates a candidate to the fraud scheme they were defrauded by, as reconstructed from their report."@en .
 
 #################################################################
 #    v1.3 — Observatory measurement layer
@@ -328,7 +336,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :pctOfCases a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:decimal ;
-    rdfs:label "percentage of cases"@en, "porcentaje de casos"@es .
+    rdfs:label "percentage of cases"@en, "porcentaje de casos"@es ;
+    rdfs:comment "Share of the cases in the source corpus in which the survivor-testimony pattern appears, as a decimal percentage. The value is only meaningful together with the source asserted by :derivedFrom, because corpora differ in what they count."@en .
 
 :dominanceBucketValue a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
@@ -343,12 +352,14 @@ skos:closeMatch a owl:AnnotationProperty .
 :routeEarliestYear a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
-    rdfs:label "route earliest year"@en, "año más temprano de la ruta"@es .
+    rdfs:label "route earliest year"@en, "año más temprano de la ruta"@es ;
+    rdfs:comment "Earliest year for which the route is attested in the source dataset."@en .
 
 :routeLatestYear a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
-    rdfs:label "route latest year"@en, "año más reciente de la ruta"@es .
+    rdfs:label "route latest year"@en, "año más reciente de la ruta"@es ;
+    rdfs:comment "Most recent year for which the route is attested in the source dataset."@en .
 
 :routeDominantExploitation a owl:ObjectProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range :TypeOfExploitation ;
@@ -373,19 +384,24 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :Recruitment a owl:Class ;
     rdfs:subClassOf :PalermoAction ;
-    rdfs:label "Recruitment (act)"@en, "Reclutamiento (acción)"@es .
+    rdfs:label "Recruitment (act)"@en, "Reclutamiento (acción)"@es ;
+    rdfs:comment "The ACT of recruitment in the sense of Palermo Protocol Article 3(a). In RATR-O it is the act that a deceptive job offer realises, which is why recruitment-stage fraud is in scope of a trafficking ontology and not only of a consumer-fraud one."@en .
 :Transportation a owl:Class ;
     rdfs:subClassOf :PalermoAction ;
-    rdfs:label "Transportation (act)"@en, "Transporte (acción)"@es .
+    rdfs:label "Transportation (act)"@en, "Transporte (acción)"@es ;
+    rdfs:comment "The ACT of transportation in the sense of Palermo Protocol Article 3(a): moving the person within or across borders after recruitment."@en .
 :Transfer a owl:Class ;
     rdfs:subClassOf :PalermoAction ;
-    rdfs:label "Transfer (act)"@en, "Traslado (acción)"@es .
+    rdfs:label "Transfer (act)"@en, "Traslado (acción)"@es ;
+    rdfs:comment "The ACT of transfer in the sense of Palermo Protocol Article 3(a): handing control over the person from one party to another."@en .
 :Harbouring a owl:Class ;
     rdfs:subClassOf :PalermoAction ;
-    rdfs:label "Harbouring (act)"@en, "Acogida (acción)"@es .
+    rdfs:label "Harbouring (act)"@en, "Acogida (acción)"@es ;
+    rdfs:comment "The ACT of harbouring in the sense of Palermo Protocol Article 3(a): keeping the person in a place under the control of the perpetrator."@en .
 :Receipt a owl:Class ;
     rdfs:subClassOf :PalermoAction ;
-    rdfs:label "Receipt of persons (act)"@en, "Recepción de personas (acción)"@es .
+    rdfs:label "Receipt of persons (act)"@en, "Recepción de personas (acción)"@es ;
+    rdfs:comment "The ACT of receipt of persons in the sense of Palermo Protocol Article 3(a): taking the person into one's control at the end of a transfer."@en .
 
 :PalermoMeans a owl:Class ;
     rdfs:label "Palermo Means"@en, "Medio (Palermo)"@es ;
@@ -393,29 +409,37 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :MeansThreatOfForce a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Threat or use of force"@en, "Amenaza o uso de la fuerza"@es .
+    rdfs:label "Threat or use of force"@en, "Amenaza o uso de la fuerza"@es ;
+    rdfs:comment "The MEANS 'threat or use of force' in the sense of Palermo Protocol Article 3(a)."@en .
 :MeansCoercion a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Coercion"@en, "Coacción"@es .
+    rdfs:label "Coercion"@en, "Coacción"@es ;
+    rdfs:comment "The MEANS 'other forms of coercion' in the sense of Palermo Protocol Article 3(a)."@en .
 :MeansAbduction a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Abduction"@en, "Rapto"@es .
+    rdfs:label "Abduction"@en, "Rapto"@es ;
+    rdfs:comment "The MEANS 'abduction' in the sense of Palermo Protocol Article 3(a)."@en .
 :MeansFraud a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Fraud"@en, "Fraude"@es .
+    rdfs:label "Fraud"@en, "Fraude"@es ;
+    rdfs:comment "The MEANS 'fraud' in the sense of Palermo Protocol Article 3(a). Together with :MeansDeception this is the means that a deceptive job offer typically realises."@en .
 :MeansDeception a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Deception"@en, "Engaño"@es .
+    rdfs:label "Deception"@en, "Engaño"@es ;
+    rdfs:comment "The MEANS 'deception' in the sense of Palermo Protocol Article 3(a). A job offer whose terms misrepresent the role, the pay, the employer or the place of work realises this means."@en .
 :MeansAbuseOfPower a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Abuse of power"@en, "Abuso de poder"@es .
+    rdfs:label "Abuse of power"@en, "Abuso de poder"@es ;
+    rdfs:comment "The MEANS 'abuse of power' in the sense of Palermo Protocol Article 3(a)."@en .
 :MeansAbuseOfVulnerability a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
-    rdfs:label "Abuse of a position of vulnerability"@en, "Abuso de una posición de vulnerabilidad"@es .
+    rdfs:label "Abuse of a position of vulnerability"@en, "Abuso de una posición de vulnerabilidad"@es ;
+    rdfs:comment "The MEANS 'abuse of a position of vulnerability' in the sense of Palermo Protocol Article 3(a). In Ramona's corpus the vulnerability most often invoked is unemployment or urgent need of income, which is why :VulnerabilityFactor is modelled separately on the demographic profile."@en .
 :MeansPaymentOrBenefit a owl:Class ;
     rdfs:subClassOf :PalermoMeans ;
     rdfs:label "Giving or receiving of payments or benefits to obtain consent"@en,
-               "Dar o recibir pagos o beneficios para obtener consentimiento"@es .
+               "Dar o recibir pagos o beneficios para obtener consentimiento"@es ;
+    rdfs:comment "The MEANS 'giving or receiving of payments or benefits to achieve the consent of a person having control over another person' in the sense of Palermo Protocol Article 3(a)."@en .
 
 :PalermoPurpose a owl:Class ;
     rdfs:label "Palermo Purpose"@en, "Finalidad (Palermo)"@es ;
@@ -423,44 +447,56 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :PurposeSexualExploitation a owl:Class ;
     rdfs:subClassOf :PalermoPurpose ;
-    rdfs:label "Sexual exploitation"@en, "Explotación sexual"@es .
+    rdfs:label "Sexual exploitation"@en, "Explotación sexual"@es ;
+    rdfs:comment "The PURPOSE 'exploitation of the prostitution of others or other forms of sexual exploitation' in the sense of Palermo Protocol Article 3(a)."@en .
 :PurposeForcedLabour a owl:Class ;
     rdfs:subClassOf :PalermoPurpose ;
-    rdfs:label "Forced labour or services"@en, "Trabajo o servicios forzados"@es .
+    rdfs:label "Forced labour or services"@en, "Trabajo o servicios forzados"@es ;
+    rdfs:comment "The PURPOSE 'forced labour or services' in the sense of Palermo Protocol Article 3(a)."@en .
 :PurposeSlavery a owl:Class ;
     rdfs:subClassOf :PalermoPurpose ;
-    rdfs:label "Slavery or practices similar to slavery"@en, "Esclavitud o prácticas análogas"@es .
+    rdfs:label "Slavery or practices similar to slavery"@en, "Esclavitud o prácticas análogas"@es ;
+    rdfs:comment "The PURPOSE 'slavery or practices similar to slavery' in the sense of Palermo Protocol Article 3(a)."@en .
 :PurposeServitude a owl:Class ;
     rdfs:subClassOf :PalermoPurpose ;
-    rdfs:label "Servitude"@en, "Servidumbre"@es .
+    rdfs:label "Servitude"@en, "Servidumbre"@es ;
+    rdfs:comment "The PURPOSE 'servitude' in the sense of Palermo Protocol Article 3(a)."@en .
 :PurposeOrganRemoval a owl:Class ;
     rdfs:subClassOf :PalermoPurpose ;
-    rdfs:label "Removal of organs"@en, "Extracción de órganos"@es .
+    rdfs:label "Removal of organs"@en, "Extracción de órganos"@es ;
+    rdfs:comment "The PURPOSE 'removal of organs' in the sense of Palermo Protocol Article 3(a)."@en .
 
 # Link RATR-O JobOffer / Victim / FraudScheme to the Palermo triad.
 
 :exhibitsAction a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :PalermoAction ;
-    rdfs:label "exhibits Palermo action"@en .
+    rdfs:label "exhibits Palermo action"@en ;
+    rdfs:comment "Relates a job offer to the Palermo Action it realises. For a deceptive recruitment offer this is normally :Recruitment."@en .
 :exhibitsMeans a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :PalermoMeans ;
-    rdfs:label "exhibits Palermo means"@en .
+    rdfs:label "exhibits Palermo means"@en ;
+    rdfs:comment "Relates a job offer to the Palermo Means it realises, normally :MeansDeception or :MeansFraud."@en .
 :exhibitsPurpose a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :PalermoPurpose ;
-    rdfs:label "exhibits Palermo purpose"@en .
+    rdfs:label "exhibits Palermo purpose"@en ;
+    rdfs:comment "Relates a job offer to the Palermo Purpose it is believed to serve. Assertion of a purpose is an interpretive step and in the demonstrator it is only made when an evidence source states the exploitation outcome."@en .
 
 :tipEventInvolves a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :Victim ;
-    rdfs:label "TIP event involves victim"@en .
+    rdfs:label "TIP event involves victim"@en ;
+    rdfs:comment "Relates a trafficking-in-persons event to the victim it concerns, following the ICS-TIP rule that the TIP event is counted per victim."@en .
 :tipEventHasAction a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :PalermoAction ;
-    rdfs:label "TIP event has action"@en .
+    rdfs:label "TIP event has action"@en ;
+    rdfs:comment "Relates a TIP event to one of its Palermo Actions. ICS-TIP requires at least one action per event."@en .
 :tipEventHasMeans a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :PalermoMeans ;
-    rdfs:label "TIP event has means"@en .
+    rdfs:label "TIP event has means"@en ;
+    rdfs:comment "Relates a TIP event to one of its Palermo Means. ICS-TIP requires at least one means per adult-victim event."@en .
 :tipEventHasPurpose a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :PalermoPurpose ;
-    rdfs:label "TIP event has purpose"@en .
+    rdfs:label "TIP event has purpose"@en ;
+    rdfs:comment "Relates a TIP event to one of its Palermo Purposes. ICS-TIP requires at least one purpose per event."@en .
 
 # Close-match alignment to ICS-TIP variables (provisional; verbatim list
 # pending the ICS-TIP v4 PDF cross-check).
@@ -485,52 +521,64 @@ skos:closeMatch a owl:AnnotationProperty .
 :offers a owl:ObjectProperty ;
     rdfs:domain :Agent ; rdfs:range :JobOffer ;
     owl:inverseOf :offeredBy ;
-    rdfs:label "offers"@en, "ofrece"@es .
+    rdfs:label "offers"@en, "ofrece"@es ;
+    rdfs:comment "Relates an agent to a job offer it makes. Inverse of :offeredBy."@en .
 
 :hostsOffer a owl:ObjectProperty ;
     rdfs:domain :Platform ; rdfs:range :JobOffer ;
     owl:inverseOf :postedVia ;
-    rdfs:label "hosts offer"@en .
+    rdfs:label "hosts offer"@en ;
+    rdfs:comment "Relates a platform to a job offer published on it. Inverse of :postedVia."@en .
 
 :containsRedFlag a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :RedFlag ;
-    rdfs:label "contains red flag"@en .
+    rdfs:label "contains red flag"@en ;
+    rdfs:comment "Relates a job offer to a red flag detected in its text. Kept alongside :hasRedFlag because the mapping layer populates them from different sources: :containsRedFlag from text classification, :hasRedFlag from the reviewed classification record."@en .
 
 :recruitsFor a owl:ObjectProperty ;
     rdfs:domain :Recruiter ; rdfs:range :FraudScheme ;
-    rdfs:label "recruits for scheme"@en .
+    rdfs:label "recruits for scheme"@en ;
+    rdfs:comment "Relates a recruiter to the fraud scheme they recruit for."@en .
 
 :operatesIn a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :Country ;
-    rdfs:label "scheme operates in country"@en .
+    rdfs:label "scheme operates in country"@en ;
+    rdfs:comment "Relates a fraud scheme to a country where it has been documented."@en .
 
 :schemePreferredTool a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :CommunicationTool ;
-    rdfs:label "preferred communication tool for scheme"@en .
+    rdfs:label "preferred communication tool for scheme"@en ;
+    rdfs:comment "Relates a fraud scheme to the communication tool most often used to run it, as documented in the sources cited on the scheme."@en .
 
 :schemeTargetsAgeGroup a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :AgeGroup ;
-    rdfs:label "scheme targets age group"@en .
+    rdfs:label "scheme targets age group"@en ;
+    rdfs:comment "Relates a fraud scheme to the age group it preferentially targets."@en .
 
 :schemeTargetsGender a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :Gender ;
-    rdfs:label "scheme targets gender"@en .
+    rdfs:label "scheme targets gender"@en ;
+    rdfs:comment "Relates a fraud scheme to the gender it preferentially targets."@en .
 
 :schemeTypicalRoute a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :TraffickingRoute ;
-    rdfs:label "typical trafficking route for scheme"@en .
+    rdfs:label "typical trafficking route for scheme"@en ;
+    rdfs:comment "Relates a fraud scheme to a trafficking route along which its victims are typically moved."@en .
 
 :schemeExploitationType a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :TypeOfExploitation ;
-    rdfs:label "scheme leads to exploitation type"@en .
+    rdfs:label "scheme leads to exploitation type"@en ;
+    rdfs:comment "Relates a fraud scheme to the type of exploitation it leads to."@en .
 
 :evidencedByPressArticle a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :PressArticle ;
-    rdfs:label "evidenced by press article"@en .
+    rdfs:label "evidenced by press article"@en ;
+    rdfs:comment "Relates a fraud scheme to a press article that documents it. Every named scheme in RATR-O carries at least one such link or an rdfs:seeAlso to an institutional source."@en .
 
 :observedInCountry a owl:ObjectProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range :Country ;
-    rdfs:label "pattern observed in country"@en .
+    rdfs:label "pattern observed in country"@en ;
+    rdfs:comment "Relates a survivor-testimony pattern to a country where the pattern has been observed."@en .
 
 :patternHasKind a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
@@ -541,33 +589,40 @@ skos:closeMatch a owl:AnnotationProperty .
 :offerIsActive a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
-    rdfs:label "offer is active"@en .
+    rdfs:label "offer is active"@en ;
+    rdfs:comment "Whether the offer was still reachable at the time of the last check."@en .
 
 :offerLanguage a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offer language ISO code"@en .
+    rdfs:label "offer language ISO code"@en ;
+    rdfs:comment "ISO 639-1 code of the language the offer is written in."@en .
 
 :offerScreenshotUrl a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:anyURI ;
-    rdfs:label "offer screenshot URL"@en .
+    rdfs:label "offer screenshot URL"@en ;
+    rdfs:comment "URL of the stored screenshot of the offer. Screenshots are kept because deceptive offers are typically deleted by the recruiter within days."@en .
 
 :offerFirstContactAt a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:dateTime ;
-    rdfs:label "offer first contact timestamp"@en .
+    rdfs:label "offer first contact timestamp"@en ;
+    rdfs:comment "Timestamp of the first contact between the recruiter and the candidate, as reported by the candidate."@en .
 
 :offerClassifierConfidence a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
-    rdfs:label "offer classifier confidence"@en .
+    rdfs:label "offer classifier confidence"@en ;
+    rdfs:comment "Confidence reported by the classifier that produced the offer's risk assessment, on a zero-to-one scale."@en .
 
 :victimCaseOpenedAt a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "victim case opened at"@en .
+    rdfs:label "victim case opened at"@en ;
+    rdfs:comment "Date on which the case concerning the victim was opened by the registering institution."@en .
 
 :victimCaseClosedAt a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "victim case closed at"@en .
+    rdfs:label "victim case closed at"@en ;
+    rdfs:comment "Date on which the case concerning the victim was closed by the registering institution."@en .
 
 :victimHasChildrenCount a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range xsd:integer ;
@@ -586,7 +641,12 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :victimPriorEmployment a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range xsd:string ;
-    rdfs:label "prior employment status"@en .
+    rdfs:label "prior employment status"@en ;
+    rdfs:comment "Employment situation of the victim before recruitment, as recorded by the source dataset."@en .
+:hasMeansOfControl a owl:DatatypeProperty ;
+    rdfs:domain :Victim ; rdfs:range xsd:string ;
+    rdfs:label "means of control over victim"@en, "medio de control sobre la víctima"@es ;
+    rdfs:comment "Means of control exercised over the victim, as a code from the control-means list of the source dataset. Distinct from :PalermoMeans, which covers the means used to obtain the person; this property covers the means used to keep them."@en .
 
 :victimReferralSource a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range xsd:string ;
@@ -596,24 +656,29 @@ skos:closeMatch a owl:AnnotationProperty .
 :routeIsTransnational a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
-    rdfs:label "route is transnational"@en .
+    rdfs:label "route is transnational"@en ;
+    rdfs:comment "Whether the route crosses an international border. Internal routes matter in Mexico, where most documented recruitment-to-exploitation movement is domestic."@en .
 
 :routeStopoverCountries a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range xsd:string ;
-    rdfs:label "route stopover countries (ISO3 list)"@en .
+    rdfs:label "route stopover countries (ISO3 list)"@en ;
+    rdfs:comment "Stopover countries of the route, as a list of ISO 3166-1 alpha-3 codes."@en .
 
 :routeUpdatedAt a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range xsd:dateTime ;
-    rdfs:label "route record last updated at"@en .
+    rdfs:label "route record last updated at"@en ;
+    rdfs:comment "Timestamp at which the route record was last updated from its source dataset."@en .
 
 :schemeNamedAfterCase a owl:DatatypeProperty ;
     rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
-    rdfs:label "scheme archetypal case name"@en .
+    rdfs:label "scheme archetypal case name"@en ;
+    rdfs:comment "Name of the archetypal public case the scheme is named after. Used only for cases already public in the press."@en .
 
 :schemeFirstAttestedYear a owl:DatatypeProperty ;
     rdfs:domain :FraudScheme ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
-    rdfs:label "scheme first attested year"@en .
+    rdfs:label "scheme first attested year"@en ;
+    rdfs:comment "Earliest year in which the scheme is attested by one of the sources cited on it."@en .
 
 :schemeJurisdictionScope a owl:DatatypeProperty ;
     rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
@@ -627,31 +692,39 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :sourceLanguage a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
-    rdfs:label "source language ISO code"@en .
+    rdfs:label "source language ISO code"@en ;
+    rdfs:comment "ISO 639-1 code of the language the evidence source is written in."@en .
 
 :sourceAccessedAt a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:dateTime ;
-    rdfs:label "source accessed timestamp"@en .
+    rdfs:label "source accessed timestamp"@en ;
+    rdfs:comment "Timestamp at which the evidence source was accessed. Recorded for every source, because a share of the press and institutional URLs in the corpus stop resolving."@en .
 
 # Additional structural object properties
 :tipEventHappenedIn a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :Country ;
-    rdfs:label "TIP event happened in country"@en .
+    rdfs:label "TIP event happened in country"@en ;
+    rdfs:comment "Relates a TIP event to the country where it took place."@en .
 :tipEventRegisteredBy a owl:ObjectProperty ;
     rdfs:domain :TIPEvent ; rdfs:range :Agent ;
-    rdfs:label "TIP event registered by"@en .
+    rdfs:label "TIP event registered by"@en ;
+    rdfs:comment "Relates a TIP event to the agent that registered it, typically an institution rather than a natural person."@en .
 :schemePalermoAction a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :PalermoAction ;
-    rdfs:label "scheme Palermo action"@en .
+    rdfs:label "scheme Palermo action"@en ;
+    rdfs:comment "Relates a fraud scheme to the Palermo Action that characterises it."@en .
 :schemePalermoMeans a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :PalermoMeans ;
-    rdfs:label "scheme Palermo means"@en .
+    rdfs:label "scheme Palermo means"@en ;
+    rdfs:comment "Relates a fraud scheme to the Palermo Means that characterises it."@en .
 :schemePalermoPurpose a owl:ObjectProperty ;
     rdfs:domain :FraudScheme ; rdfs:range :PalermoPurpose ;
-    rdfs:label "scheme Palermo purpose"@en .
+    rdfs:label "scheme Palermo purpose"@en ;
+    rdfs:comment "Relates a fraud scheme to the Palermo Purpose that characterises it."@en .
 :platformModeratedBy a owl:ObjectProperty ;
     rdfs:domain :Platform ; rdfs:range :Agent ;
-    rdfs:label "platform moderated by"@en .
+    rdfs:label "platform moderated by"@en ;
+    rdfs:comment "Relates a platform to the agent responsible for its moderation, used to record to whom a reported offer can be escalated."@en .
 
 # Fine-grained datatype properties
 :flagKeywordPattern a owl:DatatypeProperty ;
@@ -660,31 +733,38 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Regex used by the rule-based classifier."@en .
 :patternRegex a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
-    rdfs:label "pattern regex"@en .
+    rdfs:label "pattern regex"@en ;
+    rdfs:comment "Regular expression used to detect the pattern in offer text. Published together with the pattern so that any reported count can be reproduced and contested."@en .
 :riskExplanationEn a owl:DatatypeProperty ;
     rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
-    rdfs:label "risk explanation in English"@en .
+    rdfs:label "risk explanation in English"@en ;
+    rdfs:comment "Explanation of the risk classification in English, as shown to the person who reported the offer."@en .
 :riskExplanationEs a owl:DatatypeProperty ;
     rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
-    rdfs:label "risk explanation in Spanish"@en .
+    rdfs:label "risk explanation in Spanish"@en ;
+    rdfs:comment "Explanation of the risk classification in Spanish, as shown to the person who reported the offer."@en .
 :evidenceAccessedOnline a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
-    rdfs:label "evidence accessed online"@en .
+    rdfs:label "evidence accessed online"@en ;
+    rdfs:comment "Whether the evidence source was consulted online rather than on paper."@en .
 :evidenceArchivedUrl a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:anyURI ;
-    rdfs:label "evidence archived URL (e.g. archive.today)"@en .
+    rdfs:label "evidence archived URL (e.g. archive.today)"@en ;
+    rdfs:comment "URL of an archived copy of the evidence source, used when the original stops resolving."@en .
 
 
 # Link properties: an offer or a victim can exhibit one or more FraudSchemes.
 
 :exhibitsFraudScheme a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :FraudScheme ;
-    rdfs:label "exhibits fraud scheme"@en, "presenta esquema de fraude"@es .
+    rdfs:label "exhibits fraud scheme"@en, "presenta esquema de fraude"@es ;
+    rdfs:comment "Relates a job offer to the named fraud scheme it instantiates."@en .
 
 :victimOfFraudScheme a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :FraudScheme ;
-    rdfs:label "victim of fraud scheme"@en, "víctima de esquema de fraude"@es .
+    rdfs:label "victim of fraud scheme"@en, "víctima de esquema de fraude"@es ;
+    rdfs:comment "Relates a victim to the named fraud scheme they were subjected to."@en .
 
 
 :SurvivorTestimonyPattern a owl:Class ;
@@ -728,7 +808,8 @@ skos:closeMatch a owl:AnnotationProperty .
 :FalseDocumentation a owl:Class ;
     rdfs:subClassOf :DocumentationType ;
     rdfs:label "False documentation"@en, "Documentación falsa"@es ;
-    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation> .
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation> ;
+    rdfs:comment "Documentation carried by a victim that was forged, altered or issued in another person's name. One of the values of :DocumentationType, aligned by skos:closeMatch to the corresponding HUTRO concept."@en .
 
 #################################################################
 #    Victim and demographic classes (new in v1.0)
@@ -747,7 +828,8 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "A coarse age bucket aligned to CTDC: 0-8, 9-17, 18-20, 21-23, 24-26, 27-29, 30-38, 39-47, 48+."@en .
 
 :Gender a owl:Class ;
-    rdfs:label "Gender"@en, "Género"@es .
+    rdfs:label "Gender"@en, "Género"@es ;
+    rdfs:comment "The gender recorded for a demographic profile or targeted by a fraud scheme. Modelled as a class of individuals rather than a literal so that the value set stays open and can be aligned to the categories of external datasets without changing the TBox."@en .
 
 #################################################################
 #    Routes, countries, sources
@@ -755,13 +837,16 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :TraffickingRoute a owl:Class ;
     rdfs:label "Trafficking route"@en, "Ruta de trata"@es ;
-    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places> .
+    skos:closeMatch <https://bioportal.bioontology.org/ontologies/HUTROtrafficking_transit_places> ;
+    rdfs:comment "An origin-to-destination pair, optionally with stopover countries, along which victims are moved. Routes in the demonstrator are derived from aggregated citizenship and country-of-exploitation pairs in the CTDC global synthetic dataset, never from individual case records."@en .
 
 :Country a owl:Class ;
-    rdfs:label "Country"@en, "País"@es .
+    rdfs:label "Country"@en, "País"@es ;
+    rdfs:comment "A country or territory used as the origin, destination, stopover or jurisdiction of an offer, a route, a platform, a recruiter or a TIP event. Identified by its ISO 3166-1 code through :countryISOCode."@en .
 
 :Language a owl:Class ;
-    rdfs:label "Language"@en, "Idioma"@es .
+    rdfs:label "Language"@en, "Idioma"@es ;
+    rdfs:comment "A natural language in which an offer, a social-media item or an evidence source is written. Identified by its ISO 639-1 code through :languageISOCode."@en .
 
 :EvidenceSource a owl:Class ;
     rdfs:label "Evidence source"@en, "Fuente de evidencia"@es ;
@@ -769,7 +854,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :PressArticle a owl:Class ;
     rdfs:subClassOf :EvidenceSource ;
-    rdfs:label "Press article"@en, "Artículo de prensa"@es .
+    rdfs:label "Press article"@en, "Artículo de prensa"@es ;
+    rdfs:comment "An item of journalism used as the evidence anchor for a documented case. A subclass of :EvidenceSource. Press records in RATR-O are aggregated at the article level, with outlet, title, URL and classification only, and carry no personal data about the people the article names."@en .
 
 :OpenDatasetRecord a owl:Class ;
     rdfs:subClassOf :EvidenceSource ;
@@ -782,49 +868,60 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :offeredBy a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Agent ;
-    rdfs:label "offered by"@en .
+    rdfs:label "offered by"@en ;
+    rdfs:comment "Relates a job offer to the agent that made it. Specialised by :offeredByRecruiter and :offeredByEmployer."@en .
 
 :offeredByRecruiter a owl:ObjectProperty ;
     rdfs:subPropertyOf :offeredBy ;
     rdfs:domain :JobOffer ; rdfs:range :Recruiter ;
-    rdfs:label "offered by recruiter"@en .
+    rdfs:label "offered by recruiter"@en ;
+    rdfs:comment "Relates a job offer to the recruiter that made it. A subproperty of :offeredBy."@en .
 
 :offeredByEmployer a owl:ObjectProperty ;
     rdfs:subPropertyOf :offeredBy ;
     rdfs:domain :JobOffer ; rdfs:range :Employer ;
-    rdfs:label "offered by employer"@en .
+    rdfs:label "offered by employer"@en ;
+    rdfs:comment "Relates a job offer to the employer that made it. A subproperty of :offeredBy."@en .
 
 :postedVia a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Platform ;
-    rdfs:label "posted via"@en .
+    rdfs:label "posted via"@en ;
+    rdfs:comment "Relates a job offer to the platform on which it was published or through which first contact happened."@en .
 
 :hasRedFlag a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :RedFlag ;
-    rdfs:label "has red flag"@en .
+    rdfs:label "has red flag"@en ;
+    rdfs:comment "Relates a job offer to a red flag recorded in its reviewed classification."@en .
 
 :matchesPattern a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :SurvivorTestimonyPattern ;
-    rdfs:label "matches pattern"@en .
+    rdfs:label "matches pattern"@en ;
+    rdfs:comment "Relates a job offer to a survivor-testimony pattern whose detection rule it matches."@en .
 
 :hasRiskClassification a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :RiskClassification ;
-    rdfs:label "has risk classification"@en .
+    rdfs:label "has risk classification"@en ;
+    rdfs:comment "Relates a job offer to a risk classification produced for it. A single offer may carry several classifications, one per classifier version, which is why the classification is reified rather than stored as a literal on the offer."@en .
 
 :inCountry a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Country ;
-    rdfs:label "in country"@en .
+    rdfs:label "in country"@en ;
+    rdfs:comment "Relates a job offer to the country in which it was published or in which the work was offered."@en .
 
 :inLanguage a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Language ;
-    rdfs:label "in language"@en .
+    rdfs:label "in language"@en ;
+    rdfs:comment "Relates a job offer to the language it is written in."@en .
 
 :associatedWithRoute a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :TraffickingRoute ;
-    rdfs:label "associated with route"@en .
+    rdfs:label "associated with route"@en ;
+    rdfs:comment "Relates a job offer to a trafficking route it is associated with, normally through the origin and destination it names."@en .
 
 :hasRecruitmentMethod a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :RecruitmentMethod ;
-    rdfs:label "has recruitment method"@en .
+    rdfs:label "has recruitment method"@en ;
+    rdfs:comment "Relates a job offer to the recruitment method it uses, in the sense of the ICS-TIP recruitment-method variable."@en .
 
 :leadsToExploitation a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :TypeOfExploitation ;
@@ -837,47 +934,58 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :victimOfOffer a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :JobOffer ;
-    rdfs:label "victim of offer"@en .
+    rdfs:label "victim of offer"@en ;
+    rdfs:comment "Relates a victim to the job offer through which they were recruited."@en .
 
 :victimOfExploitation a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :TypeOfExploitation ;
-    rdfs:label "victim of exploitation type"@en .
+    rdfs:label "victim of exploitation type"@en ;
+    rdfs:comment "Relates a victim to a type of exploitation they were subjected to."@en .
 
 :hasDemographicProfile a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :DemographicProfile ;
-    rdfs:label "has demographic profile"@en .
+    rdfs:label "has demographic profile"@en ;
+    rdfs:comment "Relates a victim to their demographic profile. The profile is reified so that age group, gender, nationality and vulnerability factors can be recorded without ever attaching identifying attributes to the victim individual."@en .
 
 :hasAgeGroup a owl:ObjectProperty ;
     rdfs:domain :DemographicProfile ; rdfs:range :AgeGroup ;
-    rdfs:label "has age group"@en .
+    rdfs:label "has age group"@en ;
+    rdfs:comment "Relates a demographic profile to an age group. RATR-O records age only in bands, never as a date of birth or an exact age."@en .
 
 :hasGender a owl:ObjectProperty ;
     rdfs:domain :DemographicProfile ; rdfs:range :Gender ;
-    rdfs:label "has gender"@en .
+    rdfs:label "has gender"@en ;
+    rdfs:comment "Relates a demographic profile to a gender."@en .
 
 :hasNationality a owl:ObjectProperty ;
     rdfs:domain :DemographicProfile ; rdfs:range :Country ;
-    rdfs:label "has nationality"@en .
+    rdfs:label "has nationality"@en ;
+    rdfs:comment "Relates a demographic profile to a country of nationality."@en .
 
 :hasVulnerabilityFactor a owl:ObjectProperty ;
     rdfs:domain :DemographicProfile ; rdfs:range :VulnerabilityFactor ;
-    rdfs:label "has vulnerability factor"@en .
+    rdfs:label "has vulnerability factor"@en ;
+    rdfs:comment "Relates a demographic profile to a vulnerability factor, in the sense of the ICS-TIP vulnerability variable."@en .
 
 :recruitedVia a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :RecruitmentMethod ;
-    rdfs:label "recruited via"@en .
+    rdfs:label "recruited via"@en ;
+    rdfs:comment "Relates a victim to the recruitment method used on them."@en .
 
 :contactedThrough a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :CommunicationTool ;
-    rdfs:label "contacted through"@en .
+    rdfs:label "contacted through"@en ;
+    rdfs:comment "Relates a victim to the communication tool through which the recruiter contacted them."@en .
 
 :transportedBy a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :TransportationMeans ;
-    rdfs:label "transported by"@en .
+    rdfs:label "transported by"@en ;
+    rdfs:comment "Relates a victim to the means of transportation used to move them."@en .
 
 :travelledWith a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :DocumentationType ;
-    rdfs:label "travelled with documentation"@en .
+    rdfs:label "travelled with documentation"@en ;
+    rdfs:comment "Relates a victim to the type of documentation they travelled with."@en .
 
 #################################################################
 #    Object properties — Route and agents
@@ -885,27 +993,33 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :originCountry a owl:ObjectProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range :Country ;
-    rdfs:label "origin country"@en .
+    rdfs:label "origin country"@en ;
+    rdfs:comment "Relates a trafficking route to its country of origin."@en .
 
 :destinationCountry a owl:ObjectProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range :Country ;
-    rdfs:label "destination country"@en .
+    rdfs:label "destination country"@en ;
+    rdfs:comment "Relates a trafficking route to its country of destination."@en .
 
 :platformCountry a owl:ObjectProperty ;
     rdfs:domain :Platform ; rdfs:range :Country ;
-    rdfs:label "platform country"@en .
+    rdfs:label "platform country"@en ;
+    rdfs:comment "Relates a platform to the country of its operator, used to establish which jurisdiction a takedown request falls under."@en .
 
 :recruiterCountry a owl:ObjectProperty ;
     rdfs:domain :Recruiter ; rdfs:range :Country ;
-    rdfs:label "recruiter country"@en .
+    rdfs:label "recruiter country"@en ;
+    rdfs:comment "Relates a recruiter to the country they operate from, as far as it can be established from the report."@en .
 
 :submittedBy a owl:ObjectProperty ;
     rdfs:domain :Submission ; rdfs:range :Candidate ;
-    rdfs:label "submitted by"@en .
+    rdfs:label "submitted by"@en ;
+    rdfs:comment "Relates a submission to the candidate that sent it."@en .
 
 :submittedOffer a owl:ObjectProperty ;
     rdfs:domain :Submission ; rdfs:range :JobOffer ;
-    rdfs:label "submitted offer"@en .
+    rdfs:label "submitted offer"@en ;
+    rdfs:comment "Relates a submission to the job offer it is about. Submissions are reified so that the same offer reported by several candidates is one offer with several submissions."@en .
 
 :evidenceFor a owl:ObjectProperty ;
     rdfs:domain :EvidenceSource ;
@@ -916,7 +1030,8 @@ skos:closeMatch a owl:AnnotationProperty .
 :derivedFrom a owl:ObjectProperty ;
     rdfs:domain :SurvivorTestimonyPattern ;
     rdfs:range :EvidenceSource ;
-    rdfs:label "derived from"@en, "derivado de"@es .
+    rdfs:label "derived from"@en, "derivado de"@es ;
+    rdfs:comment "Relates a survivor-testimony pattern to the evidence source it was derived from. Every pattern in RATR-O carries at least one such link, so that no detection rule is asserted without a traceable origin."@en .
 
 #################################################################
 #    Datatype properties — JobOffer
@@ -924,16 +1039,19 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :hasTitle a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offer title"@en, "título de la oferta"@es .
+    rdfs:label "offer title"@en, "título de la oferta"@es ;
+    rdfs:comment "Title or headline of the job offer as published."@en .
 
 :hasRawText a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offer raw text"@en, "texto crudo de la oferta"@es .
+    rdfs:label "offer raw text"@en, "texto crudo de la oferta"@es ;
+    rdfs:comment "Verbatim text of the offer as published or as forwarded by the candidate. The raw text is kept because the wording is the object of study, and it is stored with contact details removed."@en .
 
 :postedOn a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "posted on"@en, "publicado el"@es .
+    rdfs:label "posted on"@en, "publicado el"@es ;
+    rdfs:comment "Date on which the offer was published."@en .
 
 :offeredSalaryMXN a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
@@ -942,15 +1060,18 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :offeredRole a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offered role"@en, "rol ofrecido"@es .
+    rdfs:label "offered role"@en, "rol ofrecido"@es ;
+    rdfs:comment "Job title or role as named in the offer, in the words of the offer."@en .
 
 :offeredLocation a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offered location"@en, "ubicación ofrecida"@es .
+    rdfs:label "offered location"@en, "ubicación ofrecida"@es ;
+    rdfs:comment "Place of work as named in the offer, in the words of the offer."@en .
 
 :riskScore a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
-    rdfs:label "risk score"@en, "puntuación de riesgo"@es .
+    rdfs:label "risk score"@en, "puntuación de riesgo"@es ;
+    rdfs:comment "Aggregate risk score computed for the offer by the classifier version recorded on the classification."@en .
 
 #################################################################
 #    Datatype properties — Platform, Agent, flag, classification
@@ -958,7 +1079,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :platformName a owl:DatatypeProperty ;
     rdfs:domain :Platform ; rdfs:range xsd:string ;
-    rdfs:label "platform name"@en, "nombre de la plataforma"@es .
+    rdfs:label "platform name"@en, "nombre de la plataforma"@es ;
+    rdfs:comment "Name of the platform."@en .
 
 :platformType a owl:DatatypeProperty ;
     rdfs:domain :Platform ; rdfs:range xsd:string ;
@@ -967,24 +1089,29 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :agentName a owl:DatatypeProperty ;
     rdfs:domain :Agent ; rdfs:range xsd:string ;
-    rdfs:label "agent name"@en, "nombre del agente"@es .
+    rdfs:label "agent name"@en, "nombre del agente"@es ;
+    rdfs:comment "Name of the agent as it appears in the offer or the report. For recruiters this is the name they gave, which is frequently false, and never a verified identity."@en .
 
 :contactHash a owl:DatatypeProperty ;
     rdfs:domain :Recruiter ; rdfs:range xsd:string ;
-    rdfs:label "contact hash"@en, "hash de contacto"@es .
+    rdfs:label "contact hash"@en, "hash de contacto"@es ;
+    rdfs:comment "SHA-256 digest of the recruiter's contact identifier. The digest lets the same contact be recognised across reports without storing the phone number or the account name."@en .
 
 :historicalOfferCount a owl:DatatypeProperty ;
     rdfs:domain :Agent ; rdfs:range xsd:integer ;
-    rdfs:label "historical offer count"@en, "ofertas históricas"@es .
+    rdfs:label "historical offer count"@en, "ofertas históricas"@es ;
+    rdfs:comment "Number of offers previously recorded for this agent in Ramona's own data."@en .
 
 :historicalFlagCount a owl:DatatypeProperty ;
     rdfs:domain :Agent ; rdfs:range xsd:integer ;
-    rdfs:label "historical flag count"@en, "banderas históricas"@es .
+    rdfs:label "historical flag count"@en, "banderas históricas"@es ;
+    rdfs:comment "Number of red flags previously recorded across this agent's offers in Ramona's own data."@en .
 
 :hasVerifiedIdentity a owl:DatatypeProperty ;
     rdfs:domain :Employer ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
-    rdfs:label "has verified identity"@en, "tiene identidad verificada"@es .
+    rdfs:label "has verified identity"@en, "tiene identidad verificada"@es ;
+    rdfs:comment "Whether the employer's legal identity was verified against a public register."@en .
 
 :flagType a owl:DatatypeProperty ;
     rdfs:domain :RedFlag ; rdfs:range xsd:string ;
@@ -993,7 +1120,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :flagConfidence a owl:DatatypeProperty ;
     rdfs:domain :RedFlag ; rdfs:range xsd:decimal ;
-    rdfs:label "flag confidence"@en, "confianza de la bandera"@es .
+    rdfs:label "flag confidence"@en, "confianza de la bandera"@es ;
+    rdfs:comment "Confidence of the red-flag detection, on a zero-to-one scale."@en .
 
 :detectedBy a owl:DatatypeProperty ;
     rdfs:domain :RedFlag ; rdfs:range xsd:string ;
@@ -1007,24 +1135,29 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :explanationText a owl:DatatypeProperty ;
     rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
-    rdfs:label "explanation text"@en, "texto explicativo"@es .
+    rdfs:label "explanation text"@en, "texto explicativo"@es ;
+    rdfs:comment "Explanation of the risk classification in the language of the report."@en .
 
 :classifiedOn a owl:DatatypeProperty ;
     rdfs:domain :RiskClassification ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "classified on"@en, "clasificado el"@es .
+    rdfs:label "classified on"@en, "clasificado el"@es ;
+    rdfs:comment "Date on which the classification was produced."@en .
 
 :classifierVersion a owl:DatatypeProperty ;
     rdfs:domain :RiskClassification ; rdfs:range xsd:string ;
-    rdfs:label "classifier version"@en, "versión del clasificador"@es .
+    rdfs:label "classifier version"@en, "versión del clasificador"@es ;
+    rdfs:comment "Identifier of the classifier version that produced the classification. Required, so that counts can be recomputed after a classifier is corrected."@en .
 
 :patternName a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
-    rdfs:label "pattern name"@en, "nombre del patrón"@es .
+    rdfs:label "pattern name"@en, "nombre del patrón"@es ;
+    rdfs:comment "Short name of the survivor-testimony pattern."@en .
 
 :patternDescription a owl:DatatypeProperty ;
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
-    rdfs:label "pattern description"@en, "descripción del patrón"@es .
+    rdfs:label "pattern description"@en, "descripción del patrón"@es ;
+    rdfs:comment "Description of the survivor-testimony pattern in prose."@en .
 
 #################################################################
 #    Datatype properties — Route, country, language
@@ -1032,28 +1165,34 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :routeName a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range xsd:string ;
-    rdfs:label "route name"@en, "nombre de la ruta"@es .
+    rdfs:label "route name"@en, "nombre de la ruta"@es ;
+    rdfs:comment "Human-readable name of the route."@en .
 
 :knownSince a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "known since"@en, "conocida desde"@es .
+    rdfs:label "known since"@en, "conocida desde"@es ;
+    rdfs:comment "Date from which the route is known to Ramona."@en .
 
 :countryName a owl:DatatypeProperty ;
     rdfs:domain :Country ; rdfs:range xsd:string ;
-    rdfs:label "country name"@en, "nombre del país"@es .
+    rdfs:label "country name"@en, "nombre del país"@es ;
+    rdfs:comment "Name of the country in English."@en .
 
 :countryISOCode a owl:DatatypeProperty ;
     rdfs:domain :Country ; rdfs:range xsd:string ;
-    rdfs:label "country ISO code"@en, "código ISO del país"@es .
+    rdfs:label "country ISO code"@en, "código ISO del país"@es ;
+    rdfs:comment "ISO 3166-1 code of the country."@en .
 
 :languageName a owl:DatatypeProperty ;
     rdfs:domain :Language ; rdfs:range xsd:string ;
-    rdfs:label "language name"@en, "nombre del idioma"@es .
+    rdfs:label "language name"@en, "nombre del idioma"@es ;
+    rdfs:comment "Name of the language in English."@en .
 
 :languageISOCode a owl:DatatypeProperty ;
     rdfs:domain :Language ; rdfs:range xsd:string ;
-    rdfs:label "language ISO code"@en, "código ISO del idioma"@es .
+    rdfs:label "language ISO code"@en, "código ISO del idioma"@es ;
+    rdfs:comment "ISO 639-1 code of the language."@en .
 
 #################################################################
 #    Datatype properties — HUTRO-aligned concepts
@@ -1101,11 +1240,13 @@ skos:closeMatch a owl:AnnotationProperty .
 :yearOfRegistration a owl:DatatypeProperty ;
     rdfs:domain :Victim ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:gYear. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:gYear literals."@en ;
-    rdfs:label "year of registration"@en, "año de registro"@es .
+    rdfs:label "year of registration"@en, "año de registro"@es ;
+    rdfs:comment "Year in which the victim's case was registered by the source dataset. The year is the finest time granularity RATR-O records about a victim."@en .
 
 :ageGroupName a owl:DatatypeProperty ;
     rdfs:domain :AgeGroup ; rdfs:range xsd:string ;
-    rdfs:label "age group name"@en, "nombre del grupo etario"@es .
+    rdfs:label "age group name"@en, "nombre del grupo etario"@es ;
+    rdfs:comment "Name of the age band, for example '18-20' or '21-23'."@en .
 
 :genderName a owl:DatatypeProperty ;
     rdfs:domain :Gender ; rdfs:range xsd:string ;
@@ -1118,24 +1259,29 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :sourceTitle a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
-    rdfs:label "source title"@en, "título de la fuente"@es .
+    rdfs:label "source title"@en, "título de la fuente"@es ;
+    rdfs:comment "Title of the evidence source."@en .
 
 :sourceOutlet a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
-    rdfs:label "source outlet"@en, "medio de la fuente"@es .
+    rdfs:label "source outlet"@en, "medio de la fuente"@es ;
+    rdfs:comment "Outlet, publisher or institution that issued the evidence source."@en .
 
 :sourceUrl a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:anyURI ;
-    rdfs:label "source URL"@en, "URL de la fuente"@es .
+    rdfs:label "source URL"@en, "URL de la fuente"@es ;
+    rdfs:comment "URL of the evidence source."@en .
 
 :sourceDate a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:date. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:date literals."@en ;
-    rdfs:label "source date"@en, "fecha de la fuente"@es .
+    rdfs:label "source date"@en, "fecha de la fuente"@es ;
+    rdfs:comment "Publication date of the evidence source."@en .
 
 :sourceAuthor a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
-    rdfs:label "source author"@en, "autor de la fuente"@es .
+    rdfs:label "source author"@en, "autor de la fuente"@es ;
+    rdfs:comment "Author of the evidence source, where the source names one."@en .
 
 :datasetName a owl:DatatypeProperty ;
     rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string ;
@@ -1144,7 +1290,8 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :datasetRecordId a owl:DatatypeProperty ;
     rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string ;
-    rdfs:label "dataset record id"@en, "identificador de registro del dataset"@es .
+    rdfs:label "dataset record id"@en, "identificador de registro del dataset"@es ;
+    rdfs:comment "Identifier of the record in the open dataset it came from, so that any figure can be traced back to the published dataset."@en .
 
 #################################################################
 #    v1.6 — Observatory provenance annotations (final gap close)
@@ -1230,7 +1377,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :SocialMediaPost a owl:Class ;
     rdfs:subClassOf :SocialMediaItem ;
-    rdfs:label "Social-media post"@en, "Publicacion en red social"@es ;
+    rdfs:label "Social-media post"@en, "Publicación en red social"@es ;
     rdfs:comment "A video or image post with its overlay text, caption, hashtags and audio. Unit of analysis of the Colmex 2025 corpus."@en .
 
 :SocialMediaComment a owl:Class ;
@@ -1255,22 +1402,22 @@ skos:closeMatch a owl:AnnotationProperty .
 :DirectRecruitmentPost a owl:Class ;
     rdfs:subClassOf :SocialMediaPost , :JobOffer ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :exhibitsFraudScheme ; owl:someValuesFrom :ForcedCriminalityScheme ] ;
-    rdfs:label "Direct recruitment post (NR)"@en, "Publicacion con narrativa de reclutamiento directo (NR)"@es ;
+    rdfs:label "Direct recruitment post (NR)"@en, "Publicación con narrativa de reclutamiento directo (NR)"@es ;
     rdfs:comment "Condition NR of Colmex 2025: the post explicitly invites the audience to join a criminal group (e.g. 'Quieres jale? Todavia hay plazas', 'seguimos con el reclutamiento activo'). Such a post is a job offer, and every such offer exhibits some forced-criminality scheme (existential axiom, allowed on the right-hand side in OWL 2 QL)."@en .
 
 :CriminalCultureExaltationPost a owl:Class ;
     rdfs:subClassOf :SocialMediaPost ;
-    rdfs:label "Criminal-culture exaltation post (ECC)"@en, "Publicacion con exaltacion de la cultura criminal (ECC)"@es ;
+    rdfs:label "Criminal-culture exaltation post (ECC)"@en, "Publicación con exaltación de la cultura criminal (ECC)"@es ;
     rdfs:comment "Condition ECC of Colmex 2025: the post uses at least one iconographic symbol of criminal identity (weapons, armoured 'monstruas', tactical vests, convoys, group emblems)."@en .
 
 :CriminalLifeAspirationPost a owl:Class ;
     rdfs:subClassOf :SocialMediaPost ;
-    rdfs:label "Criminal-life aspiration post (AVC)"@en, "Publicacion con aspiracion a la vida criminal (AVC)"@es ;
+    rdfs:label "Criminal-life aspiration post (AVC)"@en, "Publicación con aspiración a la vida criminal (AVC)"@es ;
     rdfs:comment "Condition AVC of Colmex 2025: the post expresses the desire to join criminal life as a life project (e.g. 'Al unico circulo social que me interesa pertenecer (en proceso)', 'Disfruto mi vida quizas manana ya no este')."@en .
 
 :AcousticFramingPost a owl:Class ;
     rdfs:subClassOf :SocialMediaPost ;
-    rdfs:label "Acoustic framing post (A)"@en, "Publicacion con acustica (A)"@es ;
+    rdfs:label "Acoustic framing post (A)"@en, "Publicación con acústica (A)"@es ;
     rdfs:comment "Condition A of Colmex 2025: background music or sound (corridos belicos, gunfire, radio chatter) that gives an emotional frame to criminal activity."@en .
 
 # --- The three recruitment stories (necessary direction only) --------
@@ -1294,7 +1441,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :SocialMediaRecruitmentSignal a owl:Class ;
     rdfs:subClassOf :RedFlag ;
-    rdfs:label "Social-media recruitment signal"@en, "Senal de reclutamiento en redes"@es ;
+    rdfs:label "Social-media recruitment signal"@en, "Señal de reclutamiento en redes"@es ;
     rdfs:comment "A textual or symbolic cue in a social-media item associated with criminal recruitment. Derived from the lexicon in data/lexicon/tiktok_reclutamiento_lexicon.csv (Colmex 2025)."@en .
 
 :GroupCodeSignal a owl:Class ; rdfs:subClassOf :SocialMediaRecruitmentSignal ;
@@ -1331,64 +1478,79 @@ skos:closeMatch a owl:AnnotationProperty .
 # --- Lexicon ----------------------------------------------------------
 
 :LexiconTerm a owl:Class ;
-    rdfs:label "Lexicon term"@en, "Termino del lexico"@es ;
+    rdfs:label "Lexicon term"@en, "Término del léxico"@es ;
     rdfs:comment "A word, phrase, emoji or hashtag used in recruitment content, with a detection pattern and provenance. Instances are loaded from data/lexicon/tiktok_reclutamiento_lexicon.csv."@en .
 
 # --- Object properties --------------------------------------------------
 
 :itemPostedOn a owl:ObjectProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range :Platform ;
-    rdfs:label "item posted on"@en, "publicado en"@es .
+    rdfs:label "item posted on"@en, "publicado en"@es ;
+    rdfs:comment "Relates a social-media item to the platform it was posted on."@en .
 
 :commentsOn a owl:ObjectProperty ;
     rdfs:domain :SocialMediaComment ; rdfs:range :SocialMediaPost ;
-    rdfs:label "comments on"@en, "comenta en"@es .
+    rdfs:label "comments on"@en, "comenta en"@es ;
+    rdfs:comment "Relates a social-media comment to the post it replies to. Recruiter replies in comment threads are modelled because in the Colmex corpus the recruitment contact is frequently made there rather than in the post itself."@en .
 
 :itemHasSignal a owl:ObjectProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range :SocialMediaRecruitmentSignal ;
-    rdfs:label "item has signal"@en, "tiene senal"@es .
+    rdfs:label "item has signal"@en, "tiene señal"@es ;
+    rdfs:comment "Relates a social-media item to a recruitment signal detected in it."@en .
 
 :itemMatchesTerm a owl:ObjectProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range :LexiconTerm ;
-    rdfs:label "item matches lexicon term"@en, "coincide con termino"@es .
+    rdfs:label "item matches lexicon term"@en, "coincide con término"@es ;
+    rdfs:comment "Relates a social-media item to a lexicon term it matches."@en .
 
 :termDocumentedIn a owl:ObjectProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range :EvidenceSource ;
-    rdfs:label "term documented in"@en, "documentado en"@es .
+    rdfs:label "term documented in"@en, "documentado en"@es ;
+    rdfs:comment "Relates a lexicon term to the evidence source that documents it. Every term in the TikTok recruitment lexicon carries this link to the research report and page it was taken from."@en .
 
 # --- Datatype properties ------------------------------------------------
 
 :itemText a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range xsd:string ;
-    rdfs:label "item text"@en, "texto del contenido"@es .
+    rdfs:label "item text"@en, "texto del contenido"@es ;
+    rdfs:comment "Text of the social-media item, that is the caption of a post or the body of a comment."@en .
 :itemPostedAt a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range xsd:dateTime ;
-    rdfs:label "item posted at"@en, "fecha de publicacion"@es .
+    rdfs:label "item posted at"@en, "fecha de publicación"@es ;
+    rdfs:comment "Timestamp at which the social-media item was posted."@en .
 :itemIsSynthetic a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
-    rdfs:label "item is synthetic"@en, "es sintetico"@es .
+    rdfs:label "item is synthetic"@en, "es sintético"@es ;
+    rdfs:comment "Whether the item is synthetic. Every synthetic item in the demonstrator carries this property set to true, so that no figure can be computed over real and generated items without distinguishing them."@en .
 :itemHashtags a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaItem ; rdfs:range xsd:string ;
-    rdfs:label "item hashtags"@en, "hashtags"@es .
+    rdfs:label "item hashtags"@en, "hashtags"@es ;
+    rdfs:comment "Hashtags carried by the item, as a space-separated list."@en .
 :audioDescription a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaPost ; rdfs:range xsd:string ;
-    rdfs:label "audio description"@en, "descripcion del audio"@es .
+    rdfs:label "audio description"@en, "descripción del audio"@es ;
+    rdfs:comment "Description of the audio track of the post, including the song used. The audio is recorded because in the Colmex corpus the belico soundtrack is part of what makes the post legible as a recruitment post."@en .
 :visualDescription a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaPost ; rdfs:range xsd:string ;
-    rdfs:label "visual description"@en, "descripcion visual"@es .
+    rdfs:label "visual description"@en, "descripción visual"@es ;
+    rdfs:comment "Description of what the post shows."@en .
 :promisedWeeklyPayMXN a owl:DatatypeProperty ;
     rdfs:domain :SocialMediaPost ; rdfs:range xsd:decimal ;
-    rdfs:label "promised weekly pay (MXN)"@en, "pago semanal prometido (MXN)"@es .
+    rdfs:label "promised weekly pay (MXN)"@en, "pago semanal prometido (MXN)"@es ;
+    rdfs:comment "Weekly pay promised in the post, in Mexican pesos."@en .
 :lexiconTermText a owl:DatatypeProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
-    rdfs:label "term text"@en, "texto del termino"@es .
+    rdfs:label "term text"@en, "texto del término"@es ;
+    rdfs:comment "The lexicon term as written in the source."@en .
 :lexiconPattern a owl:DatatypeProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
-    rdfs:label "detection pattern (regex)"@en, "patron de deteccion (regex)"@es .
+    rdfs:label "detection pattern (regex)"@en, "patrón de detección (regex)"@es ;
+    rdfs:comment "Regular expression used to detect the lexicon term in item text."@en .
 :lexiconCategory a owl:DatatypeProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
-    rdfs:label "lexicon category"@en, "categoria del lexico"@es .
+    rdfs:label "lexicon category"@en, "categoría del léxico"@es ;
+    rdfs:comment "Category the lexicon term belongs to, for example the role offered, the pay or the weapon."@en .
 :lexiconIsVerbatim a owl:DatatypeProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range rdfs:Literal ;
     skos:note "Intended datatype xsd:boolean. It is outside the OWL 2 QL datatype map, so the TBox declares rdfs:Literal and the mapping layer emits xsd:boolean literals."@en ;
@@ -1396,7 +1558,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "true if the term appears literally in the source report; false if it is a project variant (spelling, generic hashtag)."@en .
 :lexiconSourceLocation a owl:DatatypeProperty ;
     rdfs:domain :LexiconTerm ; rdfs:range xsd:string ;
-    rdfs:label "location in source"@en, "ubicacion en la fuente"@es ;
+    rdfs:label "location in source"@en, "ubicación en la fuente"@es ;
     rdfs:comment "Page and image number in the source report."@en .
 
 
@@ -1440,21 +1602,25 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Exact text of the advertisement or recruiter message as quoted by the source, verified as a literal substring."@en .
 :offerTargetProfile a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "target profile"@en, "perfil buscado"@es .
+    rdfs:label "target profile"@en, "perfil buscado"@es ;
+    rdfs:comment "Profile the offer asks for, in the words of the offer, for example that the candidate come alone or be a young woman."@en .
 :offerOutcome a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
     rdfs:label "reported outcome"@en, "desenlace reportado"@es ;
     rdfs:comment "Controlled vocabulary: rescate, desaparicion, explotacion_sexual, explotacion_laboral, fraude_economico, homicidio, detencion_reclutador, other."@en .
 :offerPayAmount a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:decimal ;
-    rdfs:label "offered pay amount"@en, "monto ofrecido"@es .
+    rdfs:label "offered pay amount"@en, "monto ofrecido"@es ;
+    rdfs:comment "Pay amount stated in the offer."@en .
 :offerPayCurrency a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offered pay currency"@en, "moneda ofrecida"@es .
+    rdfs:label "offered pay currency"@en, "moneda ofrecida"@es ;
+    rdfs:comment "ISO 4217 code of the currency the pay is stated in."@en .
 :offerPayPeriod a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "offered pay period"@en, "periodo de pago"@es .
+    rdfs:label "offered pay period"@en, "periodo de pago"@es ;
+    rdfs:comment "Period the stated pay refers to, for example weekly, fortnightly or monthly."@en .
 :extractionConfidence a owl:DatatypeProperty ;
     rdfs:domain :JobOffer ; rdfs:range xsd:string ;
-    rdfs:label "extraction confidence"@en, "confianza de extraccion"@es ;
+    rdfs:label "extraction confidence"@en, "confianza de extracción"@es ;
     rdfs:comment "high, medium or low: how clearly the source describes this specific offer."@en .

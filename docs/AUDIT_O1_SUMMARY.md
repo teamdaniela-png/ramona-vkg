@@ -1,139 +1,163 @@
 # Audit O1 — Executive summary
 
-**Audit date:** 22 April 2026.
-**Auditor:** self (simulating Prof. Magdalena Ortiz reviewer standard).
-**Scope:** Objective 1 of the TU Wien Dialogue Residency proposal — the RATR-O ontology in OWL 2 QL covering Ramona AI's operational entities.
-**Version audited:** RATR-O v1.6.1.
+**Audit date:** 10 November 2026 (first audit 22 April 2026, re-audited in full before delivery).
+**Auditor:** self, to the reviewer standard of Ortiz & Šimkus (2012).
+**Scope:** Objective 1 of the TU Wien Dialogue Residency proposal — the RATR-O ontology in OWL 2 QL
+covering Ramona AI's operational entities.
+**Version audited:** RATR-O v1.10.1.
 
 ## Bottom line
 
-**O1 is ready for submission to Prof. Ortiz.** No blockers. No SHOULD-grade findings. All external citations verify against their sources.
+**O1 is ready for review.** No blockers and no SHOULD-grade findings remain. The ontology is in the
+OWL 2 QL profile by the OWL API checker, consistent under HermiT both alone and together with the
+full ABox, every term it publishes is defined, and every term used by the mappings and the queries
+is declared in it.
+
+What the delivery does **not** include: the Ontop demonstrator running over Postgres (O3, blocked on
+Docker on this machine), a Zenodo DOI (`.zenodo.json` ready, not deposited), and OOPS!/FOOPS!
+scans (web services, pending).
+
+## The five defects this audit found in v1.10
+
+They matter because each one was invisible to the checks that existed before.
+
+| # | Defect | Why it escaped | Status |
+|---|---|---|---|
+| 1 | `:hasMeansOfControl` used by both mappings and by `queries/Q13` and `Q26`, never declared in the TBox | no check read the queries and the TBox together | declared, with a definition distinguishing it from `:PalermoMeans` |
+| 2 | `:sourceUrl` has range `xsd:anyURI`; the v1.10 press mappings and materialiser emitted `xsd:string`, so HermiT derives `owl:Thing ⊑ owl:Nothing` | the two ABoxes were only ever reasoned separately | all three producers emit `xsd:anyURI`; merged graph consistent |
+| 3 | 158 of 281 classes and properties carried a label but no definition | the script only checked for labels | every class and property now carries an `rdfs:comment` |
+| 4 | annotation text referencing IRIs that are not declared (`:fraudAxis`, `:exploitationAxis`, `:traffickingAxis`, `:labour_agriculture`), and 18 Spanish labels written without accents | nothing checked prose inside annotations | comments rewritten, labels corrected |
+| 5 | `db/08_enriched_countries.sql` filled `country_code CHAR(2) PRIMARY KEY` with the first two letters of the alpha-3 code; 39 keys collided, so its `ON CONFLICT` upsert overwrote Colombia with Comoros, Spain with Estonia and Argentina with Armenia, and never defined `MX` | the audit only ever read the ontology, never the seed against the schema | codes taken from the ISO 3166 tables in `pycountry`; 248 rows, 248 distinct keys, all 11 country codes the other seeds reference now resolve correctly |
+
+Defect 5 is in the demonstrator database, not in O1, but it would have corrupted every
+country-level answer the VKG gives, so it is reported here. The claim in the v1.10 validation
+report that the real-offer graph was consistent under HermiT was wrong. It holds from v1.10.1 on. `docs/validation/VALIDATION_REPORT.md` says so in those words.
+
+`scripts/audit_o1.py` now carries a check for each of the first four. Run against the v1.10 file it
+reports 4 blockers and 162 SHOULD-grade findings; against v1.10.1, none.
 
 ## Verification method
 
-Automated audit script (`/tmp/audit_o1.py`) reads `ontology/ratr-o.ttl` and checks:
+`scripts/audit_o1.py` reads `ontology/ratr-o.ttl`, both mapping files and `queries/*.rq`, and checks:
 
-1. OWL 2 QL profile conformance — every axiom falls within DL-Lite.
-2. Consistency — unused classes, missing labels, missing domain/range, potential duplicates.
+1. OWL 2 QL profile conformance, including the restricted datatype map of OWL 2 Profiles §3.2.
+2. Consistency hygiene — unused classes, missing labels, missing domain or range, near-duplicates.
 3. Coverage — the eight entities named in Magdalena's O1 brief are present.
-4. Provenance — every FraudScheme has at least one `rdfs:seeAlso` or ≥150-char `rdfs:comment`; every `skos:closeMatch` points to a URL.
+4. Provenance — every FraudScheme has an `rdfs:seeAlso` or a substantive `rdfs:comment`; every
+   `skos:closeMatch` points to a URL.
 5. Naming conventions — UpperCamelCase for classes, lowerCamelCase for properties.
-6. Mapping consistency — OBDA and R2RML exist and parse.
+6. Mapping consistency — OBDA and R2RML exist, parse, and emit datatypes that agree with the
+   declared ranges.
 7. Data-ontology alignment — every declared class has a materialisation path.
-8. URL reachability — every external URL hit over HTTP.
-9. Statistic verification — every numeric claim cross-checked against the source (CTDC CSV, INEGI ENADID, etc.).
+8. Definitions — every class and property has an `rdfs:comment`.
+9. Vocabulary closure — every term used in the queries and mappings is declared in the ontology.
+
+Independently of the script: ROBOT 1.9.11 for the profile check, HermiT for consistency, and an
+HTTP check of every external URL in the ontology.
 
 ## Findings
 
-| Severity | Count before fixes | Count after fixes |
+| Severity | v1.10 | v1.10.1 |
 |---|---:|---:|
-| BLOCKER | 0 | **0** |
-| SHOULD | 49 | **0** |
-| NIT | 51 | 51 |
-| NOTE | 5 | 5 |
+| BLOCKER | 4 | **0** |
+| SHOULD | 162 | **0** |
+| NIT | 69 | 69 |
+| NOTE | 2 | 2 |
 
-### SHOULDs fixed (49)
+The 69 NITs are all the same observation: a leaf class that appears in no axiom other than its own
+`rdfs:subClassOf`. That is what a leaf of a taxonomy looks like, so they are accepted rather than
+fixed. The 2 NOTEs record that two FraudScheme classes get their instances from
+`db/09_fraudscheme_examples.sql` rather than from a mapping assertion.
 
-- Added `rdfs:label` (English + Spanish) to 46 datatype properties that previously lacked any label.
-- Added `rdfs:range` to `:evidenceFor` (pointing to `:SurvivorTestimonyPattern`).
-- Added `rdfs:domain` to `:derivedFrom` (pointing to `:SurvivorTestimonyPattern`).
-- Added `:Employer owl:disjointWith :Recruiter` (OWL 2 QL-compliant disjointness).
+## Current size
 
-### NITs accepted (51)
+| | Count |
+|---|---:|
+| Classes | 114 |
+| Object properties | 66 |
+| Datatype properties | 101 |
+| TBox triples | 1,582 |
+| `skos:closeMatch` alignments to HUTRO | 8 |
+| R2RML mapping triples | 1,511 |
+| Competency questions / SPARQL queries | 36 / 40 |
 
-All 51 are minor cosmetic issues. The most common ones are:
-- Spanish labels missing on a few classes (will be added in v1.7).
-- One pair of classes with similar English labels that serve different purposes (acceptable in context).
+## External citation check (10 November 2026)
 
-### NOTEs (5)
+39 URLs in the ontology, 27 of them external (the rest are W3C, Creative Commons or the RATR-O
+namespace itself).
 
-Forward-looking observations about mappings that will be wired when individual FraudScheme instances become materialised in v1.7 (currently, exemplars live in `db/09_fraudscheme_examples.sql` and the OBDA mapping does not yet produce individual `:FraudScheme` instances; this is expected and documented).
-
-## External citation verification
-
-Ontology contains 77 external URLs. Audit results:
-
-| Category | Count | Status |
+| Result | Count | Reading |
 |---|---:|---|
-| HTTP 200 (resolved cleanly) | 15 | ✓ |
-| HTTP 403 (Cloudflare/Akamai blocks automated requests but the URL is real) | 11 | ✓ verified manually |
-| HTTP 404 (real failure) | 2 | **FIXED** |
-| W3C/XSD/own-namespace (not checked) | 49 | n/a |
+| HTTP 200 | 10 | fine |
+| HTTP 403 or 406 | 15 | BioPortal, OHCHR, CTDC and the REDIM blog refuse automated requests; all open in a browser |
+| HTTP 500 | 1 | `oaxaca.gob.mx` child-marriage page, broken at the source |
+| no response | 1 | `zapopan.gob.mx` prevention programme page |
 
-**The two 404s were:**
-- `https://fifpro.org/en/industry/player-trafficking` → fixed to the working `https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/`
-- `https://www.hrw.org/topic/migrant-and-refugee-rights` → fixed to the specific HRW report `https://www.hrw.org/news/2012/06/12/qatar-migrant-construction-workers-face-abuse`
+The two that no longer serve are kept as the primary citation and an Internet Archive snapshot is
+cited next to each, with a `skos:note` giving the date of the check. No citation in the ontology is
+dead without a working alternative beside it.
 
-Both replacements return HTTP 200.
+## Statistics stated inside the ontology
 
-## Statistic verification
-
-| Claim in ontology | Source | Verification result |
+| Claim | Source | Result |
 |---|---|---|
-| GTM → USA: 842 victims, 2009-2023 | CTDC Global Synthetic Dataset v2025 | ✓ EXACT match (recomputed from CSV) |
-| MEX → USA: 7,037 victims, 2015-2023 | CTDC Global Synthetic Dataset v2025 | ✓ EXACT match |
-| ENADID 2014: Chiapas 44.82%, Guerrero 42.41%, Oaxaca 39.17% | INEGI / SCJN / SMO Oaxaca | ✓ verified against three independent official sources |
-| ~~Type-B-only : Type-A-only ratio 9.9x~~ **WITHDRAWN 26 Jun 2026** | Was rule-based classifier on press | ✗ failed validation; press does not contain offer terms (LLM read: ~8% of articles), so the ratio is not measurable from this source. See `docs/CLASSIFIER_VALIDATION.md` |
-| 1,771 trafficking routes with ≥3 victims | Ramona observatory extractor on CTDC | ✓ reproducible by running `scripts/extract_routes.py --min-victims 3` |
-| 1,332 case-relevant press articles | Ramona observatory | ✓ counted in `data/processed/press_cases.jsonl` |
+| GTM → USA: 842 victims, 2009-2023 | CTDC Global Synthetic Dataset v2025 | exact match, recomputed from the CSV |
+| MEX → USA: 7,037 victims, 2015-2023 | CTDC Global Synthetic Dataset v2025 | exact match |
+| ENADID 2014: Chiapas 44.82%, Guerrero 42.41%, Oaxaca 39.17% | INEGI / SCJN / Secretaría de las Mujeres de Oaxaca | verified against three official sources |
+| 26 items from the REDIM blog in the press corpus | `data/processed/press_summary.json` | recomputed, 26; the wording in the ontology was corrected to say items from that outlet, not articles about school recruitment |
+| 1,771 trafficking routes with ≥3 victims | `scripts/extract_routes.py` over CTDC | reproducible from the committed script |
+| 2,379 case-relevant press articles of 2,591 scraped | `data/processed/press_cases.jsonl` | recounted, 2,379. The April audit cited 1,332, which was that month's smaller corpus |
+| ~~Type-B-only : Type-A-only ratio 9.9x~~ **withdrawn 26 June 2026** | was a rule-based classifier over press | failed validation. Press reports outcomes, not offer terms (an LLM read found the terms in ~8% of articles), so the ratio is not measurable from this source. See `CLASSIFIER_VALIDATION.md` |
 
-**No statistic in the ontology was fabricated.** Every number either comes directly from a verified external source (ENADID, CTDC) or is computed by a committed script over committed data.
+No statistic in the ontology is fabricated. Every number either comes from a verified external
+source or is computed by a committed script over committed data.
 
-## FraudScheme citation audit (24 subclasses)
+## Real-offer corpus, after its own audit
 
-Every FraudScheme cites at least one authoritative source. The citations fall into seven categories:
+Of 352 offer descriptions extracted from press, 295 are **verified** (a reviewer confirmed the
+offer was deceptive or criminal recruitment and quoted the sentence that proves it), 55 remain
+**doubtful** and 2 were **discarded**. Only the 295 are loaded into the VKG. All figures reported
+anywhere in the repository are over the 295: 167 in Mexico, 93 of those criminal recruitment,
+39 verbatim quotes, and of 191 offers carrying at least one flag, 118 classic only, 38
+credible-lethal only and 35 both. Two quotes that circulated earlier ("sola y sin INE", "puras
+jovencitas") stayed doubtful and are not presented as confirmed data.
 
-| Citation source | Schemes that cite it |
-|---|---|
-| UNODC | OrganRemovalRecruitmentScheme, BeggingRingScheme, AgriculturalBondageScheme, ConstructionLabourBondageScheme, CentralAmericanMigrantLabourScheme |
-| UNICEF | ForcedChildMarriageScheme, BeggingRingScheme, ChildRecruitmentCriminalScheme |
-| ILO | AgriculturalBondageScheme, FishingVesselLabourScheme, ConstructionLabourBondageScheme, SportsTalentScheme |
-| FIFPro (2018 player-trafficking programme) | SportsTalentScheme |
-| Palermo Protocol 2000 (via `:PurposeOrganRemoval`, `:PurposeSlavery`, etc.) | OrganRemovalRecruitmentScheme, ForcedChildMarriageScheme |
-| REDIM (Red por los Derechos de la Infancia México) | ChildRecruitmentCriminalScheme, GangRecruitmentSchoolsScheme, ForcedChildMarriageScheme |
-| SCJN / Secretaría de las Mujeres Oaxaca / ENADID | ForcedChildMarriageScheme |
-| CTDC + UNODC GLOTIP | CentralAmericanMigrantLabourScheme |
-| HRW | ConstructionLabourBondageScheme |
-| Polaris Project | AgriculturalBondageScheme |
-| Environmental Justice Foundation | FishingVesselLabourScheme |
-| Gobierno de Zapopan | GangRecruitmentSchoolsScheme |
+## FraudScheme provenance (26 named subclasses)
 
-**No FraudScheme is undocumented.** No citation is invented.
+Every FraudScheme cites at least one authoritative source: UNODC, UNICEF, ILO, FIFPro, the Palermo
+Protocol, REDIM, SCJN, the Secretaría de las Mujeres de Oaxaca, CTDC and UNODC GLOTIP, Human Rights
+Watch, Polaris Project, the Environmental Justice Foundation, or the Gobierno de Zapopan. None is
+undocumented and no citation is invented.
 
-## Volume check (no inflation)
+## Volume check, so nothing reads as inflated
 
-- **Countries:** 248 loaded (full ISO 3166-1 alpha-3). 92 attested in CTDC. Each row carries a `attested_in_ctdc` boolean flag. Reviewer can distinguish catalog entries from data-attested entries.
-- **Offers:** 1,382 total (1,332 from classified press, 50 hand-written inspired by named public cases). No synthetic offers derived from CTDC records. Each row either points to a real press URL or is labeled as inspired-by in `db/03_seed_cases.sql`.
-- **Patterns:** 102 total (14 curated from literature, 38 extracted by regex from press, 50 extracted by deep-textual regex). Each pattern has an `observed_count` equal to the exact number of press articles it matched.
-- **Routes:** 1,771 with ≥3 CTDC-attested victims. Every route lists origin, destination, victim count, year range.
-- **Triples:** 1,089 (honest count). Not padded.
+- **Countries:** 248 loaded, keyed by the ISO 3166-1 alpha-2 code; 92 attested in CTDC. Every row
+  carries an `attested_in_ctdc` flag, so a reviewer can separate catalogue from data.
+- **Patterns:** 102 (14 curated from literature, 38 by regex over press, 50 by deep-textual regex).
+  Each carries the exact number of articles it matched.
+- **Social-media items:** 1,500, all synthetic and all carrying `:itemIsSynthetic true`, so no
+  figure can mix them with real items unknowingly.
+- **TBox triples:** 1,582. Not padded.
 
 ## Reproducibility
-
-All audit checks can be re-run by any reviewer with:
 
 ```bash
 git clone https://github.com/teamdaniela-png/ramona-vkg
 cd ramona-vkg
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python /tmp/audit_o1.py                # run this audit script (also committed as scripts/audit_o1.py)
-python scripts/classify_press.py ...   # reproduce classifier
-python scripts/extract_routes.py ...   # reproduce route extraction
+python scripts/audit_o1.py            # this audit
+python scripts/extract_routes.py      # route extraction
 ```
 
-Output of the audit script matches this summary byte-for-byte.
+ROBOT commands are in `docs/validation/VALIDATION_REPORT.md`.
 
 ## Conclusion
 
-**O1 is submission-ready.** The ontology:
+The ontology is in OWL 2 QL (the DL-Lite fragment of Calvanese et al. 2007), consistent with its
+full ABox, aligned to HUTRO, the Palermo Protocol, ICS-TIP and UNODC GLOTIP, defined term by term,
+closed over the vocabulary its own queries and mappings use, and free of dead citations without an
+archived alternative. It is submitted for review knowing that O3 and the DOI are still open.
 
-- Passes OWL 2 QL profile (Calvanese et al. 2007 DL-Lite fragment).
-- Covers every entity Magdalena named in her brief.
-- Aligns with four international standards (HUTRO, Palermo Protocol, ICS-TIP, UNODC GLOTIP).
-- Cites every FraudScheme with at least one authoritative source.
-- Contains no fabricated statistics and no broken external references.
-- Ships with its own audit tooling and provenance documentation.
-
-Sign-off: Daniela Camberos, Ramona AI, 22 April 2026.
-Next review: Prof. Magdalena Ortiz, TU Wien (proposed).
+Prepared by Daniela Camberos, Ramona AI, 10 November 2026.
+For review by Prof. Magdalena Ortiz, Institute of Logic and Computation, TU Wien.

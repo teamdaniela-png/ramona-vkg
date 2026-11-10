@@ -445,7 +445,7 @@ target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> a :CriminalRe
 source      SELECT offer_uid FROM ramona.press_offers WHERE criminal_recruitment
 
 mappingId   M-Press-Article
-target      <https://w3id.org/ratr-o/data/press/{article_key}> a :PressArticle ; :sourceUrl {url}^^xsd:string ; :sourceOutlet {outlet}^^xsd:string .
+target      <https://w3id.org/ratr-o/data/press/{article_key}> a :PressArticle ; :sourceUrl {url}^^xsd:anyURI ; :sourceOutlet {outlet}^^xsd:string .
 source      SELECT article_key, url, outlet FROM ramona.press_articles
 
 mappingId   M-Press-Source

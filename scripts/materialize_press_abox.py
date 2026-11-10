@@ -58,6 +58,6 @@ for s in csv.DictReader(open(ROOT / "data/real/press_offer_sources.csv", encodin
         continue
     a = URIRef(f"{D}/press/{hashlib.sha1(s['url'].encode()).hexdigest()[:12]}")
     g.add((URIRef(f"{D}/press-offer/{s['offer_uid']}"), O.offerDocumentedIn, a))
-    g.add((a, RDF.type, O.PressArticle)); g.add((a, O.sourceUrl, Literal(s["url"]))); g.add((a, O.sourceOutlet, Literal(s["outlet"])))
+    g.add((a, RDF.type, O.PressArticle)); g.add((a, O.sourceUrl, Literal(s["url"], datatype=XSD.anyURI))); g.add((a, O.sourceOutlet, Literal(s["outlet"])))
 g.serialize(sys.argv[1], format="turtle")
 print(f"{len(g)} triples -> {sys.argv[1]}")

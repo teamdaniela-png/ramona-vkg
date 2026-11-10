@@ -1,6 +1,6 @@
 Level	Rule Name	Subject	Property	Value
 ERROR	multiple_labels	https://w3id.org/ratr-o#AcousticFramingPost	rdfs:label	Acoustic framing post (A)@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#AcousticFramingPost	rdfs:label	Publicacion con acustica (A)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#AcousticFramingPost	rdfs:label	Publicación con acústica (A)@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#AgeGroup	rdfs:label	Age group@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#AgeGroup	rdfs:label	Grupo etario@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#Agent	rdfs:label	Agent@en
@@ -19,6 +19,8 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#CentralAmericanMigrantLabourScheme
 ERROR	multiple_labels	https://w3id.org/ratr-o#CentralAmericanMigrantLabourScheme	rdfs:label	Esquema de explotación laboral de migrantes centroamericanos@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#ChildRecruitmentCriminalScheme	rdfs:label	Child recruitment into criminal organisations@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#ChildRecruitmentCriminalScheme	rdfs:label	Esquema de reclutamiento infantil por grupos delictivos@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#ClassicRedFlag	rdfs:label	Bandera roja clasica (Tipo A)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#ClassicRedFlag	rdfs:label	Classic red flag (Type A)@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#ClassicRedFlagPattern	rdfs:label	Classic red-flag pattern@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#ClassicRedFlagPattern	rdfs:label	Patrón de bandera roja clásica@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#CommunicationPattern	rdfs:label	Communication pattern@en
@@ -31,16 +33,20 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#Country	rdfs:label	Country@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#Country	rdfs:label	País@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#CredibleLethalPattern	rdfs:label	Credible-lethal pattern@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#CredibleLethalPattern	rdfs:label	Patrón creíble-letal@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#CredibleLethalRedFlag	rdfs:label	Bandera roja creible-letal (Tipo B)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#CredibleLethalRedFlag	rdfs:label	Credible-lethal red flag (Type B)@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalCultureExaltationPost	rdfs:label	Criminal-culture exaltation post (ECC)@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalCultureExaltationPost	rdfs:label	Publicacion con exaltacion de la cultura criminal (ECC)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalCultureExaltationPost	rdfs:label	Publicación con exaltación de la cultura criminal (ECC)@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalLifeAspirationPost	rdfs:label	Criminal-life aspiration post (AVC)@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalLifeAspirationPost	rdfs:label	Publicacion con aspiracion a la vida criminal (AVC)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalLifeAspirationPost	rdfs:label	Publicación con aspiración a la vida criminal (AVC)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalRecruitmentOffer	rdfs:label	Criminal recruitment offer@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#CriminalRecruitmentOffer	rdfs:label	Oferta de reclutamiento criminal@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#DebtBondageTraffickingScheme	rdfs:label	Debt bondage trafficking scheme@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#DebtBondageTraffickingScheme	rdfs:label	Esquema de trata con deuda@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#DemographicProfile	rdfs:label	Demographic profile@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#DemographicProfile	rdfs:label	Perfil demográfico@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#DirectRecruitmentPost	rdfs:label	Direct recruitment post (NR)@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#DirectRecruitmentPost	rdfs:label	Publicacion con narrativa de reclutamiento directo (NR)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#DirectRecruitmentPost	rdfs:label	Publicación con narrativa de reclutamiento directo (NR)@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#DocumentationType	rdfs:label	Documentation type@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#DocumentationType	rdfs:label	Tipo de documentación@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#DomesticWorkerLockInScheme	rdfs:label	Domestic worker lock-in scheme@en
@@ -102,7 +108,7 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#JobOffer	rdfs:label	Oferta laboral
 ERROR	multiple_labels	https://w3id.org/ratr-o#Language	rdfs:label	Idioma@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#Language	rdfs:label	Language@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#LexiconTerm	rdfs:label	Lexicon term@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#LexiconTerm	rdfs:label	Termino del lexico@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#LexiconTerm	rdfs:label	Término del léxico@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#MLMHealthBeautyScheme	rdfs:label	Esquema multinivel de salud y belleza@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#MLMHealthBeautyScheme	rdfs:label	Health / beauty MLM scheme@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#MeansAbduction	rdfs:label	Abduction@en
@@ -189,9 +195,9 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaComment	rdfs:label	Come
 ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaComment	rdfs:label	Social-media comment@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaItem	rdfs:label	Contenido en red social@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaItem	rdfs:label	Social-media item@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaPost	rdfs:label	Publicacion en red social@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaPost	rdfs:label	Publicación en red social@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaPost	rdfs:label	Social-media post@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaRecruitmentSignal	rdfs:label	Senal de reclutamiento en redes@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaRecruitmentSignal	rdfs:label	Señal de reclutamiento en redes@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#SocialMediaRecruitmentSignal	rdfs:label	Social-media recruitment signal@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#SportsTalentScheme	rdfs:label	Esquema de reclutamiento deportivo fraudulento@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#SportsTalentScheme	rdfs:label	Sports talent recruitment scheme@en
@@ -226,7 +232,7 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#ageGroupName	rdfs:label	nombre del
 ERROR	multiple_labels	https://w3id.org/ratr-o#agentName	rdfs:label	agent name@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#agentName	rdfs:label	nombre del agente@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#audioDescription	rdfs:label	audio description@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#audioDescription	rdfs:label	descripcion del audio@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#audioDescription	rdfs:label	descripción del audio@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#classifiedOn	rdfs:label	clasificado el@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#classifiedOn	rdfs:label	classified on@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#classifierVersion	rdfs:label	classifier version@en
@@ -261,12 +267,16 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#explanationText	rdfs:label	explana
 ERROR	multiple_labels	https://w3id.org/ratr-o#explanationText	rdfs:label	texto explicativo@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#exploitationType	rdfs:label	exploitation type@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#exploitationType	rdfs:label	tipo de explotación@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#extractionConfidence	rdfs:label	confianza de extracción@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#extractionConfidence	rdfs:label	extraction confidence@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#flagConfidence	rdfs:label	confianza de la bandera@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#flagConfidence	rdfs:label	flag confidence@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#flagType	rdfs:label	flag type@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#flagType	rdfs:label	tipo de bandera@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#genderName	rdfs:label	gender name@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#genderName	rdfs:label	nombre del género@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#hasMeansOfControl	rdfs:label	means of control over victim@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#hasMeansOfControl	rdfs:label	medio de control sobre la víctima@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#hasRawText	rdfs:label	offer raw text@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#hasRawText	rdfs:label	texto crudo de la oferta@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#hasTitle	rdfs:label	offer title@en
@@ -278,14 +288,14 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#historicalFlagCount	rdfs:label	his
 ERROR	multiple_labels	https://w3id.org/ratr-o#historicalOfferCount	rdfs:label	historical offer count@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#historicalOfferCount	rdfs:label	ofertas históricas@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemHasSignal	rdfs:label	item has signal@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#itemHasSignal	rdfs:label	tiene senal@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#itemHasSignal	rdfs:label	tiene señal@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemHashtags	rdfs:label	hashtags@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemHashtags	rdfs:label	item hashtags@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#itemIsSynthetic	rdfs:label	es sintetico@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#itemIsSynthetic	rdfs:label	es sintético@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemIsSynthetic	rdfs:label	item is synthetic@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#itemMatchesTerm	rdfs:label	coincide con termino@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#itemMatchesTerm	rdfs:label	coincide con término@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemMatchesTerm	rdfs:label	item matches lexicon term@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#itemPostedAt	rdfs:label	fecha de publicacion@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#itemPostedAt	rdfs:label	fecha de publicación@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemPostedAt	rdfs:label	item posted at@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemPostedOn	rdfs:label	item posted on@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#itemPostedOn	rdfs:label	publicado en@es
@@ -297,18 +307,34 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#languageISOCode	rdfs:label	código
 ERROR	multiple_labels	https://w3id.org/ratr-o#languageISOCode	rdfs:label	language ISO code@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#languageName	rdfs:label	language name@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#languageName	rdfs:label	nombre del idioma@es
-ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconCategory	rdfs:label	categoria del lexico@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconCategory	rdfs:label	categoría del léxico@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconCategory	rdfs:label	lexicon category@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconIsVerbatim	rdfs:label	textual de la fuente@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconIsVerbatim	rdfs:label	verbatim from source@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconPattern	rdfs:label	detection pattern (regex)@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconPattern	rdfs:label	patron de deteccion (regex)@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconPattern	rdfs:label	patrón de detección (regex)@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconSourceLocation	rdfs:label	location in source@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconSourceLocation	rdfs:label	ubicacion en la fuente@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconSourceLocation	rdfs:label	ubicación en la fuente@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconTermText	rdfs:label	term text@en
-ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconTermText	rdfs:label	texto del termino@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#lexiconTermText	rdfs:label	texto del término@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#observedCount	rdfs:label	frecuencia observada@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#observedCount	rdfs:label	observed count@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerDocumentedIn	rdfs:label	oferta documentada en@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerDocumentedIn	rdfs:label	offer documented in@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerOutcome	rdfs:label	desenlace reportado@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerOutcome	rdfs:label	reported outcome@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayAmount	rdfs:label	monto ofrecido@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayAmount	rdfs:label	offered pay amount@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayCurrency	rdfs:label	moneda ofrecida@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayCurrency	rdfs:label	offered pay currency@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayPeriod	rdfs:label	offered pay period@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerPayPeriod	rdfs:label	periodo de pago@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerSummary	rdfs:label	offer summary@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerSummary	rdfs:label	resumen de la oferta@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerTargetProfile	rdfs:label	perfil buscado@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerTargetProfile	rdfs:label	target profile@en
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerVerbatimQuote	rdfs:label	cita textual de la oferta@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#offerVerbatimQuote	rdfs:label	verbatim quote of the offer@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#offeredLocation	rdfs:label	offered location@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#offeredLocation	rdfs:label	ubicación ofrecida@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#offeredRole	rdfs:label	offered role@en
@@ -365,7 +391,7 @@ ERROR	multiple_labels	https://w3id.org/ratr-o#victimId	rdfs:label	identificador 
 ERROR	multiple_labels	https://w3id.org/ratr-o#victimId	rdfs:label	victim id@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#victimOfFraudScheme	rdfs:label	victim of fraud scheme@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#victimOfFraudScheme	rdfs:label	víctima de esquema de fraude@es
-ERROR	multiple_labels	https://w3id.org/ratr-o#visualDescription	rdfs:label	descripcion visual@es
+ERROR	multiple_labels	https://w3id.org/ratr-o#visualDescription	rdfs:label	descripción visual@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#visualDescription	rdfs:label	visual description@en
 ERROR	multiple_labels	https://w3id.org/ratr-o#vulnerabilityFactorName	rdfs:label	nombre del factor de vulnerabilidad@es
 ERROR	multiple_labels	https://w3id.org/ratr-o#vulnerabilityFactorName	rdfs:label	vulnerability factor name@en
@@ -381,14 +407,17 @@ WARN	missing_definition	https://w3id.org/ratr-o#CallCenterScamScheme	IAO:0000115
 WARN	missing_definition	https://w3id.org/ratr-o#Candidate	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CentralAmericanMigrantLabourScheme	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#ChildRecruitmentCriminalScheme	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#ClassicRedFlag	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#ClassicRedFlagPattern	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CommunicationPattern	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CommunicationTool	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#ConstructionLabourBondageScheme	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#Country	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CredibleLethalPattern	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#CredibleLethalRedFlag	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CriminalCultureExaltationPost	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#CriminalLifeAspirationPost	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#CriminalRecruitmentOffer	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#DebtBondageTraffickingScheme	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#DemographicProfile	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#DirectRecruitmentPost	IAO:0000115	
@@ -514,6 +543,7 @@ WARN	missing_definition	https://w3id.org/ratr-o#exhibitsMeans	IAO:0000115
 WARN	missing_definition	https://w3id.org/ratr-o#exhibitsPurpose	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#explanationText	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#exploitationType	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#extractionConfidence	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#flagConfidence	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#flagKeywordPattern	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#flagType	IAO:0000115	
@@ -521,6 +551,7 @@ WARN	missing_definition	https://w3id.org/ratr-o#genderName	IAO:0000115
 WARN	missing_definition	https://w3id.org/ratr-o#hasAgeGroup	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#hasDemographicProfile	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#hasGender	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#hasMeansOfControl	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#hasNationality	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#hasRawText	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#hasRecruitmentMethod	IAO:0000115	
@@ -554,10 +585,18 @@ WARN	missing_definition	https://w3id.org/ratr-o#matchesPattern	IAO:0000115
 WARN	missing_definition	https://w3id.org/ratr-o#observedCount	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#observedInCountry	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offerClassifierConfidence	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerDocumentedIn	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offerFirstContactAt	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offerIsActive	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offerLanguage	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerOutcome	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerPayAmount	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerPayCurrency	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerPayPeriod	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offerScreenshotUrl	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerSummary	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerTargetProfile	IAO:0000115	
+WARN	missing_definition	https://w3id.org/ratr-o#offerVerbatimQuote	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offeredBy	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offeredByEmployer	IAO:0000115	
 WARN	missing_definition	https://w3id.org/ratr-o#offeredByRecruiter	IAO:0000115	
