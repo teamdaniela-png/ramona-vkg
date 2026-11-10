@@ -116,9 +116,18 @@ for c in classes:
         classes_in_use.add(sup)
 
 unused_classes = [c for c in classes if c not in classes_in_use and str(c).startswith(str(NS))]
-for c in unused_classes:
-    log("NIT", "Class declared but never used in a property or subclass axiom",
-        str(c).replace(str(NS), ":"))
+# A class is isolated when nothing ties it to the rest of the ontology: it has no superclass and
+# no subclass, appears in no domain or range, and no mapping types an individual with it. A leaf
+# class under a parent is not isolated; the earlier version of this check reported all 68 leaves.
+_map_txt_iso = OBDA.read_text(encoding="utf-8")
+for c in classes:
+    if not str(c).startswith(str(NS)):
+        continue
+    local = str(c).split("#")[-1]
+    tied = (list(g.objects(c, RDFS.subClassOf)) or list(g.subjects(RDFS.subClassOf, c))
+            or c in classes_in_use or re.search(r"\ba :%s\b" % re.escape(local), _map_txt_iso))
+    if not tied:
+        log("SHOULD", "Class is isolated: no superclass, no subclass, in no domain or range, typed by no mapping", ":" + local)
 
 # 2b. Properties with no domain or range
 for p in obj_props | data_props:

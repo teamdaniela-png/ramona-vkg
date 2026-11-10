@@ -1,7 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
 # Q28 — Rutas transfronterizas con al menos un caso atestado en prensa.
-# Cruza los 1,304 corredores CTDC con los artículos de prensa del observatorio.
+# Cruza los 1,771 corredores CTDC con los artículos de prensa del observatorio.
 # Rutas con prensa reciente = rutas activas y monitoreables;
 # rutas sin prensa reciente = rutas históricas cuya visibilidad se perdió.
 
@@ -16,7 +16,7 @@ WHERE {
     SELECT ?route (COUNT(DISTINCT ?article) AS ?pressArticles)
     WHERE {
       ?offer :associatedWithRoute ?route ;
-             :derivedFrom ?article .
+             :offerDocumentedIn ?article .
       ?article a :PressArticle .
     }
     GROUP BY ?route

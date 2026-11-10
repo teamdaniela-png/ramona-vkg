@@ -9,9 +9,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?ageGroup ?gender ?exploitationType (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {
   ?victim a :Victim ;
-          :hasAgeGroup ?ag ;
-          :hasGender ?g ;
+          :hasDemographicProfile ?prof ;
           :victimOfExploitation ?exp .
+  ?prof :hasAgeGroup ?ag ;
+        :hasGender ?g .
   ?ag :ageGroupName ?ageGroup .
   ?g :genderName ?gender .
   ?exp :exploitationType ?exploitationType .

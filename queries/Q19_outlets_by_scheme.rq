@@ -11,7 +11,7 @@ WHERE {
             :sourceOutlet ?outlet .
   ?offer :offerDocumentedIn ?exemplar ;
          :exhibitsFraudScheme ?scheme .
-  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  ?scheme :schemeCode ?schemeCode .
 }
 GROUP BY ?schemeCode ?outlet
 ORDER BY ?schemeCode DESC(?articles)

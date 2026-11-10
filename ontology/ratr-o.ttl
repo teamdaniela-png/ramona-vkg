@@ -22,17 +22,17 @@
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10.4" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10.4> ;
-    owl:priorVersion <https://w3id.org/ratr-o/1.10.3> ;
+    owl:versionInfo "1.10.5" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.5> ;
+    owl:priorVersion <https://w3id.org/ratr-o/1.10.4> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:created "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-10"^^xsd:date ;
     dct:publisher "Ramona AI" ;
     vann:preferredNamespaceUri "https://w3id.org/ratr-o#" ;
     vann:preferredNamespacePrefix "ratro" ;
-    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.4. https://w3id.org/ratr-o"@en ;
-    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance. v1.10.1, v1.10.2 and v1.10.3: three audit passes before the delivery of O1, which found and fixed nineteen defects. The third pass executed the 40 reference queries and the seed files for the first time rather than reading them; see docs/AUDIT_O1_SUMMARY.md and docs/validation/QUERY_EXECUTION_REPORT.md. v1.10.3 restores the eight skos:closeMatch alignments to HUTRO with IRIs verified one by one in the BioPortal concept browser on 10 November 2026. v1.10.4: fourth pass. The four published serialisations were checked for isomorphism, mappings/ramona.r2rml.ttl was executed and produces the same 71,963 triples as the .obda, and 82 properties that carried only an English label were given the Spanish one, so all 283 terms are bilingual. Note on the published history: the commit that added the FAIR metadata and the extra serialisations changed this file while still calling itself 1.10.3, so the tag v1.10.3 and the branch disagreed about what 1.10.3 denotes. 1.10.4 is the version to cite; the tag v1.10.3 is left pointing where it pointed."@en ;
+    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.5. https://w3id.org/ratr-o"@en ;
+    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance. v1.10.1, v1.10.2 and v1.10.3: three audit passes before the delivery of O1, which found and fixed nineteen defects. The third pass executed the 40 reference queries and the seed files for the first time rather than reading them; see docs/AUDIT_O1_SUMMARY.md and docs/validation/QUERY_EXECUTION_REPORT.md. v1.10.3 restores the eight skos:closeMatch alignments to HUTRO with IRIs verified one by one in the BioPortal concept browser on 10 November 2026. v1.10.4: fourth pass. The four published serialisations were checked for isomorphism, mappings/ramona.r2rml.ttl was executed and produces the same 71,963 triples as the .obda, and 82 properties that carried only an English label were given the Spanish one, so all 283 terms are bilingual. Note on the published history: the commit that added the FAIR metadata and the extra serialisations changed this file while still calling itself 1.10.3, so the tag v1.10.3 and the branch disagreed about what 1.10.3 denotes. The tag v1.10.3 is left pointing where it pointed. v1.10.5: fifth pass. The victim module was loaded for the first time, from the CTDC release, and the domain and range axioms were checked against the data: the mappings stated a victim's country of exploitation with :inCountry and the kind of a source with :datasetName, so the TBox entailed that victims were job offers and press sources were open-dataset records. Adds :exploitedInCountry, :sourceKind and :schemeCode; the victim mappings now mint the :DemographicProfile the TBox always required. 1.10.5 is the version to cite."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
@@ -360,6 +360,11 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:domain :SurvivorTestimonyPattern ; rdfs:range xsd:string ;
     rdfs:label "dominance bucket value"@en, "valor de rango de dominancia"@es ;
     rdfs:comment "The frequency band of the pattern as a literal, one of hot, warm or cold. It duplicates :hasDominanceBucket deliberately, so that a client can read the band without following an object property."@en .
+
+:schemeCode a owl:DatatypeProperty ;
+    rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
+    rdfs:label "scheme code"@en, "código del esquema"@es ;
+    rdfs:comment "The local name of the :FraudScheme subclass an individual scheme occurrence belongs to, as a string (for example PayToWorkScheme). It lets a query group occurrences by scheme without querying the class hierarchy. Introduced in v1.10.5: the reference queries derived this code from the fragment of the occurrence IRI, which has none."@en .
 
 :routeVictimCount a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range xsd:integer ;
@@ -949,7 +954,12 @@ skos:closeMatch a owl:AnnotationProperty .
 :inCountry a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Country ;
     rdfs:label "in country"@en, "en el país"@es ;
-    rdfs:comment "Relates a job offer to the country in which it was published or in which the work was offered."@en .
+    rdfs:comment "Relates a job offer to the country in which it was published or in which the work was offered. Its domain is :JobOffer, so it is not used for victims: the country in which a victim was exploited is stated with :exploitedInCountry."@en .
+
+:exploitedInCountry a owl:ObjectProperty ;
+    rdfs:domain :Victim ; rdfs:range :Country ;
+    rdfs:label "exploited in country"@en, "explotada en el país"@es ;
+    rdfs:comment "Relates a victim record to the country in which the exploitation took place (CountryOfExploitation in CTDC). Introduced in v1.10.5: until then the mappings stated it with :inCountry, whose domain is :JobOffer, so the TBox entailed that every victim with a country of exploitation was a job offer."@en .
 
 :inLanguage a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Language ;
@@ -1255,7 +1265,7 @@ skos:closeMatch a owl:AnnotationProperty .
 :exploitationType a owl:DatatypeProperty ;
     rdfs:domain :TypeOfExploitation ; rdfs:range xsd:string ;
     rdfs:comment "Controlled vocabulary: labour, sexual, forced_criminality, forced_marriage, organ_removal, mixed, unknown."@en ;
-    rdfs:label "exploitation type"@en, "tipo de explotación"@es .
+    rdfs:label "exploitation type name"@en, "nombre del tipo de explotación"@es .
 
 :vulnerabilityFactorName a owl:DatatypeProperty ;
     rdfs:domain :VulnerabilityFactor ; rdfs:range xsd:string ;
@@ -1331,6 +1341,11 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
     rdfs:label "source author"@en, "autor de la fuente"@es ;
     rdfs:comment "Author of the evidence source, where the source names one."@en .
+
+:sourceKind a owl:DatatypeProperty ;
+    rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
+    rdfs:label "source kind"@en, "tipo de fuente"@es ;
+    rdfs:comment "The kind of evidence source as recorded at ingestion: press_article or press, ctdc, unodc, rnpdno, organisation_material, statistics_report. Introduced in v1.10.5: until then the mappings stated it with :datasetName, whose domain is :OpenDatasetRecord, so every source that carried a kind, press articles included, was entailed to be an open-dataset record."@en .
 
 :datasetName a owl:DatatypeProperty ;
     rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string ;

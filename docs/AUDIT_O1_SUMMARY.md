@@ -4,7 +4,7 @@
 **Auditor:** self, to the reviewer standard of Ortiz & Šimkus (2012).
 **Scope:** Objective 1 of the TU Wien Dialogue Residency proposal — the RATR-O ontology in OWL 2 QL
 covering Ramona AI's operational entities.
-**Version audited:** RATR-O v1.10 through v1.10.4, in four passes.
+**Version audited:** RATR-O v1.10 through v1.10.5, in five passes.
 
 ## Bottom line
 
@@ -76,7 +76,7 @@ fixed. The 2 NOTEs record that two FraudScheme classes get their instances from
 | Classes | 114 |
 | Object properties | 66 |
 | Datatype properties | 101 |
-| TBox triples | 1,704 |
+| TBox triples | 1,722 |
 | HUTRO alignments, by concept label in a `skos:note` | 8 |
 | R2RML mapping triples | 1,511 |
 | Competency questions / SPARQL queries | 36 / 40 |
@@ -137,7 +137,7 @@ undocumented and no citation is invented.
   Each carries the exact number of articles it matched.
 - **Social-media items:** 1,500, all synthetic and all carrying `:itemIsSynthetic true`, so no
   figure can mix them with real items unknowingly.
-- **TBox triples:** 1,704. Not padded.
+- **TBox triples:** 1,722. Not padded.
 
 ## Reproducibility
 
@@ -217,6 +217,54 @@ and `/1.10.3` each resolve to the Turtle of their tag; a version that does not e
 `/data/country/MEX` resolves to the documentation as designed. Note for a reader: the versioned IRIs
 are served by `raw.githubusercontent.com` as `text/plain`, so a strict client may need to be told the
 format.
+
+## Fifth pass (v1.10.5): the victim module, loaded for the first time
+
+Every earlier pass treated the victim module as a documented data gap: the seeds create the tables,
+nothing fills them, the CTDC release is not redistributed. That made it the one part of the ontology
+whose mappings and queries had never met data, and so the one part where the domain and range axioms
+had never been tested against what the mappings assert. The release was on hand, so the fifth pass
+loaded it: `scripts/ingest_ctdc.py`, unchanged, through a sqlite-backed stand-in for psycopg with
+foreign keys enforced, then the mappings, then the queries.
+
+**Three defects in the ontology's relation to its data, which only data could show:**
+
+| Asserted by the mappings | Axiom in the TBox | What the TBox therefore entailed | Fix |
+| --- | --- | --- | --- |
+| victim `:inCountry` country | domain of `:inCountry` is `:JobOffer` | every victim with a country of exploitation is a job offer (5,066 of 6,449 sampled) | new `:exploitedInCountry`, domain `:Victim` |
+| victim `:hasAgeGroup`, `:hasGender`, `:hasNationality`, `:hasVulnerabilityFactor` | domain of all four is `:DemographicProfile` | every such victim is a demographic profile | mappings mint the profile and link it with `:hasDemographicProfile`, as the TBox always required |
+| source `:datasetName` kind | domain of `:datasetName` is `:OpenDatasetRecord` | every source with a kind, press articles included, is an open-dataset record | new `:sourceKind`, domain `:EvidenceSource` |
+
+None of the three makes the ontology inconsistent, because the classes are not declared disjoint,
+which is why HermiT never complained. All three corrupt answers: Ontop rewrites `?x a :JobOffer` into
+a union that includes everything with an `:inCountry`, so the count of job offers would have included
+victims. The check that found them types every individual by the domain and range of the properties
+it takes part in and reports any type outside the tree of the asserted one. It now runs clean over
+142,213 triples.
+
+**Three defects in the ingest script**, which had never completed: it aborted on CTDC's `09--17` age
+band, taking the 26,004 records of minors with it; it dropped the exploitation type of 58,397 victims
+of sexual exploitation with no subtype; and it added a duplicate dataset row on every run.
+
+**Queries.** Seven still used `:derivedFrom` on a victim or an offer, and nine code bindings applied
+`STRAFTER(STR(?x), "#")` to instance IRIs that have no fragment, so every group collapsed into the
+empty string. New `:schemeCode`; `db/14_route_victim_counts.sql` supplies `:routeVictimCount` for the
+1,771 CTDC corridors. **21 of the 40 queries return rows over the seeds alone and 28 once the CTDC
+release is loaded.** The other 12 are named one by one in `docs/validation/QUERY_EXECUTION_REPORT.md`:
+one is a correct empty answer, four read properties that only press-derived victim records would
+fill, three read `:victimOfFraudScheme` or TIP events, which no table carries, and four need a link
+between the hand-curated offers and their sources that the seeds do not record.
+
+**The audit script graded itself.** Its 68 NIT findings were one check reporting every leaf class as
+"never used in a property or subclass axiom", which was false of all 68. It is replaced by a check for
+classes that are actually isolated, which finds none. The mapping-coverage document had drifted from
+the script that is supposed to generate it and is regenerated: 38 of 114 classes, 35 of 69 object
+properties and 31 of 103 datatype properties are produced by no mapping.
+
+State after the fifth pass: 114 classes, 69 object properties, 103 datatype properties, 1,722 TBox
+triples, 173 mappings. In the OWL 2 QL profile; consistent under HermiT alone, with the seeds, and
+with the seeds plus the sampled victims; the four serialisations isomorphic; the R2RML identical to
+the `.obda` over both data states.
 
 ## Conclusion
 

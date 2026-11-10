@@ -5,7 +5,7 @@ A running Virtual Knowledge Graph (VKG) over a public-interest human-trafficking
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (10 tables: offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.4** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 68 object properties, 101 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **RATR-O v1.10.5** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **SPARQL endpoint** served by Ontop on port 8080.
 - **40 reference SPARQL queries** (`queries/Q1..Q40`) answering 36 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
@@ -133,7 +133,7 @@ ramona_vkg_demo/
 │   ├── 03_seed_cases.sql
 │   └── 04_schema_extension_v1.sql          # victim-centric v1.0 extension
 ├── ontology/
-│   ├── ratr-o.ttl                          # RATR-O v1.10.4 in OWL 2 QL, aligned to HUTRO
+│   ├── ratr-o.ttl                          # RATR-O v1.10.5 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
 │   ├── ratr-o.jsonld                       # the same graph in JSON-LD
 │   ├── ratr-o.nt                           # the same graph in N-Triples

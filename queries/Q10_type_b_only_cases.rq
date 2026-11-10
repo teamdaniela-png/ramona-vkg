@@ -8,14 +8,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?victim ?source ?outlet ?title ?url
 WHERE {
   ?victim a :Victim ;
-          :derivedFrom ?source .
+          :hasEvidenceSource ?source .
   ?source a :PressArticle ;
           :sourceOutlet ?outlet ;
           :sourceTitle ?title ;
           :sourceUrl ?url .
   # Detection-track filter: must have at least one Type B pattern and zero Type A
   FILTER EXISTS {
-    ?source :datasetName "press" .
+    ?source :sourceKind "press" .
   }
 }
 ORDER BY ?outlet

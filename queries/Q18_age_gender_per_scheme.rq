@@ -12,7 +12,7 @@ WHERE {
         :hasGender ?g .
   ?ag :ageGroupName ?ageGroup .
   ?g  :genderName ?gender .
-  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  ?scheme :schemeCode ?schemeCode .
 }
 GROUP BY ?schemeCode ?ageGroup ?gender
 HAVING (COUNT(DISTINCT ?victim) >= 2)

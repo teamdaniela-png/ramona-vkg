@@ -22,7 +22,7 @@ Mapping (CTDC column -> Ramona table/column):
   meansExcessiveWorkHours     -> victim_means_of_control('excessive_work_hours')
   meansWithholdDocs           -> victim_means_of_control('withhold_docs')
   isForcedLabour              -> victim_exploitation('labour_other')  [broad bucket]
-  isSexualExploit             -> victim_exploitation('sex_prostitution' or 'sex_pornography' if given)
+  isSexualExploit             -> victim_exploitation('sex_other')     [broad bucket, when no typeOfSex* is set]
   isOtherExploit              -> victim_exploitation('other')
   typeOfLabourAgriculture     -> victim_exploitation('labour_agriculture')
   typeOfLabourConstruction    -> victim_exploitation('labour_construction')
@@ -92,6 +92,9 @@ RECRUITER_RELATION_FROM_ROW = [
 
 AGE_CANON = {
     "0--8": "0-8", "0-8": "0-8", "0—8": "0-8",
+    # CTDC v2025 writes this band with a leading zero. Without the first entry the 26,004
+    # records of minors aged 9 to 17 violate the foreign key to age_group and the load aborts.
+    "09--17": "9-17", "09-17": "9-17",
     "9--17": "9-17", "9-17": "9-17", "9—17": "9-17",
     "18--20": "18-20", "18-20": "18-20", "18—20": "18-20",
     "21--23": "21-23", "21-23": "21-23", "21—23": "21-23",
@@ -129,19 +132,21 @@ def main():
 
     with psycopg.connect(args.dsn) as conn, conn.cursor() as cur:
         # create an evidence_source row for the dataset
+        # Look first, insert only if absent. The table's UNIQUE constraint includes
+        # dataset_record_id, which is NULL here, and NULLs never conflict, so an
+        # INSERT ... ON CONFLICT DO NOTHING added a second dataset row on every run.
         cur.execute(
-            """
-            INSERT INTO evidence_source_extended (source_kind, dataset_name, title, url, published_at)
-            VALUES ('ctdc', 'CTDC Global Synthetic Dataset v2025', 'The Global Synthetic Dataset',
-                    'https://www.ctdatacollaborative.org/page/global-synthetic-dataset', '2025-02-01')
-            ON CONFLICT DO NOTHING
-            RETURNING source_id
-            """
+            "SELECT source_id FROM evidence_source_extended WHERE source_kind='ctdc' AND dataset_name='CTDC Global Synthetic Dataset v2025'"
         )
         r = cur.fetchone()
         if r is None:
             cur.execute(
-                "SELECT source_id FROM evidence_source_extended WHERE source_kind='ctdc' AND dataset_name='CTDC Global Synthetic Dataset v2025'"
+                """
+                INSERT INTO evidence_source_extended (source_kind, dataset_name, title, url, published_at)
+                VALUES ('ctdc', 'CTDC Global Synthetic Dataset v2025', 'The Global Synthetic Dataset',
+                        'https://www.ctdatacollaborative.org/page/global-synthetic-dataset', '2025-02-01')
+                RETURNING source_id
+                """
             )
             r = cur.fetchone()
         ctdc_source_id = r[0]
@@ -191,6 +196,13 @@ def main():
                     _one_or_none(row.get(c)) for c, _ in EXPLOITATION_TYPE_FROM_ROW if c.startswith("typeOfLabour")
                 ):
                     batch_exp.append((external_id, "labour_other"))
+                # Same broad bucket for sexual exploitation. 58,397 CTDC records carry
+                # isSexualExploit with neither subtype; without this they lose their
+                # exploitation type altogether.
+                if _one_or_none(row.get("isSexualExploit")) and not any(
+                    _one_or_none(row.get(c)) for c, _ in EXPLOITATION_TYPE_FROM_ROW if c.startswith("typeOfSex")
+                ):
+                    batch_exp.append((external_id, "sex_other"))
                 if _one_or_none(row.get("isOtherExploit")):
                     batch_exp.append((external_id, "other"))
 

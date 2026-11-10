@@ -10,10 +10,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?datasetOrPress (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {
   ?victim a :Victim ;
-          :inCountry ?country ;
-          :derivedFrom ?source .
+          :exploitedInCountry ?country ;
+          :hasEvidenceSource ?source .
   ?country :countryISOCode "MEX" .
-  ?source :datasetName ?datasetOrPress .
+  ?source :sourceKind ?datasetOrPress .
 }
 GROUP BY ?datasetOrPress
 ORDER BY DESC(?victims)

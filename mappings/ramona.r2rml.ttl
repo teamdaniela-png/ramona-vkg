@@ -91,6 +91,36 @@
         rr:class :PressArticle ;
     ] .
 
+<#TM_M_EvidenceSource_SourceKind> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id, source_kind FROM ramona.evidence_sources WHERE source_kind IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/evidence/{source_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :sourceKind ;
+        rr:objectMap [ rr:column "source_kind" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Route_VictimCount> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT r.route_id, c.victim_count FROM ramona.trafficking_routes r JOIN ramona.route_victim_counts c ON r.route_name = c.origin_country || ' -> ' || c.destination_country""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/route/{route_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :routeVictimCount ;
+        rr:objectMap [ rr:column "victim_count" ; rr:datatype xsd:integer ]
+    ] .
+
+<#TM_M_Press_Scheme_Code> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, scheme FROM ramona.press_offers WHERE scheme IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :schemeCode ;
+        rr:objectMap [ rr:column "scheme" ; rr:datatype xsd:string ]
+    ] .
+
 <#TM_M_Offer_Evidence> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT offer_id, evidence_source FROM ramona.offers WHERE evidence_source IS NOT NULL""" ] ;
     rr:subjectMap [
@@ -665,7 +695,7 @@
         rr:template "https://w3id.org/ratr-o/data/evidence-ext/{source_id}" ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate :datasetName ;
+        rr:predicate :sourceKind ;
         rr:objectMap [ rr:column "source_kind" ; rr:datatype xsd:string ]
     ] .
 
@@ -727,10 +757,27 @@
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/evidence-ext/{source_id}" ]
     ] .
 
+<#TM_M_Victim_Profile> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT v.victim_id FROM public.victim v WHERE v.age_group_code IS NOT NULL OR v.gender_code IS NOT NULL OR v.citizenship_iso3 IS NOT NULL OR EXISTS (SELECT 1 FROM public.victim_vulnerability vv WHERE vv.victim_id = v.victim_id)""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasDemographicProfile ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ]
+    ] .
+
+<#TM_M_Victim_ProfileType> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT v.victim_id FROM public.victim v WHERE v.age_group_code IS NOT NULL OR v.gender_code IS NOT NULL OR v.citizenship_iso3 IS NOT NULL OR EXISTS (SELECT 1 FROM public.victim_vulnerability vv WHERE vv.victim_id = v.victim_id)""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ;
+        rr:class :DemographicProfile ;
+    ] .
+
 <#TM_M_Victim_Age> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT victim_id, age_group_code FROM public.victim WHERE age_group_code IS NOT NULL""" ] ;
     rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate :hasAgeGroup ;
@@ -740,7 +787,7 @@
 <#TM_M_Victim_Gender> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT victim_id, gender_code FROM public.victim WHERE gender_code IS NOT NULL""" ] ;
     rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate :hasGender ;
@@ -750,7 +797,7 @@
 <#TM_M_Victim_Citizenship> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT victim_id, citizenship_iso3 FROM public.victim WHERE citizenship_iso3 IS NOT NULL""" ] ;
     rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate :hasNationality ;
@@ -763,7 +810,7 @@
         rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate :inCountry ;
+        rr:predicate :exploitedInCountry ;
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/country/{country_of_exploitation_iso3}" ]
     ] .
 
@@ -810,7 +857,7 @@
 <#TM_M_Victim_Vulnerability> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT victim_id, vulnerability_code FROM public.victim_vulnerability""" ] ;
     rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
+        rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}/profile" ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate :hasVulnerabilityFactor ;

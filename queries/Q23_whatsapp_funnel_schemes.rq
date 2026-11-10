@@ -9,7 +9,7 @@ WHERE {
   ?victim :victimOfFraudScheme ?scheme ;
           :contactedThrough ?tool .
   ?tool :communicationToolName "WhatsApp" .
-  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  ?scheme :schemeCode ?schemeCode .
 }
 GROUP BY ?schemeCode
 ORDER BY DESC(?victims)

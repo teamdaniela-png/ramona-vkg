@@ -11,7 +11,7 @@ WHERE {
   ?exemplar :exhibitsFraudScheme ?scheme ;
             :inCountry ?country .
   ?scheme a :FraudScheme .
-  BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
+  ?scheme :schemeCode ?schemeCode .
   ?country :countryISOCode ?countryIso .
 }
 GROUP BY ?countryIso ?schemeCode

@@ -32,6 +32,18 @@ mappingId   M-EvidenceSource-PressArticle
 target      <https://w3id.org/ratr-o/data/evidence/{source_id}> a :PressArticle .
 source      SELECT source_id FROM ramona.evidence_sources WHERE source_kind = 'press_article'
 
+mappingId   M-EvidenceSource-SourceKind
+target      <https://w3id.org/ratr-o/data/evidence/{source_id}> :sourceKind {source_kind}^^xsd:string .
+source      SELECT source_id, source_kind FROM ramona.evidence_sources WHERE source_kind IS NOT NULL
+
+mappingId   M-Route-VictimCount
+target      <https://w3id.org/ratr-o/data/route/{route_id}> :routeVictimCount {victim_count}^^xsd:integer .
+source      SELECT r.route_id, c.victim_count FROM ramona.trafficking_routes r JOIN ramona.route_victim_counts c ON r.route_name = c.origin_country || ' -> ' || c.destination_country
+
+mappingId   M-Press-Scheme-Code
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> :schemeCode {scheme}^^xsd:string .
+source      SELECT offer_uid, scheme FROM ramona.press_offers WHERE scheme IS NOT NULL
+
 mappingId   M-Offer-Evidence
 target      <https://w3id.org/ratr-o/data/offer/{offer_id}> :offerDocumentedIn <https://w3id.org/ratr-o/data/evidence/{evidence_source}> .
 source      SELECT offer_id, evidence_source FROM ramona.offers WHERE evidence_source IS NOT NULL
@@ -237,7 +249,7 @@ target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :datasetReco
 source      SELECT source_id, dataset_record_id FROM public.evidence_source_extended WHERE dataset_record_id IS NOT NULL AND source_kind IN ('ctdc','unodc','rnpdno')
 
 mappingId   M-EvidenceSource-Kind
-target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :datasetName {source_kind}^^xsd:string .
+target      <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> :sourceKind {source_kind}^^xsd:string .
 source      SELECT source_id, source_kind FROM public.evidence_source_extended
 
 mappingId   M-PressArticle
@@ -260,20 +272,28 @@ mappingId   M-Victim-Source
 target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasEvidenceSource <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> .
 source      SELECT victim_id, source_id FROM public.victim WHERE source_id IS NOT NULL
 
+mappingId   M-Victim-Profile
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasDemographicProfile <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> .
+source      SELECT v.victim_id FROM public.victim v WHERE v.age_group_code IS NOT NULL OR v.gender_code IS NOT NULL OR v.citizenship_iso3 IS NOT NULL OR EXISTS (SELECT 1 FROM public.victim_vulnerability vv WHERE vv.victim_id = v.victim_id)
+
+mappingId   M-Victim-ProfileType
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> a :DemographicProfile .
+source      SELECT v.victim_id FROM public.victim v WHERE v.age_group_code IS NOT NULL OR v.gender_code IS NOT NULL OR v.citizenship_iso3 IS NOT NULL OR EXISTS (SELECT 1 FROM public.victim_vulnerability vv WHERE vv.victim_id = v.victim_id)
+
 mappingId   M-Victim-Age
-target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasAgeGroup <https://w3id.org/ratr-o/data/agegroup/{age_group_code}> .
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> :hasAgeGroup <https://w3id.org/ratr-o/data/agegroup/{age_group_code}> .
 source      SELECT victim_id, age_group_code FROM public.victim WHERE age_group_code IS NOT NULL
 
 mappingId   M-Victim-Gender
-target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasGender <https://w3id.org/ratr-o/data/gender/{gender_code}> .
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> :hasGender <https://w3id.org/ratr-o/data/gender/{gender_code}> .
 source      SELECT victim_id, gender_code FROM public.victim WHERE gender_code IS NOT NULL
 
 mappingId   M-Victim-Citizenship
-target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasNationality <https://w3id.org/ratr-o/data/country/{citizenship_iso3}> .
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> :hasNationality <https://w3id.org/ratr-o/data/country/{citizenship_iso3}> .
 source      SELECT victim_id, citizenship_iso3 FROM public.victim WHERE citizenship_iso3 IS NOT NULL
 
 mappingId   M-Victim-CoE
-target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :inCountry <https://w3id.org/ratr-o/data/country/{country_of_exploitation_iso3}> .
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :exploitedInCountry <https://w3id.org/ratr-o/data/country/{country_of_exploitation_iso3}> .
 source      SELECT victim_id, country_of_exploitation_iso3 FROM public.victim WHERE country_of_exploitation_iso3 IS NOT NULL
 
 mappingId   M-Victim-Recruitment
@@ -293,7 +313,7 @@ target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasMeansOfControl
 source      SELECT victim_id, means_code FROM public.victim_means_of_control
 
 mappingId   M-Victim-Vulnerability
-target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :hasVulnerabilityFactor <https://w3id.org/ratr-o/data/vulnerability/{vulnerability_code}> .
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> :hasVulnerabilityFactor <https://w3id.org/ratr-o/data/vulnerability/{vulnerability_code}> .
 source      SELECT victim_id, vulnerability_code FROM public.victim_vulnerability
 
 mappingId   M-Social-Post

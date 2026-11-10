@@ -8,7 +8,7 @@ SELECT ?year (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {
   ?victim a :Victim ;
           :yearOfRegistration ?year ;
-          :derivedFrom ?source .
+          :hasEvidenceSource ?source .
   ?source :datasetName "CTDC Global Synthetic Dataset v2025" .
 }
 GROUP BY ?year

@@ -1,15 +1,15 @@
 # Mapping coverage of the declared vocabulary
 
-State on 10 November 2026, RATR-O v1.10.4, `mappings/ramona.obda` with 168 mappings. The published
-`mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 71,963 triples,
-triple for triple.
+State on 10 November 2026, RATR-O v1.10.5, `mappings/ramona.obda` with 173 mappings. The published
+`mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,259 triples,
+triple for triple, and the same 142,213 over the seeds plus a 1-in-40 sample of the CTDC victim records.
 Generated from `scripts/audit_o1.py` section 10, which reports the same counts as a NOTE.
 
 | | Declared | Produced by a mapping | Not produced |
 |---|---:|---:|---:|
-| Classes | 114 | 70 | 44 |
-| Object properties | 67 | 31 | 36 |
-| Datatype properties | 101 | 69 | 32 |
+| Classes | 114 | 76 | 38 |
+| Object properties | 69 | 34 | 35 |
+| Datatype properties | 103 | 72 | 31 |
 
 The ontology is deliberately larger than the current mapping. A reviewer should be able to tell at
 a glance which part of it the demonstrator actually populates, which is what this file is for.
@@ -32,7 +32,7 @@ honest ones: the ontology models more than Ramona's current schema records.
 - The Palermo triad links on offers and schemes (`:exhibitsAction`, `:exhibitsMeans`,
   `:exhibitsPurpose`, `:schemePalermo*`). Asserting a Palermo element for a given offer is an
   interpretive step and the schema has no column that records that judgement.
-- Route metadata beyond origin, destination and `known_since`: `:routeVictimCount`,
+- Route metadata beyond origin, destination, `known_since` and the victim count:
   `:routeEarliestYear`, `:routeLatestYear`, `:routeStopoverCountries`, `:routeIsTransnational`,
   `:routeUpdatedAt`, `:routeDominantExploitation`.
 - Victim case and life-history fields: `:victimCaseOpenedAt`, `:victimCaseClosedAt`,
@@ -53,16 +53,12 @@ now the range of the new `:hasDominanceBucket` and is minted by `M-DominanceBuck
 
 ## Full list of terms not produced by a mapping
 
-Classes (44):
+Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
 
-```
+### Classes (38)
+
 :Agent
 :BeggingRingScheme
-:ClassicRedFlagPattern
-:CommunicationPattern
-:CredibleLethalPattern
-:DemographicProfile
-:ExploitationPattern
 :ExploitationRisk
 :FalseDocumentation
 :FishingVesselLabourScheme
@@ -91,7 +87,6 @@ Classes (44):
 :PurposeSlavery
 :Receipt
 :Recruitment
-:RecruitmentPattern
 :ResearchReport
 :SocialMediaItem
 :SocialMediaRecruitmentSignal
@@ -100,53 +95,27 @@ Classes (44):
 :TraffickingRisk
 :Transfer
 :Transportation
-```
 
-Properties (68):
+### Object properties (35)
 
-```
 :candidateDefraudedBy
 :commentsOn
 :containsRedFlag
-:evidenceAccessedOnline
-:evidenceArchivedUrl
 :evidenceFor
-:evidenceStrength
 :evidencedByPressArticle
 :exhibitsAction
 :exhibitsMeans
 :exhibitsPurpose
-:flagKeywordPattern
-:hasDemographicProfile
 :hasRecruitmentMethod
-:hasTitle
 :hostsOffer
 :leadsToExploitation
 :observedInCountry
-:offerClassifierConfidence
-:offerFirstContactAt
-:offerIsActive
-:offerLanguage
-:offerScreenshotUrl
 :offers
 :operatesIn
-:patternRegex
-:pctOfCases
 :platformModeratedBy
 :recruitsFor
-:riskExplanationEn
-:riskExplanationEs
 :routeDominantExploitation
-:routeEarliestYear
-:routeIsTransnational
-:routeLatestYear
-:routeStopoverCountries
-:routeUpdatedAt
-:routeVictimCount
 :schemeExploitationType
-:schemeFirstAttestedYear
-:schemeJurisdictionScope
-:schemeNamedAfterCase
 :schemePalermoAction
 :schemePalermoMeans
 :schemePalermoPurpose
@@ -154,8 +123,6 @@ Properties (68):
 :schemeTargetsAgeGroup
 :schemeTargetsGender
 :schemeTypicalRoute
-:sourceAccessedAt
-:sourceLanguage
 :tipEventHappenedIn
 :tipEventHasAction
 :tipEventHasMeans
@@ -164,35 +131,64 @@ Properties (68):
 :tipEventRegisteredBy
 :transportedBy
 :travelledWith
+:victimOfFraudScheme
+:victimOfOffer
+
+### Datatype properties (31)
+
+:evidenceAccessedOnline
+:evidenceArchivedUrl
+:evidenceStrength
+:flagKeywordPattern
+:hasTitle
+:offerClassifierConfidence
+:offerFirstContactAt
+:offerIsActive
+:offerLanguage
+:offerScreenshotUrl
+:patternRegex
+:pctOfCases
+:riskExplanationEn
+:riskExplanationEs
+:routeEarliestYear
+:routeIsTransnational
+:routeLatestYear
+:routeStopoverCountries
+:routeUpdatedAt
+:schemeFirstAttestedYear
+:schemeJurisdictionScope
+:schemeNamedAfterCase
+:sourceAccessedAt
+:sourceLanguage
 :victimCaseClosedAt
 :victimCaseOpenedAt
 :victimEducationLevel
 :victimHasChildrenCount
 :victimMaritalStatus
-:victimOfFraudScheme
-:victimOfOffer
 :victimPriorEmployment
 :victimReferralSource
-```
 
 ## Mapped but with no rows in the shipped seeds
 
-Separate from coverage: 18 mappings are correct and execute, and return nothing, because the
-tables they read are created by `db/` and populated by no seed file.
+Separate from coverage: some mappings are correct and execute, and return nothing over a clone of
+the repository, because the tables they read are created by `db/` and populated by no seed file.
 
-- `ramona.victim` and its satellites `victim_exploitation`, `victim_means_of_control`,
-  `victim_vulnerability`: loaded by `scripts/ingest_ctdc.py` from the CTDC v2025 release,
-  which this repository does not redistribute. 15 mappings.
-- `public.evidence_source_extended`: author, dataset-record and kind annotations over
-  evidence sources, and the `:OpenDatasetRecord` registry. 3 mappings, including the one
-  that types `:PressArticle` over that registry; `db/13_offer_provenance.sql` now types the
-  press articles over `ramona.evidence_sources` instead, so `:PressArticle` is populated.
+- `public.victim`, `victim_exploitation` and `victim_means_of_control`: loaded by
+  `scripts/ingest_ctdc.py` from the CTDC Global Synthetic Dataset v2025, which this repository does
+  not redistribute. With the release downloaded, `python scripts/ingest_ctdc.py --csv <file>` loads
+  257,969 victim records, 189,096 exploitation rows and 276,562 means-of-control rows. This was run
+  for the first time on 10 November 2026, with foreign keys enforced, and the mappings and queries
+  over it were executed; `docs/validation/QUERY_EXECUTION_REPORT.md` has the results and the defects
+  it found.
+- `victim.communication_tool_code` and `public.victim_vulnerability`: CTDC has no variable for
+  either, so `M-Victim-CommunicationTool` and `M-Victim-Vulnerability` stay empty after the CTDC load.
+  Only victim records derived from press articles by `scripts/ingest_press.py` would fill them.
+- `public.evidence_source_extended` beyond the one CTDC dataset row: author and dataset-record
+  annotations, and press sources in that registry. `db/13_offer_provenance.sql` types the press
+  articles over `ramona.evidence_sources`, so `:PressArticle` is populated either way.
 
-Five further mappings, `M-Press-Scheme-*` and `M-Press-SchemeType-*` for
+Five further pairs of mappings, `M-Press-Scheme-*` and `M-Press-SchemeType-*` for
 `CallCenterScamScheme`, `GigEconomyFakeDriverScheme`, `ForeignLanguageTeacherScheme`,
-`CentralAmericanMigrantLabourScheme` and `ConstructionLabourBondageScheme`, name real
-classes and match no row: 15 of the 26 fraud schemes are attested in the verified press
-corpus and these five are not among them.
-
-`docs/validation/QUERY_EXECUTION_REPORT.md` lists which of the 40 reference queries each of
-these gaps blocks.
+`CentralAmericanMigrantLabourScheme` and `ConstructionLabourBondageScheme`, name real classes and
+match no row: 15 of the 26 fraud schemes are attested in the verified press corpus and these five
+are not among them.
