@@ -1,14 +1,15 @@
 # Ramona AI — Virtual Knowledge Graph Observatory
 
-A running Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observatory, built on the ontology-based-data-access paradigm of Xiao, Ding, Cogrel and Calvanese (2019). Prepared for the BMEIA Dialogue Residency at the Institute of Logic and Computation, TU Wien, 2 November to 2 December 2026.
+A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observatory, built on the ontology-based-data-access paradigm of Xiao, Ding, Cogrel and Calvanese (2019). Prepared for the BMEIA Dialogue Residency at the Institute of Logic and Computation, TU Wien, 2 November to 2 December 2026.
 
 ## What this repository contains
 
-- **Postgres 16** with Ramona's operational schema (10 tables: offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
+- **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
 - **RATR-O v1.10.5** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
-- **SPARQL endpoint** served by Ontop on port 8080.
-- **40 reference SPARQL queries** (`queries/Q1..Q40`) answering 36 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
+- **SPARQL endpoint** served by Ontop on port 8080 once the Docker stack is up.
+- **40 reference SPARQL queries** (`queries/`, Q1 to Q40) answering 36 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
 - **Real offer corpus (v1.10)**: 352 real offer descriptions extracted from press, of which **295 are verified** and loaded (167 in Mexico), with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`). The 55 doubtful and 2 discarded ones are kept in the CSV with their audit status and are not loaded.
 - **Social-media criminal-recruitment module (v1.9)**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
 - **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
@@ -36,7 +37,24 @@ The observatory publishes two parallel classifications for every case:
 
 ## Start the VKG demo
 
-From this directory:
+**Status, stated plainly.** This stack has not been booted as part of the audit of v1.10.5: Docker does
+not run on the machine the audit was done on. Everything the stack would serve was validated offline
+instead, by loading the same `db/*.sql` files, executing the same mapping file and running the same 40
+queries; `docs/validation/QUERY_EXECUTION_REPORT.md` has the method and the results. Two errors that
+would have stopped the stack from starting were found by reading the configuration against Ontop's
+documentation and Docker Hub, and are fixed: the image name (`ontop/ontop-endpoint` has no 5.x tags;
+the image is `ontop/ontop`) and the missing JDBC driver mount. The steps below are therefore correct
+to the best of that reading and untested end to end.
+
+Ontop's image ships no JDBC driver. Download the PostgreSQL one once:
+
+```bash
+mkdir -p jdbc
+curl -L -o jdbc/postgresql-42.7.4.jar \
+  https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar
+```
+
+Then, from this directory:
 
 ```bash
 docker compose up -d
@@ -44,8 +62,11 @@ docker compose up -d
 
 First run:
 1. pulls Postgres 16 and Ontop 5.2.0;
-2. creates the `ramona` database and runs `db/01_schema.sql`, `db/02_seed_reference.sql`, `db/03_seed_cases.sql`, `db/04_schema_extension_v1.sql` via `/docker-entrypoint-initdb.d/`;
+2. creates the `ramona` database and runs the fourteen files `db/01_schema.sql` to `db/14_route_victim_counts.sql`, in order, via `/docker-entrypoint-initdb.d/`;
 3. starts Ontop with `ontology/ratr-o.ttl` + `mappings/ramona.obda`.
+
+The victim tables are created empty. The CTDC release that fills them is not redistributed here; see
+"Populate the observatory" below.
 
 Wait for Ontop to report as healthy:
 
@@ -76,11 +97,11 @@ python scripts/classify_press.py \
     --summary data/processed/press_summary.json
 
 # ingest press into Postgres
-DSN="postgresql://ramona:ramona@localhost:5432/ramona" \
+DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
 python scripts/ingest_press.py --in data/processed/press_cases.jsonl
 
 # ingest CTDC (once you have the CSV from https://www.ctdatacollaborative.org/page/global-synthetic-dataset)
-DSN="postgresql://ramona:ramona@localhost:5432/ramona" \
+DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
 python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 ```
 
@@ -102,23 +123,35 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 | `Q12_cross_source_age_gender.rq` | Age × gender × exploitation type (requires ≥3 victims per cell). |
 | `Q13_means_of_control_stack.rq` | Means of control by exploitation type. |
 | `Q14_mexico_press_vs_ctdc.rq` | Mexico: press-documented vs CTDC-registered victims (cross-source federation). |
+| `Q15_fraudscheme_by_country.rq` | Fraud schemes by country. |
+| `Q16_palermo_triad_coverage.rq` | Coverage of the Palermo triad (action, means, purpose) per TIP event. |
+| `Q17_scheme_vs_tool_heatmap.rq` | Fraud scheme by communication tool. |
+| `Q18_age_gender_per_scheme.rq` | Demographic profile (age, gender) per fraud scheme. |
+| `Q19_outlets_by_scheme.rq` | Press outlets that document each scheme. |
+| `Q20_type_b_over_a_by_country.rq` | Offers matching only credible-lethal patterns and offers matching only classic red flags, by country. Not a prevalence estimate; see `docs/CLASSIFIER_VALIDATION.md`. |
+| `Q21_pattern_cooccurrence.rq` | Pairs of patterns that co-occur on offers from the same source. |
+| `Q22_recruitment_x_exploitation.rq` | Recruitment method by exploitation type (CTDC). |
+| `Q23_whatsapp_funnel_schemes.rq` | Schemes that share WhatsApp as the first channel. |
+| `Q24_new_routes_from_press.rq` | Routes documented in the press and not attested in CTDC. |
+| `Q25_trend_by_year.rq` | Victims registered in CTDC by year. |
+| `Q26_means_of_control_network.rq` | Co-occurrence of means of control (CTDC). |
+| `Q27_vulnerability_x_exploitation.rq` | Vulnerability factor by exploitation type. |
+| `Q28_crossborder_with_press.rq` | Cross-border CTDC corridors that also have press coverage. |
+| `Q29_edith_cohort.rq` | Offers matching credible-lethal patterns and none of the classic red flags. |
+| `Q30_schemes_in_both_sources.rq` | Fraud schemes attested in CTDC and in the press. |
+| `Q31_tiktok_dm_plus_group_code.rq` | Social-media posts that combine a call to a private channel with a coded reference to a criminal group. |
+| `Q32_minor_self_application.rq` | Comments in which an adolescent offers themselves to a criminal group. |
+| `Q33_existential_forced_criminality.rq` | Offers that exhibit some forced-criminality scheme (exercises an existential axiom). |
+| `Q34_recruitment_stories.rq` | Posts per Colmex recruitment story, and direct-recruitment posts that are also job offers. |
+| `Q35_lexicon_false_positive_rate.rq` | Lexicon terms that also fire on posts that are not recruitment. |
+| `Q36_who_is_targeted_mx.rq` | Who real recruitment offers in Mexico target. |
+| `Q37_where_offers_mx.rq` | Where real recruitment offers in Mexico are located. |
+| `Q38_verbatim_wording.rq` | Verbatim wording of real offers, with the source. |
+| `Q39_type_a_vs_type_b_real.rq` | Real offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
+| `Q40_criminal_recruitment_channels.rq` | Platforms through which real criminal-recruitment offers arrive. |
 
-| `Q15_fraudscheme_by_country.rq` | Distribución de FraudSchemes por país (cross-source). |
-| `Q16_palermo_triad_coverage.rq` | Cobertura del triángulo Palermo (Action × Means × Purpose) por TIPEvent. |
-| `Q17_scheme_vs_tool_heatmap.rq` | Heatmap FraudScheme × CommunicationTool. |
-| `Q18_age_gender_per_scheme.rq` | Perfil demográfico (edad × género) por FraudScheme. |
-| `Q19_outlets_by_scheme.rq` | Outlets de prensa que más documentan cada esquema. |
-| `Q20_type_b_over_a_by_country.rq` | Ratio Type-B:Type-A por país. |
-| `Q21_pattern_cooccurrence.rq` | Pares de patrones que co-ocurren en el mismo artículo. |
-| `Q22_recruitment_x_exploitation.rq` | Método de reclutamiento × tipo de explotación (CTDC). |
-| `Q23_whatsapp_funnel_schemes.rq` | Esquemas que comparten WhatsApp como primer canal. |
-| `Q24_new_routes_from_press.rq` | Rutas nuevas documentadas por prensa aún no atestadas en CTDC. |
-| `Q25_trend_by_year.rq` | Tendencia 2002-2023 de víctimas registradas en CTDC. |
-| `Q26_means_of_control_network.rq` | Red de co-ocurrencia de Means of Control (CTDC). |
-| `Q27_vulnerability_x_exploitation.rq` | Factor de vulnerabilidad × tipo de explotación. |
-| `Q28_crossborder_with_press.rq` | Corredores transfronterizos con prensa reciente. |
-| `Q29_edith_cohort.rq` | Cohorte Edith Guadalupe (Type-B-only explícito). |
-| `Q30_schemes_in_both_sources.rq` | FraudSchemes atestados en CTDC y prensa (intersección). |
+Which of these return rows over the shipped seeds, which need the CTDC release loaded, and why the
+rest return none, is in `docs/validation/QUERY_EXECUTION_REPORT.md`.
 
 ## Layout
 
@@ -127,11 +160,12 @@ ramona_vkg_demo/
 ├── README.md
 ├── docker-compose.yml
 ├── requirements.txt
-├── db/
-│   ├── 01_schema.sql
-│   ├── 02_seed_reference.sql
-│   ├── 03_seed_cases.sql
-│   └── 04_schema_extension_v1.sql          # victim-centric v1.0 extension
+├── db/                                     # 14 files, run in order by Postgres on first start
+│   ├── 01_schema.sql ... 03_seed_cases.sql # operational schema and the 47 hand-curated offers
+│   ├── 04_schema_extension_v1.sql          # victim-centric extension and reference vocabularies
+│   ├── 05 ... 12                           # press-synthesised offers, CTDC routes, patterns, countries, social module, verified press offers
+│   ├── 13_offer_provenance.sql             # offer-to-source links and source kinds
+│   └── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
 ├── ontology/
 │   ├── ratr-o.ttl                          # RATR-O v1.10.5 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
@@ -139,12 +173,12 @@ ramona_vkg_demo/
 │   ├── ratr-o.nt                           # the same graph in N-Triples
 │   └── ratr-o.html                         # generated documentation
 ├── mappings/
-│   └── ramona.obda                         # Ontop native mapping, operational + observatory layers
+│   ├── ramona.obda                         # Ontop native mapping, 173 mapping assertions
+│   └── ramona.r2rml.ttl                    # the same in W3C R2RML, generated by scripts/obda_to_r2rml.py
 ├── ontop/
 │   └── ontop.properties
 ├── queries/
-│   ├── Q1..Q8_*.rq                         # Ramona operational reference queries
-│   └── Q9..Q14_*.rq                        # Observatory-layer queries
+│   └── Q1 ... Q40_*.rq                     # the 40 reference queries listed above
 ├── scripts/
 │   ├── scrape_press.py                     # Google News RSS + trafilatura
 │   ├── classify_press.py                   # Type A / Type B rule-based classification
@@ -155,6 +189,11 @@ ramona_vkg_demo/
 │   ├── raw/                                # scraper output (JSONL, git-ignored)
 │   └── processed/                          # classified output (JSONL + summary JSON)
 └── docs/
+    ├── AUDIT_O1_SUMMARY.md                 # what the five audit passes found and fixed
+    ├── COMPETENCY_QUESTIONS.md             # the 36 competency questions and the query answering each
+    ├── MAPPING_COVERAGE.md                 # which terms a mapping produces and which it does not
+    ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
+    ├── validation/                         # ROBOT validation and the execution of the 40 queries
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
     └── CTDC_HUTRO_RATRO_mapping.xlsx       # mapping workbook prepared for Prof. Ortiz
 ```

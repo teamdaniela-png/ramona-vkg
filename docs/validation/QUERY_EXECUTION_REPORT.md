@@ -133,7 +133,7 @@ queries that depend on them. None of this had ever run. It found:
   `:schemeCode`, and method, exploitation and vulnerability codes are taken from the last path segment.
   Q15 went from 10 rows to 33 and Q19 from 93 to 129, which is the grouping finally working.
 - **`:routeVictimCount` had no data.** `db/14_route_victim_counts.sql` supplies the counts for the 1,771
-  corridors, recomputed from the release and checked to be exactly the set `db/06` loads.
+  corridors, recomputed from the release and checked to be exactly the set `db/06_ctdc_routes.sql` loads.
 
 After these, a check that types every individual by the domain and range axioms of the properties it
 takes part in, over all 142,213 triples, finds no individual entailed into a class outside the tree of

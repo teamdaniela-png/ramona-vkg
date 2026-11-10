@@ -18,9 +18,10 @@
 
 BEGIN;
 -- These tables live in the public schema, not in ramona, and mappings/ramona.obda reads
--- them as public.<table>. The search_path is set explicitly: every other file in db/ sets
--- it to "ramona, public", so without this line the tables would land in ramona whenever
--- the directory is replayed inside a single psql session instead of one session per file.
+-- them as public.<table>. The search_path has to be set explicitly. Postgres's default is
+-- "$user", public, and under docker-compose the database user is ramona and db/01 creates a
+-- schema of that same name, so without this line every table below would be created in
+-- ramona and the 26 mappings that read public.<table> would find nothing.
 SET search_path TO public;
 
 

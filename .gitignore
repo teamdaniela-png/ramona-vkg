@@ -17,3 +17,6 @@ data/raw/consejo/
 data/processed/consejo/documentos_relevantes.jsonl
 data/processed/offers/
 data/processed/offers/audit/in_*.jsonl
+
+# PostgreSQL JDBC driver for Ontop, downloaded by the reader (see README)
+jdbc/*.jar

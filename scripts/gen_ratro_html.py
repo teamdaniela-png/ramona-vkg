@@ -100,7 +100,8 @@ def main():
         tail = tail.replace("</ul>", COLMEX_REF + "\n</ul>", 1)
 
     kinds = [("Classes", OWL.Class, "class"), ("Object properties", OWL.ObjectProperty, "prop"),
-             ("Datatype properties", OWL.DatatypeProperty, "prop")]
+             ("Datatype properties", OWL.DatatypeProperty, "prop"),
+             ("Named individuals", OWL.NamedIndividual, "class")]
     terms = {k: sorted((s for s in set(g.subjects(RDF.type, t)) if local(s)), key=lambda x: local(x).lower())
              for k, t, _ in kinds}
 
@@ -156,6 +157,16 @@ def write_serialisations(g):
     """
     for fmt, ext in (("pretty-xml", "rdf"), ("json-ld", "jsonld"), ("nt", "nt")):
         out = OUT.with_suffix("." + ext)
+        # rdflib does not serialise in a stable order. Leave the file alone when it already
+        # says the same thing, so regenerating does not produce a diff with no content.
+        if out.exists():
+            try:
+                parse_fmt = {"pretty-xml": "xml", "json-ld": "json-ld", "nt": "nt"}[fmt]
+                if rdflib.Graph().parse(str(out), format=parse_fmt).isomorphic(g):
+                    print(f"unchanged {out.relative_to(ROOT)}")
+                    continue
+            except Exception:
+                pass
         g.serialize(destination=str(out), format=fmt)
         print(f"wrote {out.relative_to(ROOT)}")
 

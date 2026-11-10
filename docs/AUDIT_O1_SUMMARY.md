@@ -266,6 +266,42 @@ triples, 173 mappings. In the OWL 2 QL profile; consistent under HermiT alone, w
 with the seeds plus the sampled victims; the four serialisations isomorphic; the R2RML identical to
 the `.obda` over both data states.
 
+## Sixth pass: from a clean clone, as a reader gets it
+
+The last pass cloned the public repository at the tag and ran everything from the clone. The ontology
+needed no change and stays at v1.10.5. What it found is about whether someone else can reproduce the
+rest:
+
+- **Three scripts only ran on the author's machine.** `scripts/audit_o1.py`, `scripts/obda_to_r2rml.py`
+  and `scripts/enrich_data.py` had the repository root hard-coded as an absolute local path. Worse for
+  an audit: run from the clone, `audit_o1.py` silently audited the original working copy instead. All
+  three now resolve the root from their own location.
+- **The Docker stack could not start.** `docker-compose.yml` named the image `ontop/ontop-endpoint:5.2.0`,
+  which does not exist on Docker Hub (the 5.x image is `ontop/ontop`), and mounted no JDBC driver,
+  which Ontop's image does not ship. Both are fixed from Ontop's documentation. The stack has still not
+  been booted, and the README now says so in as many words instead of calling the VKG "running".
+- **The ingest commands in the README could not authenticate**: they used the password `ramona` where
+  the stack sets `ramona_demo`.
+- **`db/04`'s schema note was wrong about why it mattered.** Under docker-compose the database user and
+  the schema are both called `ramona`, so Postgres's default search path would have created the
+  victim tables in `ramona`, where 26 mappings do not look. The explicit `SET search_path TO public`
+  added in the third pass is what makes them land where the mappings read them.
+- The README listed 30 of the 40 queries, half of them in Spanish, described four of the fourteen
+  seed files, and still called Q20 a ratio that `docs/CLASSIFIER_VALIDATION.md` withdrew.
+- The generated documentation had no entry for the ontology's one named individual.
+
+Verified from the clone: the ontology parses, is in the OWL 2 QL profile as Turtle and as RDF/XML, the
+four serialisations are isomorphic, the fourteen seed files load without error, the 173 mappings
+produce 75,259 triples, the R2RML produces the same 75,259, and the merged graph is consistent under
+HermiT. The five files GitHub Pages serves are byte-identical to the tag, and each of
+`https://w3id.org/ratr-o/1.10` to `/1.10.5` resolves to the Turtle of its own version. Of the 30
+external URLs the ontology cites, 17 answer 200 to a script; the 11 that answer 403 are BioPortal, CTDC
+and OHCHR, which refuse scripted clients and open in a browser; the two dead ones are the Oaxaca and
+Zapopan pages already cited alongside their Internet Archive snapshots.
+
+Not ontology, and left for the author to decide: `docs/HANDOFF.md`, `docs/ZENODO_SETUP.md` and
+`docs/w3id/PR_DRAFT.md` are working notes rather than documentation.
+
 ## Conclusion
 
 The ontology is in OWL 2 QL (the DL-Lite fragment of Calvanese et al. 2007), consistent with its

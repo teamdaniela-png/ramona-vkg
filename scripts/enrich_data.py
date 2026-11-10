@@ -14,12 +14,15 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
 import re
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path("/Users/danielacamberos/Downloads/ramona_vkg_demo")
-CTDC = Path("/Users/danielacamberos/Downloads/CTDC_global_synthetic_data_v2025.csv")
+ROOT = Path(__file__).resolve().parent.parent
+# The CTDC release is not redistributed here. Point CTDC_CSV at a local copy downloaded from
+# https://www.ctdatacollaborative.org/page/global-synthetic-dataset
+CTDC = Path(os.environ.get("CTDC_CSV", ROOT / "data" / "raw" / "CTDC_global_synthetic_data_v2025.csv"))
 
 # ISO3 -> (Spanish name, English name)
 ISO3_NAMES = {
@@ -271,9 +274,9 @@ DEEP_PATTERNS = {
     "recibir_visitas_en_domicilio": r"visita.{0,20}domicilio|(te|me)\s+van\s+(a\s+)?pasar\s+a\s+buscar",
     "acceso_restringido_a_familia": r"no\s+puedes\s+ver\s+a\s+tu\s+familia|contacto\s+con\s+familia\s+restring",
     "internet_laboral_restringido": r"sin\s+internet\s+personal|(celular|teléfono)\s+(del\s+trabajo|de\s+la\s+empresa)",
-    "cuarto\s+compartido\s+con\s+recruiter": r"cuarto\s+compartido|mismo\s+cuarto|dormir.{0,15}compañera",
+    r"cuarto\s+compartido\s+con\s+recruiter": r"cuarto\s+compartido|mismo\s+cuarto|dormir.{0,15}compañera",
     "traslado_nocturno": r"traslado\s+(de\s+)?noche|viaje\s+nocturno",
-    "pasaporte\s+custodiado": r"guard(é|amos|ar)\s+(el\s+|tu\s+)?pasaporte|custodia\s+(del\s+)?pasaporte",
+    r"pasaporte\s+custodiado": r"guard(é|amos|ar)\s+(el\s+|tu\s+)?pasaporte|custodia\s+(del\s+)?pasaporte",
     "contrato_en_otro_idioma": r"contrato\s+en\s+(inglés|otro\s+idioma)|no\s+entend\s+el\s+contrato",
     "recorrer_ruta_de_prueba": r"recorrer\s+(la\s+)?ruta|ruta\s+de\s+prueba",
     "oferta_por_influencer": r"influencer.+invitó|bajo\s+recomendación\s+de\s+influencer",

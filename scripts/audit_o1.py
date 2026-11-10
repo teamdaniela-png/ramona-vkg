@@ -22,7 +22,7 @@ import rdflib
 from rdflib import OWL, RDF, RDFS, SKOS, URIRef, Literal
 from rdflib.namespace import DC, DCTERMS
 
-ROOT = Path("/Users/danielacamberos/Downloads/ramona_vkg_demo")
+ROOT = Path(__file__).resolve().parent.parent
 TTL = ROOT / "ontology" / "ratr-o.ttl"
 OBDA = ROOT / "mappings" / "ramona.obda"
 R2RML = ROOT / "mappings" / "ramona.r2rml.ttl"

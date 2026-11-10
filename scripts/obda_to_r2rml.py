@@ -21,7 +21,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path("/Users/danielacamberos/Downloads/ramona_vkg_demo")
+ROOT = Path(__file__).resolve().parent.parent
 IN = ROOT / "mappings" / "ramona.obda"
 OUT = ROOT / "mappings" / "ramona.r2rml.ttl"
 

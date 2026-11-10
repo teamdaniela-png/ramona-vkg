@@ -18,7 +18,7 @@ Each route records:
 
 Usage:
     python scripts/extract_routes.py \
-        --csv /Users/danielacamberos/Downloads/CTDC_global_synthetic_data_v2025.csv \
+        --csv /path/to/CTDC_global_synthetic_data_v2025.csv \
         --out db/06_ctdc_routes.sql \
         --summary docs/routes_summary.json \
         --min-victims 5

@@ -36,7 +36,7 @@ Mapping (CTDC column -> Ramona table/column):
   recruiterRelationOther      -> recruitment_method='other'
 
 Usage:
-    DSN="postgresql://ramona:ramona@localhost:5432/ramona" \
+    DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
       python scripts/ingest_ctdc.py --csv /path/to/ctdc_global_synthetic_v2025.csv
 """
 from __future__ import annotations
@@ -120,7 +120,7 @@ def _clean(v: str | None) -> str | None:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
-    ap.add_argument("--dsn", default=os.environ.get("DSN", "postgresql://ramona:ramona@localhost:5432/ramona"))
+    ap.add_argument("--dsn", default=os.environ.get("DSN", "postgresql://ramona:ramona_demo@localhost:5432/ramona"))
     ap.add_argument("--batch", type=int, default=1000)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()

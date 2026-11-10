@@ -18,7 +18,8 @@ services:
       retries: 20
 
   ontop:
-    image: ontop/ontop-endpoint:5.2.0
+    # ontop/ontop is the image Ontop publishes; ontop/ontop-endpoint has no 5.x tags.
+    image: ontop/ontop:5.2.0
     container_name: ramona_ontop
     depends_on:
       postgres:
@@ -33,6 +34,8 @@ services:
       - ./ontology/ratr-o.ttl:/opt/ontop/input/ratr-o.ttl:ro
       - ./mappings/ramona.obda:/opt/ontop/input/ramona.obda:ro
       - ./ontop/ontop.properties:/opt/ontop/input/ontop.properties:ro
+      # The image ships no JDBC driver. Put the PostgreSQL driver jar in ./jdbc (see README).
+      - ./jdbc:/opt/ontop/jdbc:ro
     ports:
       - "8080:8080"
 

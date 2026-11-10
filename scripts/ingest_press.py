@@ -14,7 +14,7 @@ anonymised "case" row per article to preserve the 1:1 ingestion mapping. The
 dashboard treats press cases as aggregated indicators, not individual victims.
 
 Usage:
-    DSN="postgresql://ramona:ramona@localhost:5432/ramona" python scripts/ingest_press.py
+    DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" python scripts/ingest_press.py
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ except ImportError:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="inp", default="data/processed/press_cases.jsonl")
-    ap.add_argument("--dsn", default=os.environ.get("DSN", "postgresql://ramona:ramona@localhost:5432/ramona"))
+    ap.add_argument("--dsn", default=os.environ.get("DSN", "postgresql://ramona:ramona_demo@localhost:5432/ramona"))
     args = ap.parse_args()
     inp = Path(args.inp)
 
