@@ -28,8 +28,8 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.10.3</dd>
-  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.3</code></dd>
+  <dt>Version</dt><dd>1.10.4</dd>
+  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.4</code></dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
   <dt>Modified</dt><dd>2026-11-10</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
@@ -1012,6 +1012,7 @@
 <h2>Object properties</h2>
 <div class="term" id="associatedWithRoute">
 <h3><code>:associatedWithRoute</code> &mdash; associated with route</h3>
+<p class="lang">es: <em>asociada con la ruta</em></p>
 <p class="comment">Relates a job offer to a trafficking route it is associated with, normally through the origin and destination it names.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1020,6 +1021,7 @@
 </div>
 <div class="term" id="candidateDefraudedBy">
 <h3><code>:candidateDefraudedBy</code> &mdash; candidate defrauded by scheme</h3>
+<p class="lang">es: <em>candidato defraudado por el esquema</em></p>
 <p class="comment">Relates a candidate to the fraud scheme they were defrauded by, as reconstructed from their report.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Candidate"><code>:Candidate</code></a></td></tr>
@@ -1037,6 +1039,7 @@
 </div>
 <div class="term" id="contactedThrough">
 <h3><code>:contactedThrough</code> &mdash; contacted through</h3>
+<p class="lang">es: <em>contactada a través de</em></p>
 <p class="comment">Relates a victim to the communication tool through which the recruiter contacted them.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1045,6 +1048,7 @@
 </div>
 <div class="term" id="containsRedFlag">
 <h3><code>:containsRedFlag</code> &mdash; contains red flag</h3>
+<p class="lang">es: <em>contiene la señal de alerta</em></p>
 <p class="comment">Relates a job offer to a red flag detected in its text. Kept alongside :hasRedFlag because the mapping layer populates them from different sources: :containsRedFlag from text classification, :hasRedFlag from the reviewed classification record.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1062,6 +1066,7 @@
 </div>
 <div class="term" id="destinationCountry">
 <h3><code>:destinationCountry</code> &mdash; destination country</h3>
+<p class="lang">es: <em>país de destino</em></p>
 <p class="comment">Relates a trafficking route to its country of destination.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></td></tr>
@@ -1070,6 +1075,7 @@
 </div>
 <div class="term" id="evidencedByPressArticle">
 <h3><code>:evidencedByPressArticle</code> &mdash; evidenced by press article</h3>
+<p class="lang">es: <em>sustentada en el artículo de prensa</em></p>
 <p class="comment">Relates a fraud scheme to a press article that documents it. Every named scheme in RATR-O carries at least one such link or an rdfs:seeAlso to an institutional source.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1087,6 +1093,7 @@
 </div>
 <div class="term" id="exhibitsAction">
 <h3><code>:exhibitsAction</code> &mdash; exhibits Palermo action</h3>
+<p class="lang">es: <em>exhibe la acción de Palermo</em></p>
 <p class="comment">Relates a job offer to the Palermo Action it realises. For a deceptive recruitment offer this is normally :Recruitment.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1104,6 +1111,7 @@
 </div>
 <div class="term" id="exhibitsMeans">
 <h3><code>:exhibitsMeans</code> &mdash; exhibits Palermo means</h3>
+<p class="lang">es: <em>exhibe el medio de Palermo</em></p>
 <p class="comment">Relates a job offer to the Palermo Means it realises, normally :MeansDeception or :MeansFraud.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1112,6 +1120,7 @@
 </div>
 <div class="term" id="exhibitsPurpose">
 <h3><code>:exhibitsPurpose</code> &mdash; exhibits Palermo purpose</h3>
+<p class="lang">es: <em>exhibe el propósito de Palermo</em></p>
 <p class="comment">Relates a job offer to the Palermo Purpose it is believed to serve. Assertion of a purpose is an interpretive step and in the demonstrator it is only made when an evidence source states the exploitation outcome.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1120,6 +1129,7 @@
 </div>
 <div class="term" id="hasAgeGroup">
 <h3><code>:hasAgeGroup</code> &mdash; has age group</h3>
+<p class="lang">es: <em>tiene grupo etario</em></p>
 <p class="comment">Relates a demographic profile to an age group. RATR-O records age only in bands, never as a date of birth or an exact age.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#DemographicProfile"><code>:DemographicProfile</code></a></td></tr>
@@ -1128,6 +1138,7 @@
 </div>
 <div class="term" id="hasDemographicProfile">
 <h3><code>:hasDemographicProfile</code> &mdash; has demographic profile</h3>
+<p class="lang">es: <em>tiene perfil demográfico</em></p>
 <p class="comment">Relates a victim to their demographic profile. The profile is reified so that age group, gender, nationality and vulnerability factors can be recorded without ever attaching identifying attributes to the victim individual.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1153,6 +1164,7 @@
 </div>
 <div class="term" id="hasGender">
 <h3><code>:hasGender</code> &mdash; has gender</h3>
+<p class="lang">es: <em>tiene género</em></p>
 <p class="comment">Relates a demographic profile to a gender.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#DemographicProfile"><code>:DemographicProfile</code></a></td></tr>
@@ -1161,6 +1173,7 @@
 </div>
 <div class="term" id="hasNationality">
 <h3><code>:hasNationality</code> &mdash; has nationality</h3>
+<p class="lang">es: <em>tiene nacionalidad</em></p>
 <p class="comment">Relates a demographic profile to a country of nationality.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#DemographicProfile"><code>:DemographicProfile</code></a></td></tr>
@@ -1169,6 +1182,7 @@
 </div>
 <div class="term" id="hasRecruitmentMethod">
 <h3><code>:hasRecruitmentMethod</code> &mdash; has recruitment method</h3>
+<p class="lang">es: <em>tiene método de reclutamiento</em></p>
 <p class="comment">Relates a job offer to the recruitment method it uses, in the sense of the ICS-TIP recruitment-method variable.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1177,6 +1191,7 @@
 </div>
 <div class="term" id="hasRedFlag">
 <h3><code>:hasRedFlag</code> &mdash; has red flag</h3>
+<p class="lang">es: <em>tiene señal de alerta</em></p>
 <p class="comment">Relates a job offer to a red flag recorded in its reviewed classification.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1185,6 +1200,7 @@
 </div>
 <div class="term" id="hasRiskClassification">
 <h3><code>:hasRiskClassification</code> &mdash; has risk classification</h3>
+<p class="lang">es: <em>tiene clasificación de riesgo</em></p>
 <p class="comment">Relates a job offer to a risk classification produced for it. A single offer may carry several classifications, one per classifier version, which is why the classification is reified rather than stored as a literal on the offer.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1193,6 +1209,7 @@
 </div>
 <div class="term" id="hasVulnerabilityFactor">
 <h3><code>:hasVulnerabilityFactor</code> &mdash; has vulnerability factor</h3>
+<p class="lang">es: <em>tiene factor de vulnerabilidad</em></p>
 <p class="comment">Relates a demographic profile to a vulnerability factor, in the sense of the ICS-TIP vulnerability variable.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#DemographicProfile"><code>:DemographicProfile</code></a></td></tr>
@@ -1201,6 +1218,7 @@
 </div>
 <div class="term" id="hostsOffer">
 <h3><code>:hostsOffer</code> &mdash; hosts offer</h3>
+<p class="lang">es: <em>aloja la oferta</em></p>
 <p class="comment">Relates a platform to a job offer published on it. Inverse of :postedVia.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Platform"><code>:Platform</code></a></td></tr>
@@ -1209,6 +1227,7 @@
 </div>
 <div class="term" id="inCountry">
 <h3><code>:inCountry</code> &mdash; in country</h3>
+<p class="lang">es: <em>en el país</em></p>
 <p class="comment">Relates a job offer to the country in which it was published or in which the work was offered.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1217,6 +1236,7 @@
 </div>
 <div class="term" id="inLanguage">
 <h3><code>:inLanguage</code> &mdash; in language</h3>
+<p class="lang">es: <em>en el idioma</em></p>
 <p class="comment">Relates a job offer to the language it is written in.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1252,6 +1272,7 @@
 </div>
 <div class="term" id="leadsToExploitation">
 <h3><code>:leadsToExploitation</code> &mdash; leads to exploitation</h3>
+<p class="lang">es: <em>conduce a explotación</em></p>
 <p class="comment">Only asserted when the offer has been confirmed to have produced an exploitation outcome (from press case or dataset confirmation).</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1260,6 +1281,7 @@
 </div>
 <div class="term" id="matchesPattern">
 <h3><code>:matchesPattern</code> &mdash; matches pattern</h3>
+<p class="lang">es: <em>coincide con el patrón</em></p>
 <p class="comment">Relates a job offer to a survivor-testimony pattern whose detection rule it matches.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1268,6 +1290,7 @@
 </div>
 <div class="term" id="observedInCountry">
 <h3><code>:observedInCountry</code> &mdash; pattern observed in country</h3>
+<p class="lang">es: <em>patrón observado en el país</em></p>
 <p class="comment">Relates a survivor-testimony pattern to a country where the pattern has been observed.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></td></tr>
@@ -1285,6 +1308,7 @@
 </div>
 <div class="term" id="offeredBy">
 <h3><code>:offeredBy</code> &mdash; offered by</h3>
+<p class="lang">es: <em>ofrecida por</em></p>
 <p class="comment">Relates a job offer to the agent that made it. Specialised by :offeredByRecruiter and :offeredByEmployer.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1293,6 +1317,7 @@
 </div>
 <div class="term" id="offeredByEmployer">
 <h3><code>:offeredByEmployer</code> &mdash; offered by employer</h3>
+<p class="lang">es: <em>ofrecida por el empleador</em></p>
 <p class="comment">Relates a job offer to the employer that made it. A subproperty of :offeredBy.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1301,6 +1326,7 @@
 </div>
 <div class="term" id="offeredByRecruiter">
 <h3><code>:offeredByRecruiter</code> &mdash; offered by recruiter</h3>
+<p class="lang">es: <em>ofrecida por el reclutador</em></p>
 <p class="comment">Relates a job offer to the recruiter that made it. A subproperty of :offeredBy.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1318,6 +1344,7 @@
 </div>
 <div class="term" id="operatesIn">
 <h3><code>:operatesIn</code> &mdash; scheme operates in country</h3>
+<p class="lang">es: <em>el esquema opera en el país</em></p>
 <p class="comment">Relates a fraud scheme to a country where it has been documented.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1326,6 +1353,7 @@
 </div>
 <div class="term" id="originCountry">
 <h3><code>:originCountry</code> &mdash; origin country</h3>
+<p class="lang">es: <em>país de origen</em></p>
 <p class="comment">Relates a trafficking route to its country of origin.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></td></tr>
@@ -1334,6 +1362,7 @@
 </div>
 <div class="term" id="platformCountry">
 <h3><code>:platformCountry</code> &mdash; platform country</h3>
+<p class="lang">es: <em>país de la plataforma</em></p>
 <p class="comment">Relates a platform to the country of its operator, used to establish which jurisdiction a takedown request falls under.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Platform"><code>:Platform</code></a></td></tr>
@@ -1342,6 +1371,7 @@
 </div>
 <div class="term" id="platformModeratedBy">
 <h3><code>:platformModeratedBy</code> &mdash; platform moderated by</h3>
+<p class="lang">es: <em>plataforma moderada por</em></p>
 <p class="comment">Relates a platform to the agent responsible for its moderation, used to record to whom a reported offer can be escalated.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Platform"><code>:Platform</code></a></td></tr>
@@ -1350,6 +1380,7 @@
 </div>
 <div class="term" id="postedVia">
 <h3><code>:postedVia</code> &mdash; posted via</h3>
+<p class="lang">es: <em>publicada a través de</em></p>
 <p class="comment">Relates a job offer to the platform on which it was published or through which first contact happened.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1358,6 +1389,7 @@
 </div>
 <div class="term" id="recruitedVia">
 <h3><code>:recruitedVia</code> &mdash; recruited via</h3>
+<p class="lang">es: <em>reclutada a través de</em></p>
 <p class="comment">Relates a victim to the recruitment method used on them.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1366,6 +1398,7 @@
 </div>
 <div class="term" id="recruiterCountry">
 <h3><code>:recruiterCountry</code> &mdash; recruiter country</h3>
+<p class="lang">es: <em>país del reclutador</em></p>
 <p class="comment">Relates a recruiter to the country they operate from, as far as it can be established from the report.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Recruiter"><code>:Recruiter</code></a></td></tr>
@@ -1374,6 +1407,7 @@
 </div>
 <div class="term" id="recruitsFor">
 <h3><code>:recruitsFor</code> &mdash; recruits for scheme</h3>
+<p class="lang">es: <em>recluta para el esquema</em></p>
 <p class="comment">Relates a recruiter to the fraud scheme they recruit for.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Recruiter"><code>:Recruiter</code></a></td></tr>
@@ -1391,6 +1425,7 @@
 </div>
 <div class="term" id="schemeExploitationType">
 <h3><code>:schemeExploitationType</code> &mdash; scheme leads to exploitation type</h3>
+<p class="lang">es: <em>el esquema conduce al tipo de explotación</em></p>
 <p class="comment">Relates a fraud scheme to the type of exploitation it leads to.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1399,6 +1434,7 @@
 </div>
 <div class="term" id="schemePalermoAction">
 <h3><code>:schemePalermoAction</code> &mdash; scheme Palermo action</h3>
+<p class="lang">es: <em>acción de Palermo del esquema</em></p>
 <p class="comment">Relates a fraud scheme to the Palermo Action that characterises it.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1407,6 +1443,7 @@
 </div>
 <div class="term" id="schemePalermoMeans">
 <h3><code>:schemePalermoMeans</code> &mdash; scheme Palermo means</h3>
+<p class="lang">es: <em>medio de Palermo del esquema</em></p>
 <p class="comment">Relates a fraud scheme to the Palermo Means that characterises it.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1415,6 +1452,7 @@
 </div>
 <div class="term" id="schemePalermoPurpose">
 <h3><code>:schemePalermoPurpose</code> &mdash; scheme Palermo purpose</h3>
+<p class="lang">es: <em>propósito de Palermo del esquema</em></p>
 <p class="comment">Relates a fraud scheme to the Palermo Purpose that characterises it.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1423,6 +1461,7 @@
 </div>
 <div class="term" id="schemePreferredTool">
 <h3><code>:schemePreferredTool</code> &mdash; preferred communication tool for scheme</h3>
+<p class="lang">es: <em>herramienta de comunicación preferida del esquema</em></p>
 <p class="comment">Relates a fraud scheme to the communication tool most often used to run it, as documented in the sources cited on the scheme.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1431,6 +1470,7 @@
 </div>
 <div class="term" id="schemeTargetsAgeGroup">
 <h3><code>:schemeTargetsAgeGroup</code> &mdash; scheme targets age group</h3>
+<p class="lang">es: <em>el esquema apunta al grupo etario</em></p>
 <p class="comment">Relates a fraud scheme to the age group it preferentially targets.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1439,6 +1479,7 @@
 </div>
 <div class="term" id="schemeTargetsGender">
 <h3><code>:schemeTargetsGender</code> &mdash; scheme targets gender</h3>
+<p class="lang">es: <em>el esquema apunta al género</em></p>
 <p class="comment">Relates a fraud scheme to the gender it preferentially targets.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1447,6 +1488,7 @@
 </div>
 <div class="term" id="schemeTypicalRoute">
 <h3><code>:schemeTypicalRoute</code> &mdash; typical trafficking route for scheme</h3>
+<p class="lang">es: <em>ruta de trata típica del esquema</em></p>
 <p class="comment">Relates a fraud scheme to a trafficking route along which its victims are typically moved.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -1455,6 +1497,7 @@
 </div>
 <div class="term" id="submittedBy">
 <h3><code>:submittedBy</code> &mdash; submitted by</h3>
+<p class="lang">es: <em>enviada por</em></p>
 <p class="comment">Relates a submission to the candidate that sent it.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Submission"><code>:Submission</code></a></td></tr>
@@ -1463,6 +1506,7 @@
 </div>
 <div class="term" id="submittedOffer">
 <h3><code>:submittedOffer</code> &mdash; submitted offer</h3>
+<p class="lang">es: <em>oferta enviada</em></p>
 <p class="comment">Relates a submission to the job offer it is about. Submissions are reified so that the same offer reported by several candidates is one offer with several submissions.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Submission"><code>:Submission</code></a></td></tr>
@@ -1480,6 +1524,7 @@
 </div>
 <div class="term" id="tipEventHappenedIn">
 <h3><code>:tipEventHappenedIn</code> &mdash; TIP event happened in country</h3>
+<p class="lang">es: <em>el evento de trata ocurrió en el país</em></p>
 <p class="comment">Relates a TIP event to the country where it took place.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1488,6 +1533,7 @@
 </div>
 <div class="term" id="tipEventHasAction">
 <h3><code>:tipEventHasAction</code> &mdash; TIP event has action</h3>
+<p class="lang">es: <em>el evento de trata tiene la acción</em></p>
 <p class="comment">Relates a TIP event to one of its Palermo Actions. ICS-TIP requires at least one action per event.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1496,6 +1542,7 @@
 </div>
 <div class="term" id="tipEventHasMeans">
 <h3><code>:tipEventHasMeans</code> &mdash; TIP event has means</h3>
+<p class="lang">es: <em>el evento de trata tiene el medio</em></p>
 <p class="comment">Relates a TIP event to one of its Palermo Means. ICS-TIP requires at least one means per adult-victim event.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1504,6 +1551,7 @@
 </div>
 <div class="term" id="tipEventHasPurpose">
 <h3><code>:tipEventHasPurpose</code> &mdash; TIP event has purpose</h3>
+<p class="lang">es: <em>el evento de trata tiene el propósito</em></p>
 <p class="comment">Relates a TIP event to one of its Palermo Purposes. ICS-TIP requires at least one purpose per event.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1512,6 +1560,7 @@
 </div>
 <div class="term" id="tipEventInvolves">
 <h3><code>:tipEventInvolves</code> &mdash; TIP event involves victim</h3>
+<p class="lang">es: <em>el evento de trata involucra a la víctima</em></p>
 <p class="comment">Relates a trafficking-in-persons event to the victim it concerns, following the ICS-TIP rule that the TIP event is counted per victim.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1520,6 +1569,7 @@
 </div>
 <div class="term" id="tipEventRegisteredBy">
 <h3><code>:tipEventRegisteredBy</code> &mdash; TIP event registered by</h3>
+<p class="lang">es: <em>evento de trata registrado por</em></p>
 <p class="comment">Relates a TIP event to the agent that registered it, typically an institution rather than a natural person.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TIPEvent"><code>:TIPEvent</code></a></td></tr>
@@ -1528,6 +1578,7 @@
 </div>
 <div class="term" id="transportedBy">
 <h3><code>:transportedBy</code> &mdash; transported by</h3>
+<p class="lang">es: <em>transportada por</em></p>
 <p class="comment">Relates a victim to the means of transportation used to move them.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1536,6 +1587,7 @@
 </div>
 <div class="term" id="travelledWith">
 <h3><code>:travelledWith</code> &mdash; travelled with documentation</h3>
+<p class="lang">es: <em>viajó con la documentación</em></p>
 <p class="comment">Relates a victim to the type of documentation they travelled with.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1544,6 +1596,7 @@
 </div>
 <div class="term" id="victimOfExploitation">
 <h3><code>:victimOfExploitation</code> &mdash; victim of exploitation type</h3>
+<p class="lang">es: <em>víctima del tipo de explotación</em></p>
 <p class="comment">Relates a victim to a type of exploitation they were subjected to.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1561,6 +1614,7 @@
 </div>
 <div class="term" id="victimOfOffer">
 <h3><code>:victimOfOffer</code> &mdash; victim of offer</h3>
+<p class="lang">es: <em>víctima de la oferta</em></p>
 <p class="comment">Relates a victim to the job offer through which they were recruited.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -1698,6 +1752,7 @@
 </div>
 <div class="term" id="evidenceAccessedOnline">
 <h3><code>:evidenceAccessedOnline</code> &mdash; evidence accessed online</h3>
+<p class="lang">es: <em>evidencia consultada en línea</em></p>
 <p class="comment">Whether the evidence source was consulted online rather than on paper.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
@@ -1707,6 +1762,7 @@
 </div>
 <div class="term" id="evidenceArchivedUrl">
 <h3><code>:evidenceArchivedUrl</code> &mdash; evidence archived URL (e.g. archive.today)</h3>
+<p class="lang">es: <em>URL archivada de la evidencia (por ejemplo archive.today)</em></p>
 <p class="comment">URL of an archived copy of the evidence source, used when the original stops resolving.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
@@ -1715,6 +1771,7 @@
 </div>
 <div class="term" id="evidenceStrength">
 <h3><code>:evidenceStrength</code> &mdash; evidence strength</h3>
+<p class="lang">es: <em>fuerza de la evidencia</em></p>
 <p class="comment">primary / secondary / tertiary. Primary = direct survivor testimony, official statistics, court record; secondary = investigative journalism; tertiary = summary or editorial article.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
@@ -1759,6 +1816,7 @@
 </div>
 <div class="term" id="flagKeywordPattern">
 <h3><code>:flagKeywordPattern</code> &mdash; flag keyword pattern</h3>
+<p class="lang">es: <em>patrón de palabras clave de la señal</em></p>
 <p class="comment">Regex used by the rule-based classifier.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#RedFlag"><code>:RedFlag</code></a></td></tr>
@@ -1960,6 +2018,7 @@
 </div>
 <div class="term" id="offerClassifierConfidence">
 <h3><code>:offerClassifierConfidence</code> &mdash; offer classifier confidence</h3>
+<p class="lang">es: <em>confianza del clasificador sobre la oferta</em></p>
 <p class="comment">Confidence reported by the classifier that produced the offer&#x27;s risk assessment, on a zero-to-one scale.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -1995,6 +2054,7 @@
 </div>
 <div class="term" id="offerFirstContactAt">
 <h3><code>:offerFirstContactAt</code> &mdash; offer first contact timestamp</h3>
+<p class="lang">es: <em>fecha y hora del primer contacto de la oferta</em></p>
 <p class="comment">Timestamp of the first contact between the recruiter and the candidate, as reported by the candidate.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -2003,6 +2063,7 @@
 </div>
 <div class="term" id="offerIsActive">
 <h3><code>:offerIsActive</code> &mdash; offer is active</h3>
+<p class="lang">es: <em>la oferta está activa</em></p>
 <p class="comment">Whether the offer was still reachable at the time of the last check.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -2012,6 +2073,7 @@
 </div>
 <div class="term" id="offerLanguage">
 <h3><code>:offerLanguage</code> &mdash; offer language ISO code</h3>
+<p class="lang">es: <em>código ISO del idioma de la oferta</em></p>
 <p class="comment">ISO 639-1 code of the language the offer is written in.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -2056,6 +2118,7 @@
 </div>
 <div class="term" id="offerScreenshotUrl">
 <h3><code>:offerScreenshotUrl</code> &mdash; offer screenshot URL</h3>
+<p class="lang">es: <em>URL de la captura de pantalla de la oferta</em></p>
 <p class="comment">URL of the stored screenshot of the offer. Screenshots are kept because deceptive offers are typically deleted by the recruiter within days.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#JobOffer"><code>:JobOffer</code></a></td></tr>
@@ -2100,6 +2163,7 @@
 </div>
 <div class="term" id="patternHasKind">
 <h3><code>:patternHasKind</code> &mdash; pattern kind</h3>
+<p class="lang">es: <em>tipo de patrón</em></p>
 <p class="comment">The family a survivor-testimony pattern belongs to, as a literal. The values in use are classic_a (a canonical red flag), credible_b (a credible-lethal logistic signal), communication, recruitment, exploitation and deep_textual (extracted by deep-textual regex over press).</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></td></tr>
@@ -2117,6 +2181,7 @@
 </div>
 <div class="term" id="patternRegex">
 <h3><code>:patternRegex</code> &mdash; pattern regex</h3>
+<p class="lang">es: <em>expresión regular del patrón</em></p>
 <p class="comment">Regular expression used to detect the pattern in offer text. Published together with the pattern so that any reported count can be reproduced and contested.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#SurvivorTestimonyPattern"><code>:SurvivorTestimonyPattern</code></a></td></tr>
@@ -2180,6 +2245,7 @@
 </div>
 <div class="term" id="riskExplanationEn">
 <h3><code>:riskExplanationEn</code> &mdash; risk explanation in English</h3>
+<p class="lang">es: <em>explicación del riesgo en inglés</em></p>
 <p class="comment">Explanation of the risk classification in English, as shown to the person who reported the offer.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#RiskClassification"><code>:RiskClassification</code></a></td></tr>
@@ -2188,6 +2254,7 @@
 </div>
 <div class="term" id="riskExplanationEs">
 <h3><code>:riskExplanationEs</code> &mdash; risk explanation in Spanish</h3>
+<p class="lang">es: <em>explicación del riesgo en español</em></p>
 <p class="comment">Explanation of the risk classification in Spanish, as shown to the person who reported the offer.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#RiskClassification"><code>:RiskClassification</code></a></td></tr>
@@ -2224,6 +2291,7 @@
 </div>
 <div class="term" id="routeIsTransnational">
 <h3><code>:routeIsTransnational</code> &mdash; route is transnational</h3>
+<p class="lang">es: <em>la ruta es transnacional</em></p>
 <p class="comment">Whether the route crosses an international border. Internal routes matter in Mexico, where most documented recruitment-to-exploitation movement is domestic.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></td></tr>
@@ -2252,6 +2320,7 @@
 </div>
 <div class="term" id="routeStopoverCountries">
 <h3><code>:routeStopoverCountries</code> &mdash; route stopover countries (ISO3 list)</h3>
+<p class="lang">es: <em>países de tránsito de la ruta (lista ISO3)</em></p>
 <p class="comment">Stopover countries of the route, as a list of ISO 3166-1 alpha-3 codes.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></td></tr>
@@ -2260,6 +2329,7 @@
 </div>
 <div class="term" id="routeUpdatedAt">
 <h3><code>:routeUpdatedAt</code> &mdash; route record last updated at</h3>
+<p class="lang">es: <em>última actualización del registro de la ruta</em></p>
 <p class="comment">Timestamp at which the route record was last updated from its source dataset.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#TraffickingRoute"><code>:TraffickingRoute</code></a></td></tr>
@@ -2277,6 +2347,7 @@
 </div>
 <div class="term" id="schemeFirstAttestedYear">
 <h3><code>:schemeFirstAttestedYear</code> &mdash; scheme first attested year</h3>
+<p class="lang">es: <em>año en que se documentó el esquema por primera vez</em></p>
 <p class="comment">Earliest year in which the scheme is attested by one of the sources cited on it.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -2286,6 +2357,7 @@
 </div>
 <div class="term" id="schemeJurisdictionScope">
 <h3><code>:schemeJurisdictionScope</code> &mdash; scheme jurisdiction scope</h3>
+<p class="lang">es: <em>ámbito jurisdiccional del esquema</em></p>
 <p class="comment">local, national, regional, continental, global.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -2294,6 +2366,7 @@
 </div>
 <div class="term" id="schemeNamedAfterCase">
 <h3><code>:schemeNamedAfterCase</code> &mdash; scheme archetypal case name</h3>
+<p class="lang">es: <em>caso arquetípico que da nombre al esquema</em></p>
 <p class="comment">Name of the archetypal public case the scheme is named after. Used only for cases already public in the press.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
@@ -2302,6 +2375,7 @@
 </div>
 <div class="term" id="sourceAccessedAt">
 <h3><code>:sourceAccessedAt</code> &mdash; source accessed timestamp</h3>
+<p class="lang">es: <em>fecha y hora de consulta de la fuente</em></p>
 <p class="comment">Timestamp at which the evidence source was accessed. Recorded for every source, because a share of the press and institutional URLs in the corpus stop resolving.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
@@ -2329,6 +2403,7 @@
 </div>
 <div class="term" id="sourceLanguage">
 <h3><code>:sourceLanguage</code> &mdash; source language ISO code</h3>
+<p class="lang">es: <em>código ISO del idioma de la fuente</em></p>
 <p class="comment">ISO 639-1 code of the language the evidence source is written in.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
@@ -2373,6 +2448,7 @@
 </div>
 <div class="term" id="victimCaseClosedAt">
 <h3><code>:victimCaseClosedAt</code> &mdash; victim case closed at</h3>
+<p class="lang">es: <em>fecha de cierre del caso de la víctima</em></p>
 <p class="comment">Date on which the case concerning the victim was closed by the registering institution.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2382,6 +2458,7 @@
 </div>
 <div class="term" id="victimCaseOpenedAt">
 <h3><code>:victimCaseOpenedAt</code> &mdash; victim case opened at</h3>
+<p class="lang">es: <em>fecha de apertura del caso de la víctima</em></p>
 <p class="comment">Date on which the case concerning the victim was opened by the registering institution.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2391,6 +2468,7 @@
 </div>
 <div class="term" id="victimEducationLevel">
 <h3><code>:victimEducationLevel</code> &mdash; education level</h3>
+<p class="lang">es: <em>nivel educativo</em></p>
 <p class="comment">ICS-TIP additional disaggregating variable. Controlled vocab: none, primary, secondary, tertiary, postgraduate, unknown.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2399,6 +2477,7 @@
 </div>
 <div class="term" id="victimHasChildrenCount">
 <h3><code>:victimHasChildrenCount</code> &mdash; number of children</h3>
+<p class="lang">es: <em>número de hijas e hijos</em></p>
 <p class="comment">ICS-TIP additional disaggregating variable.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2416,6 +2495,7 @@
 </div>
 <div class="term" id="victimMaritalStatus">
 <h3><code>:victimMaritalStatus</code> &mdash; marital status</h3>
+<p class="lang">es: <em>estado civil</em></p>
 <p class="comment">ICS-TIP additional disaggregating variable. Controlled vocab: single, married, cohabiting, separated, divorced, widowed, unknown.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2424,6 +2504,7 @@
 </div>
 <div class="term" id="victimPriorEmployment">
 <h3><code>:victimPriorEmployment</code> &mdash; prior employment status</h3>
+<p class="lang">es: <em>situación laboral previa</em></p>
 <p class="comment">Employment situation of the victim before recruitment, as recorded by the source dataset.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
@@ -2432,6 +2513,7 @@
 </div>
 <div class="term" id="victimReferralSource">
 <h3><code>:victimReferralSource</code> &mdash; victim referral source</h3>
+<p class="lang">es: <em>fuente de derivación de la víctima</em></p>
 <p class="comment">How the victim was identified: self-report, NGO, law enforcement, embassy, hotline.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>

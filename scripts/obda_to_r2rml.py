@@ -138,14 +138,21 @@ def emit_r2rml(prefixes: dict, mappings: list) -> str:
     out.append("# Converted from mappings/ramona.obda (Ontop native format) by scripts/obda_to_r2rml.py")
     out.append("# Licence: Apache 2.0.")
     out.append("")
-    out.append("@prefix rr:   <http://www.w3.org/ns/r2rml#> .")
-    out.append("@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .")
-    out.append("@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .")
-    for name, uri in prefixes.items():
-        if name:
-            out.append(f"@prefix {name}: <{uri}> .")
-        else:
-            out.append(f"@prefix : <{uri}> .")
+    # R2RML needs rr:; the rest come from the .obda. A prefix declared twice is legal
+    # Turtle but reads as an oversight, so each name is written once and the .obda wins
+    # when it declares one of these three itself.
+    base = {
+        "rr": "http://www.w3.org/ns/r2rml#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+    }
+    seen = set()
+    for name, uri in list(base.items()) + list(prefixes.items()):
+        key = name or ""
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(f"@prefix {name}: <{uri}> ." if name else f"@prefix : <{uri}> .")
     out.append("")
 
     for m in mappings:

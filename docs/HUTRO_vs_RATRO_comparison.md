@@ -44,17 +44,24 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 RATR-O records a close match to eight HUTRO concepts. "Close match" is the right relation when two
 concepts are similar enough to be interoperable in many applications but are not identical in scope.
 
-**How the alignment is recorded, and why it changed in v1.10.2.** Up to v1.10.1 each of the eight was
-asserted as `skos:closeMatch` against an IRI of the form
-`https://bioportal.bioontology.org/ontologies/HUTRO` + the concept name. Those IRIs are not HUTRO
-identifiers: they are the BioPortal web page URL with a concept name stuck on the end. HUTRO's
-BioPortal submission declares the placeholder namespace `http://www.example.com`, and BioPortal
-serves the site behind a bot challenge, so the real concept IRIs could not be read and checked on
-10 November 2026. The eight assertions are therefore recorded by **concept label**, in a
-`skos:note` on each RATR-O class that states the HUTRO concept, the date of the check and why it
-failed. `skos:closeMatch` will be asserted again once the IRIs are read from the HUTRO SKOS file
-itself. The same correction was applied to the `hutro_concept_label` column of the reference tables
-in `db/04_schema_extension_v1.sql`, which held the same constructed values.
+**How the alignment is recorded, and what happened to it in v1.10.2 and v1.10.3.** Each of the
+eight is asserted as `skos:closeMatch` against an IRI of the form
+`https://bioportal.bioontology.org/ontologies/HUTRO` + the concept's local name, concatenated with
+no separating slash or hash. That form looks like a web page URL with a name stuck on the end, and
+v1.10.2 withdrew all eight for exactly that reason: HUTRO's BioPortal submission metadata declares
+the placeholder namespace `http://www.example.com`, so the IRIs looked constructed and could not be
+checked, BioPortal serving the site behind a bot challenge.
+
+Withdrawing them went too far. On 10 November 2026 the eight concepts were opened one by one in the
+BioPortal concept browser, which reports exactly that concatenated form as each concept's Id and
+resolves it to the expected preferred label. Six of the eight withdrawn IRIs had been right. Two had
+not: HUTRO writes `recuritment_method`, which is misspelt at the source, and omits the conjunction in
+`smuggler_trafficker_communication_tools`. v1.10.3 restores all eight, each with a `skos:note` that
+records the concept's preferred label, that the IRI itself was verified and the date of the check.
+HUTRO's concepts are `skos:Concept` instances that also carry `owl:NamedIndividual`, so each match is
+an annotation assertion on the RATR-O class rather than an OWL object-property assertion, which keeps
+the file inside the OWL 2 QL profile. The reference tables in `db/04_schema_extension_v1.sql` carry
+both the label, in `hutro_concept_label`, and the verified IRI, in `hutro_concept_iri`.
 
 For each:
 

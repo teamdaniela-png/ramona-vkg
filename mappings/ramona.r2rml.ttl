@@ -2,14 +2,12 @@
 # Converted from mappings/ramona.obda (Ontop native format) by scripts/obda_to_r2rml.py
 # Licence: Apache 2.0.
 
-@prefix rr:   <http://www.w3.org/ns/r2rml#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <https://w3id.org/ratr-o#> .
 @prefix ont: <https://w3id.org/ratr-o#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 <#TM_M_Country> a rr:TriplesMap ;

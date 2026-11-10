@@ -1,6 +1,8 @@
 # Mapping coverage of the declared vocabulary
 
-State on 10 November 2026, RATR-O v1.10.2, `mappings/ramona.obda` with 159 mappings.
+State on 10 November 2026, RATR-O v1.10.4, `mappings/ramona.obda` with 168 mappings. The published
+`mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 71,963 triples,
+triple for triple.
 Generated from `scripts/audit_o1.py` section 10, which reports the same counts as a NOTE.
 
 | | Declared | Produced by a mapping | Not produced |

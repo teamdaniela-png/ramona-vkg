@@ -2,7 +2,16 @@
 
 **Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is now canonical in any serious OWL or DL-Lite deployment. Each CQ is a natural-language question that the domain expert (here: Ramona AI) explicitly wants the ontology to answer. A SPARQL query over the Virtual Knowledge Graph must materialise the answer for the ontology to claim coverage of the CQ.
 
-This document lists 26 competency questions covering RATR-O v1.6.1 and maps each to the SPARQL query (`queries/Q1..Q30`) that answers it.
+This document lists 36 competency questions for RATR-O v1.10.4 and maps each to the SPARQL query
+in `queries/` that answers it. Every one of the 36 names a query file that exists. Four of the 40
+query files answer no competency question of their own and are there as cross-cutting checks:
+`Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and
+`Q30_schemes_in_both_sources.rq`.
+
+Whether each query returns rows against the shipped seeds, and why the ones that return none do
+not, is recorded separately in `docs/validation/QUERY_EXECUTION_REPORT.md`. A competency question
+mapped to a query is a statement about the ontology's coverage, not a claim that the demonstrator
+ships data for it.
 
 ---
 

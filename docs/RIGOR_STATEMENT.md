@@ -38,7 +38,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 ## Numerical gaps that are deliberately left open
 
-- **Ontology triples: 1,582, not a round number.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
+- **Ontology triples: 1,704, not a round number.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
 - **Seed offers: 1,382, not 2,000.** See the "no synthetic offers derived from CTDC" section above.
 - **Countries attested in CTDC: 92 of 248.** The other 156 are catalog entries flagged as such.
 

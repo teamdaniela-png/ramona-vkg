@@ -1,4 +1,4 @@
-# RATR-O validation with standard tools (v1.10.1, 10 Nov 2026)
+# RATR-O validation with standard tools (v1.10.4, 10 Nov 2026)
 
 Tools: ROBOT 1.9.11 (OWL API profile checker, HermiT reasoner, ROBOT report) on OpenJDK 27.0.1,
 plus the repository audit script `scripts/audit_o1.py`.
@@ -10,8 +10,8 @@ plus the repository audit script `scripts/audit_o1.py`.
 | OWL 2 QL profile | `robot validate-profile --profile QL` | **In profile** (`robot_profile_QL.txt`) |
 | TBox consistency | `robot reason --reasoner hermit` | **Consistent** |
 | Unsatisfiable classes | HermiT, `--dump-unsatisfiable` | **None** (no dump file produced) |
-| TBox (1,582 triples) + 1,500 synthetic social items (24,037 triples) | `robot merge` + HermiT | **Consistent** |
-| TBox + synthetic items + 295 verified real offers (4,919 triples), 35,670 triples in all | `robot merge` + HermiT | **Consistent** |
+| TBox (1,704 triples) + the 1,500 synthetic social items (26,482 triples) | `robot merge` + HermiT | **Consistent** |
+| TBox + the whole ABox the mappings produce over the seeds, 71,963 triples, for 85,173 triples in all (of which 4,113 are the 295 verified press offers) | `robot merge` + HermiT | **Consistent** |
 | Repository audit (profile, coverage, provenance, naming, definitions, vocabulary closure, datatypes) | `scripts/audit_o1.py` | **0 blockers, 0 SHOULD** (`../AUDIT_O1.md`) |
 | Quality report | `robot report` | OBO-convention findings only (see below) |
 
