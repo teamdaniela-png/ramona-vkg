@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 760" width="1360" height="760" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.8 L10,5 L0,9.2" fill="none" stroke="#333" stroke-width="1.3"/></marker><marker id="tri" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="15" markerHeight="15" orient="auto"><path d="M1,1 L13,7 L1,13 Z" fill="#fff" stroke="#333" stroke-width="1.2"/></marker></defs>
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="24" y="726" font-size="17" font-weight="bold" fill="#111">RATR-O 1.10.5. What an offer can be tied to beyond the core</text>
+<text x="24" y="746" font-size="11" fill="#555">Generated from ontology/ratr-o.ttl by scripts/gen_uml_diagrams.py. Box: class with its datatype properties. Named arrow: object property, domain to range. Hollow triangle: subclass of. Grey box: attributes drawn on another sheet.</text>
+<line x1="580.0" y1="336.0" x2="200.0" y2="336.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="677.0" y1="320.0" x2="1113.0" y2="102.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="710.0" y1="336.0" x2="1080.0" y2="336.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="677.1" y1="352.0" x2="1114.7" y2="570.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="613.2" y1="352.0" x2="179.7" y2="570.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="644.8" y1="352.0" x2="641.8" y2="600.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="166.4" y1="92.0" x2="613.6" y2="320.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<rect x="333.8" y="327.5" width="112.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="390.0" y="339.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">exhibitsFraudScheme</text>
+<rect x="852.5" y="202.5" width="85.0" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="895.0" y="214.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">exhibitsAction</text>
+<rect x="855.2" y="327.5" width="79.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="895.0" y="339.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">exhibitsMeans</text>
+<rect x="850.6" y="452.5" width="90.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="895.9" y="464.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">exhibitsPurpose</text>
+<rect x="337.5" y="452.5" width="118.0" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="396.5" y="464.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">hasRecruitmentMethod</text>
+<rect x="587.0" y="467.5" width="112.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="643.3" y="479.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">leadsToExploitation</text>
+<rect x="350.2" y="197.5" width="79.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="390.0" y="209.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">victimOfOffer</text>
+<rect x="580.0" y="320.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="645.0" y="338.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">JobOffer</text>
+<rect x="70.0" y="60.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="135.0" y="78.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Victim</text>
+<rect x="70.0" y="320.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="135.0" y="338.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">FraudScheme</text>
+<rect x="70.0" y="570.0" width="155.8" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="147.9" y="588.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">RecruitmentMethod</text>
+<rect x="560.0" y="600.0" width="163.2" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="641.6" y="618.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">TypeOfExploitation</text>
+<rect x="1080.0" y="70.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="1145.0" y="88.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">PalermoAction</text>
+<rect x="1080.0" y="320.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="1145.0" y="338.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">PalermoMeans</text>
+<rect x="1080.0" y="570.0" width="133.6" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="1146.8" y="588.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">PalermoPurpose</text>
+</svg>

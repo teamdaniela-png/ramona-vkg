@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1660 800" width="1660" height="800" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.8 L10,5 L0,9.2" fill="none" stroke="#333" stroke-width="1.3"/></marker><marker id="tri" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="15" markerHeight="15" orient="auto"><path d="M1,1 L13,7 L1,13 Z" fill="#fff" stroke="#333" stroke-width="1.2"/></marker></defs>
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="24" y="766" font-size="17" font-weight="bold" fill="#111">RATR-O 1.10.5. Survivor-testimony patterns and the evidence behind every fact</text>
+<text x="24" y="786" font-size="11" fill="#555">Generated from ontology/ratr-o.ttl by scripts/gen_uml_diagrams.py. Box: class with its datatype properties. Named arrow: object property, domain to range. Hollow triangle: subclass of. Grey box: attributes drawn on another sheet.</text>
+<line x1="1014.6" y1="610.0" x2="1147.7" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
+<line x1="1241.4" y1="610.0" x2="1228.2" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
+<line x1="1455.9" y1="610.0" x2="1304.3" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
+<line x1="480.0" y1="430.0" x2="187.1" y2="520.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="480.0" y1="375.2" x2="211.0" y2="341.8" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="642.4" y1="82.0" x2="1100.0" y2="277.8" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="1100.0" y1="341.6" x2="734.0" y2="378.3" stroke="#333" stroke-width="1.1" marker-end="url(#arr)" marker-start="url(#arr)"/>
+<line x1="1243.6" y1="72.0" x2="1229.7" y2="230.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<line x1="605.1" y1="82.0" x2="606.3" y2="280.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<rect x="282.8" y="466.5" width="101.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="333.5" y="478.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">observedInCountry</text>
+<rect x="292.0" y="350.0" width="107.0" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="345.5" y="362.0" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">hasDominanceBucket</text>
+<rect x="743.4" y="171.4" width="255.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="871.2" y="183.4" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">offerDocumentedIn {subsets hasEvidenceSource}</text>
+<rect x="759.0" y="344.9" width="316.0" height="30.0" fill="#fff" fill-opacity="0.93"/>
+<text x="917.0" y="356.9" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">derivedFrom → EvidenceSource {subsets hasEvidenceSource}</text>
+<text x="917.0" y="369.9" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">evidenceFor → SurvivorTestimonyPattern</text>
+<rect x="1185.9" y="142.5" width="101.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="1236.6" y="154.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">hasEvidenceSource</text>
+<rect x="563.2" y="172.5" width="85.0" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="605.7" y="184.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">matchesPattern</text>
+<rect x="540.0" y="50.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="605.0" y="68.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">JobOffer</text>
+<rect x="480.0" y="280.0" width="253.9" height="222.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="607.0" y="298.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">SurvivorTestimonyPattern</text>
+<line x1="480.0" y1="306.0" x2="734.0" y2="306.0" stroke="#222" stroke-width="0.8"/>
+<text x="489.0" y="321.0" font-size="11">dominanceBucketValue : xsd:string</text>
+<text x="489.0" y="336.0" font-size="11">observedCount : xsd:integer</text>
+<text x="489.0" y="351.0" font-size="11">patternDescription : xsd:string</text>
+<text x="489.0" y="366.0" font-size="11">patternHasKind : xsd:string</text>
+<text x="489.0" y="381.0" font-size="11">patternName : xsd:string</text>
+<text x="489.0" y="396.0" font-size="11">patternRegex : xsd:string</text>
+<text x="489.0" y="411.0" font-size="11">pctOfCases : xsd:decimal</text>
+<line x1="480.0" y1="419.0" x2="734.0" y2="419.0" stroke="#222" stroke-width="0.8"/>
+<text x="489.0" y="434.0" font-size="11" fill="#444">«subclasses»</text>
+<text x="489.0" y="449.0" font-size="11" fill="#444">ClassicRedFlagPattern,</text>
+<text x="489.0" y="464.0" font-size="11" fill="#444">CommunicationPattern,</text>
+<text x="489.0" y="479.0" font-size="11" fill="#444">CredibleLethalPattern,</text>
+<text x="489.0" y="494.0" font-size="11" fill="#444">ExploitationPattern, RecruitmentPattern</text>
+<rect x="70.0" y="320.0" width="141.0" height="26.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="140.5" y="338.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">DominanceBucket</text>
+<rect x="70.0" y="520.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="135.0" y="538.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Country</text>
+<rect x="1180.0" y="40.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
+<text x="1245.0" y="58.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">owl:Thing</text>
+<rect x="1100.0" y="230.0" width="241.8" height="199.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="1220.9" y="248.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">EvidenceSource</text>
+<line x1="1100.0" y1="256.0" x2="1341.8" y2="256.0" stroke="#222" stroke-width="0.8"/>
+<text x="1109.0" y="271.0" font-size="11">evidenceAccessedOnline : rdfs:Literal</text>
+<text x="1109.0" y="286.0" font-size="11">evidenceArchivedUrl : xsd:anyURI</text>
+<text x="1109.0" y="301.0" font-size="11">evidenceStrength : xsd:string</text>
+<text x="1109.0" y="316.0" font-size="11">sourceAccessedAt : xsd:dateTime</text>
+<text x="1109.0" y="331.0" font-size="11">sourceAuthor : xsd:string</text>
+<text x="1109.0" y="346.0" font-size="11">sourceDate : rdfs:Literal</text>
+<text x="1109.0" y="361.0" font-size="11">sourceKind : xsd:string</text>
+<text x="1109.0" y="376.0" font-size="11">sourceLanguage : xsd:string</text>
+<text x="1109.0" y="391.0" font-size="11">sourceOutlet : xsd:string</text>
+<text x="1109.0" y="406.0" font-size="11">sourceTitle : xsd:string</text>
+<text x="1109.0" y="421.0" font-size="11">sourceUrl : xsd:anyURI</text>
+<rect x="940.0" y="610.0" width="130.0" height="26.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="1005.0" y="628.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">PressArticle</text>
+<rect x="1150.0" y="610.0" width="187.4" height="64.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="1243.7" y="628.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">OpenDatasetRecord</text>
+<line x1="1150.0" y1="636.0" x2="1337.4" y2="636.0" stroke="#222" stroke-width="0.8"/>
+<text x="1159.0" y="651.0" font-size="11">datasetName : xsd:string</text>
+<text x="1159.0" y="666.0" font-size="11">datasetRecordId : xsd:string</text>
+<rect x="1400.0" y="610.0" width="133.6" height="26.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="1466.8" y="628.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">ResearchReport</text>
+</svg>

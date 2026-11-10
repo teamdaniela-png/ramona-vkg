@@ -299,6 +299,22 @@ external URLs the ontology cites, 17 answer 200 to a script; the 11 that answer 
 and OHCHR, which refuse scripted clients and open in a browser; the two dead ones are the Oaxaca and
 Zapopan pages already cited alongside their Internet Archive snapshots.
 
+## Checked against the residency agreement, not only against itself
+
+Every pass above audited the ontology against its own profile, its own data and its own published
+copies. None had read it against the text that defines the objective. The agreement states Objective 1
+as a domain ontology in OWL 2 QL covering job offers, employers, recruiters, candidates, trafficking
+red flags, geographic routes, platform origin and risk classifications, and its deliverables table
+names the output as an OWL 2 QL ontology as a Protégé file and a UML-style diagram.
+
+- The eight entities are all classes of the ontology: `:JobOffer`, `:Employer`, `:Recruiter`,
+  `:Candidate`, `:RedFlag`, `:TraffickingRoute`, `:Platform`, `:RiskClassification`.
+- The Protégé file is the Turtle, also published as RDF/XML. It was validated with the OWL API, the
+  library Protégé is built on, and not opened in Protégé itself.
+- **The UML-style diagram did not exist.** It does now: six sheets in `docs/diagrams/`, generated from
+  the Turtle file by `scripts/gen_uml_diagrams.py`, which refuses to finish if a class or an object
+  property is on no sheet. They cover all 114 classes and all 69 object properties.
+
 ## Conclusion
 
 The ontology is in OWL 2 QL (the DL-Lite fragment of Calvanese et al. 2007), consistent with its
