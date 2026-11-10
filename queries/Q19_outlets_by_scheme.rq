@@ -9,7 +9,7 @@ SELECT ?schemeCode ?outlet (COUNT(DISTINCT ?exemplar) AS ?articles)
 WHERE {
   ?exemplar a :PressArticle ;
             :sourceOutlet ?outlet .
-  ?offer :derivedFrom ?exemplar ;
+  ?offer :offerDocumentedIn ?exemplar ;
          :exhibitsFraudScheme ?scheme .
   BIND(STRAFTER(STR(?scheme), "#") AS ?schemeCode)
 }

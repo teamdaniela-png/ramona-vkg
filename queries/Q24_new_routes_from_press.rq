@@ -9,14 +9,14 @@ SELECT DISTINCT ?origin ?destination ?source ?outletName
 WHERE {
   ?source a :PressArticle ;
           :sourceOutlet ?outletName .
-  ?offer :derivedFrom ?source ;
+  ?offer :offerDocumentedIn ?source ;
          :associatedWithRoute ?route .
   ?route :originCountry/:countryISOCode ?origin ;
          :destinationCountry/:countryISOCode ?destination .
   FILTER NOT EXISTS {
     ?ctdcRecord a :OpenDatasetRecord ;
                 :datasetName "CTDC Global Synthetic Dataset v2025" .
-    ?ctdcVictim :derivedFrom ?ctdcRecord ;
+    ?ctdcVictim :hasEvidenceSource ?ctdcRecord ;
                 :associatedWithRoute ?route .
   }
 }

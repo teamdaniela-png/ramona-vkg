@@ -21,9 +21,9 @@
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10.2" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10.2> ;
-    owl:priorVersion <https://w3id.org/ratr-o/1.10.1> ;
+    owl:versionInfo "1.10.3" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.3> ;
+    owl:priorVersion <https://w3id.org/ratr-o/1.10.2> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-10"^^xsd:date ;
     skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance."@en ;
@@ -780,49 +780,66 @@ skos:closeMatch a owl:AnnotationProperty .
 #################################################################
 #    Classes aligned to HUTRO (generalisable fragment)
 #################################################################
+#
+# HUTRO (BioPortal acronym HUTRO, submission 1, 22 April 2025) is a SKOS vocabulary of 36 top
+# concepts and 90 individuals about the trafficking of Eritrean refugees in Ethiopia. Its
+# submission metadata declares the placeholder namespace http://www.example.com, but BioPortal
+# reports and resolves each concept under https://bioportal.bioontology.org/ontologies/HUTRO with
+# the local name appended directly, with no separating slash or hash. That concatenated form is
+# the identifier HUTRO is served under, and it is the form the hutro: prefix of this file expands
+# to. All eight IRIs below were checked one by one in the BioPortal concept browser on
+# 10 November 2026 and each resolved to the expected preferred label.
+#
 
 :RecruitmentMethod a owl:Class ;
     rdfs:label "Recruitment method"@en, "Método de reclutamiento"@es ;
     rdfs:comment "The mechanism by which a potential victim is initially approached and enlisted into a trafficking or fraudulent-employment scheme."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'recruitment method' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:recuritment_method ;
+    skos:note "Close match to the HUTRO concept 'recruitment method' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Recruitment Method'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. The local name reproduces the spelling used in HUTRO, recuritment_method, which is misspelt at the source. Versions up to 1.10 of this file used the corrected spelling, which does not resolve."@en .
 
 :TypeOfExploitation a owl:Class ;
     rdfs:label "Type of exploitation"@en, "Tipo de explotación"@es ;
     rdfs:comment "The exploitation outcome associated with a trafficking case. Controlled vocabulary covers labour, sexual, forced criminality, forced marriage, organ removal, mixed."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'type of exploitation' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:type_of_exploitation ;
+    skos:note "Close match to the HUTRO concept 'type of exploitation' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Type of exploitation'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en .
 
 :VulnerabilityFactor a owl:Class ;
     rdfs:label "Vulnerability factor"@en, "Factor de vulnerabilidad"@es ;
     rdfs:comment "A socioeconomic, demographic or situational factor that increases the probability of a candidate accepting a high-risk offer."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'vulnerability factor' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:vulnerability_factor ;
+    skos:note "Close match to the HUTRO concept 'vulnerability factor' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Vulnerability Factor'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en .
 
 :TransportationMeans a owl:Class ;
     rdfs:label "Transportation means"@en, "Medio de transporte"@es ;
     rdfs:comment "The means of transport used at a stage of the trafficking route."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'transportation means' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:transportation_means ;
+    skos:note "Close match to the HUTRO concept 'transportation means' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Transportation Means'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en .
 
 :CommunicationTool a owl:Class ;
     rdfs:label "Communication tool"@en, "Herramienta de comunicación"@es ;
     rdfs:comment "A tool used for communication between recruiters, smugglers, traffickers or victims. Distinct from Platform because it describes the tool itself, not the platform it runs on."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'smuggler and trafficker communication tools' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:smuggler_trafficker_communication_tools ;
+    skos:note "Close match to the HUTRO concept 'smuggler and trafficker communication tools' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Smuggler and Trafficker Communication Tools'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. HUTRO omits the conjunction in the local name. Versions up to 1.10 of this file used smuggler_and_trafficker_communication_tools, which does not resolve."@en .
 
 :DocumentationType a owl:Class ;
     rdfs:label "Documentation type"@en, "Tipo de documentación"@es ;
     rdfs:comment "An identity or travel document demanded or withheld during recruitment. Includes the case of falsified documents."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'documentation type' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en .
+    skos:closeMatch hutro:documentation_type ;
+    skos:note "Close match to the HUTRO concept 'documentation type' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Documentation Type'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en .
 
 :FalseDocumentation a owl:Class ;
     rdfs:subClassOf :DocumentationType ;
     rdfs:label "False documentation"@en, "Documentación falsa"@es ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'false documentation' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en ;
-    rdfs:comment "Documentation carried by a victim that was forged, altered or issued in another person's name. One of the values of :DocumentationType. Its HUTRO counterpart is recorded in the skos:note on this class."@en .
+    skos:closeMatch hutro:false_documentation ;
+    skos:note "Close match to the HUTRO concept 'false documentation' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'False Documentation'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en ;
+    rdfs:comment "Documentation carried by a victim that was forged, altered or issued in another person's name. One of the values of :DocumentationType."@en .
 
 #################################################################
 #    Victim and demographic classes (new in v1.0)
@@ -851,7 +868,8 @@ skos:closeMatch a owl:AnnotationProperty .
 :TraffickingRoute a owl:Class ;
     rdfs:label "Trafficking route"@en, "Ruta de trata"@es ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
-    skos:note "Conceptually a close match to the HUTRO concept 'trafficking transit places' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission of 22 April 2025, status alpha). The alignment is recorded by concept label, not by IRI: BioPortal serves HUTRO behind a bot challenge and the submission declares the placeholder namespace http://www.example.com, so the concept IRIs could not be dereferenced and checked on 10 November 2026. Earlier versions of this file asserted skos:closeMatch against IRIs built by concatenating the BioPortal page URL with the concept name; those IRIs were not HUTRO identifiers and have been withdrawn. skos:closeMatch will be asserted once the real concept IRIs are confirmed against the SKOS file."@en ;
+    skos:closeMatch hutro:trafficking_transit_places ;
+    skos:note "Close match to the HUTRO concept 'trafficking transit places' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Trafficking Transit Places'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile."@en ;
     rdfs:comment "An origin-to-destination pair, optionally with stopover countries, along which victims are moved. Routes in the demonstrator are derived from aggregated citizenship and country-of-exploitation pairs in the CTDC global synthetic dataset, never from individual case records."@en .
 
 :Country a owl:Class ;
@@ -1041,7 +1059,13 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:label "evidence for"@en, "evidencia de"@es ;
     rdfs:comment "Links an evidence source to the pattern, route, offer or victim it documents."@en .
 
+:hasEvidenceSource a owl:ObjectProperty ;
+    rdfs:range :EvidenceSource ;
+    rdfs:label "has evidence source"@en, "tiene fuente de evidencia"@es ;
+    rdfs:comment "Provenance, stated without restricting the kind of thing being traced. Routes, victim records, patterns and offers all carry at least one evidence source, so this property has a range but no domain, and the kind-specific properties :derivedFrom (patterns) and :offerDocumentedIn (offers) are subproperties of it. A query that asks what any fact rests on uses this property; a query about one kind of fact uses the subproperty."@en .
+
 :derivedFrom a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasEvidenceSource ;
     rdfs:domain :SurvivorTestimonyPattern ;
     rdfs:range :EvidenceSource ;
     rdfs:label "derived from"@en, "derivado de"@es ;
@@ -1313,23 +1337,23 @@ skos:closeMatch a owl:AnnotationProperty .
 #    over the 1,000 mark by documenting each major contribution.
 #################################################################
 
-:FraudScheme skos:note "16 named subclasses plus 8 official-source-cited additional schemes introduced in v1.6."@en ;
+:FraudScheme skos:note "26 subclasses in all, 21 of them direct. 15 are attested in the verified press corpus; the rest are declared for schemes documented in official sources but not yet matched by a row. Counted against the ontology and the seed files on 10 November 2026."@en ;
     rdfs:seeAlso <https://ramonaaliadalaboral.com/> ,
                  <https://www.unodc.org/unodc/en/human-trafficking/faqs.html> ,
                  <https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries> ,
                  <https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/> .
 
-:Victim skos:note "Victim records sourced from CTDC v2025 (IOM differential privacy synthetic) and from anonymised press case references."@en ;
+:Victim skos:note "Victim records come from CTDC v2025 (the IOM differential-privacy synthetic release) and from anonymised press case references, loaded by scripts/ingest_ctdc.py. The seed files in db/ create the victim tables but populate none of them, because the CTDC release is not redistributed in this repository. Until that script is run the 18 victim mappings produce nothing and the queries that rest on them return no rows; docs/MAPPING_COVERAGE.md lists which."@en ;
     rdfs:seeAlso <https://www.ctdatacollaborative.org/page/global-synthetic-dataset> .
 
-:TraffickingRoute skos:note "1,771 routes attested in the observatory with at least 3 victims each."@en .
+:TraffickingRoute skos:note "1,778 routes in the seeds: 1,771 CTDC corridors, each with at least 3 victims, plus 7 routes attested in the press and curated by hand. Both sets are keyed by ISO 3166-1 alpha-3. Counted against the seed files on 10 November 2026."@en .
 
 :RedFlag skos:note "Seven canonical Ramona flags plus 50 deep-textual patterns extracted from press corpus."@en ;
     rdfs:seeAlso <https://ramonaaliadalaboral.com/> .
 
-:SurvivorTestimonyPattern skos:note "Patterns partitioned in five kinds: classic_a, credible_b, communication, recruitment, exploitation, deep_textual."@en .
+:SurvivorTestimonyPattern skos:note "95 patterns in the seeds. 88 carry one of six kind values: classic_a (5), credible_b (7), communication (7), recruitment (9), exploitation (10), deep_textual (50); 7 carry none. Five of the six kinds have a subclass here; deep_textual has none and is read off :patternHasKind. Counted against the seed files on 10 November 2026."@en .
 
-:JobOffer skos:note "Seed offers sourced from Ramona hand-curated cases (50), classified press articles (1,332) and synthesised CTDC records (668), for a total of 2,050 offers in v1.6."@en .
+:JobOffer skos:note "1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Earlier versions of this note claimed 2,050, counting 50 curated cases and 668 offers synthesised from CTDC records; the seeds contain 47 curated cases and no CTDC-synthesised offers. Counted against the seed files on 10 November 2026."@en .
 
 :PalermoAction skos:note "Five canonical sub-concepts from Article 3(a) of the Palermo Protocol."@en ;
     rdfs:seeAlso <https://www.ohchr.org/en/instruments-mechanisms/instruments/protocol-prevent-suppress-and-punish-trafficking-persons> .
@@ -1341,11 +1365,11 @@ skos:closeMatch a owl:AnnotationProperty .
 :TIPEvent skos:note "Central unit of classification in ICS-TIP (IOM+UNODC 2023). Aggregates one Victim, at least one PalermoAction, one PalermoMeans and one PalermoPurpose."@en ;
     rdfs:seeAlso <https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf> .
 
-:Country skos:note "197 countries loaded from the full ISO 3166-1 alpha-3 list; 92 attested in CTDC records."@en .
+:Country skos:note "248 countries and territories loaded from the ISO 3166-1 tables through pycountry (db/08_enriched_countries.sql); 92 of them are attested in the CTDC corridors. Counted against the seed files on 10 November 2026."@en .
 
-:CommunicationTool skos:note "Eight tools documented. WhatsApp dominates LatAm at 21% of press cases."@en .
+:CommunicationTool skos:note "Eight tools in the reference vocabulary. Of the 295 offers in the verified press corpus, 106 name the platform they were carried on: WhatsApp leads with 37 of those 106, which is 12.5% of the whole corpus. The figure of 21% in earlier versions of this note is not supported by the shipped data and is withdrawn. Counted on 10 November 2026."@en .
 
-:EvidenceSource skos:note "Provenance chain: every observatory fact traces to at least one evidence source (press article, CTDC record, primary document)."@en .
+:EvidenceSource skos:note "Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 of the 1,379 rows of ramona.offers carry :offerDocumentedIn (db/13_offer_provenance.sql); the 47 hand-curated offers do not, because the seeds do not record which of the five curated sources each came from, and 7 synthesised offers find no matching source. Routes and patterns carry :hasEvidenceSource. Counted on 10 November 2026."@en .
 
 
 
@@ -1602,6 +1626,7 @@ skos:closeMatch a owl:AnnotationProperty .
 :DirectRecruitmentPost rdfs:subClassOf :CriminalRecruitmentOffer .
 
 :offerDocumentedIn a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasEvidenceSource ;
     rdfs:domain :JobOffer ; rdfs:range :EvidenceSource ;
     rdfs:label "offer documented in"@en, "oferta documentada en"@es ;
     rdfs:comment "Provenance: the evidence source (press article, report) that describes this offer."@en .

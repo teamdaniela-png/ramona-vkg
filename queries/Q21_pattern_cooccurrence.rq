@@ -7,7 +7,7 @@ PREFIX : <https://w3id.org/ratr-o#>
 
 SELECT ?pattern1 ?pattern2 (COUNT(DISTINCT ?source) AS ?coOccurrences)
 WHERE {
-  ?offer :derivedFrom ?source ;
+  ?offer :offerDocumentedIn ?source ;
          :matchesPattern ?p1 , ?p2 .
   ?p1 :patternName ?pattern1 .
   ?p2 :patternName ?pattern2 .

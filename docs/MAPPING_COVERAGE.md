@@ -172,3 +172,25 @@ Properties (68):
 :victimPriorEmployment
 :victimReferralSource
 ```
+
+## Mapped but with no rows in the shipped seeds
+
+Separate from coverage: 18 mappings are correct and execute, and return nothing, because the
+tables they read are created by `db/` and populated by no seed file.
+
+- `ramona.victim` and its satellites `victim_exploitation`, `victim_means_of_control`,
+  `victim_vulnerability`: loaded by `scripts/ingest_ctdc.py` from the CTDC v2025 release,
+  which this repository does not redistribute. 15 mappings.
+- `public.evidence_source_extended`: author, dataset-record and kind annotations over
+  evidence sources, and the `:OpenDatasetRecord` registry. 3 mappings, including the one
+  that types `:PressArticle` over that registry; `db/13_offer_provenance.sql` now types the
+  press articles over `ramona.evidence_sources` instead, so `:PressArticle` is populated.
+
+Five further mappings, `M-Press-Scheme-*` and `M-Press-SchemeType-*` for
+`CallCenterScamScheme`, `GigEconomyFakeDriverScheme`, `ForeignLanguageTeacherScheme`,
+`CentralAmericanMigrantLabourScheme` and `ConstructionLabourBondageScheme`, name real
+classes and match no row: 15 of the 26 fraud schemes are attested in the verified press
+corpus and these five are not among them.
+
+`docs/validation/QUERY_EXECUTION_REPORT.md` lists which of the 40 reference queries each of
+these gaps blocks.

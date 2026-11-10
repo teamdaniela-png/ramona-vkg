@@ -4,15 +4,25 @@
 --
 -- Designed to be idempotent: uses CREATE TABLE IF NOT EXISTS.
 --
--- hutro_concept_label records the HUTRO concept that each controlled vocabulary is
--- conceptually close to, BY LABEL. It is not an IRI. HUTRO's BioPortal submission declares
--- the placeholder namespace http://www.example.com and BioPortal serves the ontology behind
--- a bot challenge, so its concept IRIs could not be dereferenced and verified (checked
--- 10 November 2026). The column was named hutro_close_match and held values such as
--- 'hutro:recruitment_method', which read as IRIs under a prefix that in fact resolved to the
--- BioPortal web page rather than to a concept. Those values are withdrawn.
+-- hutro_concept_label holds the preferred label of the HUTRO concept that each controlled
+-- vocabulary is conceptually close to; hutro_concept_iri holds that concept's IRI.
+--
+-- HUTRO's BioPortal submission metadata declares the placeholder namespace
+-- http://www.example.com, but BioPortal reports and resolves each concept under
+-- https://bioportal.bioontology.org/ontologies/HUTRO with the local name appended directly,
+-- with no separating slash or hash. Each of the IRIs below was checked one by one in the
+-- BioPortal concept browser on 10 November 2026 and resolved to the expected preferred label.
+-- Two local names differ from the obvious spelling: HUTRO writes 'recuritment_method', which
+-- is misspelt at the source, and 'smuggler_trafficker_communication_tools', without the
+-- conjunction. Up to v1.10 this file used the corrected spellings, which do not resolve.
 
 BEGIN;
+-- These tables live in the public schema, not in ramona, and mappings/ramona.obda reads
+-- them as public.<table>. The search_path is set explicitly: every other file in db/ sets
+-- it to "ramona, public", so without this line the tables would land in ramona whenever
+-- the directory is replayed inside a single psql session instead of one session per file.
+SET search_path TO public;
+
 
 -- =========================================================================
 -- Operational-schema extensions (additive, non-breaking)
@@ -66,44 +76,46 @@ ON CONFLICT DO NOTHING;
 CREATE TABLE IF NOT EXISTS recruitment_method (
     recruitment_method_code  TEXT PRIMARY KEY,
     recruitment_method_label TEXT NOT NULL,
-    hutro_concept_label        TEXT
+    hutro_concept_label        TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO recruitment_method (recruitment_method_code, recruitment_method_label, hutro_concept_label) VALUES
-    ('intimate_partner',     'Recruited by intimate partner',  'recruitment method'),
-    ('friend',               'Recruited by friend',            'recruitment method'),
-    ('family',               'Recruited by family member',     'recruitment method'),
-    ('labour_broker',        'Recruited by labour broker',     'recruitment method'),
-    ('social_media',         'Contacted via social media',     'recruitment method'),
-    ('classifieds',          'Contacted via online classifieds', 'recruitment method'),
-    ('in_person_street',     'Recruited in person on street',  'recruitment method'),
-    ('false_job_offer',      'False job offer',                'recruitment method'),
-    ('abduction',            'Abduction / forced recruitment', 'recruitment method'),
-    ('sale_by_family',       'Sale by family',                 'recruitment method'),
-    ('debt_bondage_entry',   'Debt bondage from entry',        'recruitment method'),
-    ('other',                'Other',                          'recruitment method'),
-    ('unknown',              'Unknown',                        NULL)
+INSERT INTO recruitment_method (recruitment_method_code, recruitment_method_label, hutro_concept_label, hutro_concept_iri) VALUES
+    ('intimate_partner',     'Recruited by intimate partner',  'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('friend',               'Recruited by friend',            'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('family',               'Recruited by family member',     'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('labour_broker',        'Recruited by labour broker',     'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('social_media',         'Contacted via social media',     'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('classifieds',          'Contacted via online classifieds', 'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('in_person_street',     'Recruited in person on street',  'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('false_job_offer',      'False job offer',                'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('abduction',            'Abduction / forced recruitment', 'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('sale_by_family',       'Sale by family',                 'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('debt_bondage_entry',   'Debt bondage from entry',        'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('other',                'Other',                          'recruitment method', 'https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method'),
+    ('unknown',              'Unknown',                        NULL, NULL)
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS exploitation_type (
     exploitation_type_code   TEXT PRIMARY KEY,
     exploitation_type_label  TEXT NOT NULL,
-    hutro_concept_label        TEXT
+    hutro_concept_label        TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO exploitation_type (exploitation_type_code, exploitation_type_label, hutro_concept_label) VALUES
-    ('labour_agriculture',    'Forced labour: agriculture',            'type of exploitation'),
-    ('labour_construction',   'Forced labour: construction',           'type of exploitation'),
-    ('labour_domestic',       'Forced labour: domestic work',          'type of exploitation'),
-    ('labour_hospitality',    'Forced labour: hospitality',            'type of exploitation'),
-    ('labour_other',          'Forced labour: other',                  'type of exploitation'),
-    ('sex_prostitution',      'Sexual exploitation: prostitution',     'type of exploitation'),
-    ('sex_pornography',       'Sexual exploitation: pornography',      'type of exploitation'),
-    ('forced_marriage',       'Forced marriage',                       'type of exploitation'),
-    ('forced_criminality',    'Forced criminality',                    'type of exploitation'),
-    ('organ_removal',         'Organ removal',                         'type of exploitation'),
-    ('other',                 'Other exploitation',                    'type of exploitation'),
-    ('unknown',               'Unknown',                               NULL)
+INSERT INTO exploitation_type (exploitation_type_code, exploitation_type_label, hutro_concept_label, hutro_concept_iri) VALUES
+    ('labour_agriculture',    'Forced labour: agriculture',            'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('labour_construction',   'Forced labour: construction',           'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('labour_domestic',       'Forced labour: domestic work',          'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('labour_hospitality',    'Forced labour: hospitality',            'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('labour_other',          'Forced labour: other',                  'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('sex_prostitution',      'Sexual exploitation: prostitution',     'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('sex_pornography',       'Sexual exploitation: pornography',      'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('forced_marriage',       'Forced marriage',                       'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('forced_criminality',    'Forced criminality',                    'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('organ_removal',         'Organ removal',                         'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('other',                 'Other exploitation',                    'type of exploitation', 'https://bioportal.bioontology.org/ontologies/HUTROtype_of_exploitation'),
+    ('unknown',               'Unknown',                               NULL, NULL)
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS means_of_control (
@@ -126,72 +138,76 @@ ON CONFLICT DO NOTHING;
 CREATE TABLE IF NOT EXISTS vulnerability_factor (
     vulnerability_code   TEXT PRIMARY KEY,
     vulnerability_label  TEXT NOT NULL,
-    hutro_concept_label    TEXT
+    hutro_concept_label    TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO vulnerability_factor (vulnerability_code, vulnerability_label, hutro_concept_label) VALUES
-    ('economic',           'Economic precarity',               'vulnerability factor'),
-    ('migrant_status',     'Migrant or irregular status',      'vulnerability factor'),
-    ('minor',              'Minor (under 18)',                 'vulnerability factor'),
-    ('prior_abuse',        'Prior history of abuse',           'vulnerability factor'),
-    ('low_education',      'Low formal education',             'vulnerability factor'),
-    ('single_parent',      'Single parent / caregiver',        'vulnerability factor'),
-    ('displaced',          'Internally displaced or refugee',  'vulnerability factor'),
-    ('indigenous',         'Indigenous community member',      'vulnerability factor'),
-    ('disability',         'Disability',                       'vulnerability factor'),
-    ('other',              'Other',                            'vulnerability factor')
+INSERT INTO vulnerability_factor (vulnerability_code, vulnerability_label, hutro_concept_label, hutro_concept_iri) VALUES
+    ('economic',           'Economic precarity',               'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('migrant_status',     'Migrant or irregular status',      'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('minor',              'Minor (under 18)',                 'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('prior_abuse',        'Prior history of abuse',           'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('low_education',      'Low formal education',             'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('single_parent',      'Single parent / caregiver',        'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('displaced',          'Internally displaced or refugee',  'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('indigenous',         'Indigenous community member',      'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('disability',         'Disability',                       'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor'),
+    ('other',              'Other',                            'vulnerability factor', 'https://bioportal.bioontology.org/ontologies/HUTROvulnerability_factor')
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS communication_tool (
     tool_code   TEXT PRIMARY KEY,
     tool_label  TEXT NOT NULL,
-    hutro_concept_label TEXT
+    hutro_concept_label TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO communication_tool (tool_code, tool_label, hutro_concept_label) VALUES
-    ('whatsapp',    'WhatsApp',        'smuggler and trafficker communication tools'),
-    ('messenger',   'Facebook Messenger', 'smuggler and trafficker communication tools'),
-    ('telegram',    'Telegram',        'smuggler and trafficker communication tools'),
-    ('sms',         'SMS',             'smuggler and trafficker communication tools'),
-    ('voice_call',  'Voice call',      'smuggler and trafficker communication tools'),
-    ('in_person',   'In person',       'smuggler and trafficker communication tools'),
-    ('email',       'Email',           'smuggler and trafficker communication tools'),
-    ('other',       'Other',           'smuggler and trafficker communication tools')
+INSERT INTO communication_tool (tool_code, tool_label, hutro_concept_label, hutro_concept_iri) VALUES
+    ('whatsapp',    'WhatsApp',        'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('messenger',   'Facebook Messenger', 'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('telegram',    'Telegram',        'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('sms',         'SMS',             'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('voice_call',  'Voice call',      'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('in_person',   'In person',       'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('email',       'Email',           'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools'),
+    ('other',       'Other',           'smuggler and trafficker communication tools', 'https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools')
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS transportation_means (
     tm_code   TEXT PRIMARY KEY,
     tm_label  TEXT NOT NULL,
-    hutro_concept_label TEXT
+    hutro_concept_label TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO transportation_means (tm_code, tm_label, hutro_concept_label) VALUES
-    ('bus',     'Bus',     'transportation means'),
-    ('car',     'Car',     'transportation means'),
-    ('foot',    'On foot', 'transportation means'),
-    ('boat',    'Boat',    'transportation means'),
-    ('air',     'Air',     'transportation means'),
-    ('train',   'Train',   'transportation means'),
-    ('truck',   'Truck',   'transportation means'),
-    ('mixed',   'Mixed',   'transportation means'),
-    ('unknown', 'Unknown', NULL)
+INSERT INTO transportation_means (tm_code, tm_label, hutro_concept_label, hutro_concept_iri) VALUES
+    ('bus',     'Bus',     'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('car',     'Car',     'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('foot',    'On foot', 'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('boat',    'Boat',    'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('air',     'Air',     'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('train',   'Train',   'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('truck',   'Truck',   'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('mixed',   'Mixed',   'transportation means', 'https://bioportal.bioontology.org/ontologies/HUTROtransportation_means'),
+    ('unknown', 'Unknown', NULL, NULL)
 ON CONFLICT DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS documentation_type (
     doc_code   TEXT PRIMARY KEY,
     doc_label  TEXT NOT NULL,
     is_false   BOOLEAN NOT NULL DEFAULT FALSE,
-    hutro_concept_label TEXT
+    hutro_concept_label TEXT,
+    hutro_concept_iri          TEXT
 );
 
-INSERT INTO documentation_type (doc_code, doc_label, is_false, hutro_concept_label) VALUES
-    ('national_id', 'National ID',  FALSE, 'documentation type'),
-    ('passport',    'Passport',     FALSE, 'documentation type'),
-    ('visa',        'Visa',         FALSE, 'documentation type'),
-    ('work_permit', 'Work permit',  FALSE, 'documentation type'),
-    ('none',        'None',         FALSE, 'documentation type'),
-    ('confiscated', 'Confiscated',  FALSE, 'documentation type'),
-    ('false_document', 'False documentation', TRUE, 'false documentation')
+INSERT INTO documentation_type (doc_code, doc_label, is_false, hutro_concept_label, hutro_concept_iri) VALUES
+    ('national_id', 'National ID',  FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('passport',    'Passport',     FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('visa',        'Visa',         FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('work_permit', 'Work permit',  FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('none',        'None',         FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('confiscated', 'Confiscated',  FALSE, 'documentation type', 'https://bioportal.bioontology.org/ontologies/HUTROdocumentation_type'),
+    ('false_document', 'False documentation', TRUE, 'false documentation', 'https://bioportal.bioontology.org/ontologies/HUTROfalse_documentation')
 ON CONFLICT DO NOTHING;
 
 -- =========================================================================

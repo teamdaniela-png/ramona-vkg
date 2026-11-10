@@ -43,17 +43,19 @@ INSERT INTO evidence_sources (source_title, source_outlet, source_url, source_da
   'Yahoo Noticias', 'https://es-us.noticias.yahoo.com/', DATE '2025-03-20');
 
 -- Trafficking routes ----------------------------------------------------------
+-- Routes are keyed by ISO 3166-1 alpha-3, the identifier CTDC uses and the canonical
+-- country key of the VKG (see db/08_enriched_countries.sql, which adds the foreign keys).
 INSERT INTO trafficking_routes (route_name, origin_country, destination_country, known_since, evidence_source) VALUES
- ('CDMX interna: Benito Juarez (Revolucion 829)', 'MX','MX', DATE '2026-04-15',
+ ('CDMX interna: Benito Juarez (Revolucion 829)', 'MEX','MEX', DATE '2026-04-15',
    (SELECT source_id FROM evidence_sources WHERE source_outlet = 'N+')),
- ('Guadalajara metropolitana -> Teuchitlan (Rancho Izaguirre)', 'MX','MX', DATE '2025-03-05',
+ ('Guadalajara metropolitana -> Teuchitlan (Rancho Izaguirre)', 'MEX','MEX', DATE '2025-03-05',
    (SELECT source_id FROM evidence_sources WHERE source_outlet = 'El Sol de Mexico')),
- ('Mexico -> Guatemala (Tapachula corridor)', 'MX','GT', DATE '2024-01-10',
+ ('Mexico -> Guatemala (Tapachula corridor)', 'MEX','GTM', DATE '2024-01-10',
    (SELECT source_id FROM evidence_sources WHERE source_outlet = 'Yahoo Noticias')),
- ('Colombia interna: Medellin -> Necocli (maritima)', 'CO','CO', DATE '2024-06-01', NULL),
- ('Peru: Lima -> Madre de Dios (mineria ilegal)', 'PE','PE', DATE '2023-11-15', NULL),
- ('Argentina: Buenos Aires -> interior (domestic)', 'AR','AR', DATE '2024-08-20', NULL),
- ('Chile: Santiago -> Antofagasta (trabajo agricola)', 'CL','CL', DATE '2025-02-01', NULL);
+ ('Colombia interna: Medellin -> Necocli (maritima)', 'COL','COL', DATE '2024-06-01', NULL),
+ ('Peru: Lima -> Madre de Dios (mineria ilegal)', 'PER','PER', DATE '2023-11-15', NULL),
+ ('Argentina: Buenos Aires -> interior (domestic)', 'ARG','ARG', DATE '2024-08-20', NULL),
+ ('Chile: Santiago -> Antofagasta (trabajo agricola)', 'CHL','CHL', DATE '2025-02-01', NULL);
 
 -- Survivor testimony patterns (derived from documented real cases) ------------
 INSERT INTO survivor_patterns (pattern_name, pattern_description, evidence_source) VALUES

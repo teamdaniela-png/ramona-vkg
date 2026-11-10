@@ -86,6 +86,23 @@
         rr:objectMap [ rr:column "source_date" ; rr:datatype xsd:date ]
     ] .
 
+<#TM_M_EvidenceSource_PressArticle> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT source_id FROM ramona.evidence_sources WHERE source_kind = 'press_article'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/evidence/{source_id}" ;
+        rr:class :PressArticle ;
+    ] .
+
+<#TM_M_Offer_Evidence> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, evidence_source FROM ramona.offers WHERE evidence_source IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :offerDocumentedIn ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/evidence/{evidence_source}" ]
+    ] .
+
 <#TM_M_EvidenceSource_URL> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT source_id, source_url FROM ramona.evidence_sources WHERE source_url IS NOT NULL""" ] ;
     rr:subjectMap [
@@ -131,7 +148,7 @@
         rr:template "https://w3id.org/ratr-o/data/route/{route_id}" ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate :derivedFrom ;
+        rr:predicate :hasEvidenceSource ;
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/evidence/{evidence_source}" ]
     ] .
 
@@ -162,6 +179,41 @@
     rr:predicateObjectMap [
         rr:predicate :patternHasKind ;
         rr:objectMap [ rr:column "pattern_kind" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Pattern_Type_ClassicRedFlagPattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id FROM ramona.survivor_patterns WHERE pattern_kind = 'classic_a'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/pattern/{pattern_id}" ;
+        rr:class :ClassicRedFlagPattern ;
+    ] .
+
+<#TM_M_Pattern_Type_CredibleLethalPattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id FROM ramona.survivor_patterns WHERE pattern_kind = 'credible_b'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/pattern/{pattern_id}" ;
+        rr:class :CredibleLethalPattern ;
+    ] .
+
+<#TM_M_Pattern_Type_CommunicationPattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id FROM ramona.survivor_patterns WHERE pattern_kind = 'communication'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/pattern/{pattern_id}" ;
+        rr:class :CommunicationPattern ;
+    ] .
+
+<#TM_M_Pattern_Type_RecruitmentPattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id FROM ramona.survivor_patterns WHERE pattern_kind = 'recruitment'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/pattern/{pattern_id}" ;
+        rr:class :RecruitmentPattern ;
+    ] .
+
+<#TM_M_Pattern_Type_ExploitationPattern> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT pattern_id FROM ramona.survivor_patterns WHERE pattern_kind = 'exploitation'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/pattern/{pattern_id}" ;
+        rr:class :ExploitationPattern ;
     ] .
 
 <#TM_M_Pattern_Bucket> a rr:TriplesMap ;
@@ -306,7 +358,7 @@
     ] .
 
 <#TM_M_Offer> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT o.offer_id, o.raw_text, o.posted_at, o.source_platform, c.country_iso3, o.language_code FROM ramona.offers o JOIN ramona.countries c ON c.country_code = o.country_code""" ] ;
+    rr:logicalTable [ rr:sqlQuery """SELECT o.offer_id, o.raw_text, c.country_iso3, o.language_code FROM ramona.offers o JOIN ramona.countries c ON c.country_code = o.country_code""" ] ;
     rr:subjectMap [
         rr:template "https://w3id.org/ratr-o/data/offer/{offer_id}" ;
         rr:class :JobOffer ;
@@ -316,20 +368,32 @@
         rr:objectMap [ rr:column "raw_text" ; rr:datatype xsd:string ]
     ] ;
     rr:predicateObjectMap [
-        rr:predicate :postedOn ;
-        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:date ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :postedVia ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{source_platform}" ]
-    ] ;
-    rr:predicateObjectMap [
         rr:predicate :inCountry ;
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/country/{country_iso3}" ]
     ] ;
     rr:predicateObjectMap [
         rr:predicate :inLanguage ;
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/language/{language_code}" ]
+    ] .
+
+<#TM_M_Offer_PostedVia> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, source_platform FROM ramona.offers WHERE source_platform IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :postedVia ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{source_platform}" ]
+    ] .
+
+<#TM_M_Offer_PostedOn> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT offer_id, posted_at FROM ramona.offers WHERE posted_at IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/offer/{offer_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :postedOn ;
+        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:date ]
     ] .
 
 <#TM_M_Offer_Role> a rr:TriplesMap ;
@@ -661,7 +725,7 @@
         rr:template "https://w3id.org/ratr-o/data/victim/{victim_id}" ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate :derivedFrom ;
+        rr:predicate :hasEvidenceSource ;
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/evidence-ext/{source_id}" ]
     ] .
 

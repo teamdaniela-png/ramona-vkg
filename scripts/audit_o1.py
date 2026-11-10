@@ -125,6 +125,11 @@ for p in obj_props | data_props:
     if not str(p).startswith(str(NS)):
         continue
     doms = list(g.objects(p, RDFS.domain))
+    # A property may be deliberately domain-free (cross-cutting provenance, for example).
+    # The exemption is only granted when the comment says so in those words, so the
+    # omission has to be an explicit decision recorded in the ontology, not an oversight.
+    if not doms and any("no domain" in str(c) for c in g.objects(p, RDFS.comment)):
+        continue
     rans = list(g.objects(p, RDFS.range))
     if not doms:
         log("SHOULD", "Property missing rdfs:domain",
@@ -395,16 +400,26 @@ _PORTAL_PAGE_PREFIXES = (
     "https://agroportal.lirmm.fr/ontologies/",
     "https://www.ebi.ac.uk/ols4/ontologies/",
 )
+# A target of the shape <portal>/<ACRONYM><local_name> is suspicious but not wrong on its
+# own: BioPortal does serve HUTRO's concepts under exactly that concatenated form. What the
+# audit can demand is evidence. Every such target must carry, on the same subject, a note
+# that says the IRI itself was verified and on what date. Shape alone is not a defect; an
+# unverified claim is.
 for _s, _p, _o in g.triples((None, SKOS.closeMatch, None)):
     _t = str(_o)
     for _pref in _PORTAL_PAGE_PREFIXES:
-        if _t.startswith(_pref):
-            _rest = _t[len(_pref):]
-            # a portal ontology page is <prefix><ACRONYM>; anything glued after the acronym
-            # is a page URL with a concept name appended, not a concept IRI
-            if _rest and not _rest.strip("/").isupper():
-                log("BLOCKER", "skos:closeMatch target looks like a portal page URL with a concept name appended, not a concept IRI",
-                    f"{str(_s).split('#')[-1]} -> {_t}")
+        if not _t.startswith(_pref):
+            continue
+        _rest = _t[len(_pref):]
+        if not _rest or _rest.strip("/").isupper():
+            continue  # plain ontology page, handled by check 2f
+        _notes = " ".join(str(_n) for _n in g.objects(_s, SKOS.note))
+        if "verified" not in _notes.lower():
+            log("BLOCKER", "skos:closeMatch target is a portal URL with a local name appended and no note states the IRI was verified",
+                f"{str(_s).split('#')[-1]} -> {_t}")
+        elif not re.search(r"\b(19|20)\d\d\b", _notes):
+            log("SHOULD", "skos:closeMatch verification note does not record the date of the check",
+                str(_s).split("#")[-1])
 
 # every class that names an external vocabulary in a note must say when it was checked
 for _s in set(g.subjects(SKOS.note, None)):
@@ -578,7 +593,7 @@ checks = [
     ("Every FraudScheme subclass cites at least one official source", not any("FraudScheme" in f["finding"] and "lacks rdfs:seeAlso" in f["finding"] for f in by_sev["SHOULD"])),
     ("Ontology header has version, creator, license", not any("Ontology header missing" in f["finding"] for f in findings if f["severity"] in ("BLOCKER", "SHOULD"))),
     ("Every property has domain and range", not any("Property missing" in f["finding"] for f in by_sev["SHOULD"])),
-    ("No skos:closeMatch target is a portal page URL with a concept name appended", not any("portal page URL" in f["finding"] for f in by_sev["BLOCKER"])),
+    ("Every skos:closeMatch target under a portal URL carries a verified-IRI note", not any("no note states the IRI was verified" in f["finding"] for f in by_sev["BLOCKER"])),
 
     ("Every object property points at the IRI template its range class is minted under", not any("range class is never minted under" in f["finding"] for f in by_sev["BLOCKER"])),
     ("Every db/ seed fits the column widths it inserts into", not any("wider than the column accepts" in f["finding"] for f in by_sev["BLOCKER"])),

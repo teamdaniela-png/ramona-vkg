@@ -7,7 +7,7 @@ PREFIX : <https://w3id.org/ratr-o#>
 
 SELECT ?offer ?source ?outlet ?title ?country
 WHERE {
-  ?offer :derivedFrom ?source ;
+  ?offer :offerDocumentedIn ?source ;
          :matchesPattern ?patternB ;
          :inCountry/:countryISOCode ?country .
   ?patternB a :CredibleLethalPattern .

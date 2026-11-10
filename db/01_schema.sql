@@ -92,8 +92,14 @@ CREATE TABLE offers (
     offered_role     TEXT,
     offered_location TEXT,
     offered_salary_mxn NUMERIC(10,2),
-    posted_at        DATE NOT NULL,
-    source_platform  INTEGER NOT NULL REFERENCES platforms(platform_id),
+    -- Nullable: offers synthesised from a press article (db/05) have no attested posting
+    -- date. Inventing one would fabricate evidence, so the column is left empty for them
+    -- and the :postedOn mapping filters on IS NOT NULL.
+    posted_at        DATE,
+    -- Nullable: 1,046 of the offers synthesised from press articles in db/05 are reported
+    -- without naming the platform. The seed resolves them to NULL rather than inventing an
+    -- "unspecified platform" individual, and the :postedVia mapping filters on IS NOT NULL.
+    source_platform  INTEGER REFERENCES platforms(platform_id),
     country_code     CHAR(2) NOT NULL REFERENCES countries(country_code),
     language_code    CHAR(2) NOT NULL REFERENCES languages(language_code),
     recruiter_id     INTEGER REFERENCES recruiters(recruiter_id),
