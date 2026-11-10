@@ -201,7 +201,7 @@ cleanly bilingual.
   note records the ambiguity instead of hiding it.
 - Six current-state counts in the documentation were stale after the third and fourth passes: the
   README still said v1.10.1 and 66 object properties, and `1,582` TBox triples survived in
-  `AUDIT_O1_SUMMARY.md`, `HANDOFF.md`, `RIGOR_STATEMENT.md` and the validation report, whose
+  `AUDIT_O1_SUMMARY.md`, `RIGOR_STATEMENT.md` and the validation report, whose
   merged-graph row was also from the v1.10.1 run. All six now carry the counted figure: 114 classes,
   68 object properties, 101 datatype properties, 1,704 TBox triples, 71,963 ABox triples and 85,173
   in the merged graph. Statements in past tense about what an earlier version contained were left
@@ -298,9 +298,6 @@ HermiT. The five files GitHub Pages serves are byte-identical to the tag, and ea
 external URLs the ontology cites, 17 answer 200 to a script; the 11 that answer 403 are BioPortal, CTDC
 and OHCHR, which refuse scripted clients and open in a browser; the two dead ones are the Oaxaca and
 Zapopan pages already cited alongside their Internet Archive snapshots.
-
-Not ontology, and left for the author to decide: `docs/HANDOFF.md`, `docs/ZENODO_SETUP.md` and
-`docs/w3id/PR_DRAFT.md` are working notes rather than documentation.
 
 ## Conclusion
 
