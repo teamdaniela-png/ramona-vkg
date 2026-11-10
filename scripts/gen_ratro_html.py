@@ -144,6 +144,20 @@ def main():
           'Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.', "</footer>", "</body>", "</html>", ""]
     OUT.write_text("\n".join(h), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: " + ", ".join(f"{k} {len(v)}" for k, v in terms.items()))
+    write_serialisations(g)
+
+
+def write_serialisations(g):
+    """Keep the RDF/XML, JSON-LD and N-Triples copies in step with the Turtle.
+
+    https://w3id.org/ratr-o negotiates on the media type the client asks for, so these three
+    files have to exist and have to say the same thing as ratr-o.ttl. They are generated, not
+    edited: FOOPS! reported the ontology as unavailable in RDF when only Turtle was served.
+    """
+    for fmt, ext in (("pretty-xml", "rdf"), ("json-ld", "jsonld"), ("nt", "nt")):
+        out = OUT.with_suffix("." + ext)
+        g.serialize(destination=str(out), format=fmt)
+        print(f"wrote {out.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

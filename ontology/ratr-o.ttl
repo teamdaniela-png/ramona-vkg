@@ -8,6 +8,7 @@
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix vann:  <http://purl.org/vocab/vann/> .
 @prefix hutro: <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
 #################################################################
@@ -25,8 +26,13 @@
     owl:versionIRI <https://w3id.org/ratr-o/1.10.3> ;
     owl:priorVersion <https://w3id.org/ratr-o/1.10.2> ;
     dct:issued "2026-04-21"^^xsd:date ;
+    dct:created "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-10"^^xsd:date ;
-    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance."@en ;
+    dct:publisher "Ramona AI" ;
+    vann:preferredNamespaceUri "https://w3id.org/ratr-o#" ;
+    vann:preferredNamespacePrefix "ratro" ;
+    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.3. https://w3id.org/ratr-o"@en ;
+    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance. v1.10.1, v1.10.2 and v1.10.3: three audit passes before the delivery of O1, which found and fixed nineteen defects. The third pass executed the 40 reference queries and the seed files for the first time rather than reading them; see docs/AUDIT_O1_SUMMARY.md and docs/validation/QUERY_EXECUTION_REPORT.md. v1.10.3 restores the eight skos:closeMatch alignments to HUTRO with IRIs verified one by one in the BioPortal concept browser on 10 November 2026."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
@@ -42,6 +48,11 @@ dct:contributor a owl:AnnotationProperty .
 dct:license a owl:AnnotationProperty .
 dct:issued a owl:AnnotationProperty .
 dct:modified a owl:AnnotationProperty .
+dct:created a owl:AnnotationProperty .
+dct:publisher a owl:AnnotationProperty .
+dct:bibliographicCitation a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
 skos:note a owl:AnnotationProperty .
 skos:closeMatch a owl:AnnotationProperty .
 
