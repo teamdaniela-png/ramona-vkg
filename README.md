@@ -164,8 +164,9 @@ docker compose down -v     # stop and wipe the Postgres volume
 
 ## Credits and licence
 
-- Ontology (RATR-O) and scholarly outputs: CC BY 4.0.
-- Demonstrator code (SQL, OBDA, scripts, README): Apache 2.0.
+- Ontology (RATR-O), documentation, competency questions and synthetic data: CC BY 4.0 (full text in [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0)).
+- Code (SQL, OBDA mappings, SPARQL queries, scripts, Docker setup): Apache 2.0 (full text in [`LICENSE`](LICENSE)).
+- Third-party material in `data/raw/` and the press quotes in `data/real/` keep the terms of their original sources and are included for research reference only.
 - CTDC Global Synthetic Dataset: IOM and partners, CC BY 4.0 with source attribution.
 - HUTRO: Danial Zemchal Tesfahans, BioPortal, 2025.
 - Framework: Xiao, G., Ding, L., Cogrel, B. and Calvanese, D. (2019). *Virtual Knowledge Graphs: An Overview of Systems and Use Cases.* Data Intelligence, 1(3), 201–223. DOI: 10.1162/dint_a_00011.
