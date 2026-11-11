@@ -2,8 +2,8 @@
 
 **Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is now canonical in any serious OWL or DL-Lite deployment. Each CQ is a natural-language question that the domain expert (here: Ramona AI) explicitly wants the ontology to answer. A SPARQL query over the Virtual Knowledge Graph must materialise the answer for the ontology to claim coverage of the CQ.
 
-This document lists 36 competency questions for RATR-O v1.10.6 and maps each to the SPARQL query
-in `queries/` that answers it. Every one of the 36 names a query file that exists. Four of the 40
+This document lists 37 competency questions for RATR-O v1.10.6 and maps each to the SPARQL query
+in `queries/` that answers it. Every one of the 37 names a query file that exists. Four of the 41
 query files answer no competency question of their own and are there as cross-cutting checks:
 `Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and
 `Q30_schemes_in_both_sources.rq`.
@@ -203,6 +203,12 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 ### CQ36. Through which platforms do criminal-recruitment offers arrive?
 **Answered by:** `Q40_criminal_recruitment_channels.rq`. **Ontology machinery exercised:** `:DirectRecruitmentPost ⊑ :CriminalRecruitmentOffer ⊑ :JobOffer`.
 
+## G. Verified employers against documented cases
+
+### CQ37. Which red flags also appear in advertisements of verified employers?
+**Answered by:** `Q41_flags_verified_employers_vs_press.rq`. **Ontology machinery exercised:** `:offeredByEmployer`, `:hasVerifiedIdentity`, `:offerDocumentedIn`, `:sourceKind`, `:hasRedFlag`, `:flagType`, over two registries of `:JobOffer`.
+**Why it matters:** a flag that is as frequent in the advertisements of verified employers as in the documented cases cannot be used alone as a detector. The two corpora are documented cases and a sample of formal job boards, so the answer describes them and is not a prevalence estimate.
+
 ## Coverage summary
 
 | CQ group | Questions | Answered by |
@@ -213,7 +219,8 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | D. Pattern and trend | 6 (CQ21-CQ26) | Q21-Q26 |
 | E. Social-media recruitment (v1.9) | 5 (CQ27-CQ31) | Q31-Q35 |
 | F. Real offer corpus (v1.10) | 5 (CQ32-CQ36) | Q36-Q40 |
-| **Total** | **36 CQs** | **36 SPARQL queries** |
+| G. Verified employers | 1 (CQ37) | Q41 |
+| **Total** | **37 CQs** | **37 SPARQL queries** |
 
 Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 40 SPARQL queries against 36 competency questions.
 

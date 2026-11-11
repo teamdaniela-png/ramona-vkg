@@ -27,15 +27,17 @@ definitions as `rdfs:comment` where OBO expects `IAO:0000115`.
 
 | Check | How | Result |
 | --- | --- | --- |
-| Seed files | `db/01` to `db/14` loaded in order | All load |
-| Mappings | 173 assertions in `mappings/ramona.obda` executed | 75,259 triples over the seeds |
-| R2RML | `mappings/ramona.r2rml.ttl` executed following the W3C recommendation | The same 75,259 triples |
-| Consistency with the seeds | TBox and ABox merged, HermiT | Consistent, 88,488 triples |
+| Seed files | `db/01` to `db/15` loaded in order | All load |
+| Mappings | 204 assertions in `mappings/ramona.obda` executed | 75,675 triples over the seeds |
+| R2RML | `mappings/ramona.r2rml.ttl` executed following the W3C recommendation | The same 75,675 triples |
+| Consistency with the seeds | TBox and ABox merged, HermiT | Consistent, 88,926 triples |
 | CTDC load | `scripts/ingest_ctdc.py` over the 257,969 records of the release | Loads with foreign keys enforced |
-| Consistency with CTDC victims | seeds plus one victim in forty (6,449), HermiT | Consistent, 167,887 triples |
-| R2RML with CTDC victims | as above | The same 142,213 ABox triples as the native mapping |
+| Consistency with CTDC victims | seeds plus one victim in forty (6,449), HermiT | Consistent, 168,325 triples |
+| R2RML with CTDC victims | as above | The same 142,629 ABox triples as the native mapping |
 | Domain and range typing | `scripts/offline_vkg/check_domain_range.py`, both data states | No individual is typed outside the hierarchy of its asserted class |
-| Reference queries | 40 queries, both data states | All execute; see `QUERY_EXECUTION_REPORT.md` |
+| Keys and foreign keys | `scripts/offline_vkg/check_integrity.py`, both data states | One IRI per row for the 27 keyed tables; 44 of 49 foreign keys stated by a mapping and 5 not exposed, each with its reason; no link to an untyped individual; no source URL on two individuals; no ill-formed literal. See `../MAPPING_SPEC.md` |
+| Generators | `scripts/build_press_offers_module.py`, `build_social_module.py`, `build_legit_offers_module.py` re-run | Each reproduces its part of the committed mapping file |
+| Reference queries | 41 queries, both data states | All execute; see `QUERY_EXECUTION_REPORT.md` |
 
 ## Alignments and citations
 

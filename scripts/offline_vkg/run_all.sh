@@ -5,7 +5,8 @@
 #
 # Loads db/*.sql into SQLite (dialect translation only), executes mappings/ramona.obda and
 # mappings/ramona.r2rml.ttl over it, checks that the two give the same graph, types every
-# individual by the domain and range axioms, and runs the 40 reference queries.
+# individual by the domain and range axioms, checks that keys and foreign keys survive the
+# mapping, and runs the reference queries.
 # Needs Python 3 with rdflib. Nothing is written inside the repository.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -22,6 +23,8 @@ echo "== 4. the two graphs"
 python3 "$H/compare_graphs.py" "$WORK/abox_obda.ttl" "$WORK/abox_r2rml.ttl"
 echo "== 5. domain and range typing"
 python3 "$H/check_domain_range.py" "$WORK/abox_obda.ttl"
-echo "== 6. the 40 reference queries"
+echo "== 6. keys, foreign keys and literals"
+python3 "$H/check_integrity.py" "$WORK/ramona.db" "$WORK/abox_obda.ttl"
+echo "== 7. the reference queries"
 python3 "$H/run_queries.py" "$WORK/abox_obda.ttl" | sed -n '/^query/,$p'
 echo "work directory: $WORK"

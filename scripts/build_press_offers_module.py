@@ -108,7 +108,9 @@ def build_obda():
           f"SELECT offer_uid, confidence FROM {T}"),
         m("M-Press-Role", f"{o} :offeredRole {{job_title}}^^xsd:string .", f"SELECT offer_uid, job_title FROM {T} WHERE job_title IS NOT NULL"),
         m("M-Press-Location", f"{o} :offeredLocation {{offer_location}}^^xsd:string .", f"SELECT offer_uid, offer_location FROM {T} WHERE offer_location IS NOT NULL"),
-        m("M-Press-Country", f"{o} :inCountry <{D}/country/{{country_code}}> .", f"SELECT offer_uid, country_code FROM {T} WHERE country_code IS NOT NULL"),
+        # the country IRI of the VKG is keyed by ISO 3166-1 alpha-3
+        m("M-Press-Country", f"{o} :inCountry <{D}/country/{{country_iso3}}> .",
+          f"SELECT p.offer_uid, c.country_iso3 FROM {T} p JOIN ramona.countries c ON c.country_code = p.country_code WHERE c.country_iso3 IS NOT NULL"),
         m("M-Press-Platform", f"{o} :postedVia <{D}/platform/{{platform_id}}> .", f"SELECT offer_uid, platform_id FROM {T} WHERE platform_id IS NOT NULL"),
         m("M-Press-Pay", f"{o} :offerPayAmount {{pay_amount}}^^xsd:decimal ; :offerPayCurrency {{pay_currency}}^^xsd:string .",
           f"SELECT offer_uid, pay_amount, pay_currency FROM {T} WHERE pay_amount IS NOT NULL AND pay_currency IS NOT NULL"),
@@ -119,14 +121,22 @@ def build_obda():
         m("M-Press-Summary", f"{o} :offerSummary {{paraphrase}}^^xsd:string .", f"SELECT offer_uid, paraphrase FROM {T} WHERE paraphrase IS NOT NULL"),
         m("M-Press-Outcome", f"{o} :offerOutcome {{outcome}}^^xsd:string .", f"SELECT offer_uid, outcome FROM {T} WHERE outcome IS NOT NULL"),
         m("M-Press-Criminal", f"{o} a :CriminalRecruitmentOffer .", f"SELECT offer_uid FROM {T} WHERE criminal_recruitment"),
-        m("M-Press-Article", f"<{D}/press/{{article_key}}> a :PressArticle ; :sourceUrl {{url}}^^xsd:string ; :sourceOutlet {{outlet}}^^xsd:string .",
-          "SELECT article_key, url, outlet FROM ramona.press_articles"),
-        m("M-Press-Source", f"{o} :offerDocumentedIn <{D}/press/{{article_key}}> .", "SELECT offer_uid, article_key FROM ramona.press_offer_sources"),
+        # A press article has one IRI. ramona.evidence_sources is the registry of record: when the
+        # article behind an offer is already there (same URL), the offer points at that individual;
+        # only articles that are in no other registry are minted under press/.
+        m("M-Press-Article", f"<{D}/press/{{article_key}}> a :PressArticle ; :sourceUrl {{url}}^^xsd:anyURI ; :sourceOutlet {{outlet}}^^xsd:string .",
+          "SELECT a.article_key, a.url, a.outlet FROM ramona.press_articles a WHERE NOT EXISTS (SELECT 1 FROM ramona.evidence_sources e WHERE e.source_url = a.url)"),
+        m("M-Press-Source", f"{o} :offerDocumentedIn <{D}/press/{{article_key}}> .",
+          "SELECT s.offer_uid, s.article_key FROM ramona.press_offer_sources s JOIN ramona.press_articles a ON a.article_key = s.article_key WHERE NOT EXISTS (SELECT 1 FROM ramona.evidence_sources e WHERE e.source_url = a.url)"),
+        m("M-Press-Source-Registry", f"{o} :offerDocumentedIn <{D}/evidence/{{source_id}}> .",
+          "SELECT s.offer_uid, e.source_id FROM ramona.press_offer_sources s JOIN ramona.press_articles a ON a.article_key = s.article_key JOIN ramona.evidence_sources e ON e.source_url = a.url"),
         m("M-Press-Flag", f"{o} :hasRedFlag <{D}/press-offer/{{offer_uid}}/flag/{{flag}}> .", "SELECT offer_uid, flag FROM ramona.press_offer_flags"),
         m("M-Press-FlagType", f"<{D}/press-offer/{{offer_uid}}/flag/{{flag}}> :flagType {{flag}}^^xsd:string .", "SELECT offer_uid, flag FROM ramona.press_offer_flags"),
         m("M-Press-FlagA", f"<{D}/press-offer/{{offer_uid}}/flag/{{flag}}> a :ClassicRedFlag .", "SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'A'"),
         m("M-Press-FlagB", f"<{D}/press-offer/{{offer_uid}}/flag/{{flag}}> a :CredibleLethalRedFlag .", "SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'B'"),
     ]
+    B.append(m("M-Press-Scheme-Code", f"<{D}/press-offer/{{offer_uid}}/scheme> :schemeCode {{scheme}}^^xsd:string .",
+               f"SELECT offer_uid, scheme FROM {T} WHERE scheme IS NOT NULL"))
     for sc in SCHEMES:
         B.append(m(f"M-Press-Scheme-{sc}", f"{o} :exhibitsFraudScheme <{D}/press-offer/{{offer_uid}}/scheme> .", f"SELECT offer_uid FROM {T} WHERE scheme = '{sc}'"))
         B.append(m(f"M-Press-SchemeType-{sc}", f"<{D}/press-offer/{{offer_uid}}/scheme> a :{sc} .", f"SELECT offer_uid FROM {T} WHERE scheme = '{sc}'"))

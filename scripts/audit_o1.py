@@ -460,12 +460,13 @@ for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
         _tpl[_cls].add(re.sub(r"\{[^}]*\}", "{}", _subj))
     for _obj_iri in re.findall(r"<(https://w3id\.org/ratr-o/data/[^>]+)>", _line):
         pass
-for _cls, _templates in sorted(_tpl.items()):
-    if len(_templates) > 1:
-        log("NOTE", "A class is minted under more than one IRI template",
-            f"{_cls}: {sorted(_templates)}. This is by design when the templates stand for different "
-            f"source registries (operational offers against press-documented offers, for example). It is a "
-            f"problem only if the same real-world entity could appear in both, which would give it two IRIs.")
+_multi = sorted(_cls for _cls, _templates in _tpl.items() if len(_templates) > 1)
+if _multi:
+    log("NOTE", "Classes minted under more than one IRI template",
+        "%d classes: %s. Each template stands for a different registry of the same kind of thing (an "
+        "offer recorded by Ramona, one documented in the press, one advertised on a job board). "
+        "scripts/offline_vkg/check_integrity.py checks that no entity ends up with two IRIs; "
+        "docs/MAPPING_SPEC.md lists the templates." % (len(_multi), ", ".join(_multi)))
 
 # object-property ranges: the IRI template used as object must match the template the range class is minted under
 for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):

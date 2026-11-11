@@ -10,7 +10,9 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
 - **SPARQL endpoint** served by Ontop on port 8080 once the Docker stack is up.
-- **40 reference SPARQL queries** (`queries/`, Q1 to Q40) answering 36 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **41 reference SPARQL queries** (`queries/`, Q1 to Q41) answering 37 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **Mapping specification** (`docs/MAPPING_SPEC.md`): the identifier templates, the foreign keys with the property that states each, and the integrity checks, generated from the schema and the mapping.
+- **Legitimate-offer sample**: 51 advertisements captured from job boards, 37 of them from employers verified in public sources, loaded as `:JobOffer` so they can be compared with the documented cases (`data/real/legit_offers.csv`, `db/15_legit_offers.sql`).
 - **Real offer corpus (v1.10)**: 352 real offer descriptions extracted from press, of which **295 are verified** and loaded (167 in Mexico), with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`). The 55 doubtful and 2 discarded ones are kept in the CSV with their audit status and are not loaded.
 - **Social-media criminal-recruitment module (v1.9)**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
 - **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
@@ -40,7 +42,7 @@ The observatory publishes two parallel classifications for every case:
 
 The stack below is the demonstrator of Objective 3. The ontology, the mappings and the queries can be
 validated without it: `scripts/offline_vkg/run_all.sh` loads the same `db/*.sql` files, executes the
-same mapping file and runs the same 40 queries, and `docs/validation/` has the results.
+same mapping file and runs the same 41 queries, and `docs/validation/` has the results.
 
 Ontop's image ships no JDBC driver. Download the PostgreSQL one once:
 
@@ -58,7 +60,7 @@ docker compose up -d
 
 First run:
 1. pulls Postgres 16 and Ontop 5.2.0;
-2. creates the `ramona` database and runs the fourteen files `db/01_schema.sql` to `db/14_route_victim_counts.sql`, in order, via `/docker-entrypoint-initdb.d/`;
+2. creates the `ramona` database and runs the fifteen files `db/01_schema.sql` to `db/15_legit_offers.sql`, in order, via `/docker-entrypoint-initdb.d/`;
 3. starts Ontop with `ontology/ratr-o.ttl` + `mappings/ramona.obda`.
 
 The victim tables are created empty. The CTDC release that fills them is not redistributed here; see
@@ -145,6 +147,7 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 | `Q38_verbatim_wording.rq` | Verbatim wording of real offers, with the source. |
 | `Q39_type_a_vs_type_b_real.rq` | Real offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
 | `Q40_criminal_recruitment_channels.rq` | Platforms through which real criminal-recruitment offers arrive. |
+| `Q41_flags_verified_employers_vs_press.rq` | Red flags in advertisements of verified employers next to the same flags in press-documented offers. |
 
 Which of these return rows over the shipped seeds, which need the CTDC release loaded, and why the
 rest return none, is in `docs/validation/QUERY_EXECUTION_REPORT.md`.
@@ -156,12 +159,13 @@ ramona_vkg_demo/
 ├── README.md
 ├── docker-compose.yml
 ├── requirements.txt
-├── db/                                     # 14 files, run in order by Postgres on first start
+├── db/                                     # 15 files, run in order by Postgres on first start
 │   ├── 01_schema.sql ... 03_seed_cases.sql # operational schema and the 47 hand-curated offers
 │   ├── 04_schema_extension_v1.sql          # victim-centric extension and reference vocabularies
 │   ├── 05 ... 12                           # press-synthesised offers, CTDC routes, patterns, countries, social module, verified press offers
 │   ├── 13_offer_provenance.sql             # offer-to-source links and source kinds
-│   └── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
+│   ├── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
+│   └── 15_legit_offers.sql                 # advertisements of verified employers, for comparison
 ├── ontology/
 │   ├── ratr-o.ttl                          # RATR-O v1.10.6 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
@@ -169,12 +173,12 @@ ramona_vkg_demo/
 │   ├── ratr-o.nt                           # the same graph in N-Triples
 │   └── ratr-o.html                         # generated documentation
 ├── mappings/
-│   ├── ramona.obda                         # Ontop native mapping, 173 mapping assertions
+│   ├── ramona.obda                         # Ontop native mapping, 204 mapping assertions
 │   └── ramona.r2rml.ttl                    # the same in W3C R2RML, generated by scripts/obda_to_r2rml.py
 ├── ontop/
 │   └── ontop.properties
 ├── queries/
-│   └── Q1 ... Q40_*.rq                     # the 40 reference queries listed above
+│   └── Q1 ... Q41_*.rq                     # the 41 reference queries listed above
 ├── scripts/
 │   ├── scrape_press.py                     # Google News RSS + trafilatura
 │   ├── classify_press.py                   # Type A / Type B rule-based classification
@@ -187,10 +191,11 @@ ramona_vkg_demo/
 │   └── processed/                          # classified output (JSONL + summary JSON)
 └── docs/
     ├── diagrams/                           # UML-style class diagrams, generated by scripts/gen_uml_diagrams.py
-    ├── COMPETENCY_QUESTIONS.md             # the 36 competency questions and the query answering each
+    ├── COMPETENCY_QUESTIONS.md             # the 37 competency questions and the query answering each
+    ├── MAPPING_SPEC.md                     # identifier templates, foreign keys and integrity checks
     ├── MAPPING_COVERAGE.md                 # which terms a mapping produces and which it does not
     ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
-    ├── validation/                         # validation report and the execution of the 40 queries
+    ├── validation/                         # validation report and the execution of the 41 queries
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
     └── CTDC_HUTRO_RATRO_mapping.xlsx       # mapping workbook prepared for Prof. Ortiz
 ```

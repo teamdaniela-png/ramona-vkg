@@ -1,14 +1,15 @@
 # Mapping coverage of the declared vocabulary
 
-State on 10 November 2026, RATR-O v1.10.6, `mappings/ramona.obda` with 173 mappings. The published
-`mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,259 triples,
-triple for triple, and the same 142,213 over the seeds plus a 1-in-40 sample of the CTDC victim records.
+State on 11 November 2026, RATR-O v1.10.6, `mappings/ramona.obda` with 204 mappings. The published
+`mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,675 triples,
+triple for triple, and the same 142,629 over the seeds plus a 1-in-40 sample of the CTDC victim records.
+`docs/MAPPING_SPEC.md` has the identifier templates and the foreign keys.
 Generated from `scripts/audit_o1.py` section 10, which reports the same counts as a NOTE.
 
 | | Declared | Produced by a mapping | Not produced |
 |---|---:|---:|---:|
-| Classes | 114 | 76 | 38 |
-| Object properties | 69 | 34 | 35 |
+| Classes | 114 | 79 | 35 |
+| Object properties | 69 | 37 | 32 |
 | Datatype properties | 103 | 72 | 31 |
 
 The ontology is deliberately larger than the current mapping. A reviewer should be able to tell at
@@ -46,9 +47,9 @@ honest ones: the ontology models more than Ramona's current schema records.
 
 ## Full list of terms not produced by a mapping
 
-Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
+Generated from the ontology and `mappings/ramona.obda` on 11 November 2026.
 
-### Classes (38)
+### Classes (35)
 
 :Agent
 :BeggingRingScheme
@@ -58,7 +59,6 @@ Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
 :ForcedChildMarriageScheme
 :FraudRisk
 :FraudScheme
-:GangRecruitmentSchoolsScheme
 :Harbouring
 :MeansAbduction
 :MeansAbuseOfPower
@@ -69,7 +69,6 @@ Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
 :MeansPaymentOrBenefit
 :MeansThreatOfForce
 :OnlineRecruitmentChannel
-:OrganRemovalRecruitmentScheme
 :PalermoAction
 :PalermoMeans
 :PalermoPurpose
@@ -83,19 +82,17 @@ Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
 :ResearchReport
 :SocialMediaItem
 :SocialMediaRecruitmentSignal
-:SportsTalentScheme
 :TIPEvent
 :TraffickingRisk
 :Transfer
 :Transportation
 
-### Object properties (35)
+### Object properties (32)
 
 :candidateDefraudedBy
 :commentsOn
 :containsRedFlag
 :evidenceFor
-:evidencedByPressArticle
 :exhibitsAction
 :exhibitsMeans
 :exhibitsPurpose
@@ -122,8 +119,6 @@ Generated from the ontology and `mappings/ramona.obda` on 10 November 2026.
 :tipEventHasPurpose
 :tipEventInvolves
 :tipEventRegisteredBy
-:transportedBy
-:travelledWith
 :victimOfFraudScheme
 :victimOfOffer
 

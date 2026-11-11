@@ -17,3 +17,10 @@ gratuita y solo piden que **siempre se cite al Consejo Ciudadano como fuente**.
 
 Cada fila trae la cita textual del documento (`cita_textual`) y su liga (`url`). Son cifras agregadas
 del propio Consejo, no un reanálisis.
+
+## `legit_offers.csv`
+51 anuncios de empleo capturados de bolsas de trabajo formales el 4 de noviembre de 2026, con una nota sobre
+si el empleador pudo verificarse en fuentes públicas (37 verificados, 14 no verificados o casos frontera).
+Se cargan al VKG con `scripts/build_legit_offers_module.py`. Vienen de bolsas formales, así que la comparación
+con los casos documentados es entre anuncios formales y casos, no entre lo legítimo y lo fraudulento en general
+(ver `docs/results/REAL_OFFERS_RESULTS.md`).

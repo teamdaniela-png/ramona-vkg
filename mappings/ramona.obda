@@ -40,10 +40,6 @@ mappingId   M-Route-VictimCount
 target      <https://w3id.org/ratr-o/data/route/{route_id}> :routeVictimCount {victim_count}^^xsd:integer .
 source      SELECT r.route_id, c.victim_count FROM ramona.trafficking_routes r JOIN ramona.route_victim_counts c ON r.route_name = c.origin_country || ' -> ' || c.destination_country
 
-mappingId   M-Press-Scheme-Code
-target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> :schemeCode {scheme}^^xsd:string .
-source      SELECT offer_uid, scheme FROM ramona.press_offers WHERE scheme IS NOT NULL
-
 mappingId   M-Offer-Evidence
 target      <https://w3id.org/ratr-o/data/offer/{offer_id}> :offerDocumentedIn <https://w3id.org/ratr-o/data/evidence/{evidence_source}> .
 source      SELECT offer_id, evidence_source FROM ramona.offers WHERE evidence_source IS NOT NULL
@@ -316,6 +312,78 @@ mappingId   M-Victim-Vulnerability
 target      <https://w3id.org/ratr-o/data/victim/{victim_id}/profile> :hasVulnerabilityFactor <https://w3id.org/ratr-o/data/vulnerability/{vulnerability_code}> .
 source      SELECT victim_id, vulnerability_code FROM public.victim_vulnerability
 
+mappingId   M-Victim-Transport
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :transportedBy <https://w3id.org/ratr-o/data/transport/{transportation_code}> .
+source      SELECT victim_id, transportation_code FROM public.victim WHERE transportation_code IS NOT NULL
+
+mappingId   M-Victim-Documentation
+target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :travelledWith <https://w3id.org/ratr-o/data/doc/{documentation_code}> .
+source      SELECT victim_id, documentation_code FROM public.victim WHERE documentation_code IS NOT NULL
+
+mappingId   M-Exemplar-Scheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> :schemeCode {scheme_code}^^xsd:string ; :evidencedByPressArticle <https://w3id.org/ratr-o/data/evidence/{source_id}> .
+source      SELECT x.scheme_code, e.source_id FROM ramona.fraudscheme_exemplars x JOIN ramona.evidence_sources e ON e.source_url = x.url
+
+mappingId   M-Exemplar-SchemeType-AgriculturalBondageScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :AgriculturalBondageScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'AgriculturalBondageScheme'
+
+mappingId   M-Exemplar-SchemeType-CentralAmericanMigrantLabourScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :CentralAmericanMigrantLabourScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'CentralAmericanMigrantLabourScheme'
+
+mappingId   M-Exemplar-SchemeType-ChildRecruitmentCriminalScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :ChildRecruitmentCriminalScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'ChildRecruitmentCriminalScheme'
+
+mappingId   M-Exemplar-SchemeType-ConstructionLabourBondageScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :ConstructionLabourBondageScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'ConstructionLabourBondageScheme'
+
+mappingId   M-Exemplar-SchemeType-ForcedCriminalityScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :ForcedCriminalityScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'ForcedCriminalityScheme'
+
+mappingId   M-Exemplar-SchemeType-ForeignLanguageTeacherScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :ForeignLanguageTeacherScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'ForeignLanguageTeacherScheme'
+
+mappingId   M-Exemplar-SchemeType-GangRecruitmentSchoolsScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :GangRecruitmentSchoolsScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'GangRecruitmentSchoolsScheme'
+
+mappingId   M-Exemplar-SchemeType-GigEconomyFakeDriverScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :GigEconomyFakeDriverScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'GigEconomyFakeDriverScheme'
+
+mappingId   M-Exemplar-SchemeType-IdentityTheftScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :IdentityTheftScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'IdentityTheftScheme'
+
+mappingId   M-Exemplar-SchemeType-InPersonLureScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :InPersonLureScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'InPersonLureScheme'
+
+mappingId   M-Exemplar-SchemeType-ModelingAgencyScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :ModelingAgencyScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'ModelingAgencyScheme'
+
+mappingId   M-Exemplar-SchemeType-OnlineInfluencerSalesScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :OnlineInfluencerSalesScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'OnlineInfluencerSalesScheme'
+
+mappingId   M-Exemplar-SchemeType-OrganRemovalRecruitmentScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :OrganRemovalRecruitmentScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'OrganRemovalRecruitmentScheme'
+
+mappingId   M-Exemplar-SchemeType-PayToWorkScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :PayToWorkScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'PayToWorkScheme'
+
+mappingId   M-Exemplar-SchemeType-SportsTalentScheme
+target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :SportsTalentScheme .
+source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'SportsTalentScheme'
+
 mappingId   M-Social-Post
 target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SocialMediaPost ; :itemText {item_text}^^xsd:string ; :itemPostedAt {posted_at}^^xsd:dateTime ; :itemIsSynthetic {is_synthetic}^^xsd:boolean ; :itemPostedOn <https://w3id.org/ratr-o/data/platform/{platform_id}> .
 source      SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'post'
@@ -522,11 +590,15 @@ source      SELECT offer_uid FROM ramona.press_offers WHERE criminal_recruitment
 
 mappingId   M-Press-Article
 target      <https://w3id.org/ratr-o/data/press/{article_key}> a :PressArticle ; :sourceUrl {url}^^xsd:anyURI ; :sourceOutlet {outlet}^^xsd:string .
-source      SELECT article_key, url, outlet FROM ramona.press_articles
+source      SELECT a.article_key, a.url, a.outlet FROM ramona.press_articles a WHERE NOT EXISTS (SELECT 1 FROM ramona.evidence_sources e WHERE e.source_url = a.url)
 
 mappingId   M-Press-Source
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerDocumentedIn <https://w3id.org/ratr-o/data/press/{article_key}> .
-source      SELECT offer_uid, article_key FROM ramona.press_offer_sources
+source      SELECT s.offer_uid, s.article_key FROM ramona.press_offer_sources s JOIN ramona.press_articles a ON a.article_key = s.article_key WHERE NOT EXISTS (SELECT 1 FROM ramona.evidence_sources e WHERE e.source_url = a.url)
+
+mappingId   M-Press-Source-Registry
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :offerDocumentedIn <https://w3id.org/ratr-o/data/evidence/{source_id}> .
+source      SELECT s.offer_uid, e.source_id FROM ramona.press_offer_sources s JOIN ramona.press_articles a ON a.article_key = s.article_key JOIN ramona.evidence_sources e ON e.source_url = a.url
 
 mappingId   M-Press-Flag
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :hasRedFlag <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> .
@@ -543,6 +615,10 @@ source      SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = '
 mappingId   M-Press-FlagB
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/flag/{flag}> a :CredibleLethalRedFlag .
 source      SELECT offer_uid, flag FROM ramona.press_offer_flags WHERE track = 'B'
+
+mappingId   M-Press-Scheme-Code
+target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> :schemeCode {scheme}^^xsd:string .
+source      SELECT offer_uid, scheme FROM ramona.press_offers WHERE scheme IS NOT NULL
 
 mappingId   M-Press-Scheme-IdentityTheftScheme
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> :exhibitsFraudScheme <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> .
@@ -703,5 +779,53 @@ source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'Constructi
 mappingId   M-Press-SchemeType-ConstructionLabourBondageScheme
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ConstructionLabourBondageScheme .
 source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'
+
+mappingId   M-Legit-Offer
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> a :JobOffer ; :offeredRole {job_title}^^xsd:string ; :offeredByEmployer <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/employer> ; :offerDocumentedIn <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/posting> .
+source      SELECT legit_id, job_title FROM ramona.legit_offers
+
+mappingId   M-Legit-Country
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> :inCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> .
+source      SELECT l.legit_id, c.country_iso3 FROM ramona.legit_offers l JOIN ramona.countries c ON c.country_code = l.country_code
+
+mappingId   M-Legit-Location
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> :offeredLocation {offer_location}^^xsd:string .
+source      SELECT legit_id, offer_location FROM ramona.legit_offers WHERE offer_location IS NOT NULL
+
+mappingId   M-Legit-WeeklyMXN
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> :offeredSalaryMXN {weekly_mxn}^^xsd:decimal .
+source      SELECT legit_id, weekly_mxn FROM ramona.legit_offers WHERE weekly_mxn IS NOT NULL
+
+mappingId   M-Legit-Platform
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> :postedVia <https://w3id.org/ratr-o/data/platform/{platform_id}> .
+source      SELECT legit_id, platform_id FROM ramona.legit_offers
+
+mappingId   M-Legit-Employer
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/employer> a :Employer ; :agentName {employer_name}^^xsd:string ; :hasVerifiedIdentity {employer_verified}^^xsd:boolean .
+source      SELECT legit_id, employer_name, employer_verified FROM ramona.legit_offers
+
+mappingId   M-Legit-Posting
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/posting> a :EvidenceSource ; :sourceOutlet {board}^^xsd:string ; :sourceKind {source_kind}^^xsd:string .
+source      SELECT legit_id, board, 'job_board_posting' AS source_kind FROM ramona.legit_offers
+
+mappingId   M-Legit-PostingUrl
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/posting> :sourceUrl {posting_url}^^xsd:anyURI .
+source      SELECT legit_id, posting_url FROM ramona.legit_offers WHERE posting_url IS NOT NULL
+
+mappingId   M-Legit-Flag
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> :hasRedFlag <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/flag/{flag}> .
+source      SELECT legit_id, flag FROM ramona.legit_offer_flags
+
+mappingId   M-Legit-FlagType
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/flag/{flag}> :flagType {flag}^^xsd:string .
+source      SELECT legit_id, flag FROM ramona.legit_offer_flags
+
+mappingId   M-Legit-FlagA
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/flag/{flag}> a :ClassicRedFlag .
+source      SELECT legit_id, flag FROM ramona.legit_offer_flags WHERE track = 'A'
+
+mappingId   M-Legit-FlagB
+target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/flag/{flag}> a :CredibleLethalRedFlag .
+source      SELECT legit_id, flag FROM ramona.legit_offer_flags WHERE track = 'B'
 
 ]]

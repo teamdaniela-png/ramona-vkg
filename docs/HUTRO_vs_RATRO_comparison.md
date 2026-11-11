@@ -32,7 +32,7 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |
 | **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim` |
 | **Operational database binding (OBDA or R2RML)** | None | Ontop OBDA mapping + W3C R2RML mapping both shipped |
-| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 40 reference queries answering 36 competency questions |
+| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 41 reference queries answering 37 competency questions |
 | **Connected open dataset** | None | 257,969 CTDC records, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
 | **Provenance mechanism for each domain claim** | `inScheme` only | `:hasEvidenceSource :EvidenceSource`, with `:derivedFrom` for patterns and `:offerDocumentedIn` for offers |
 | **Documentation** | BioPortal class tree | HTML docs (100+ KB), dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |

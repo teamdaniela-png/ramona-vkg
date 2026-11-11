@@ -1,0 +1,33 @@
+PREFIX : <https://w3id.org/ratr-o#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Q41 (CQ37). Which red flags also appear in advertisements of verified employers?
+# For each red flag, the number of job-board advertisements whose employer was verified that
+# carry it, next to the number of press-documented offers that carry it. A flag that is as
+# frequent among verified employers as among documented cases cannot be used alone as a detector.
+# The two corpora are documented cases and a sample of formal job boards, not a random sample of
+# offers, so the counts describe these corpora and are not prevalence estimates.
+
+SELECT ?flag
+       (COUNT(DISTINCT ?verified) AS ?verifiedEmployerAdvertisements)
+       (COUNT(DISTINCT ?documented) AS ?pressDocumentedOffers)
+WHERE {
+  {
+    ?verified :offerDocumentedIn ?posting ;
+              :offeredByEmployer ?employer ;
+              :hasRedFlag ?f .
+    ?posting :sourceKind "job_board_posting" .
+    ?employer :hasVerifiedIdentity ?isVerified .
+    FILTER(?isVerified = true)
+    ?f :flagType ?flag .
+  }
+  UNION
+  {
+    ?documented :offerDocumentedIn ?article ;
+                :hasRedFlag ?f .
+    ?article a :PressArticle .
+    ?f :flagType ?flag .
+  }
+}
+GROUP BY ?flag
+ORDER BY DESC(?verifiedEmployerAdvertisements) DESC(?pressDocumentedOffers)

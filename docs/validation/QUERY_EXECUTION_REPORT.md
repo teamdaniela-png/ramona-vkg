@@ -1,4 +1,4 @@
-# RATR-O v1.10.6: execution of the 40 reference queries
+# RATR-O v1.10.6: execution of the 41 reference queries
 
 The queries were run with `scripts/offline_vkg/`: the seed files in `db/` are loaded into SQLite,
 `mappings/ramona.obda` is executed to produce the graph the VKG exposes, and the queries are evaluated
@@ -8,10 +8,10 @@ gives the same graph, triple for triple.
 
 Two data states:
 
-- **Seeds**: what a clone of the repository loads. 75,259 ABox triples, 88,488 with the TBox.
+- **Seeds**: what a clone of the repository loads. 75,675 ABox triples, 88,926 with the TBox.
 - **Seeds plus CTDC**: the same after `scripts/ingest_ctdc.py` has loaded the CTDC Global Synthetic
   Dataset v2025, 257,969 victim records. The queries ran over one victim in forty, 6,449 records:
-  142,213 ABox triples, 167,887 with the TBox. Row counts in that column are over the sample.
+  142,629 ABox triples, 168,325 with the TBox. Row counts in that column are over the sample.
 
 Both graphs are consistent with the ontology under HermiT.
 
@@ -59,8 +59,9 @@ Both graphs are consistent with the ontology under HermiT.
 | `Q38_verbatim_wording` | 39 | 39 |
 | `Q39_type_a_vs_type_b_real` | 3 | 3 |
 | `Q40_criminal_recruitment_channels` | 3 | 3 |
+| `Q41_flags_verified_employers_vs_press` | 15 | 15 |
 
-All 40 queries execute. 21 return rows over the seeds and 28 once the CTDC release is loaded.
+All 41 queries execute. 22 return rows over the seeds and 29 once the CTDC release is loaded.
 
 ## Queries that return no rows in either state
 

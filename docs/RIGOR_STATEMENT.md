@@ -45,7 +45,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 ## How to verify
 
 - `python -c "import rdflib; g=rdflib.Graph(); g.parse('ontology/ratr-o.ttl','turtle'); print(len(g))"` returns the triple count.
-- `scripts/offline_vkg/run_all.sh` loads the seeds, executes the mappings and prints the row counts of the 40 queries.
+- `scripts/offline_vkg/run_all.sh` loads the seeds, executes the mappings and prints the row counts of the 41 queries.
 - `grep -c '^  (' db/08_enriched_countries.sql` returns 248.
 - `scripts/test_queries.sh` runs the 40 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3).
 

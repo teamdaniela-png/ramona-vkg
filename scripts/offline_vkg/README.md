@@ -16,7 +16,8 @@ scripts/offline_vkg/run_all.sh
 | `materialize_r2rml.py` | Executes `mappings/ramona.r2rml.ttl`, following the W3C R2RML recommendation, and writes the ABox. |
 | `compare_graphs.py` | Compares the two ABoxes triple for triple. |
 | `check_domain_range.py` | Types every individual by the domain and range axioms of the properties it takes part in and reports any class outside the hierarchy of its asserted one. |
-| `run_queries.py` | Runs the 40 reference queries over the ABox plus the TBox closure Ontop applies at rewrite time. |
+| `check_integrity.py` | Checks that keys, foreign keys and datatypes survive the mapping, and writes `docs/MAPPING_SPEC.md`. |
+| `run_queries.py` | Runs the reference queries over the ABox plus the TBox closure Ontop applies at rewrite time. |
 | `shim/psycopg.py` | A sqlite-backed stand-in for psycopg, so `scripts/ingest_ctdc.py` can load the CTDC release into the same SQLite file. |
 
 ## With the CTDC victim records
