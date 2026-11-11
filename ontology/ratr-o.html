@@ -28,10 +28,10 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.10.5</dd>
-  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.5</code></dd>
+  <dt>Version</dt><dd>1.10.6</dd>
+  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.6</code></dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
-  <dt>Modified</dt><dd>2026-11-10</dd>
+  <dt>Modified</dt><dd>2026-11-11</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
   <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
   <dt>Licence</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></dd>
@@ -171,7 +171,7 @@
 <table class='meta'>
 <tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools">https://bioportal.bioontology.org/ontologies/HUTROsmuggler_trafficker_communication_tools</a></td></tr>
 <tr><th>See also</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTRO">https://bioportal.bioontology.org/ontologies/HUTRO</a></td></tr>
-<tr><th>Note</th><td>Close match to the HUTRO concept &#x27;smuggler and trafficker communication tools&#x27; (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label &#x27;Smuggler and Trafficker Communication Tools&#x27;. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. HUTRO omits the conjunction in the local name. Versions up to 1.10 of this file used smuggler_and_trafficker_communication_tools, which does not resolve.</td></tr>
+<tr><th>Note</th><td>Close match to the HUTRO concept &#x27;smuggler and trafficker communication tools&#x27; (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label &#x27;Smuggler and Trafficker Communication Tools&#x27;. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. HUTRO writes the local name without the conjunction: smuggler_trafficker_communication_tools.</td></tr>
 </table>
 </div>
 <div class="term" id="ConstructionLabourBondageScheme">
@@ -313,7 +313,7 @@
 <p class="comment">A public document or case file from which a pattern, route, offer or victim record was derived (e.g. press article, CTDC record, NGO report).</p>
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a>, <a href="#PressArticle"><code>:PressArticle</code></a>, <a href="#ResearchReport"><code>:ResearchReport</code></a></td></tr>
-<tr><th>Note</th><td>Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 of the 1,379 rows of ramona.offers carry :offerDocumentedIn (db/13_offer_provenance.sql); the 47 hand-curated offers do not, because the seeds do not record which of the five curated sources each came from, and 7 synthesised offers find no matching source. Routes and patterns carry :hasEvidenceSource. Counted on 10 November 2026.</td></tr>
+<tr><th>Note</th><td>Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 offers carry :offerDocumentedIn (db/13_offer_provenance.sql). Patterns carry :derivedFrom; routes and victim records carry :hasEvidenceSource. Counted on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="ExploitationPattern">
@@ -383,7 +383,7 @@
 <table class='meta'>
 <tr><th>Subclass of</th><td><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/">https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/</a>, <a href="http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/">http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/</a>, <a href="https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/">https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/</a></td></tr>
-<tr><th>Note</th><td>Checked 10 November 2026: the oaxaca.gob.mx page returns HTTP 500. The Internet Archive snapshot of 24 February 2025 is cited alongside it.</td></tr>
+<tr><th>Note</th><td>The Internet Archive snapshot of 24 February 2025 is cited alongside the oaxaca.gob.mx page, which was unavailable on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="ForcedCriminalityScheme">
@@ -428,7 +428,7 @@
 <table class='meta'>
 <tr><th>Subclass of</th><td><a href="#ChildRecruitmentCriminalScheme"><code>:ChildRecruitmentCriminalScheme</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el">https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el</a>, <a href="http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el">http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el</a>, <a href="https://blog.derechosinfancia.org.mx/">https://blog.derechosinfancia.org.mx/</a></td></tr>
-<tr><th>Note</th><td>Checked 10 November 2026: the zapopan.gob.mx page does not respond. The Internet Archive snapshot of 23 July 2026 is cited alongside it.</td></tr>
+<tr><th>Note</th><td>The Internet Archive snapshot of 23 July 2026 is cited alongside the zapopan.gob.mx page, which was unavailable on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="Gender">
@@ -498,7 +498,7 @@
 <p class="comment">A posting advertising employment, submitted to Ramona or harvested from public channels.</p>
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#CriminalRecruitmentOffer"><code>:CriminalRecruitmentOffer</code></a>, <a href="#DirectRecruitmentPost"><code>:DirectRecruitmentPost</code></a></td></tr>
-<tr><th>Note</th><td>1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Earlier versions of this note claimed 2,050, counting 50 curated cases and 668 offers synthesised from CTDC records; the seeds contain 47 curated cases and no CTDC-synthesised offers. Counted against the seed files on 10 November 2026.</td></tr>
+<tr><th>Note</th><td>1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Counted against the seed files on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="Language">
@@ -807,7 +807,7 @@
 <table class='meta'>
 <tr><th>Close match</th><td><a href="https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method">https://bioportal.bioontology.org/ontologies/HUTROrecuritment_method</a></td></tr>
 <tr><th>See also</th><td><a href="https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf">https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf</a>, <a href="https://bioportal.bioontology.org/ontologies/HUTRO">https://bioportal.bioontology.org/ontologies/HUTRO</a></td></tr>
-<tr><th>Note</th><td>Close match to the HUTRO concept &#x27;recruitment method&#x27; (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label &#x27;Recruitment Method&#x27;. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. The local name reproduces the spelling used in HUTRO, recuritment_method, which is misspelt at the source. Versions up to 1.10 of this file used the corrected spelling, which does not resolve.</td></tr>
+<tr><th>Note</th><td>Close match to the HUTRO concept &#x27;recruitment method&#x27; (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label &#x27;Recruitment Method&#x27;. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. The local name reproduces the spelling HUTRO uses, recuritment_method.</td></tr>
 </table>
 </div>
 <div class="term" id="RecruitmentPattern">
@@ -981,7 +981,7 @@
 <p class="comment">A person documented as having been exploited or attempted-to-be-exploited in a trafficking or fraudulent-employment scheme. Sourced from anonymised CTDC records and publicly reported press cases.</p>
 <table class='meta'>
 <tr><th>See also</th><td><a href="https://www.unodc.org/unodc/data-and-analysis/glotip.html">https://www.unodc.org/unodc/data-and-analysis/glotip.html</a>, <a href="https://www.ctdatacollaborative.org/page/global-synthetic-dataset">https://www.ctdatacollaborative.org/page/global-synthetic-dataset</a></td></tr>
-<tr><th>Note</th><td>Victim records come from CTDC v2025 (the IOM differential-privacy synthetic release) and from anonymised press case references, loaded by scripts/ingest_ctdc.py. The seed files in db/ create the victim tables but populate none of them, because the CTDC release is not redistributed in this repository. Until that script is run the 18 victim mappings produce nothing and the queries that rest on them return no rows; docs/MAPPING_COVERAGE.md lists which.</td></tr>
+<tr><th>Note</th><td>Victim records come from CTDC v2025, the IOM differential-privacy synthetic release. The release is not redistributed in this repository: db/ creates the victim tables and scripts/ingest_ctdc.py fills them from a downloaded copy.</td></tr>
 </table>
 </div>
 <div class="term" id="VisaFraudScheme">
@@ -1132,7 +1132,7 @@
 <div class="term" id="exploitedInCountry">
 <h3><code>:exploitedInCountry</code> &mdash; exploited in country</h3>
 <p class="lang">es: <em>explotada en el país</em></p>
-<p class="comment">Relates a victim record to the country in which the exploitation took place (CountryOfExploitation in CTDC). Introduced in v1.10.5: until then the mappings stated it with :inCountry, whose domain is :JobOffer, so the TBox entailed that every victim with a country of exploitation was a job offer.</p>
+<p class="comment">Relates a victim record to the country in which the exploitation took place (CountryOfExploitation in CTDC).</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#Victim"><code>:Victim</code></a></td></tr>
 <tr><th>Range</th><td><a href="#Country"><code>:Country</code></a></td></tr>
@@ -2359,7 +2359,7 @@
 <div class="term" id="schemeCode">
 <h3><code>:schemeCode</code> &mdash; scheme code</h3>
 <p class="lang">es: <em>código del esquema</em></p>
-<p class="comment">The local name of the :FraudScheme subclass an individual scheme occurrence belongs to, as a string (for example PayToWorkScheme). It lets a query group occurrences by scheme without querying the class hierarchy. Introduced in v1.10.5: the reference queries derived this code from the fragment of the occurrence IRI, which has none.</p>
+<p class="comment">The local name of the :FraudScheme subclass an individual scheme occurrence belongs to, as a string (for example PayToWorkScheme). It lets a query group occurrences by scheme without querying the class hierarchy.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#FraudScheme"><code>:FraudScheme</code></a></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>
@@ -2424,7 +2424,7 @@
 <div class="term" id="sourceKind">
 <h3><code>:sourceKind</code> &mdash; source kind</h3>
 <p class="lang">es: <em>tipo de fuente</em></p>
-<p class="comment">The kind of evidence source as recorded at ingestion: press_article or press, ctdc, unodc, rnpdno, organisation_material, statistics_report. Introduced in v1.10.5: until then the mappings stated it with :datasetName, whose domain is :OpenDatasetRecord, so every source that carried a kind, press articles included, was entailed to be an open-dataset record.</p>
+<p class="comment">The kind of evidence source as recorded at ingestion: press_article or press, ctdc, unodc, rnpdno, organisation_material, statistics_report.</p>
 <table class='meta'>
 <tr><th>Domain</th><td><a href="#EvidenceSource"><code>:EvidenceSource</code></a></td></tr>
 <tr><th>Range</th><td><code>string</code></td></tr>

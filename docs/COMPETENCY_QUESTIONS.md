@@ -2,7 +2,7 @@
 
 **Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is now canonical in any serious OWL or DL-Lite deployment. Each CQ is a natural-language question that the domain expert (here: Ramona AI) explicitly wants the ontology to answer. A SPARQL query over the Virtual Knowledge Graph must materialise the answer for the ontology to claim coverage of the CQ.
 
-This document lists 36 competency questions for RATR-O v1.10.5 and maps each to the SPARQL query
+This document lists 36 competency questions for RATR-O v1.10.6 and maps each to the SPARQL query
 in `queries/` that answers it. Every one of the 36 names a query file that exists. Four of the 40
 query files answer no competency question of their own and are there as cross-cutting checks:
 `Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and
@@ -66,7 +66,7 @@ These exercise the VKG over the three data sources: Ramona operational + CTDC sy
 ### CQ9. How many CTDC victims per country of exploitation and by exploitation type?
 **Answers:** `Q9_ctdc_exploitation_by_country.rq`.
 **Why it matters:** baseline global victim distribution.
-**Ontology machinery exercised:** `:Victim :inCountry`, `:Victim :victimOfExploitation`.
+**Ontology machinery exercised:** `:Victim :exploitedInCountry`, `:Victim :victimOfExploitation`.
 
 ### CQ10. Which press-documented cases show Type B patterns but no Type A flags?
 **Answers:** `Q10_type_b_only_cases.rq`.
@@ -91,7 +91,7 @@ These exercise the VKG over the three data sources: Ramona operational + CTDC sy
 ### CQ14. In Mexico, how many victims are press-documented vs CTDC-registered?
 **Answers:** `Q14_mexico_press_vs_ctdc.rq`.
 **Why it matters:** measures visibility gap between official registration and public press. Policy-relevant.
-**Ontology machinery exercised:** `:Victim :derivedFrom :EvidenceSource`, cross-datasource federation.
+**Ontology machinery exercised:** `:Victim :hasEvidenceSource :EvidenceSource`, `:sourceKind`, cross-datasource federation.
 
 ## Group C — FraudScheme questions (the v1.2-v1.6 taxonomy)
 
@@ -120,7 +120,7 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 ### CQ19. Which press outlets most frequently document each FraudScheme?
 **Answers:** `Q19_outlets_by_scheme.rq`.
 **Why it matters:** media partnerships and validation cross-checks.
-**Ontology machinery exercised:** `:evidencedByPressArticle`, `:sourceOutlet`.
+**Ontology machinery exercised:** `:offerDocumentedIn`, `:exhibitsFraudScheme`, `:schemeCode`, `:sourceOutlet`.
 
 ### CQ20. In each country, what is the Type-B-only to Type-A-only ratio?
 **Answers:** `Q20_type_b_over_a_by_country.rq`.

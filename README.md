@@ -5,7 +5,7 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.5** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **RATR-O v1.10.6** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **UML-style class diagrams** of the ontology, six sheets generated from the Turtle file (`docs/diagrams/`).
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
@@ -27,7 +27,7 @@ The observatory publishes two parallel classifications for every case:
 | **Type A — classic red flags** | The 7 red flags from Ramona's public infographic: high salary, flexible hours, no experience needed, advance payment, urgent acceptance, distant interview with paid travel, job in another state. | Obvious scam-style offers. |
 | **Type B — credible-lethal patterns** | Plausible offers (market salary, realistic role) whose signal is logistic: no company logo, nameless WhatsApp, meet at a multi-use building, come alone, no ID, Messenger-to-WhatsApp funnel, personal-data filtering, atypical hours, last-minute relocation. | The Edith Guadalupe family of cases. |
 
-**On measuring the Type-A vs Type-B distribution:** an earlier draft reported ~10x more Type-B-only than Type-A-only cases from press. That figure was withdrawn after validation: press articles describe outcomes, not offer terms (an LLM read found only ~8% of articles contain the offer), so the ratio cannot be measured from press. See `docs/CLASSIFIER_VALIDATION.md`. The Type-A/Type-B distinction is a modelling contribution of the ontology; its empirical distribution will be measured from Ramona's operational reports, where the offer text exists. The press observatory's measurable contributions are geographic coverage (18 countries), volume, provenance, and a documented-case corpus.
+**On the Type-A and Type-B distribution:** the press corpus is a corpus of documented cases, not a sample, so no prevalence or ratio between the two tracks is derived from it. Press articles mostly report outcomes rather than the terms of the offer; `docs/CLASSIFIER_VALIDATION.md` has the measurement.
 
 ## Prerequisites
 
@@ -38,14 +38,9 @@ The observatory publishes two parallel classifications for every case:
 
 ## Start the VKG demo
 
-**Status, stated plainly.** This stack has not been booted as part of the audit of v1.10.5: Docker does
-not run on the machine the audit was done on. Everything the stack would serve was validated offline
-instead, by loading the same `db/*.sql` files, executing the same mapping file and running the same 40
-queries; `docs/validation/QUERY_EXECUTION_REPORT.md` has the method and the results. Two errors that
-would have stopped the stack from starting were found by reading the configuration against Ontop's
-documentation and Docker Hub, and are fixed: the image name (`ontop/ontop-endpoint` has no 5.x tags;
-the image is `ontop/ontop`) and the missing JDBC driver mount. The steps below are therefore correct
-to the best of that reading and untested end to end.
+The stack below is the demonstrator of Objective 3. The ontology, the mappings and the queries can be
+validated without it: `scripts/offline_vkg/run_all.sh` loads the same `db/*.sql` files, executes the
+same mapping file and runs the same 40 queries, and `docs/validation/` has the results.
 
 Ontop's image ships no JDBC driver. Download the PostgreSQL one once:
 
@@ -168,7 +163,7 @@ ramona_vkg_demo/
 │   ├── 13_offer_provenance.sql             # offer-to-source links and source kinds
 │   └── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
 ├── ontology/
-│   ├── ratr-o.ttl                          # RATR-O v1.10.5 in OWL 2 QL, aligned to HUTRO
+│   ├── ratr-o.ttl                          # RATR-O v1.10.6 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
 │   ├── ratr-o.jsonld                       # the same graph in JSON-LD
 │   ├── ratr-o.nt                           # the same graph in N-Triples
@@ -185,17 +180,17 @@ ramona_vkg_demo/
 │   ├── classify_press.py                   # Type A / Type B rule-based classification
 │   ├── ingest_press.py                     # press → Postgres observatory tables
 │   ├── ingest_ctdc.py                      # CTDC CSV → Postgres observatory tables
+│   ├── offline_vkg/                        # validate mappings and queries without Docker
 │   └── test_queries.sh
 ├── data/
 │   ├── raw/                                # scraper output (JSONL, git-ignored)
 │   └── processed/                          # classified output (JSONL + summary JSON)
 └── docs/
     ├── diagrams/                           # UML-style class diagrams, generated by scripts/gen_uml_diagrams.py
-    ├── AUDIT_O1_SUMMARY.md                 # what the audit passes found and fixed
     ├── COMPETENCY_QUESTIONS.md             # the 36 competency questions and the query answering each
     ├── MAPPING_COVERAGE.md                 # which terms a mapping produces and which it does not
     ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
-    ├── validation/                         # ROBOT validation and the execution of the 40 queries
+    ├── validation/                         # validation report and the execution of the 40 queries
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
     └── CTDC_HUTRO_RATRO_mapping.xlsx       # mapping workbook prepared for Prof. Ortiz
 ```

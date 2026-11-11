@@ -1,6 +1,6 @@
 # Mapping coverage of the declared vocabulary
 
-State on 10 November 2026, RATR-O v1.10.5, `mappings/ramona.obda` with 173 mappings. The published
+State on 10 November 2026, RATR-O v1.10.6, `mappings/ramona.obda` with 173 mappings. The published
 `mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,259 triples,
 triple for triple, and the same 142,213 over the seeds plus a 1-in-40 sample of the CTDC victim records.
 Generated from `scripts/audit_o1.py` section 10, which reports the same counts as a NOTE.
@@ -43,13 +43,6 @@ honest ones: the ontology models more than Ramona's current schema records.
   `:offerClassifierConfidence`.
 - Bilingual risk explanations `:riskExplanationEn` / `:riskExplanationEs` (the schema has a single
   `explanation_text`).
-
-## Fixed on 10 November 2026
-
-Five properties were declared and mappable from columns that already existed, and had simply never
-been wired. They are mapped now: `:observedCount`, `:patternHasKind`, `:dominanceBucketValue`,
-`:sourceAuthor`, `:datasetRecordId`. `:DominanceBucket` was an unconnected class (OOPS! P04); it is
-now the range of the new `:hasDominanceBucket` and is minted by `M-DominanceBucket`.
 
 ## Full list of terms not produced by a mapping
 
@@ -176,10 +169,8 @@ the repository, because the tables they read are created by `db/` and populated 
 - `public.victim`, `victim_exploitation` and `victim_means_of_control`: loaded by
   `scripts/ingest_ctdc.py` from the CTDC Global Synthetic Dataset v2025, which this repository does
   not redistribute. With the release downloaded, `python scripts/ingest_ctdc.py --csv <file>` loads
-  257,969 victim records, 189,096 exploitation rows and 276,562 means-of-control rows. This was run
-  for the first time on 10 November 2026, with foreign keys enforced, and the mappings and queries
-  over it were executed; `docs/validation/QUERY_EXECUTION_REPORT.md` has the results and the defects
-  it found.
+  257,969 victim records, 189,096 exploitation rows and 276,562 means-of-control rows.
+  `docs/validation/QUERY_EXECUTION_REPORT.md` gives the query results with them loaded.
 - `victim.communication_tool_code` and `public.victim_vulnerability`: CTDC has no variable for
   either, so `M-Victim-CommunicationTool` and `M-Victim-Vulnerability` stay empty after the CTDC load.
   Only victim records derived from press articles by `scripts/ingest_press.py` would fill them.

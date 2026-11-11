@@ -1,10 +1,10 @@
 # RATR-O vs HUTRO — Formal comparative analysis
 
-**Prepared for:** Prof. Magdalena Ortiz (TU Wien, Institute of Logic and Computation) as supporting material for the Dialogue Residency proposal, May to July 2026.
-**RATR-O version reviewed:** 1.10.2 (10 November 2026). The first version of this document reviewed 1.6.1 (22 April 2026).
+**Prepared for:** the Dialogue Residency at the Institute of Logic and Computation, TU Wien.
+**RATR-O version:** 1.10.6 (11 November 2026).
 **HUTRO version reviewed:** as published on BioPortal, upload date 22 April 2025, author Danial Zemchal Tesfahans, status Alpha.
 
-This document addresses the foreseeable reviewer question: *"An ontology for human trafficking already exists on BioPortal (HUTRO). What does RATR-O add, and what does it reuse, and why?"* It answers that question with a point-by-point comparison and a clear decision record.
+An ontology for human trafficking already exists on BioPortal: HUTRO. This document says what RATR-O reuses from it, what it adds, and why it was not built as an extension of it.
 
 ---
 
@@ -32,9 +32,9 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |
 | **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim` |
 | **Operational database binding (OBDA or R2RML)** | None | Ontop OBDA mapping + W3C R2RML mapping both shipped |
-| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack + 40 reference queries answering 36 competency questions. Not yet executed: Docker does not run on the machine this was built on |
+| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 40 reference queries answering 36 competency questions |
 | **Connected open dataset** | None | 257,969 CTDC records, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
-| **Provenance mechanism for each domain claim** | `inScheme` only | `:derivedFrom :EvidenceSource` on every domain instance |
+| **Provenance mechanism for each domain claim** | `inScheme` only | `:hasEvidenceSource :EvidenceSource`, with `:derivedFrom` for patterns and `:offerDocumentedIn` for offers |
 | **Documentation** | BioPortal class tree | HTML docs (100+ KB), dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
 | **Reproducibility** | Not applicable (static vocabulary) | Every statistic reproducible by running committed scripts |
 | **Licence** | Not explicitly stated | CC BY 4.0 (ontology), Apache 2.0 (code) |
@@ -44,24 +44,18 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 RATR-O records a close match to eight HUTRO concepts. "Close match" is the right relation when two
 concepts are similar enough to be interoperable in many applications but are not identical in scope.
 
-**How the alignment is recorded, and what happened to it in v1.10.2 and v1.10.3.** Each of the
-eight is asserted as `skos:closeMatch` against an IRI of the form
-`https://bioportal.bioontology.org/ontologies/HUTRO` + the concept's local name, concatenated with
-no separating slash or hash. That form looks like a web page URL with a name stuck on the end, and
-v1.10.2 withdrew all eight for exactly that reason: HUTRO's BioPortal submission metadata declares
-the placeholder namespace `http://www.example.com`, so the IRIs looked constructed and could not be
-checked, BioPortal serving the site behind a bot challenge.
+**How the alignment is recorded.** Each of the eight is asserted as `skos:closeMatch` against the
+concept IRI BioPortal reports for it: `https://bioportal.bioontology.org/ontologies/HUTRO` followed
+directly by the concept's local name, with no separating slash or hash. HUTRO's submission metadata
+declares the namespace `http://www.example.com`; the concatenated form is the one BioPortal serves and
+resolves, so it is the one used. Each IRI was opened in the BioPortal concept browser on 10 November
+2026 and found under the expected preferred label. Two local names are reproduced exactly as HUTRO
+writes them: `recuritment_method` and `smuggler_trafficker_communication_tools`.
 
-Withdrawing them went too far. On 10 November 2026 the eight concepts were opened one by one in the
-BioPortal concept browser, which reports exactly that concatenated form as each concept's Id and
-resolves it to the expected preferred label. Six of the eight withdrawn IRIs had been right. Two had
-not: HUTRO writes `recuritment_method`, which is misspelt at the source, and omits the conjunction in
-`smuggler_trafficker_communication_tools`. v1.10.3 restores all eight, each with a `skos:note` that
-records the concept's preferred label, that the IRI itself was verified and the date of the check.
 HUTRO's concepts are `skos:Concept` instances that also carry `owl:NamedIndividual`, so each match is
 an annotation assertion on the RATR-O class rather than an OWL object-property assertion, which keeps
 the file inside the OWL 2 QL profile. The reference tables in `db/04_schema_extension_v1.sql` carry
-both the label, in `hutro_concept_label`, and the verified IRI, in `hutro_concept_iri`.
+both the label, in `hutro_concept_label`, and the IRI, in `hutro_concept_iri`.
 
 For each:
 
@@ -96,7 +90,7 @@ The following are original contributions of RATR-O with no counterpart in HUTRO.
 
 ### Data-engineering layer (not present in any SKOS vocabulary)
 - Observatory measurement properties: `:observedCount`, `:pctOfCases`, `:dominanceBucketValue`, `:routeVictimCount`, `:routeEarliestYear`, `:routeLatestYear`.
-- Provenance properties: `:derivedFrom`, `:evidenceFor`, `:evidenceStrength`, `:evidenceArchivedUrl`.
+- Provenance properties: `:hasEvidenceSource`, `:derivedFrom`, `:offerDocumentedIn`, `:evidenceFor`, `:evidenceStrength`, `:evidenceArchivedUrl`.
 - Evidence-source hierarchy: `:EvidenceSource`, `:PressArticle`, `:OpenDatasetRecord`.
 
 ## What the two ontologies mean to say, in one sentence each
@@ -113,16 +107,7 @@ Three reasons:
 
 2. **Formal expressiveness.** SKOS does not offer subclass reasoning, domain and range axioms, or compatibility with OBDA tooling like Ontop. OWL 2 QL does. Since the project requires a Virtual Knowledge Graph running SPARQL over Postgres, OWL 2 QL is the right choice per Xiao, Ding, Cogrel and Calvanese (2019).
 
-3. **Respect for the source.** Overwriting HUTRO as a de-facto replacement would have been uncollegial toward the HUTRO author. A close match is the canonical way to acknowledge conceptual kinship without claiming authority over the other author's vocabulary, which is why the alignment is kept even while its IRIs are unverified.
-
-## Reviewer anticipation
-
-If a reviewer asks:
-
-- **"Why not just reuse HUTRO directly?"** — because HUTRO is SKOS-only, Eritrea-specific, and lacks the expressivity and data binding the project requires. But RATR-O formally cross-references HUTRO in eight places.
-- **"How do we know RATR-O is authoritative?"** — every claim either cites a canonical source (UNODC, UNICEF, ILO, FIFPro, Palermo Protocol, ENADID) or is computed from an open dataset (CTDC) by a committed script. See `docs/RIGOR_STATEMENT.md` and `docs/AUDIT_O1_SUMMARY.md`.
-- **"Is this over-specific to Mexico?"** — the FraudScheme taxonomy is extensible by design (a new scheme adds one subclass, one comment, one citation). Latin-American specificity is a feature for the residency scope, not a bug: Ramona is a Mexican organisation and the paper foregrounds that context.
-- **"Does the ontology reason?"** — yes, under DL-Lite query rewriting. The 30 SPARQL queries exercise class hierarchies (e.g., asking for `:Agent` returns both `:Employer` and `:Recruiter` instances) and property hierarchies (e.g., `:offeredBy` subsumes `:offeredByRecruiter` and `:offeredByEmployer`).
+3. **Respect for the source.** Overwriting HUTRO as a de-facto replacement would have been uncollegial toward the HUTRO author. A close match is the canonical way to acknowledge conceptual kinship without claiming authority over the other author's vocabulary.
 
 ## References
 

@@ -49,6 +49,6 @@ Every survivor testimony pattern and every trafficking route in the demo is link
 
 ## Notes for the Institute of Logic and Computation (TU Wien)
 
-All patterns and routes in RATR-O v0.1 are traceable to these public sources via the `:derivedFrom` property connecting a `:SurvivorTestimonyPattern` or a `:TraffickingRoute` to an `:EvidenceSource`. This traceability is one of the contributions of the proposed VKG: auditors, regulators and partner institutions can follow any detection claim back to its documentary source.
+Patterns and curated routes in RATR-O are traceable to these public sources: `:derivedFrom` connects a `:SurvivorTestimonyPattern` to an `:EvidenceSource`, and `:hasEvidenceSource` connects a `:TraffickingRoute` to one. This traceability is one of the contributions of the proposed VKG: auditors, regulators and partner institutions can follow any detection claim back to its documentary source.
 
 No personally identifiable information about survivors, candidates, recruiters or victims appears in the demo. The synthetic offers in `db/03_seed_cases.sql` are inspired by the patterns in these public sources but do not reproduce any real victim's case file.

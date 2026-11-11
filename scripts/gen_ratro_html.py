@@ -153,7 +153,7 @@ def write_serialisations(g):
 
     https://w3id.org/ratr-o negotiates on the media type the client asks for, so these three
     files have to exist and have to say the same thing as ratr-o.ttl. They are generated, not
-    edited: FOOPS! reported the ontology as unavailable in RDF when only Turtle was served.
+    edited.
     """
     for fmt, ext in (("pretty-xml", "rdf"), ("json-ld", "jsonld"), ("nt", "nt")):
         out = OUT.with_suffix("." + ext)

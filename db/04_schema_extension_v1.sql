@@ -12,16 +12,14 @@
 -- https://bioportal.bioontology.org/ontologies/HUTRO with the local name appended directly,
 -- with no separating slash or hash. Each of the IRIs below was checked one by one in the
 -- BioPortal concept browser on 10 November 2026 and resolved to the expected preferred label.
--- Two local names differ from the obvious spelling: HUTRO writes 'recuritment_method', which
--- is misspelt at the source, and 'smuggler_trafficker_communication_tools', without the
--- conjunction. Up to v1.10 this file used the corrected spellings, which do not resolve.
+-- Two local names are reproduced exactly as HUTRO writes them: 'recuritment_method' and
+-- 'smuggler_trafficker_communication_tools'.
 
 BEGIN;
 -- These tables live in the public schema, not in ramona, and mappings/ramona.obda reads
--- them as public.<table>. The search_path has to be set explicitly. Postgres's default is
--- "$user", public, and under docker-compose the database user is ramona and db/01 creates a
--- schema of that same name, so without this line every table below would be created in
--- ramona and the 26 mappings that read public.<table> would find nothing.
+-- them as public.<table>. The search_path is set explicitly because Postgres's default is
+-- "$user", public, and under docker-compose the database user and the schema created by
+-- db/01 are both called ramona.
 SET search_path TO public;
 
 

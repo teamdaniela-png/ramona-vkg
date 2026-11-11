@@ -39,23 +39,23 @@ Any reviewer inspecting the repository should find this document first. It docum
 ## Numerical gaps that are deliberately left open
 
 - **Ontology triples: 1,722, not a round number.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
-- **Seed offers: 1,382, not 2,000.** See the "no synthetic offers derived from CTDC" section above.
+- **Seed offers: 1,379 in `ramona.offers` and 295 in `ramona.press_offers`.** None is derived from CTDC records.
 - **Countries attested in CTDC: 92 of 248.** The other 156 are catalog entries flagged as such.
 
 ## How to verify
 
 - `python -c "import rdflib; g=rdflib.Graph(); g.parse('ontology/ratr-o.ttl','turtle'); print(len(g))"` returns the triple count.
-- `grep -c 'INSERT INTO offers' db/03_seed_cases.sql db/05_seed_cases_v1_2.sql` returns the offer count.
+- `scripts/offline_vkg/run_all.sh` loads the seeds, executes the mappings and prints the row counts of the 40 queries.
 - `grep -c '^  (' db/08_enriched_countries.sql` returns 248.
-- `scripts/test_queries.sh` runs the 40 reference SPARQL queries against the Ontop endpoint. Output is deterministic given the same Postgres state. Not yet executed: Docker does not run on the machine this was built on, so O3 is the one objective not demonstrated.
+- `scripts/test_queries.sh` runs the 40 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3).
 
 ## Licences
 
 - Ontology (RATR-O): CC BY 4.0.
 - Demonstrator code, scripts and SQL: Apache 2.0.
 - CTDC Global Synthetic Dataset: CC BY 4.0, IOM and partners, downloaded by each user from the CTDC website with attribution.
-- Press article references: URL attribution under fair dealing; no article text is reproduced in the repository.
+- Press article references: URL attribution. The repository carries short verbatim quotes of the offers the articles describe, with their source, and no full article text.
 
 Author: Daniela Camberos, Ramona AI.
 Reviewer: Prof. Magdalena Ortiz, TU Wien, Institute of Logic and Computation (proposed).
-Last updated: 10 November 2026.
+Last updated: 11 November 2026.

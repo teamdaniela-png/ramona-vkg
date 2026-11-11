@@ -1,11 +1,10 @@
 -- Ramona VKG — victim counts of the CTDC corridors
 --
--- db/06_ctdc_routes.sql keeps the 1,771 (citizenship, country of exploitation) pairs that
--- the CTDC Global Synthetic Dataset v2025 attests with at least 3 victims, and drops the
--- count on the way in, so nothing could populate :routeVictimCount. The counts below are
--- recomputed from the same 257,969 records with the same grouping and the same threshold,
--- and the set of pairs was checked to be exactly the set db/06 loads. They are aggregates
--- of a release that is already synthetic; no record-level data is added.
+-- db/06_ctdc_routes.sql holds the 1,771 (citizenship, country of exploitation) pairs that
+-- the CTDC Global Synthetic Dataset v2025 attests with at least 3 victims. This file holds
+-- the number of victims on each, computed from the same 257,969 records with the same
+-- grouping and the same threshold, and mapped to :routeVictimCount. The counts are
+-- aggregates of a release that is already synthetic; no record-level data is added.
 
 SET search_path TO ramona, public;
 

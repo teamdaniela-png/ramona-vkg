@@ -121,6 +121,5 @@ python3 scripts/build_social_module.py
 ## Status
 
 - Ontology: in OWL 2 QL under the OWL API checker (ROBOT 1.9.11), consistent under HermiT with the 1,500 synthetic items (`docs/validation/VALIDATION_REPORT.md`).
-- Mappings: OBDA and R2RML regenerated, R2RML parses.
-- **Not yet executed against Postgres + Ontop** (Docker not running as of 3 Nov 2026).
-  Q31 to Q35 are syntactically valid; their results are pending the O3 boot.
+- Mappings: Ontop native and R2RML, which produce the same graph.
+- Queries Q31 to Q35 execute over the materialised mappings and return rows (`docs/validation/QUERY_EXECUTION_REPORT.md`).

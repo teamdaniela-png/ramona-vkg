@@ -22,17 +22,17 @@
     dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10.5" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10.5> ;
-    owl:priorVersion <https://w3id.org/ratr-o/1.10.4> ;
+    owl:versionInfo "1.10.6" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.6> ;
+    owl:priorVersion <https://w3id.org/ratr-o/1.10.5> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:created "2026-04-21"^^xsd:date ;
-    dct:modified "2026-11-10"^^xsd:date ;
+    dct:modified "2026-11-11"^^xsd:date ;
     dct:publisher "Ramona AI" ;
     vann:preferredNamespaceUri "https://w3id.org/ratr-o#" ;
     vann:preferredNamespacePrefix "ratro" ;
-    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.5. https://w3id.org/ratr-o"@en ;
-    skos:note "v1.9 (3 Nov 2026): persistent namespace moved to https://w3id.org/ratr-o (previous IRIs under ramona.ai were placeholders on a domain not controlled by the project). Adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.9.1: in the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11); 16 data ranges outside the QL datatype map moved to rdfs:Literal; consistent under HermiT with and without data. See docs/validation/VALIDATION_REPORT.md. v1.10: real press offer corpus (data/real/press_offers.csv); Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance. v1.10.1, v1.10.2 and v1.10.3: three audit passes before the delivery of O1, which found and fixed nineteen defects. The third pass executed the 40 reference queries and the seed files for the first time rather than reading them; see docs/AUDIT_O1_SUMMARY.md and docs/validation/QUERY_EXECUTION_REPORT.md. v1.10.3 restores the eight skos:closeMatch alignments to HUTRO with IRIs verified one by one in the BioPortal concept browser on 10 November 2026. v1.10.4: fourth pass. The four published serialisations were checked for isomorphism, mappings/ramona.r2rml.ttl was executed and produces the same 71,963 triples as the .obda, and 82 properties that carried only an English label were given the Spanish one, so all 283 terms are bilingual. Note on the published history: the commit that added the FAIR metadata and the extra serialisations changed this file while still calling itself 1.10.3, so the tag v1.10.3 and the branch disagreed about what 1.10.3 denotes. The tag v1.10.3 is left pointing where it pointed. v1.10.5: fifth pass. The victim module was loaded for the first time, from the CTDC release, and the domain and range axioms were checked against the data: the mappings stated a victim's country of exploitation with :inCountry and the kind of a source with :datasetName, so the TBox entailed that victims were job offers and press sources were open-dataset records. Adds :exploitedInCountry, :sourceKind and :schemeCode; the victim mappings now mint the :DemographicProfile the TBox always required. 1.10.5 is the version to cite."@en ;
+    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.6. https://w3id.org/ratr-o"@en ;
+    skos:note "v1.9 (3 November 2026): persistent namespace https://w3id.org/ratr-o; adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.10: Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance over the verified press offer corpus. v1.10.6 (11 November 2026): the version delivered as Objective 1 of the Dialogue Residency at TU Wien. Adds :hasEvidenceSource, :exploitedInCountry, :sourceKind and :schemeCode. Every term carries an English and a Spanish label and a definition, and the eight alignments to HUTRO carry concept IRIs verified in BioPortal. In the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11) and consistent under HermiT with and without data; see docs/validation/VALIDATION_REPORT.md."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
@@ -226,7 +226,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:seeAlso <https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
                  <http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
                  <https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/> ;
-    skos:note "Checked 10 November 2026: the oaxaca.gob.mx page returns HTTP 500. The Internet Archive snapshot of 24 February 2025 is cited alongside it."@en .
+    skos:note "The Internet Archive snapshot of 24 February 2025 is cited alongside the oaxaca.gob.mx page, which was unavailable on 10 November 2026."@en .
 
 :OrganRemovalRecruitmentScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -273,7 +273,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:seeAlso <https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
                  <http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
                  <https://blog.derechosinfancia.org.mx/> ;
-    skos:note "Checked 10 November 2026: the zapopan.gob.mx page does not respond. The Internet Archive snapshot of 23 July 2026 is cited alongside it."@en .
+    skos:note "The Internet Archive snapshot of 23 July 2026 is cited alongside the zapopan.gob.mx page, which was unavailable on 10 November 2026."@en .
 
 :BeggingRingScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -364,7 +364,7 @@ skos:closeMatch a owl:AnnotationProperty .
 :schemeCode a owl:DatatypeProperty ;
     rdfs:domain :FraudScheme ; rdfs:range xsd:string ;
     rdfs:label "scheme code"@en, "código del esquema"@es ;
-    rdfs:comment "The local name of the :FraudScheme subclass an individual scheme occurrence belongs to, as a string (for example PayToWorkScheme). It lets a query group occurrences by scheme without querying the class hierarchy. Introduced in v1.10.5: the reference queries derived this code from the fragment of the occurrence IRI, which has none."@en .
+    rdfs:comment "The local name of the :FraudScheme subclass an individual scheme occurrence belongs to, as a string (for example PayToWorkScheme). It lets a query group occurrences by scheme without querying the class hierarchy."@en .
 
 :routeVictimCount a owl:DatatypeProperty ;
     rdfs:domain :TraffickingRoute ; rdfs:range xsd:integer ;
@@ -520,8 +520,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:label "TIP event has purpose"@en, "el evento de trata tiene el propósito"@es ;
     rdfs:comment "Relates a TIP event to one of its Palermo Purposes. ICS-TIP requires at least one purpose per event."@en .
 
-# Close-match alignment to ICS-TIP variables (provisional; verbatim list
-# pending the ICS-TIP v4 PDF cross-check).
+# Pointers to ICS-TIP (IOM and UNODC, 2023), where the corresponding variables are defined.
 
 :RecruitmentMethod rdfs:seeAlso <https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf> .
 :TypeOfExploitation rdfs:seeAlso <https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf> .
@@ -812,7 +811,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "The mechanism by which a potential victim is initially approached and enlisted into a trafficking or fraudulent-employment scheme."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
     skos:closeMatch hutro:recuritment_method ;
-    skos:note "Close match to the HUTRO concept 'recruitment method' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Recruitment Method'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. The local name reproduces the spelling used in HUTRO, recuritment_method, which is misspelt at the source. Versions up to 1.10 of this file used the corrected spelling, which does not resolve."@en .
+    skos:note "Close match to the HUTRO concept 'recruitment method' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Recruitment Method'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. The local name reproduces the spelling HUTRO uses, recuritment_method."@en .
 
 :TypeOfExploitation a owl:Class ;
     rdfs:label "Type of exploitation"@en, "Tipo de explotación"@es ;
@@ -840,7 +839,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "A tool used for communication between recruiters, smugglers, traffickers or victims. Distinct from Platform because it describes the tool itself, not the platform it runs on."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> ;
     skos:closeMatch hutro:smuggler_trafficker_communication_tools ;
-    skos:note "Close match to the HUTRO concept 'smuggler and trafficker communication tools' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Smuggler and Trafficker Communication Tools'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. HUTRO omits the conjunction in the local name. Versions up to 1.10 of this file used smuggler_and_trafficker_communication_tools, which does not resolve."@en .
+    skos:note "Close match to the HUTRO concept 'smuggler and trafficker communication tools' (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal submission 1 of 22 April 2025, status alpha, SKOS format). The concept IRI was verified on 10 November 2026 in the BioPortal concept browser, which reports it as the concept Id and resolves it to the preferred label 'Smuggler and Trafficker Communication Tools'. HUTRO concepts are skos:Concept instances that also carry owl:NamedIndividual, so the match is recorded as an annotation assertion on this class rather than as an OWL object-property assertion, which keeps the ontology inside the OWL 2 QL profile. HUTRO writes the local name without the conjunction: smuggler_trafficker_communication_tools."@en .
 
 :DocumentationType a owl:Class ;
     rdfs:label "Documentation type"@en, "Tipo de documentación"@es ;
@@ -959,7 +958,7 @@ skos:closeMatch a owl:AnnotationProperty .
 :exploitedInCountry a owl:ObjectProperty ;
     rdfs:domain :Victim ; rdfs:range :Country ;
     rdfs:label "exploited in country"@en, "explotada en el país"@es ;
-    rdfs:comment "Relates a victim record to the country in which the exploitation took place (CountryOfExploitation in CTDC). Introduced in v1.10.5: until then the mappings stated it with :inCountry, whose domain is :JobOffer, so the TBox entailed that every victim with a country of exploitation was a job offer."@en .
+    rdfs:comment "Relates a victim record to the country in which the exploitation took place (CountryOfExploitation in CTDC)."@en .
 
 :inLanguage a owl:ObjectProperty ;
     rdfs:domain :JobOffer ; rdfs:range :Language ;
@@ -1345,7 +1344,7 @@ skos:closeMatch a owl:AnnotationProperty .
 :sourceKind a owl:DatatypeProperty ;
     rdfs:domain :EvidenceSource ; rdfs:range xsd:string ;
     rdfs:label "source kind"@en, "tipo de fuente"@es ;
-    rdfs:comment "The kind of evidence source as recorded at ingestion: press_article or press, ctdc, unodc, rnpdno, organisation_material, statistics_report. Introduced in v1.10.5: until then the mappings stated it with :datasetName, whose domain is :OpenDatasetRecord, so every source that carried a kind, press articles included, was entailed to be an open-dataset record."@en .
+    rdfs:comment "The kind of evidence source as recorded at ingestion: press_article or press, ctdc, unodc, rnpdno, organisation_material, statistics_report."@en .
 
 :datasetName a owl:DatatypeProperty ;
     rdfs:domain :OpenDatasetRecord ; rdfs:range xsd:string ;
@@ -1369,7 +1368,7 @@ skos:closeMatch a owl:AnnotationProperty .
                  <https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries> ,
                  <https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/> .
 
-:Victim skos:note "Victim records come from CTDC v2025 (the IOM differential-privacy synthetic release) and from anonymised press case references, loaded by scripts/ingest_ctdc.py. The seed files in db/ create the victim tables but populate none of them, because the CTDC release is not redistributed in this repository. Until that script is run the 18 victim mappings produce nothing and the queries that rest on them return no rows; docs/MAPPING_COVERAGE.md lists which."@en ;
+:Victim skos:note "Victim records come from CTDC v2025, the IOM differential-privacy synthetic release. The release is not redistributed in this repository: db/ creates the victim tables and scripts/ingest_ctdc.py fills them from a downloaded copy."@en ;
     rdfs:seeAlso <https://www.ctdatacollaborative.org/page/global-synthetic-dataset> .
 
 :TraffickingRoute skos:note "1,778 routes in the seeds: 1,771 CTDC corridors, each with at least 3 victims, plus 7 routes attested in the press and curated by hand. Both sets are keyed by ISO 3166-1 alpha-3. Counted against the seed files on 10 November 2026."@en .
@@ -1379,7 +1378,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :SurvivorTestimonyPattern skos:note "95 patterns in the seeds. 88 carry one of six kind values: classic_a (5), credible_b (7), communication (7), recruitment (9), exploitation (10), deep_textual (50); 7 carry none. Five of the six kinds have a subclass here; deep_textual has none and is read off :patternHasKind. Counted against the seed files on 10 November 2026."@en .
 
-:JobOffer skos:note "1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Earlier versions of this note claimed 2,050, counting 50 curated cases and 668 offers synthesised from CTDC records; the seeds contain 47 curated cases and no CTDC-synthesised offers. Counted against the seed files on 10 November 2026."@en .
+:JobOffer skos:note "1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Counted against the seed files on 10 November 2026."@en .
 
 :PalermoAction skos:note "Five canonical sub-concepts from Article 3(a) of the Palermo Protocol."@en ;
     rdfs:seeAlso <https://www.ohchr.org/en/instruments-mechanisms/instruments/protocol-prevent-suppress-and-punish-trafficking-persons> .
@@ -1393,9 +1392,9 @@ skos:closeMatch a owl:AnnotationProperty .
 
 :Country skos:note "248 countries and territories loaded from the ISO 3166-1 tables through pycountry (db/08_enriched_countries.sql); 92 of them are attested in the CTDC corridors. Counted against the seed files on 10 November 2026."@en .
 
-:CommunicationTool skos:note "Eight tools in the reference vocabulary. Of the 295 offers in the verified press corpus, 106 name the platform they were carried on: WhatsApp leads with 37 of those 106, which is 12.5% of the whole corpus. The figure of 21% in earlier versions of this note is not supported by the shipped data and is withdrawn. Counted on 10 November 2026."@en .
+:CommunicationTool skos:note "Eight tools in the reference vocabulary. Of the 295 offers in the verified press corpus, 106 name the platform they were carried on: WhatsApp leads with 37 of those 106, which is 12.5% of the whole corpus. Counted on 10 November 2026."@en .
 
-:EvidenceSource skos:note "Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 of the 1,379 rows of ramona.offers carry :offerDocumentedIn (db/13_offer_provenance.sql); the 47 hand-curated offers do not, because the seeds do not record which of the five curated sources each came from, and 7 synthesised offers find no matching source. Routes and patterns carry :hasEvidenceSource. Counted on 10 November 2026."@en .
+:EvidenceSource skos:note "Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 offers carry :offerDocumentedIn (db/13_offer_provenance.sql). Patterns carry :derivedFrom; routes and victim records carry :hasEvidenceSource. Counted on 10 November 2026."@en .
 
 
 

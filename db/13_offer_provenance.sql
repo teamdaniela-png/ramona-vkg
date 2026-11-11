@@ -1,21 +1,17 @@
 -- Ramona VKG — offer provenance and evidence-source kind
 --
--- Two gaps found while executing the 40 reference queries against the seeds:
+-- 1. Links each offer in ramona.offers to the evidence source it was synthesised from. The
+--    raw_text of a synthesised offer is exactly
+--    '[Sintetizado desde articulo de prensa: ' || source_title || ']', so the join below is
+--    an equality on text the seeds already contain. 1,325 of the 1,332 synthesised offers
+--    match a source; where two rows duplicate the same article, MIN(source_id) picks one
+--    deterministically; 7 match none and stay NULL. The 47 hand-curated offers of db/03
+--    carry no source.
 --
--- 1. ramona.offers had no link to ramona.evidence_sources, so the 1,332 offers that
---    db/05_seed_cases_v1_2.sql synthesises from press articles carried no provenance, and
---    :EvidenceSource's claim that every observatory fact traces to a source did not hold
---    for offers. The link is recovered, not invented: each synthesised offer's raw_text is
---    exactly '[Sintetizado desde articulo de prensa: ' || source_title || ']', so the join
---    below is an equality on text the seeds already contain. 1,325 of the 1,332 match a
---    single source; 6 match two rows that duplicate the same article, and MIN(source_id)
---    picks one deterministically; 7 find no match and stay NULL.
---
--- 2. ramona.evidence_sources had no kind, so no source could be typed as a press article
---    and queries asking for ?s a :PressArticle over this registry returned nothing. The
---    kind is derived from how each row entered the database: db/05 inserts 1,332 rows
---    scraped from the press corpus, whose source_title ends in ' - ' || source_outlet,
---    and db/02 inserts 5 hand-curated rows, each named explicitly below.
+-- 2. Records the kind of each evidence source, from how the row entered the database:
+--    db/05 inserts 1,332 rows scraped from the press corpus, whose source_title ends in
+--    ' - ' || source_outlet, and db/02 inserts 5 hand-curated rows, each named below.
+--    mappings/ramona.obda types the press articles as :PressArticle from this column.
 --
 -- Idempotent: re-running it recomputes the same values.
 

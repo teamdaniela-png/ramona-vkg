@@ -1,7 +1,6 @@
 -- Enriched country catalogue — full ISO 3166-1 alpha-3 list
--- 248 countries, 92 attested in CTDC. country_code is the ISO 3166-1 alpha-2 code
--- (corrected 10 Nov 2026: it previously held the first two letters of the alpha-3 code,
--- which collided for 39 keys and overwrote Colombia, Spain and Argentina on load).
+-- 248 countries, 92 attested in CTDC. country_code is the ISO 3166-1 alpha-2 code and
+-- country_iso3 the alpha-3 code, both taken from the ISO tables through pycountry.
 
 SET search_path TO ramona, public;
 ALTER TABLE ramona.countries ADD COLUMN IF NOT EXISTS country_iso3 TEXT;
