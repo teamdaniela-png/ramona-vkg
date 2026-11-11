@@ -34,6 +34,19 @@ SQLITE_PATH=$WORK/ramona.db PYTHONPATH=scripts/offline_vkg/shim \
 The full load is 257,969 victim records. The in-memory query runner is comfortable with a sample;
 `docs/validation/QUERY_EXECUTION_REPORT.md` used one victim in forty.
 
+## Regenerating the mapping
+
+Three parts of `mappings/ramona.obda` are generated from data files, and the R2RML from the whole:
+
+```bash
+python3 scripts/build_press_offers_module.py
+python3 scripts/build_social_module.py
+python3 scripts/build_legit_offers_module.py
+python3 scripts/obda_to_r2rml.py
+```
+
+Run in this order they reproduce the committed files byte for byte.
+
 ## What this does not replace
 
 Query answering by reformulation is Ontop's job and is exercised by the Docker stack described in the

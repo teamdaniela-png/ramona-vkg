@@ -993,372 +993,6 @@
         rr:class :SportsTalentScheme ;
     ] .
 
-<#TM_M_Social_Post> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'post'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :SocialMediaPost ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemText ;
-        rr:objectMap [ rr:column "item_text" ; rr:datatype xsd:string ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemPostedAt ;
-        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:dateTime ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemIsSynthetic ;
-        rr:objectMap [ rr:column "is_synthetic" ; rr:datatype xsd:boolean ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemPostedOn ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{platform_id}" ]
-    ] .
-
-<#TM_M_Social_Comment> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'comment'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :SocialMediaComment ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemText ;
-        rr:objectMap [ rr:column "item_text" ; rr:datatype xsd:string ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemPostedAt ;
-        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:dateTime ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemIsSynthetic ;
-        rr:objectMap [ rr:column "is_synthetic" ; rr:datatype xsd:boolean ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemPostedOn ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{platform_id}" ]
-    ] .
-
-<#TM_M_Social_Hashtags> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, hashtags FROM ramona.social_items WHERE hashtags IS NOT NULL""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHashtags ;
-        rr:objectMap [ rr:column "hashtags" ; rr:datatype xsd:string ]
-    ] .
-
-<#TM_M_Social_Audio> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, audio_hint FROM ramona.social_items WHERE item_kind = 'post' AND audio_hint IS NOT NULL""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :audioDescription ;
-        rr:objectMap [ rr:column "audio_hint" ; rr:datatype xsd:string ]
-    ] .
-
-<#TM_M_Social_Visual> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, visual_hint FROM ramona.social_items WHERE item_kind = 'post' AND visual_hint IS NOT NULL""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :visualDescription ;
-        rr:objectMap [ rr:column "visual_hint" ; rr:datatype xsd:string ]
-    ] .
-
-<#TM_M_Social_WeeklyPay> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, weekly_pay_mxn FROM ramona.social_items WHERE item_kind = 'post' AND weekly_pay_mxn IS NOT NULL""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :promisedWeeklyPayMXN ;
-        rr:objectMap [ rr:column "weekly_pay_mxn" ; rr:datatype xsd:decimal ]
-    ] .
-
-<#TM_M_Social_SelfApplication> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE label = 'autopostulacion'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :SelfApplicationComment ;
-    ] .
-
-<#TM_M_Social_RecruiterReply> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE label = 'respuesta_reclutador'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :RecruiterReplyComment ;
-    ] .
-
-<#TM_M_Social_Cond_NR> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :DirectRecruitmentPost ;
-    ] .
-
-<#TM_M_Social_Cond_ECC> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :CriminalCultureExaltationPost ;
-    ] .
-
-<#TM_M_Social_Cond_AVC> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_avc""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :CriminalLifeAspirationPost ;
-    ] .
-
-<#TM_M_Social_Cond_A> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_a""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :AcousticFramingPost ;
-    ] .
-
-<#TM_M_Social_Story_Enrol> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_ecc""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :EnrolInCrimeStoryPost ;
-    ] .
-
-<#TM_M_Social_Story_Emotional> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_a""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :EmotionalConnectionStoryPost ;
-    ] .
-
-<#TM_M_Social_Story_Belico> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc AND cond_a AND cond_avc""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-        rr:class :BelicoStoryPost ;
-    ] .
-
-<#TM_M_Lexicon_Term> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT term_id, term_text, pattern, category, is_verbatim FROM ramona.lexicon_terms""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ;
-        rr:class :LexiconTerm ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :lexiconTermText ;
-        rr:objectMap [ rr:column "term_text" ; rr:datatype xsd:string ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :lexiconPattern ;
-        rr:objectMap [ rr:column "pattern" ; rr:datatype xsd:string ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :lexiconCategory ;
-        rr:objectMap [ rr:column "category" ; rr:datatype xsd:string ]
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :lexiconIsVerbatim ;
-        rr:objectMap [ rr:column "is_verbatim" ; rr:datatype xsd:boolean ]
-    ] .
-
-<#TM_M_Lexicon_Source> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT term_id, source_location FROM ramona.lexicon_terms WHERE is_verbatim""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :termDocumentedIn ;
-        rr:object <https://w3id.org/ratr-o#ColmexScrollAlJale2025>
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :lexiconSourceLocation ;
-        rr:objectMap [ rr:column "source_location" ; rr:datatype xsd:string ]
-    ] .
-
-<#TM_M_Social_Term> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id, term_id FROM ramona.social_item_terms""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemMatchesTerm ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ]
-    ] .
-
-<#TM_M_Social_Signal_GroupCodeSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo" ]
-    ] .
-
-<#TM_M_Social_SignalType_GroupCodeSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo" ;
-        rr:class :GroupCodeSignal ;
-    ] .
-
-<#TM_M_Social_Signal_GroupEmojiSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo" ]
-    ] .
-
-<#TM_M_Social_SignalType_GroupEmojiSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo" ;
-        rr:class :GroupEmojiSignal ;
-    ] .
-
-<#TM_M_Social_Signal_PrivateChannelCallSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado" ]
-    ] .
-
-<#TM_M_Social_SignalType_PrivateChannelCallSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado" ;
-        rr:class :PrivateChannelCallSignal ;
-    ] .
-
-<#TM_M_Social_Signal_HighWeeklyPaySignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto" ]
-    ] .
-
-<#TM_M_Social_SignalType_HighWeeklyPaySignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto" ;
-        rr:class :HighWeeklyPaySignal ;
-    ] .
-
-<#TM_M_Social_Signal_FamilyAppealSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia" ]
-    ] .
-
-<#TM_M_Social_SignalType_FamilyAppealSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia" ;
-        rr:class :FamilyAppealSignal ;
-    ] .
-
-<#TM_M_Social_Signal_MinorAgeMentionSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor" ]
-    ] .
-
-<#TM_M_Social_SignalType_MinorAgeMentionSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor" ;
-        rr:class :MinorAgeMentionSignal ;
-    ] .
-
-<#TM_M_Social_Signal_WomenInvitationSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres" ]
-    ] .
-
-<#TM_M_Social_SignalType_WomenInvitationSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres" ;
-        rr:class :WomenInvitationSignal ;
-    ] .
-
-<#TM_M_Social_Signal_NationalReachSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional" ]
-    ] .
-
-<#TM_M_Social_SignalType_NationalReachSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional" ;
-        rr:class :NationalReachSignal ;
-    ] .
-
-<#TM_M_Social_Signal_RecruitmentHashtagSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento" ]
-    ] .
-
-<#TM_M_Social_SignalType_RecruitmentHashtagSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento" ;
-        rr:class :RecruitmentHashtagSignal ;
-    ] .
-
-<#TM_M_Social_Signal_FatalismSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate :itemHasSignal ;
-        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo" ]
-    ] .
-
-<#TM_M_Social_SignalType_FatalismSignal> a rr:TriplesMap ;
-    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'""" ] ;
-    rr:subjectMap [
-        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo" ;
-        rr:class :FatalismSignal ;
-    ] .
-
 <#TM_M_Press_Offer> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT offer_uid, confidence FROM ramona.press_offers""" ] ;
     rr:subjectMap [
@@ -1908,6 +1542,372 @@
     rr:subjectMap [
         rr:template "https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme" ;
         rr:class :ConstructionLabourBondageScheme ;
+    ] .
+
+<#TM_M_Social_Post> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'post'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :SocialMediaPost ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemText ;
+        rr:objectMap [ rr:column "item_text" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemPostedAt ;
+        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:dateTime ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemIsSynthetic ;
+        rr:objectMap [ rr:column "is_synthetic" ; rr:datatype xsd:boolean ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemPostedOn ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{platform_id}" ]
+    ] .
+
+<#TM_M_Social_Comment> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'comment'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :SocialMediaComment ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemText ;
+        rr:objectMap [ rr:column "item_text" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemPostedAt ;
+        rr:objectMap [ rr:column "posted_at" ; rr:datatype xsd:dateTime ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemIsSynthetic ;
+        rr:objectMap [ rr:column "is_synthetic" ; rr:datatype xsd:boolean ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemPostedOn ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/platform/{platform_id}" ]
+    ] .
+
+<#TM_M_Social_Hashtags> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, hashtags FROM ramona.social_items WHERE hashtags IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHashtags ;
+        rr:objectMap [ rr:column "hashtags" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Social_Audio> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, audio_hint FROM ramona.social_items WHERE item_kind = 'post' AND audio_hint IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :audioDescription ;
+        rr:objectMap [ rr:column "audio_hint" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Social_Visual> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, visual_hint FROM ramona.social_items WHERE item_kind = 'post' AND visual_hint IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :visualDescription ;
+        rr:objectMap [ rr:column "visual_hint" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Social_WeeklyPay> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, weekly_pay_mxn FROM ramona.social_items WHERE item_kind = 'post' AND weekly_pay_mxn IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :promisedWeeklyPayMXN ;
+        rr:objectMap [ rr:column "weekly_pay_mxn" ; rr:datatype xsd:decimal ]
+    ] .
+
+<#TM_M_Social_SelfApplication> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE label = 'autopostulacion'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :SelfApplicationComment ;
+    ] .
+
+<#TM_M_Social_RecruiterReply> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE label = 'respuesta_reclutador'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :RecruiterReplyComment ;
+    ] .
+
+<#TM_M_Social_Cond_NR> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :DirectRecruitmentPost ;
+    ] .
+
+<#TM_M_Social_Cond_ECC> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :CriminalCultureExaltationPost ;
+    ] .
+
+<#TM_M_Social_Cond_AVC> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_avc""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :CriminalLifeAspirationPost ;
+    ] .
+
+<#TM_M_Social_Cond_A> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_a""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :AcousticFramingPost ;
+    ] .
+
+<#TM_M_Social_Story_Enrol> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_ecc""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :EnrolInCrimeStoryPost ;
+    ] .
+
+<#TM_M_Social_Story_Emotional> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_a""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :EmotionalConnectionStoryPost ;
+    ] .
+
+<#TM_M_Social_Story_Belico> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc AND cond_a AND cond_avc""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+        rr:class :BelicoStoryPost ;
+    ] .
+
+<#TM_M_Lexicon_Term> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT term_id, term_text, pattern, category, is_verbatim FROM ramona.lexicon_terms""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ;
+        rr:class :LexiconTerm ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :lexiconTermText ;
+        rr:objectMap [ rr:column "term_text" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :lexiconPattern ;
+        rr:objectMap [ rr:column "pattern" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :lexiconCategory ;
+        rr:objectMap [ rr:column "category" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :lexiconIsVerbatim ;
+        rr:objectMap [ rr:column "is_verbatim" ; rr:datatype xsd:boolean ]
+    ] .
+
+<#TM_M_Lexicon_Source> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT term_id, source_location FROM ramona.lexicon_terms WHERE is_verbatim""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :termDocumentedIn ;
+        rr:object <https://w3id.org/ratr-o#ColmexScrollAlJale2025>
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :lexiconSourceLocation ;
+        rr:objectMap [ rr:column "source_location" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_Social_Term> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id, term_id FROM ramona.social_item_terms""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemMatchesTerm ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/lexicon/{term_id}" ]
+    ] .
+
+<#TM_M_Social_Signal_GroupCodeSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo" ]
+    ] .
+
+<#TM_M_Social_SignalType_GroupCodeSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo" ;
+        rr:class :GroupCodeSignal ;
+    ] .
+
+<#TM_M_Social_Signal_GroupEmojiSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo" ]
+    ] .
+
+<#TM_M_Social_SignalType_GroupEmojiSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo" ;
+        rr:class :GroupEmojiSignal ;
+    ] .
+
+<#TM_M_Social_Signal_PrivateChannelCallSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado" ]
+    ] .
+
+<#TM_M_Social_SignalType_PrivateChannelCallSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado" ;
+        rr:class :PrivateChannelCallSignal ;
+    ] .
+
+<#TM_M_Social_Signal_HighWeeklyPaySignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto" ]
+    ] .
+
+<#TM_M_Social_SignalType_HighWeeklyPaySignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto" ;
+        rr:class :HighWeeklyPaySignal ;
+    ] .
+
+<#TM_M_Social_Signal_FamilyAppealSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia" ]
+    ] .
+
+<#TM_M_Social_SignalType_FamilyAppealSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia" ;
+        rr:class :FamilyAppealSignal ;
+    ] .
+
+<#TM_M_Social_Signal_MinorAgeMentionSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor" ]
+    ] .
+
+<#TM_M_Social_SignalType_MinorAgeMentionSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor" ;
+        rr:class :MinorAgeMentionSignal ;
+    ] .
+
+<#TM_M_Social_Signal_WomenInvitationSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres" ]
+    ] .
+
+<#TM_M_Social_SignalType_WomenInvitationSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres" ;
+        rr:class :WomenInvitationSignal ;
+    ] .
+
+<#TM_M_Social_Signal_NationalReachSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional" ]
+    ] .
+
+<#TM_M_Social_SignalType_NationalReachSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional" ;
+        rr:class :NationalReachSignal ;
+    ] .
+
+<#TM_M_Social_Signal_RecruitmentHashtagSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento" ]
+    ] .
+
+<#TM_M_Social_SignalType_RecruitmentHashtagSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento" ;
+        rr:class :RecruitmentHashtagSignal ;
+    ] .
+
+<#TM_M_Social_Signal_FatalismSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :itemHasSignal ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo" ]
+    ] .
+
+<#TM_M_Social_SignalType_FatalismSignal> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo" ;
+        rr:class :FatalismSignal ;
     ] .
 
 <#TM_M_Legit_Offer> a rr:TriplesMap ;

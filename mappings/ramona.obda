@@ -384,158 +384,6 @@ mappingId   M-Exemplar-SchemeType-SportsTalentScheme
 target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> a :SportsTalentScheme .
 source      SELECT DISTINCT scheme_code FROM ramona.fraudscheme_exemplars WHERE scheme_code = 'SportsTalentScheme'
 
-mappingId   M-Social-Post
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SocialMediaPost ; :itemText {item_text}^^xsd:string ; :itemPostedAt {posted_at}^^xsd:dateTime ; :itemIsSynthetic {is_synthetic}^^xsd:boolean ; :itemPostedOn <https://w3id.org/ratr-o/data/platform/{platform_id}> .
-source      SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'post'
-
-mappingId   M-Social-Comment
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SocialMediaComment ; :itemText {item_text}^^xsd:string ; :itemPostedAt {posted_at}^^xsd:dateTime ; :itemIsSynthetic {is_synthetic}^^xsd:boolean ; :itemPostedOn <https://w3id.org/ratr-o/data/platform/{platform_id}> .
-source      SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'comment'
-
-mappingId   M-Social-Hashtags
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHashtags {hashtags}^^xsd:string .
-source      SELECT item_id, hashtags FROM ramona.social_items WHERE hashtags IS NOT NULL
-
-mappingId   M-Social-Audio
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :audioDescription {audio_hint}^^xsd:string .
-source      SELECT item_id, audio_hint FROM ramona.social_items WHERE item_kind = 'post' AND audio_hint IS NOT NULL
-
-mappingId   M-Social-Visual
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :visualDescription {visual_hint}^^xsd:string .
-source      SELECT item_id, visual_hint FROM ramona.social_items WHERE item_kind = 'post' AND visual_hint IS NOT NULL
-
-mappingId   M-Social-WeeklyPay
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :promisedWeeklyPayMXN {weekly_pay_mxn}^^xsd:decimal .
-source      SELECT item_id, weekly_pay_mxn FROM ramona.social_items WHERE item_kind = 'post' AND weekly_pay_mxn IS NOT NULL
-
-mappingId   M-Social-SelfApplication
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SelfApplicationComment .
-source      SELECT item_id FROM ramona.social_items WHERE label = 'autopostulacion'
-
-mappingId   M-Social-RecruiterReply
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :RecruiterReplyComment .
-source      SELECT item_id FROM ramona.social_items WHERE label = 'respuesta_reclutador'
-
-mappingId   M-Social-Cond-NR
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :DirectRecruitmentPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr
-
-mappingId   M-Social-Cond-ECC
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :CriminalCultureExaltationPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc
-
-mappingId   M-Social-Cond-AVC
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :CriminalLifeAspirationPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_avc
-
-mappingId   M-Social-Cond-A
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :AcousticFramingPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_a
-
-mappingId   M-Social-Story-Enrol
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :EnrolInCrimeStoryPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_ecc
-
-mappingId   M-Social-Story-Emotional
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :EmotionalConnectionStoryPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_a
-
-mappingId   M-Social-Story-Belico
-target      <https://w3id.org/ratr-o/data/social/{item_id}> a :BelicoStoryPost .
-source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc AND cond_a AND cond_avc
-
-mappingId   M-Lexicon-Term
-target      <https://w3id.org/ratr-o/data/lexicon/{term_id}> a :LexiconTerm ; :lexiconTermText {term_text}^^xsd:string ; :lexiconPattern {pattern}^^xsd:string ; :lexiconCategory {category}^^xsd:string ; :lexiconIsVerbatim {is_verbatim}^^xsd:boolean .
-source      SELECT term_id, term_text, pattern, category, is_verbatim FROM ramona.lexicon_terms
-
-mappingId   M-Lexicon-Source
-target      <https://w3id.org/ratr-o/data/lexicon/{term_id}> :termDocumentedIn <https://w3id.org/ratr-o#ColmexScrollAlJale2025> ; :lexiconSourceLocation {source_location}^^xsd:string .
-source      SELECT term_id, source_location FROM ramona.lexicon_terms WHERE is_verbatim
-
-mappingId   M-Social-Term
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemMatchesTerm <https://w3id.org/ratr-o/data/lexicon/{term_id}> .
-source      SELECT item_id, term_id FROM ramona.social_item_terms
-
-mappingId   M-Social-Signal-GroupCodeSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'
-
-mappingId   M-Social-SignalType-GroupCodeSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo> a :GroupCodeSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'
-
-mappingId   M-Social-Signal-GroupEmojiSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'
-
-mappingId   M-Social-SignalType-GroupEmojiSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo> a :GroupEmojiSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'
-
-mappingId   M-Social-Signal-PrivateChannelCallSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'
-
-mappingId   M-Social-SignalType-PrivateChannelCallSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado> a :PrivateChannelCallSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'
-
-mappingId   M-Social-Signal-HighWeeklyPaySignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'
-
-mappingId   M-Social-SignalType-HighWeeklyPaySignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto> a :HighWeeklyPaySignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'
-
-mappingId   M-Social-Signal-FamilyAppealSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'
-
-mappingId   M-Social-SignalType-FamilyAppealSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia> a :FamilyAppealSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'
-
-mappingId   M-Social-Signal-MinorAgeMentionSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'
-
-mappingId   M-Social-SignalType-MinorAgeMentionSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor> a :MinorAgeMentionSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'
-
-mappingId   M-Social-Signal-WomenInvitationSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'
-
-mappingId   M-Social-SignalType-WomenInvitationSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres> a :WomenInvitationSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'
-
-mappingId   M-Social-Signal-NationalReachSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'
-
-mappingId   M-Social-SignalType-NationalReachSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional> a :NationalReachSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'
-
-mappingId   M-Social-Signal-RecruitmentHashtagSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'
-
-mappingId   M-Social-SignalType-RecruitmentHashtagSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento> a :RecruitmentHashtagSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'
-
-mappingId   M-Social-Signal-FatalismSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo> .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'
-
-mappingId   M-Social-SignalType-FatalismSignal
-target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo> a :FatalismSignal .
-source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'
-
 mappingId   M-Press-Offer
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}> a :JobOffer ; :extractionConfidence {confidence}^^xsd:string .
 source      SELECT offer_uid, confidence FROM ramona.press_offers
@@ -779,6 +627,158 @@ source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'Constructi
 mappingId   M-Press-SchemeType-ConstructionLabourBondageScheme
 target      <https://w3id.org/ratr-o/data/press-offer/{offer_uid}/scheme> a :ConstructionLabourBondageScheme .
 source      SELECT offer_uid FROM ramona.press_offers WHERE scheme = 'ConstructionLabourBondageScheme'
+
+mappingId   M-Social-Post
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SocialMediaPost ; :itemText {item_text}^^xsd:string ; :itemPostedAt {posted_at}^^xsd:dateTime ; :itemIsSynthetic {is_synthetic}^^xsd:boolean ; :itemPostedOn <https://w3id.org/ratr-o/data/platform/{platform_id}> .
+source      SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'post'
+
+mappingId   M-Social-Comment
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SocialMediaComment ; :itemText {item_text}^^xsd:string ; :itemPostedAt {posted_at}^^xsd:dateTime ; :itemIsSynthetic {is_synthetic}^^xsd:boolean ; :itemPostedOn <https://w3id.org/ratr-o/data/platform/{platform_id}> .
+source      SELECT item_id, item_text, posted_at, is_synthetic, platform_id FROM ramona.social_items WHERE item_kind = 'comment'
+
+mappingId   M-Social-Hashtags
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHashtags {hashtags}^^xsd:string .
+source      SELECT item_id, hashtags FROM ramona.social_items WHERE hashtags IS NOT NULL
+
+mappingId   M-Social-Audio
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :audioDescription {audio_hint}^^xsd:string .
+source      SELECT item_id, audio_hint FROM ramona.social_items WHERE item_kind = 'post' AND audio_hint IS NOT NULL
+
+mappingId   M-Social-Visual
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :visualDescription {visual_hint}^^xsd:string .
+source      SELECT item_id, visual_hint FROM ramona.social_items WHERE item_kind = 'post' AND visual_hint IS NOT NULL
+
+mappingId   M-Social-WeeklyPay
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :promisedWeeklyPayMXN {weekly_pay_mxn}^^xsd:decimal .
+source      SELECT item_id, weekly_pay_mxn FROM ramona.social_items WHERE item_kind = 'post' AND weekly_pay_mxn IS NOT NULL
+
+mappingId   M-Social-SelfApplication
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :SelfApplicationComment .
+source      SELECT item_id FROM ramona.social_items WHERE label = 'autopostulacion'
+
+mappingId   M-Social-RecruiterReply
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :RecruiterReplyComment .
+source      SELECT item_id FROM ramona.social_items WHERE label = 'respuesta_reclutador'
+
+mappingId   M-Social-Cond-NR
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :DirectRecruitmentPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr
+
+mappingId   M-Social-Cond-ECC
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :CriminalCultureExaltationPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc
+
+mappingId   M-Social-Cond-AVC
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :CriminalLifeAspirationPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_avc
+
+mappingId   M-Social-Cond-A
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :AcousticFramingPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_a
+
+mappingId   M-Social-Story-Enrol
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :EnrolInCrimeStoryPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_ecc
+
+mappingId   M-Social-Story-Emotional
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :EmotionalConnectionStoryPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_nr AND cond_a
+
+mappingId   M-Social-Story-Belico
+target      <https://w3id.org/ratr-o/data/social/{item_id}> a :BelicoStoryPost .
+source      SELECT item_id FROM ramona.social_items WHERE item_kind = 'post' AND cond_ecc AND cond_a AND cond_avc
+
+mappingId   M-Lexicon-Term
+target      <https://w3id.org/ratr-o/data/lexicon/{term_id}> a :LexiconTerm ; :lexiconTermText {term_text}^^xsd:string ; :lexiconPattern {pattern}^^xsd:string ; :lexiconCategory {category}^^xsd:string ; :lexiconIsVerbatim {is_verbatim}^^xsd:boolean .
+source      SELECT term_id, term_text, pattern, category, is_verbatim FROM ramona.lexicon_terms
+
+mappingId   M-Lexicon-Source
+target      <https://w3id.org/ratr-o/data/lexicon/{term_id}> :termDocumentedIn <https://w3id.org/ratr-o#ColmexScrollAlJale2025> ; :lexiconSourceLocation {source_location}^^xsd:string .
+source      SELECT term_id, source_location FROM ramona.lexicon_terms WHERE is_verbatim
+
+mappingId   M-Social-Term
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemMatchesTerm <https://w3id.org/ratr-o/data/lexicon/{term_id}> .
+source      SELECT item_id, term_id FROM ramona.social_item_terms
+
+mappingId   M-Social-Signal-GroupCodeSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'
+
+mappingId   M-Social-SignalType-GroupCodeSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/codigo_grupo> a :GroupCodeSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'codigo_grupo'
+
+mappingId   M-Social-Signal-GroupEmojiSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'
+
+mappingId   M-Social-SignalType-GroupEmojiSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/emoji_grupo> a :GroupEmojiSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'emoji_grupo'
+
+mappingId   M-Social-Signal-PrivateChannelCallSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'
+
+mappingId   M-Social-SignalType-PrivateChannelCallSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/llamado_privado> a :PrivateChannelCallSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'llamado_privado'
+
+mappingId   M-Social-Signal-HighWeeklyPaySignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'
+
+mappingId   M-Social-SignalType-HighWeeklyPaySignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/pago_semanal_alto> a :HighWeeklyPaySignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'pago_semanal_alto'
+
+mappingId   M-Social-Signal-FamilyAppealSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'
+
+mappingId   M-Social-SignalType-FamilyAppealSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/apela_familia> a :FamilyAppealSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'apela_familia'
+
+mappingId   M-Social-Signal-MinorAgeMentionSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'
+
+mappingId   M-Social-SignalType-MinorAgeMentionSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/menciona_edad_menor> a :MinorAgeMentionSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'menciona_edad_menor'
+
+mappingId   M-Social-Signal-WomenInvitationSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'
+
+mappingId   M-Social-SignalType-WomenInvitationSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/invita_mujeres> a :WomenInvitationSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'invita_mujeres'
+
+mappingId   M-Social-Signal-NationalReachSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'
+
+mappingId   M-Social-SignalType-NationalReachSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/alcance_nacional> a :NationalReachSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'alcance_nacional'
+
+mappingId   M-Social-Signal-RecruitmentHashtagSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'
+
+mappingId   M-Social-SignalType-RecruitmentHashtagSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/hashtag_reclutamiento> a :RecruitmentHashtagSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'hashtag_reclutamiento'
+
+mappingId   M-Social-Signal-FatalismSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}> :itemHasSignal <https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo> .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'
+
+mappingId   M-Social-SignalType-FatalismSignal
+target      <https://w3id.org/ratr-o/data/social/{item_id}/signal/fatalismo> a :FatalismSignal .
+source      SELECT item_id FROM ramona.social_item_signals WHERE signal = 'fatalismo'
 
 mappingId   M-Legit-Offer
 target      <https://w3id.org/ratr-o/data/legit-offer/{legit_id}> a :JobOffer ; :offeredRole {job_title}^^xsd:string ; :offeredByEmployer <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/employer> ; :offerDocumentedIn <https://w3id.org/ratr-o/data/legit-offer/{legit_id}/posting> .
