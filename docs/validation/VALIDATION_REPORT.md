@@ -1,4 +1,4 @@
-# RATR-O v1.10.9: validation
+# RATR-O v1.10.10: validation
 
 Tools: ROBOT 1.9.11 (the OWL API profile checker and the HermiT reasoner) on OpenJDK, rdflib 7.6, and
 the scripts in `scripts/`.

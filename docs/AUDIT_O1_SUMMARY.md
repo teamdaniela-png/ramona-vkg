@@ -2,7 +2,7 @@
 
 Objective 1 of the Dialogue Residency at TU Wien is a domain ontology in OWL 2 QL covering job offers,
 employers, recruiters, candidates, trafficking red flags, geographic routes, platforms and risk
-classifications. The current version is 1.10.9.
+classifications. The current version is 1.10.10.
 
 | | |
 | --- | --- |

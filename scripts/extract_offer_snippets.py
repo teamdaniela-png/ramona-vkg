@@ -3,7 +3,7 @@
 Step 1 of the press-offer corpus: from the press articles that describe a case, extracts the
 passages that describe the offer (job, pay, platform, requirements, verbatim quotes of the ad).
 Output: data/processed/offers/snippets.jsonl (git-ignored: it contains press text).
-Step 2 is the reading and structuring of these passages.
+Step 2 is the reading and structuring of these passages by a language model.
 """
 import json
 import re

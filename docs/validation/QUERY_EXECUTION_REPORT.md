@@ -1,4 +1,4 @@
-# RATR-O v1.10.9: execution of the 41 reference queries
+# RATR-O v1.10.10: execution of the 41 reference queries
 
 The queries were run with `scripts/offline_vkg/`: the seed files in `db/` are loaded into SQLite,
 `mappings/ramona.obda` is executed to produce the graph the VKG exposes, and the queries are evaluated
@@ -73,7 +73,7 @@ competency questions they answer are part of what the ontology is meant to cover
 - **`Q16_palermo_triad_coverage`**: Reads `:TIPEvent`. The demonstrator schema has no TIP-event table (see `docs/MAPPING_COVERAGE.md`).
 - **`Q17_scheme_vs_tool_heatmap`**: Reads `:victimOfFraudScheme`. The demonstrator schema has no column linking a victim record to a fraud scheme.
 - **`Q18_age_gender_per_scheme`**: Reads `:victimOfFraudScheme`, as Q17.
-- **`Q21_pattern_cooccurrence`**: Joins `:matchesPattern` and `:offerDocumentedIn` on the same offer. In the seeds, pattern matches are on the 47 hand-curated offers and source links on the press-synthesised ones.
+- **`Q21_pattern_cooccurrence`**: Joins `:matchesPattern` and `:offerDocumentedIn` on the same offer. In the seeds, pattern matches are on the 47 offers written for the demonstrator and source links on the press-synthesised ones.
 - **`Q23_whatsapp_funnel_schemes`**: Reads `:victimOfFraudScheme` and `:contactedThrough`, as Q17 and Q11.
 - **`Q24_new_routes_from_press`**: Joins `:associatedWithRoute` and `:offerDocumentedIn` on the same offer; as Q21, the seeds carry them on different offers.
 - **`Q27_vulnerability_x_exploitation`**: Reads `:hasVulnerabilityFactor`. CTDC has no vulnerability variable; press-derived victim records carry it.

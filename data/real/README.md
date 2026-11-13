@@ -3,7 +3,8 @@
 ## `press_offers.csv`, `press_offer_sources.csv`, `press_offers_verified.csv`
 
 352 descriptions of job offers extracted from 321 press articles, each with the links to its sources.
-`press_offers_verified.csv` adds the result of the independent review: 295 verified, 55 doubtful and
+The descriptions were extracted by a language model. `press_offers_verified.csv` adds the result of a
+second reading by a language model, checked by code against the source text: 295 verified, 55 doubtful and
 2 discarded. Only the verified ones are loaded into the VKG. Method: `docs/results/REAL_OFFERS_RESULTS.md`.
 
 ## `consejo_cifras_clave.csv`, `consejo_desgloses.csv`

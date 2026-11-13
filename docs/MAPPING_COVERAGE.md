@@ -1,6 +1,6 @@
 # Mapping coverage of the declared vocabulary
 
-State on 14 November 2026, RATR-O v1.10.9, `mappings/ramona.obda` with 204 mappings. The published
+State on 14 November 2026, RATR-O v1.10.10, `mappings/ramona.obda` with 204 mappings. The published
 `mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,675 triples,
 triple for triple, and the same 142,629 over the seeds plus a 1-in-40 sample of the CTDC victim records.
 `docs/MAPPING_SPEC.md` has the identifier templates and the foreign keys.

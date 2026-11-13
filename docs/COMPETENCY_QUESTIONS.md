@@ -2,7 +2,7 @@
 
 **Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is standard practice for OWL and DL-Lite ontologies.
 
-This document lists 37 competency questions for RATR-O v1.10.9 and maps each to the SPARQL query
+This document lists 37 competency questions for RATR-O v1.10.10 and maps each to the SPARQL query
 in `queries/` that answers it. Every one of the 37 names a query file that exists. Four of the 41
 query files answer no competency question of their own and are there as cross-cutting checks:
 `Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and

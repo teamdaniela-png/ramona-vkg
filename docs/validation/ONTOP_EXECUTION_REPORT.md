@@ -1,4 +1,4 @@
-# RATR-O v1.10.9: the Ontop demonstrator
+# RATR-O v1.10.10: the Ontop demonstrator
 
 The virtual knowledge graph runs on the stack of `docker-compose.yml`: PostgreSQL 16 loaded with
 `db/01` to `db/15`, and Ontop 5.5.0 with `ontology/ratr-o.ttl` and `mappings/ramona.obda`, serving

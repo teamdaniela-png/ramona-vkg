@@ -4,20 +4,21 @@
 
 - Source: the 2,124 press articles that describe a case and carry text, of the 2,591 scraped from April to June 2026 (`data/raw/press.jsonl`).
 - 532 articles contain passages describing an offer (`scripts/extract_offer_snippets.py`).
-- Every passage read and structured without inference (job, pay, platform, location, target, requirements,
-  contact, verbatim quote, Type A / Type B flags, scheme, outcome). Verbatim quotes are checked as exact substrings.
-- 352 offer descriptions after merging (295 verified after the independent audit below) (`data/real/press_offers.csv`), **215 in Mexico**, documented by 321 articles
+- Every passage was read by a language model and structured without inference (job, pay, platform, location,
+  target, requirements, contact, verbatim quote, Type A / Type B flags, scheme, outcome). Verbatim quotes are
+  checked by code as exact substrings of the source.
+- 352 offer descriptions after merging (295 verified after the second reading below) (`data/real/press_offers.csv`), **215 in Mexico**, documented by 321 articles
   (`data/real/press_offer_sources.csv`). 47 carry a verbatim quote of the ad or recruiter message.
 - Deduplication is conservative: heavily covered cases (e.g. Teuchitlán) may still appear more than once.
 
-## Independent audit (4 Nov 2026)
+## Second reading and check by code (4 Nov 2026)
 
-Every offer was re-read by an independent reviewer against its source text, and the result was checked by code (`scripts/apply_audit.py`):
-evidence sentences must be literal substrings of the source.
+Every offer was read again against its source text by a language model, and the result was checked by code
+(`scripts/apply_audit.py`): evidence sentences must be literal substrings of the source.
 
 | Status | Offers | Rule |
 |---|---:|---|
-| **verificada** | **295** | reviewer says the offer was deceptive or criminal recruitment AND gives a literal sentence that proves it |
+| **verificada** | **295** | the second reading says the offer was deceptive or criminal recruitment AND gives a literal sentence that proves it |
 | dudosa | 55 | the text does not state explicitly that the offer was deceptive (kept, not counted) |
 | descartada | 2 | not a deceptive offer |
 

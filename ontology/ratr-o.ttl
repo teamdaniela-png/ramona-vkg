@@ -22,16 +22,16 @@
     dct:contributor "Magdalena Ortiz, Institute of Logic and Computation, TU Wien (scientific host of the Dialogue Residency)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10.9" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10.9> ;
-    owl:priorVersion <https://w3id.org/ratr-o/1.10.8> ;
+    owl:versionInfo "1.10.10" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.10> ;
+    owl:priorVersion <https://w3id.org/ratr-o/1.10.9> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:created "2026-04-21"^^xsd:date ;
     dct:modified "2026-11-14"^^xsd:date ;
     dct:publisher "Ramona AI" ;
     vann:preferredNamespaceUri "https://w3id.org/ratr-o#" ;
     vann:preferredNamespacePrefix "ratro" ;
-    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.9. https://w3id.org/ratr-o"@en ;
+    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.10. https://w3id.org/ratr-o"@en ;
     skos:note "In the OWL 2 QL profile under the OWL API checker and consistent under HermiT, alone and together with its data; see docs/validation/VALIDATION_REPORT.md. Every term carries an English and a Spanish label and a definition."@en ;
     rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). It aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .

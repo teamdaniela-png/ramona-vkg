@@ -5,12 +5,12 @@
 --    '[Sintetizado desde articulo de prensa: ' || source_title || ']', so the join below is
 --    an equality on text the seeds already contain. 1,325 of the 1,332 synthesised offers
 --    match a source; where two rows duplicate the same article, MIN(source_id) picks one
---    deterministically; 7 match none and stay NULL. The 47 hand-curated offers of db/03
+--    deterministically; 7 match none and stay NULL. The 47 offers written for the demonstrator in db/03
 --    carry no source.
 --
 -- 2. Records the kind of each evidence source, from how the row entered the database:
 --    db/05 inserts 1,332 rows scraped from the press corpus, whose source_title ends in
---    ' - ' || source_outlet, and db/02 inserts 5 hand-curated rows, each named below.
+--    ' - ' || source_outlet, and db/02 inserts 5 reference rows, each named below.
 --    mappings/ramona.obda types the press articles as :PressArticle from this column.
 --
 -- Idempotent: re-running it recomputes the same values.
@@ -38,7 +38,7 @@ UPDATE ramona.evidence_sources
    SET source_kind = 'press_article'
  WHERE source_title LIKE '% - ' || source_outlet;
 
--- The five hand-curated rows of db/02, by title.
+-- The five reference rows of db/02, by title.
 UPDATE ramona.evidence_sources SET source_kind = 'press_article'
  WHERE source_title IN (
    '"Pedian Ir Sola": Narran Como Eran Citas de Trabajo en Edificio Donde Hallaron a Edith Guadalupe',

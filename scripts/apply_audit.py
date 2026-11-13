@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Apply the independent review (data/processed/offers/audit/out_*.jsonl) to the press corpus.
+Apply the second reading of the press offers, done by a language model
+(data/processed/offers/audit/out_*.jsonl), to the press corpus.
 
-Rules, checked by code and not taken from the reviewer's word:
+Rules, checked by code and not taken from the reader's word:
 - `evidencia` and every `evidencia_correcciones` must be literal substrings of the source text;
   otherwise they are ignored.
-- verificada  = the reviewer says "si" and the evidence is literal.
-- dudosa      = the reviewer says "dudoso", or says "si" without literal evidence.
-- descartada  = the reviewer says "no".
+- verificada  = the second reading says "si" and the evidence is literal.
+- dudosa      = the second reading says "dudoso", or says "si" without literal evidence.
+- descartada  = the second reading says "no".
 - A field marked `incorrecto` with a supported correction is corrected; without support it is emptied.
 - A field marked `no_en_texto` is emptied. A quote marked `incorrecto` is emptied.
 - criminal_recruitment marked `incorrecto` is inverted.
