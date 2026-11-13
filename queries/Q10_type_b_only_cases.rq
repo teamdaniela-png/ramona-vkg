@@ -1,19 +1,18 @@
 PREFIX : <https://w3id.org/ratr-o#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q10. Press cases that match Type B patterns but not Type A red flags.
+# Q10. Press-documented offers with credible-lethal red flags and no classic red flag.
 
-SELECT ?victim ?source ?outlet ?title ?url
+SELECT DISTINCT ?offer ?outlet ?url
 WHERE {
-  ?victim a :Victim ;
-          :hasEvidenceSource ?source .
+  ?offer :offerDocumentedIn ?source ;
+         :hasRedFlag ?flagB .
+  ?flagB a :CredibleLethalRedFlag .
   ?source a :PressArticle ;
-          :sourceOutlet ?outlet ;
-          :sourceTitle ?title ;
-          :sourceUrl ?url .
-  FILTER EXISTS {
-    ?source :sourceKind "press" .
+          :sourceOutlet ?outlet .
+  OPTIONAL { ?source :sourceUrl ?url }
+  FILTER NOT EXISTS {
+    ?offer :hasRedFlag ?flagA .
+    ?flagA a :ClassicRedFlag .
   }
 }
-ORDER BY ?outlet
-LIMIT 200
+ORDER BY ?outlet ?offer

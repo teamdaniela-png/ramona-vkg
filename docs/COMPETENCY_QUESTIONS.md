@@ -68,10 +68,10 @@ These exercise the VKG over the three data sources: Ramona operational + CTDC sy
 **Why it matters:** baseline global victim distribution.
 **Ontology machinery exercised:** `:Victim :exploitedInCountry`, `:Victim :victimOfExploitation`.
 
-### CQ10. Which press-documented cases show Type B patterns but no Type A flags?
+### CQ10. Which press-documented offers show credible-lethal red flags and no classic red flag?
 **Answers:** `Q10_type_b_only_cases.rq`.
-**Why it matters:** the central observatory statistic (9.9× ratio).
-**Ontology machinery exercised:** `:CredibleLethalPattern` + `NOT EXISTS :ClassicRedFlagPattern`.
+**Why it matters:** these are the offers that the classic red-flag checklist does not catch.
+**Ontology machinery exercised:** `:hasRedFlag`, `:CredibleLethalRedFlag` + `NOT EXISTS :ClassicRedFlag`, `:offerDocumentedIn`.
 
 ### CQ11. What is the distribution of first-contact communication tool across all sources?
 **Answers:** `Q11_recruitment_channels_distribution.rq`.
@@ -122,9 +122,9 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Why it matters:** media partnerships and validation cross-checks.
 **Ontology machinery exercised:** `:offerDocumentedIn`, `:exhibitsFraudScheme`, `:schemeCode`, `:sourceOutlet`.
 
-### CQ20. In each country, what is the Type-B-only to Type-A-only ratio?
+### CQ20. In each country, how many offers match only credible-lethal patterns and how many only classic ones?
 **Answers:** `Q20_type_b_over_a_by_country.rq`.
-**Why it matters:** disaggregates the 9.9× global statistic.
+**Why it matters:** shows the two tracks country by country. Counts of documented offers, not a prevalence estimate.
 **Ontology machinery exercised:** dual subclass filter and negation.
 
 ## Group D — Pattern-centric questions (network analytics)

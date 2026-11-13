@@ -125,7 +125,7 @@ python3 scripts/ontop/run_queries.py --state ctdc
 | `Q7_messenger_whatsapp_funnel.rq` | Messenger-to-WhatsApp funnel with personal-data filtering. |
 | `Q8_fraudulent_counts_by_country.rq` | Confirmed-fraudulent offers by country, with average risk score. |
 | `Q9_ctdc_exploitation_by_country.rq` | CTDC victims by country of exploitation and exploitation type. |
-| `Q10_type_b_only_cases.rq` | Press cases that match Type B patterns but not Type A red flags. |
+| `Q10_type_b_only_cases.rq` | Press-documented offers with credible-lethal red flags and no classic red flag. |
 | `Q11_recruitment_channels_distribution.rq` | First-contact communication tool distribution across all sources. |
 | `Q12_cross_source_age_gender.rq` | Age × gender × exploitation type (requires ≥3 victims per cell). |
 | `Q13_means_of_control_stack.rq` | Means of control by exploitation type. |

@@ -11,11 +11,11 @@ Ontop rewrites each query into SQL over the tables.
 | --- | --- | --- |
 | Seed files in PostgreSQL | `db/01` to `db/15` run in order by the database on first start, foreign keys enforced | All load: 42 tables, 1,379 offers |
 | Mapping file in Ontop | `mappings/ramona.obda` parsed against the database metadata | The 204 assertions load |
-| Reference queries, seeds | `scripts/ontop/run_queries.py` | 41 of 41 execute, 22 with rows, the row counts of the offline validation |
+| Reference queries, seeds | `scripts/ontop/run_queries.py` | 41 of 41 execute, 23 with rows, the row counts of the offline validation |
 | Graph served, seeds | `ontop materialize`, compared with the offline ABox closed under the ontology by `scripts/ontop/compare_with_offline.py` | The same 89,121 triples: the 75,675 asserted and 13,446 entailed by subclass, subproperty, inverse, domain and range axioms |
 | CTDC load | `scripts/ingest_ctdc.py` over the 257,969 records of the release | Loads in under a minute, foreign keys enforced |
-| Reference queries, CTDC sample | victims with `victim_id % 40 = 0` kept, 6,449 records, `run_queries.py --state sample` | 41 of 41 execute, 29 with rows, the row counts of the offline validation |
-| Reference queries, full CTDC | `run_queries.py --state ctdc` | 41 of 41 execute, 29 with rows, 5.2 seconds for the 41 together, the slowest 1.70 seconds |
+| Reference queries, CTDC sample | victims with `victim_id % 40 = 0` kept, 6,449 records, `run_queries.py --state sample` | 41 of 41 execute, 30 with rows, the row counts of the offline validation |
+| Reference queries, full CTDC | `run_queries.py --state ctdc` | 41 of 41 execute, 30 with rows, 5.2 seconds for the 41 together, the slowest 1.70 seconds |
 
 `scripts/ontop/run_all.sh` runs the seed checks in one command.
 
@@ -34,7 +34,7 @@ Seconds are for the full CTDC load, on a laptop with an Apple M2 processor and 4
 | `Q7_messenger_whatsapp_funnel` | 2 | 2 | 2 | 0.01 |
 | `Q8_fraudulent_counts_by_country` | 5 | 5 | 5 | 0.01 |
 | `Q9_ctdc_exploitation_by_country` | 0 | 100 | 100 | 0.55 |
-| `Q10_type_b_only_cases` | 0 | 0 | 0 | 0.73 |
+| `Q10_type_b_only_cases` | 39 | 39 | 39 | 0.05 |
 | `Q11_recruitment_channels_distribution` | 0 | 0 | 0 | 0.03 |
 | `Q12_cross_source_age_gender` | 0 | 94 | 165 | 1.70 |
 | `Q13_means_of_control_stack` | 0 | 69 | 72 | 0.48 |
@@ -67,7 +67,7 @@ Seconds are for the full CTDC load, on a laptop with an Apple M2 processor and 4
 | `Q40_criminal_recruitment_channels` | 3 | 3 | 3 | 0.00 |
 | `Q41_flags_verified_employers_vs_press` | 15 | 15 | 15 | 0.01 |
 
-The 12 queries without rows on the full load ask for combinations that the loaded data do not
+The 11 queries without rows on the full load ask for combinations that the loaded data do not
 contain; `QUERY_EXECUTION_REPORT.md` says for each which data it needs.
 
 ## Reproduce

@@ -28,7 +28,7 @@ Both graphs are consistent with the ontology under HermiT.
 | `Q7_messenger_whatsapp_funnel` | 2 | 2 |
 | `Q8_fraudulent_counts_by_country` | 5 | 5 |
 | `Q9_ctdc_exploitation_by_country` | 0 | 100 |
-| `Q10_type_b_only_cases` | 0 | 0 |
+| `Q10_type_b_only_cases` | 39 | 39 |
 | `Q11_recruitment_channels_distribution` | 0 | 0 |
 | `Q12_cross_source_age_gender` | 0 | 94 |
 | `Q13_means_of_control_stack` | 0 | 69 |
@@ -61,7 +61,7 @@ Both graphs are consistent with the ontology under HermiT.
 | `Q40_criminal_recruitment_channels` | 3 | 3 |
 | `Q41_flags_verified_employers_vs_press` | 15 | 15 |
 
-All 41 queries execute. 22 return rows over the seeds and 29 once the CTDC release is loaded.
+All 41 queries execute. 23 return rows over the seeds and 30 once the CTDC release is loaded.
 
 ## Queries that return no rows in either state
 
@@ -69,7 +69,6 @@ Each of these reads data that the demonstrator's seeds do not carry. The queries
 competency questions they answer are part of what the ontology is meant to cover.
 
 - **`Q4_route_unclassified`**: The answer is the empty set: every offer on a documented route carries a classification.
-- **`Q10_type_b_only_cases`**: Reads victim records derived from press articles. `scripts/ingest_press.py` writes them from the press corpus, which is not redistributed.
 - **`Q11_recruitment_channels_distribution`**: Reads `:contactedThrough` on victims. CTDC has no communication-tool variable; press-derived victim records carry it.
 - **`Q16_palermo_triad_coverage`**: Reads `:TIPEvent`. The demonstrator schema has no TIP-event table (see `docs/MAPPING_COVERAGE.md`).
 - **`Q17_scheme_vs_tool_heatmap`**: Reads `:victimOfFraudScheme`. The demonstrator schema has no column linking a victim record to a fraud scheme.
