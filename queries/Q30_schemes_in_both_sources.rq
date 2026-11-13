@@ -1,6 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q30. Fraud schemes attested in CTDC and in the press.
+# Q30. Fraud schemes with the number of CTDC victims and of press-documented offers attesting each.
 
 SELECT ?schemeCode
        (COUNT(DISTINCT ?ctdcVictim) AS ?ctdcVictims)

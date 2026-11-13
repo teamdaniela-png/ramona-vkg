@@ -54,8 +54,8 @@ Both graphs are consistent with the ontology under HermiT.
 | `Q33_existential_forced_criminality` | 1 | 1 |
 | `Q34_recruitment_stories` | 3 | 3 |
 | `Q35_lexicon_false_positive_rate` | 13 | 13 |
-| `Q36_who_is_targeted_mx` | 6 | 6 |
-| `Q37_where_offers_mx` | 10 | 10 |
+| `Q36_who_is_targeted_mx` | 7 | 7 |
+| `Q37_where_offers_mx` | 9 | 9 |
 | `Q38_verbatim_wording` | 39 | 39 |
 | `Q39_type_a_vs_type_b_real` | 3 | 3 |
 | `Q40_criminal_recruitment_channels` | 3 | 3 |

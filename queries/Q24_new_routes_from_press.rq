@@ -10,12 +10,7 @@ WHERE {
          :associatedWithRoute ?route .
   ?route :originCountry/:countryISOCode ?origin ;
          :destinationCountry/:countryISOCode ?destination .
-  FILTER NOT EXISTS {
-    ?ctdcRecord a :OpenDatasetRecord ;
-                :datasetName "CTDC Global Synthetic Dataset v2025" .
-    ?ctdcVictim :hasEvidenceSource ?ctdcRecord ;
-                :associatedWithRoute ?route .
-  }
+  FILTER NOT EXISTS { ?route :routeVictimCount ?ctdcVictims }
 }
 ORDER BY ?origin ?destination
 LIMIT 100

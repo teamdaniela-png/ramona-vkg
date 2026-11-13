@@ -1,7 +1,8 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q2. Cross-border recruiters with multiple flags this quarter.
+# Q2. Recruiters with offers in two or more countries and more than two red flags, on offers posted
+# since 1 January 2026.
 
 SELECT ?recruiter
        (COUNT(DISTINCT ?country) AS ?nCountries)

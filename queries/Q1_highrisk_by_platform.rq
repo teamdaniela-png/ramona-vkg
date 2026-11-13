@@ -1,7 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q1. High-risk and fraudulent offers grouped by platform.
+# Q1. High-risk and fraudulent offers posted since 1 January 2026, grouped by platform.
 
 SELECT ?platformName (COUNT(?offer) AS ?nOffers) WHERE {
   ?offer a :JobOffer ;

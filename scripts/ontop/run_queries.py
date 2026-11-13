@@ -1,14 +1,15 @@
 """Run the reference queries against the Ontop SPARQL endpoint and compare the row counts
 with the published ones.
 
-Usage: python3 scripts/ontop/run_queries.py [--state seeds|sample|ctdc] [--report FILE]
+Usage: python3 scripts/ontop/run_queries.py [--state seeds|sample|ctdc] [--report FILE] [--dump DIR]
 
   seeds   what `docker compose up -d` loads on a fresh volume (the default)
   sample  the seeds plus one CTDC victim in forty, the state of the offline validation
   ctdc    the seeds plus the 257,969 victim records of the CTDC release
 
 The endpoint is read from the ENDPOINT environment variable and defaults to
-http://localhost:8080/sparql. The published counts are read from
+http://localhost:8080/sparql. With --dump, the answers of every query are also written to DIR,
+one tab-separated file per query and without the final LIMIT. The published counts are read from
 docs/validation/ONTOP_EXECUTION_REPORT.md. Exits with status 1 on any difference.
 """
 import argparse, csv, glob, io, os, re, sys, time, urllib.parse, urllib.request
@@ -30,8 +31,10 @@ def published(state):
     return out
 
 
-def run(path):
+def run(path, strip_limit=False):
     query = open(path).read()
+    if strip_limit:
+        query = re.sub(r"\bLIMIT\s+\d+\s*$", "", query)
     req = urllib.request.Request(
         ENDPOINT,
         data=urllib.parse.urlencode({"query": query}).encode(),
@@ -41,6 +44,8 @@ def run(path):
     with urllib.request.urlopen(req, timeout=600) as r:
         body = r.read().decode("utf-8")
     rows = list(csv.reader(io.StringIO(body)))
+    if strip_limit:
+        return rows[1:]
     return max(len(rows) - 1, 0), time.time() - t0
 
 
@@ -48,6 +53,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--state", choices=STATES, default="seeds")
     ap.add_argument("--report")
+    ap.add_argument("--dump")
     a = ap.parse_args()
     expected = published(a.state)
     files = sorted(glob.glob(os.path.join(ROOT, "queries", "Q*.rq")),
@@ -57,6 +63,11 @@ def main():
         name = os.path.basename(p)[:-3]
         try:
             n, secs = run(p)
+            if a.dump:
+                os.makedirs(a.dump, exist_ok=True)
+                with open(os.path.join(a.dump, name + ".tsv"), "w", encoding="utf-8") as f:
+                    for row in run(p, strip_limit=True):
+                        f.write("\t".join(v.replace("\t", " ").replace("\n", " ").replace("\r", " ") for v in row) + "\n")
         except Exception as e:
             failed.append(name)
             print(f"{name:45s} FAILED  {e}")

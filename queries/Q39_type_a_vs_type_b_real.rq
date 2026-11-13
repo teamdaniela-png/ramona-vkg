@@ -8,6 +8,6 @@ SELECT ?profile (COUNT(DISTINCT ?offer) AS ?n) WHERE {
   ?article a :PressArticle .
   BIND(EXISTS { ?offer :hasRedFlag ?a . ?a a :ClassicRedFlag } AS ?hasA)
   BIND(EXISTS { ?offer :hasRedFlag ?b . ?b a :CredibleLethalRedFlag } AS ?hasB)
-  BIND(IF(?hasA && ?hasB, "A y B", IF(?hasA, "solo A", "solo B")) AS ?profile)
+  BIND(IF(?hasA && ?hasB, "both", IF(?hasA, "classic only", "credible-lethal only")) AS ?profile)
 }
 GROUP BY ?profile

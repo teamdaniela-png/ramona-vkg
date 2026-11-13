@@ -1,9 +1,9 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q37. Where the press-documented offers in Mexico are located.
+# Q37. Where the verified press-documented offers in Mexico say the job is.
 
 SELECT ?state (COUNT(DISTINCT ?offer) AS ?n) WHERE {
-  ?offer a :JobOffer ; :inCountry <https://w3id.org/ratr-o/data/country/MEX> ; :offeredLocation ?loc .
+  ?offer :extractionConfidence ?confidence ; :inCountry <https://w3id.org/ratr-o/data/country/MEX> ; :offeredLocation ?loc .
   VALUES (?state ?rx) { ("Jalisco" "jalisco|guadalajara|zapopan|teuchitl|tlaquepaque") ("CDMX" "cdmx|ciudad de m[eé]xico|iztapalapa")
     ("Estado de Mexico" "estado de m[eé]xico|edomex|ecatepec|toluca") ("Puebla" "puebla") ("Chihuahua" "chihuahua|ju[aá]rez")
     ("Quintana Roo" "quintana roo|canc[uú]n") ("Guanajuato" "guanajuato|le[oó]n|celaya") ("Michoacan" "michoac[aá]n|morelia|uruapan")

@@ -19,7 +19,7 @@ ships data for it.
 
 These are the questions Ramona's analysts work on day to day. The VKG must answer them in real time over the operational Postgres.
 
-### CQ1. Which platforms host the most high-risk offers this quarter?
+### CQ1. Which platforms host the most high-risk offers posted since the start of 2026?
 **Answers:** `Q1_highrisk_by_platform.rq`.
 **Why it matters:** platform-level intervention. If Marketplace hosts 60% of fraudulent offers, Ramona prioritises monitoring there.
 **Ontology machinery exercised:** `:JobOffer :postedVia :Platform`, `:JobOffer :hasRiskClassification`.
@@ -44,7 +44,7 @@ These are the questions Ramona's analysts work on day to day. The VKG must answe
 **Why it matters:** immediate alert on a specific documented recruitment scheme.
 **Ontology machinery exercised:** `:JobOffer :offeredSalaryMXN`, `:JobOffer :offeredRole`.
 
-### CQ6. Which offers bundle the Edith Guadalupe patterns (come alone, no ID, multi-use building)?
+### CQ6. Which offers bundle the Edith Guadalupe patterns (come alone, multi-use building)?
 **Answers:** `Q6_edith_pattern_bundle.rq`.
 **Why it matters:** the central Type-B cohort and the canonical credible-lethal signal.
 **Ontology machinery exercised:** multiple `:matchesPattern` on the same offer, `:CredibleLethalPattern` subclass.
@@ -147,7 +147,7 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 ### CQ24. Which trafficking routes have press attestation but no CTDC coverage yet?
 **Answers:** `Q24_new_routes_from_press.rq`.
 **Why it matters:** early-warning capability. A route that press documents but CTDC hasn't seen is a signal of an emerging or newly-surfacing corridor.
-**Ontology machinery exercised:** `:associatedWithRoute` with `FILTER NOT EXISTS` against CTDC-derived routes.
+**Ontology machinery exercised:** `:associatedWithRoute` with `FILTER NOT EXISTS` on `:routeVictimCount`, the CTDC victim count of a route.
 
 ### CQ25. What is the annual trend of victim registration in CTDC 2002-2023?
 **Answers:** `Q25_trend_by_year.rq`.

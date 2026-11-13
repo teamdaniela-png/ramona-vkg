@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q34. Posts per Colmex recruitment story, and direct-recruitment posts that are also job offers.
-# The story classes are subclasses of DirectRecruitmentPost, itself a subclass of JobOffer,
-# so these posts are retrieved as job offers through the class hierarchy.
+# Q34. Posts per recruitment story of El Colegio de México (2025).
 
 SELECT ?story (COUNT(DISTINCT ?post) AS ?n) WHERE {
   VALUES ?story { :EnrolInCrimeStoryPost :EmotionalConnectionStoryPost :BelicoStoryPost }

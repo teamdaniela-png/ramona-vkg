@@ -1,6 +1,10 @@
 """Run the reference queries over a materialised ABox plus the TBox.
 
-Usage: python scripts/offline_vkg/run_queries.py <abox.ttl>
+Usage: python scripts/offline_vkg/run_queries.py <abox.ttl> [--dump DIR]
+
+With --dump, the answers of every query are also written to DIR, one tab-separated file per
+query and without the final LIMIT, so that they can be compared with the answers of the Ontop
+endpoint (scripts/ontop/compare_answers.py).
 
 The TBox is applied as the subclass, subproperty and inverse closure, which is what Ontop
 applies at query-rewrite time. Two things rdflib 7.6 does differently from RDF 1.1 and from
@@ -61,6 +65,8 @@ def _eval(ctx, part):
 _sparql.CUSTOM_EVALS["stepwise_join_order"] = _eval
 
 ABOX = sys.argv[1]
+DUMP = sys.argv[sys.argv.index("--dump") + 1] if "--dump" in sys.argv else None
+if DUMP: os.makedirs(DUMP, exist_ok=True)
 g = Graph()
 g.parse("ontology/ratr-o.ttl", format="turtle")
 g.parse(ABOX, format="turtle")
@@ -134,6 +140,13 @@ for f in sorted(glob.glob("queries/*.rq"), key=lambda x: int(re.match(r"Q(\d+)",
             res = [r for r in res if all(v is not None for v in r)]
         signal.alarm(0)
         dt = time.time() - t0
+        if DUMP:
+            full = list(g.query(re.sub(r"\bLIMIT\s+\d+\s*$", "", q)))
+            if not re.search(r"\b(OPTIONAL|UNION)\b", q):
+                full = [r for r in full if all(v is not None for v in r)]
+            with io.open(os.path.join(DUMP, name + ".tsv"), "w", encoding="utf-8") as out:
+                for r in full:
+                    out.write("\t".join("" if v is None else str(v).replace("\t", " ").replace("\n", " ") for v in r) + "\n")
         rows_out.append((name, len(res), round(dt, 2), "IN-rewritten" if rewritten else ""))
         if len(res) == 0: empties.append(name)
     except TO:

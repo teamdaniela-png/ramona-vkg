@@ -5,7 +5,9 @@ PREFIX : <https://w3id.org/ratr-o#>
 SELECT ?means1 ?means2 (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {
   ?victim a :Victim ;
-          :hasMeansOfControl ?m1 , ?m2 .
+          :hasMeansOfControl ?m1 , ?m2 ;
+          :hasEvidenceSource ?source .
+  ?source :datasetName "CTDC Global Synthetic Dataset v2025" .
   FILTER(STR(?m1) < STR(?m2))
   BIND(?m1 AS ?means1)
   BIND(?m2 AS ?means2)

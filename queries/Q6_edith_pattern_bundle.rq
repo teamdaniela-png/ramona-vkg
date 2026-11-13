@@ -1,7 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
 # Q6. Offers bundling the Edith Guadalupe credible-lethal patterns.
-# Appointment at a multi-use building, asked to come alone, no official identification, unnamed company.
+# Asked to come alone to an appointment at a multi-use building.
 
 SELECT DISTINCT ?offer ?posted ?platformName WHERE {
   ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/3> ,   # solicita_ir_sola
@@ -9,7 +9,5 @@ SELECT DISTINCT ?offer ?posted ?platformName WHERE {
          :postedOn ?posted ;
          :postedVia ?platform .
   ?platform :platformName ?platformName .
-  OPTIONAL { ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/4> . } # sin_identificacion
-  OPTIONAL { ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/5> . } # empresa_sin_nombre
 }
 ORDER BY DESC(?posted)

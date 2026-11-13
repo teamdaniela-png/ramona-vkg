@@ -80,7 +80,8 @@ scripts/ontop/run_all.sh
 ```
 
 It runs the 41 reference queries through the endpoint and compares the row counts with the published
-ones, materialises the graph with Ontop and compares it with the graph of the offline validation.
+ones, materialises the graph with Ontop and compares it with the graph of the offline validation,
+and compares the answers of the two row by row.
 `docs/validation/ONTOP_EXECUTION_REPORT.md` has the results. `./scripts/test_queries.sh` prints the
 answers of every query.
 
@@ -116,8 +117,8 @@ python3 scripts/ontop/run_queries.py --state ctdc
 
 | File | What it answers |
 |------|-----------------|
-| `Q1_highrisk_by_platform.rq` | High-risk and fraudulent offers grouped by platform. |
-| `Q2_multicountry_recruiters.rq` | Cross-border recruiters with multiple flags this quarter. |
+| `Q1_highrisk_by_platform.rq` | High-risk and fraudulent offers posted since 1 January 2026, grouped by platform. |
+| `Q2_multicountry_recruiters.rq` | Recruiters with offers in two or more countries and more than two red flags, on offers posted since 1 January 2026. |
 | `Q3_pattern_matches.rq` | Offers matching survivor patterns, plus source that documents each pattern. |
 | `Q4_route_unclassified.rq` | Offers on a known trafficking route that have not been classified. |
 | `Q5_cjng_salary_pattern.rq` | Offers matching the CJNG post-Rancho Izaguirre pattern. |
@@ -145,14 +146,14 @@ python3 scripts/ontop/run_queries.py --state ctdc
 | `Q27_vulnerability_x_exploitation.rq` | Vulnerability factor by exploitation type. |
 | `Q28_crossborder_with_press.rq` | Cross-border CTDC corridors that also have press coverage. |
 | `Q29_edith_cohort.rq` | Offers matching credible-lethal patterns and none of the classic red flags. |
-| `Q30_schemes_in_both_sources.rq` | Fraud schemes attested in CTDC and in the press. |
+| `Q30_schemes_in_both_sources.rq` | Fraud schemes with the number of CTDC victims and of press-documented offers attesting each. |
 | `Q31_tiktok_dm_plus_group_code.rq` | Social-media posts that combine a call to a private channel with a coded reference to a criminal group. |
 | `Q32_minor_self_application.rq` | Comments in which an adolescent offers themselves to a criminal group. |
 | `Q33_existential_forced_criminality.rq` | Offers that exhibit some forced-criminality scheme (exercises an existential axiom). |
-| `Q34_recruitment_stories.rq` | Posts per Colmex recruitment story, and direct-recruitment posts that are also job offers. |
+| `Q34_recruitment_stories.rq` | Posts per recruitment story of El Colegio de México (2025). |
 | `Q35_lexicon_false_positive_rate.rq` | Lexicon terms that also fire on posts that are not recruitment. |
-| `Q36_who_is_targeted_mx.rq` | Who the press-documented offers in Mexico target. |
-| `Q37_where_offers_mx.rq` | Where the press-documented offers in Mexico are located. |
+| `Q36_who_is_targeted_mx.rq` | Who the verified press-documented offers in Mexico target. |
+| `Q37_where_offers_mx.rq` | Where the verified press-documented offers in Mexico say the job is. |
 | `Q38_verbatim_wording.rq` | Verbatim wording of press-documented offers, with the source. |
 | `Q39_type_a_vs_type_b_real.rq` | Press-documented offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
 | `Q40_criminal_recruitment_channels.rq` | Platforms through which press-documented criminal-recruitment offers arrive. |
