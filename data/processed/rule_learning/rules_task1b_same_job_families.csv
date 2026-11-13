@@ -1,0 +1,18 @@
+rule,n_conditions,positives_covered,negatives_covered,confidence,coverage_of_class,lift,p_fisher,q_bh
+sueldo_alto,1,18,0,1.0000,0.3273,1.6727,2.45318e-05,0.00041704
+sueldo_alto AND job_security,2,14,0,1.0000,0.2545,1.6727,0.000345539,0.00293708
+job_security AND pay_weekly_over_1_5x_verified_median,2,13,0,1.0000,0.2364,1.6727,0.000649943,0.00368301
+sueldo_alto AND pay_weekly_over_1_5x_verified_median,2,9,0,1.0000,0.1636,1.6727,0.00731898,0.0248845
+sueldo_alto AND job_security AND pay_weekly_over_1_5x_verified_median,3,9,0,1.0000,0.1636,1.6727,0.00731898,0.0248845
+pay_weekly_over_1_5x_verified_median,1,13,2,0.8667,0.2364,1.4497,0.0173921,0.0492777
+pay_weekly_over_verified_max,1,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+sueldo_alto AND pay_weekly_over_verified_max,2,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+job_security AND pay_weekly_over_verified_max,2,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,2,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+sueldo_alto AND job_security AND pay_weekly_over_verified_max,3,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+sueldo_alto AND pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,3,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+job_security AND pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,3,6,0,1.0000,0.1091,1.6727,0.0406548,0.053164
+empleo_fuera_estado,1,5,0,1.0000,0.0909,1.6727,0.0707394,0.0801713
+sueldo_alto AND job_service,2,5,0,1.0000,0.0909,1.6727,0.0707394,0.0801713
+sin_experiencia,1,2,7,0.2222,0.0364,0.3717,0.997413,0.997413
+sin_experiencia AND job_security,2,1,4,0.2000,0.0182,0.3345,0.991136,0.997413

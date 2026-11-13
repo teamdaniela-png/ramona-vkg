@@ -1,0 +1,32 @@
+rule,n_conditions,positives_covered,negatives_covered,confidence,coverage_of_class,lift,p_fisher,q_bh
+sueldo_alto,1,49,0,1.0000,0.2934,1.2216,1.15922e-05,0.000359359
+empleo_fuera_estado,1,31,0,1.0000,0.1856,1.2216,0.00114435,0.0177375
+pago_adelantado,1,16,0,1.0000,0.0958,1.2216,0.0354306,0.274587
+sueldo_alto AND empleo_fuera_estado,2,16,0,1.0000,0.0958,1.2216,0.0354306,0.274587
+sueldo_alto AND job_security,2,14,0,1.0000,0.0838,1.2216,0.0547091,0.282663
+sueldo_alto AND pay_weekly_over_1_5x_verified_median,2,14,0,1.0000,0.0838,1.2216,0.0547091,0.282663
+job_security AND pay_weekly_over_1_5x_verified_median,2,13,0,1.0000,0.0778,1.2216,0.0678534,0.300494
+traslado_pagado,1,10,0,1.0000,0.0599,1.2216,0.128492,0.331938
+pay_weekly_over_verified_max,1,10,0,1.0000,0.0599,1.2216,0.128492,0.331938
+sueldo_alto AND pay_weekly_over_verified_max,2,10,0,1.0000,0.0599,1.2216,0.128492,0.331938
+pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,2,10,0,1.0000,0.0599,1.2216,0.128492,0.331938
+sueldo_alto AND pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,3,10,0,1.0000,0.0599,1.2216,0.128492,0.331938
+sueldo_alto AND job_security AND pay_weekly_over_1_5x_verified_median,3,9,0,1.0000,0.0539,1.2216,0.158582,0.378157
+pidio_datos_personales,1,8,0,1.0000,0.0479,1.2216,0.195485,0.404002
+pay_weekly_over_1_5x_verified_median,1,20,2,0.9091,0.1198,1.1105,0.194987,0.404002
+sueldo_alto AND traslado_pagado,2,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+empleo_fuera_estado AND traslado_pagado,2,7,0,1.0000,0.0419,1.2216,0.240691,0.417097
+empleo_fuera_estado AND job_field_construction,2,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+traslado_pagado AND pay_weekly_over_1_5x_verified_median,2,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+job_security AND pay_weekly_over_verified_max,2,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+sueldo_alto AND job_security AND pay_weekly_over_verified_max,3,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+job_security AND pay_weekly_over_1_5x_verified_median AND pay_weekly_over_verified_max,3,6,0,1.0000,0.0359,1.2216,0.296004,0.417097
+sueldo_alto AND job_service,2,5,0,1.0000,0.0299,1.2216,0.36361,0.417479
+empleo_fuera_estado AND pago_adelantado,2,5,0,1.0000,0.0299,1.2216,0.36361,0.417479
+empleo_fuera_estado AND pay_weekly_over_1_5x_verified_median,2,5,0,1.0000,0.0299,1.2216,0.36361,0.417479
+pago_adelantado AND job_field_construction,2,5,0,1.0000,0.0299,1.2216,0.36361,0.417479
+sueldo_alto AND traslado_pagado AND pay_weekly_over_1_5x_verified_median,3,5,0,1.0000,0.0299,1.2216,0.36361,0.417479
+horario_flexible,1,4,1,0.8000,0.0240,0.9772,0.776297,0.859472
+contratacion_urgente,1,5,3,0.6250,0.0299,0.7635,0.962455,0.99998
+sin_experiencia,1,3,7,0.3000,0.0180,0.3665,0.99998,0.99998
+sin_experiencia AND job_security,2,1,4,0.2000,0.0060,0.2443,0.999844,0.99998

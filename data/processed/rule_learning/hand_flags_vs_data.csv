@@ -1,0 +1,33 @@
+scope,flag,type,documented_cases,verified_postings,rate_cases,rate_verified,p_more_in_cases,p_more_in_verified,verdict
+all_mexico,sueldo_alto,A,49,0,0.2934,0.0000,1.15922e-05,1,separates (more frequent in documented cases)
+all_mexico,empleo_fuera_estado,A,31,0,0.1856,0.0000,0.00114435,1,separates (more frequent in documented cases)
+all_mexico,pago_adelantado,A,16,0,0.0958,0.0000,0.0354306,1,separates (more frequent in documented cases)
+all_mexico,horario_flexible,A,4,1,0.0240,0.0270,0.776297,0.63639,does not separate in this sample
+all_mexico,traslado_pagado,A,10,0,0.0599,0.0000,0.128492,1,does not separate in this sample
+all_mexico,sin_experiencia,A,3,7,0.0180,0.1892,0.99998,0.000305721,reversed (more frequent in verified postings)
+all_mexico,contratacion_urgente,A,5,3,0.0299,0.0811,0.962455,0.159841,does not separate in this sample
+all_mexico,rol_plausible_gancho,B,28,0,0.1677,0.0000,0.0023337,1,separates (more frequent in documented cases)
+all_mexico,pidio_datos_personales,B,8,0,0.0479,0.0000,0.195485,1,does not separate in this sample
+all_mexico,cita_edificio_multiusos,B,3,0,0.0180,0.0000,0.546803,1,too rare to judge
+all_mexico,empresa_sin_nombre,B,3,0,0.0180,0.0000,0.546803,1,too rare to judge
+all_mexico,pidio_ir_sola,B,1,0,0.0060,0.0000,0.818627,1,too rare to judge
+all_mexico,pidio_sin_identificacion,B,1,0,0.0060,0.0000,0.818627,1,too rare to judge
+all_mexico,whatsapp_sin_logo,B,0,0,0.0000,0.0000,1,1,too rare to judge
+all_mexico,messenger_a_whatsapp,B,1,0,0.0060,0.0000,0.818627,1,too rare to judge
+all_mexico,cambio_ubicacion_ultimo_momento,B,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,sueldo_alto,A,18,0,0.3273,0.0000,2.45318e-05,1,separates (more frequent in documented cases)
+same_job_families,empleo_fuera_estado,A,5,0,0.0909,0.0000,0.0707394,1,does not separate in this sample
+same_job_families,pago_adelantado,A,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,horario_flexible,A,1,1,0.0182,0.0270,0.840898,0.645246,too rare to judge
+same_job_families,traslado_pagado,A,4,0,0.0727,0.0000,0.12206,1,too rare to judge
+same_job_families,sin_experiencia,A,2,7,0.0364,0.1892,0.997413,0.0201859,reversed (more frequent in verified postings)
+same_job_families,contratacion_urgente,A,1,3,0.0182,0.0811,0.976363,0.176581,too rare to judge
+same_job_families,rol_plausible_gancho,B,18,0,0.3273,0.0000,2.45318e-05,1,separates (more frequent in documented cases)
+same_job_families,pidio_datos_personales,B,2,0,0.0364,0.0000,0.354754,1,too rare to judge
+same_job_families,cita_edificio_multiusos,B,2,0,0.0364,0.0000,0.354754,1,too rare to judge
+same_job_families,empresa_sin_nombre,B,1,0,0.0182,0.0000,0.597826,1,too rare to judge
+same_job_families,pidio_ir_sola,B,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,pidio_sin_identificacion,B,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,whatsapp_sin_logo,B,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,messenger_a_whatsapp,B,0,0,0.0000,0.0000,1,1,too rare to judge
+same_job_families,cambio_ubicacion_ultimo_momento,B,0,0,0.0000,0.0000,1,1,too rare to judge
