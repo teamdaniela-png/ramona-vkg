@@ -1,7 +1,7 @@
 # RATR-O vs HUTRO — Formal comparative analysis
 
 **Prepared for:** the Dialogue Residency at the Institute of Logic and Computation, TU Wien.
-**RATR-O version:** 1.10.8 (14 November 2026).
+**RATR-O version:** 1.10.9 (14 November 2026).
 **HUTRO version reviewed:** as published on BioPortal, upload date 22 April 2025, author Danial Zemchal Tesfahans, status Alpha.
 
 An ontology for human trafficking already exists on BioPortal: HUTRO. This document says what RATR-O reuses from it, what it adds, and why it was not built as an extension of it.
@@ -14,7 +14,7 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 
 ## Side-by-side comparison
 
-| Dimension | HUTRO | RATR-O v1.10.8 |
+| Dimension | HUTRO | RATR-O v1.10.9 |
 |---|---|---|
 | **Author** | Danial Zemchal Tesfahans, Addis Ababa (Ethiopia) | Daniela Camberos, Ramona AI (Mexico); scientific host: Magdalena Ortiz, TU Wien |
 | **Upload / version date** | 22 April 2025 | 14 November 2026 |
@@ -24,10 +24,10 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Formal language** | SKOS ConceptScheme | OWL 2 QL (DL-Lite fragment, Calvanese et al. 2007) |
 | **Reasoning layer** | None (SKOS does not provide logical inference) | Query rewriting under DL-Lite guarantees (Xiao et al. 2019) |
 | **Profile validation** | Not applicable | Validated (no disallowed axioms in the OWL 2 QL profile) |
-| **Classes / top-level concepts** | not re-verified: BioPortal is served behind a bot challenge, so the metrics page could not be opened on 10 November 2026. The first version of this document recorded 37 SKOS concepts | 114 OWL classes |
+| **Classes / top-level concepts** | 36 top concepts and 90 individuals | 114 OWL classes |
 | **Object properties** | Default SKOS (broader, narrower, related) | 69 domain-specific object properties |
 | **Datatype properties** | None (SKOS conceptScheme) | 103 domain-specific datatype properties |
-| **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 26 FraudSchemes with official-source citations |
+| **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 26 FraudScheme subclasses with official-source citations |
 | **Alignment with Palermo Protocol** | Not formalised | `:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose` with verbatim sub-concepts |
 | **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |
 | **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim` |
@@ -35,7 +35,7 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 41 reference queries answering 37 competency questions |
 | **Connected open dataset** | None | 257,969 CTDC records, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
 | **Provenance mechanism for each domain claim** | `inScheme` only | `:hasEvidenceSource :EvidenceSource`, with `:derivedFrom` for patterns and `:offerDocumentedIn` for offers |
-| **Documentation** | BioPortal class tree | HTML docs (100+ KB), dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
+| **Documentation** | BioPortal class tree | HTML documentation, dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
 | **Reproducibility** | Not applicable (static vocabulary) | Every statistic reproducible by running committed scripts |
 | **Licence** | Not explicitly stated | CC BY 4.0 (ontology), Apache 2.0 (code) |
 
@@ -62,7 +62,7 @@ For each:
 | RATR-O class | HUTRO concept (label) | What is reused | What differs |
 |---|---|---|---|
 | `:RecruitmentMethod` | "recruitment method" | the notion of categorising how a victim is initially approached | RATR-O uses 13 controlled values (social_media, classifieds, in_person_street, labour_broker, etc.), covering the online-recruitment context that HUTRO does not represent |
-| `:TypeOfExploitation` | "type of exploitation" | the broad distinction between labour, sexual, and other exploitation | RATR-O adds ISIC-aligned labour subtypes (agriculture, construction, hospitality, domestic) and explicit `:forced_criminality`, `:organ_removal` |
+| `:TypeOfExploitation` | "type of exploitation" | the broad distinction between labour, sexual, and other exploitation | RATR-O adds ISIC-aligned labour subtypes (agriculture, construction, hospitality, domestic) and explicit `forced_criminality` and `organ_removal` codes |
 | `:VulnerabilityFactor` | "vulnerability factor" | the idea that a victim's socioeconomic context increases exposure | RATR-O uses ten codes including `migrant_status`, `minor`, `indigenous`, `single_parent` that reflect Latin-American victimology literature |
 | `:TransportationMeans` | "transportation means" | the notion that trafficking routes use attested transport modes | RATR-O uses eight codes plus `unknown`; matches the CTDC vocabulary |
 | `:CommunicationTool` | "smuggler and trafficker communication tools" | that first-contact tool is a first-class entity | RATR-O adds `whatsapp`, `messenger`, `telegram` as primary categories because those are the dominant tools in the Latin-American online-recruitment context |
@@ -81,7 +81,7 @@ The following are original contributions of RATR-O with no counterpart in HUTRO.
 
 ### Cultural-context layer (Latin American recruitment)
 - `:SurvivorTestimonyPattern` and five subclasses (ClassicRedFlagPattern, CredibleLethalPattern, CommunicationPattern, RecruitmentPattern, ExploitationPattern).
-- 24 `:FraudScheme` subclasses named after attested operational patterns, each with at least one authoritative citation. The nine most specifically Latin-American are InPersonLureScheme (Edith Guadalupe archetype), ForcedCriminalityScheme (CJNG Rancho-Izaguirre archetype), VisaFraudScheme (nanny-to-Canada archetype), ModelingAgencyScheme (Mexico-Colombia corridor), CallCenterScamScheme (Mexico-Costa Rica corridor), FakeMaquilaScheme (border-Mexico archetype), GigEconomyFakeDriverScheme, OnlineInfluencerSalesScheme, CentralAmericanMigrantLabourScheme.
+- 26 `:FraudScheme` subclasses named after attested operational patterns, each with at least one authoritative citation. The nine most specifically Latin-American are InPersonLureScheme (Edith Guadalupe archetype), ForcedCriminalityScheme (CJNG Rancho-Izaguirre archetype), VisaFraudScheme (nanny-to-Canada archetype), ModelingAgencyScheme (Mexico-Colombia corridor), CallCenterScamScheme (Mexico-Costa Rica corridor), FakeMaquilaScheme (border-Mexico archetype), GigEconomyFakeDriverScheme, OnlineInfluencerSalesScheme, CentralAmericanMigrantLabourScheme.
 
 ### Formal-reasoning and framework-alignment layer
 - Palermo Protocol Article 3 triad as OWL classes (`:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose`) with verbatim sub-concepts.
@@ -97,7 +97,7 @@ The following are original contributions of RATR-O with no counterpart in HUTRO.
 
 **HUTRO says:** "Eritrean refugees trafficked into Ethiopia are held for ransom paid through these channels, and this is the vocabulary for describing the ransom event."
 
-**RATR-O says:** "In Latin America, recruitment-based fraud and trafficking take these 24 named operational forms; this is a Virtual Knowledge Graph that makes every fact about an offer or victim traceable to its public source, auditable in DL-Lite, and queryable at scale via SPARQL over 259,000 records."
+**RATR-O says:** "In Latin America, recruitment-based fraud and trafficking take these 26 named operational forms; this is a Virtual Knowledge Graph that makes every fact about an offer or victim traceable to its public source, auditable in DL-Lite, and queryable at scale via SPARQL over 259,000 records."
 
 ## Why RATR-O did not simply extend HUTRO
 
@@ -119,4 +119,4 @@ Xiao, G., Ding, L., Cogrel, B. and Calvanese, D. (2019). Virtual Knowledge Graph
 
 ---
 
-Last updated: 22 April 2026.
+Last updated: 14 November 2026.

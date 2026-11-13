@@ -42,11 +42,11 @@ INSERT INTO classifications (classification_id, risk_level, explanation_text, cl
 SELECT setval(pg_get_serial_sequence('classifications','classification_id'), 4);
 
 -- Offers ----------------------------------------------------------------------
--- Mix of fraudulent (vinculados a Edith / Rancho Izaguirre), high-risk, suspicious y safe.
+-- A mix of fraudulent, high-risk, suspicious and safe offers.
 
 INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn, posted_at,
                     source_platform, country_code, language_code, recruiter_id, employer_id, classification_id, risk_score) VALUES
--- Caso tipo Edith Guadalupe (abril 2026) --------------------------------------
+-- Edith Guadalupe type of case (April 2026) -----------------------------------
  ('Solicito empleada domestica, horarios flexibles, buen sueldo, cita en CDMX. Mandame WhatsApp.',
   'empleada domestica', 'Benito Juarez CDMX', 0,
   DATE '2026-04-02', 3, 'MX','es', 1, 3, 4, 0.97),
@@ -60,7 +60,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'no especificado', 'CDMX', 0,
   DATE '2026-04-10', 1, 'MX','es', 1, 3, 3, 0.85),
 
--- Caso tipo Rancho Izaguirre / CJNG (sueldos 4-12k semanal, seguridad privada) -
+-- Rancho Izaguirre type of case (4,000 to 12,000 MXN a week, private security) -
  ('Vacante guardia de seguridad privada. Sueldo 8000 semanal. Viajes pagados. Cita en Central Camionera GDL.',
   'guardia de seguridad', 'Guadalajara', 8000,
   DATE '2025-11-20', 5, 'MX','es', 4, 6, 4, 0.99),
@@ -77,7 +77,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'seguridad', 'Jalisco', 4000,
   DATE '2026-03-01', 5, 'MX','es', 4, 6, 3, 0.87),
 
--- High-risk mixto ------------------------------------------------------------
+-- High-risk, mixed ------------------------------------------------------------
  ('Trabajo facil, sin experiencia, 5000 semanal. Deposita 500 por uniforme al aceptar.',
   'no especificado', 'Estado de Mexico', 5000,
   DATE '2026-02-20', 1, 'MX','es', 2, 4, 3, 0.90),
@@ -122,7 +122,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'auxiliar cocina', 'Queretaro', 2800,
   DATE '2026-04-02', 6, 'MX','es', 5, 1, 1, 0.11),
 
--- Casos Colombia -------------------------------------------------------------
+-- Colombia ---------------------------------------------------------------------
  ('Empleo en Medellin, sueldo alto, no experiencia, viajes pagados a Necocli.',
   'no especificado', 'Medellin', 6000,
   DATE '2026-02-12', 1, 'CO','es', 7, NULL, 4, 0.94),
@@ -136,7 +136,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'no especificado', 'Cartagena', 5000,
   DATE '2026-03-20', 1, 'CO','es', 7, NULL, 4, 0.96),
 
--- Casos Peru -----------------------------------------------------------------
+-- Peru -------------------------------------------------------------------------
  ('Trabajo en minas Madre de Dios, sueldo alto, traslado pagado.',
   'minero', 'Madre de Dios', 7000,
   DATE '2025-11-10', 1, 'PE','es', 8, NULL, 4, 0.97),
@@ -147,7 +147,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'no especificado', 'Cusco', 4800,
   DATE '2026-03-10', 1, 'PE','es', 8, NULL, 3, 0.88),
 
--- Casos Argentina ------------------------------------------------------------
+-- Argentina --------------------------------------------------------------------
  ('Empleada domestica, cita sola, sueldo semanal alto.',
   'empleada domestica', 'Buenos Aires', 6200,
   DATE '2026-02-18', 1, 'AR','es', 9, NULL, 3, 0.81),
@@ -158,7 +158,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'mesera', 'Buenos Aires', 2800,
   DATE '2026-03-28', 6, 'AR','es', 9, NULL, 1, 0.10),
 
--- Casos Chile ----------------------------------------------------------------
+-- Chile ------------------------------------------------------------------------
  ('Trabajo agricola Antofagasta, traslado pagado, hospedaje incluido.',
   'trabajador agricola', 'Antofagasta', 5500,
   DATE '2026-01-30', 2, 'CL','es', 10, NULL, 4, 0.93),
@@ -169,7 +169,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'no especificado', 'Antofagasta', 6500,
   DATE '2026-03-25', 1, 'CL','es', 10, NULL, 3, 0.86),
 
--- Casos cross-country (mismo recruiter en varios paises) --------------------
+-- Cross-country (the same recruiter in several countries) --------------------
  ('Se buscan empleadas CDMX, sueldo alto, cita individual. Mismo numero contacta en varios paises.',
   'no especificado', 'CDMX', 7500,
   DATE '2026-03-30', 1, 'MX','es', 7, NULL, 4, 0.99),
@@ -185,7 +185,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'asistente', 'Monterrey', 5400,
   DATE '2026-04-11', 5, 'MX','es', 3, 5, 3, 0.87),
 
--- Mas ofertas safe para balance ---------------------------------------------
+-- More safe offers ------------------------------------------------------------
  ('Recepcionista consultorio dental, horario fijo, empleador con RFC.',
   'recepcionista', 'CDMX', 2600,
   DATE '2026-03-10', 7, 'MX','es', 5, 1, 1, 0.09),
@@ -202,7 +202,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   'asistente ventas', 'Leon', 2900,
   DATE '2026-03-30', 6, 'MX','es', 5, 1, 1, 0.12),
 
--- Mas high-risk con patrones mixtos -----------------------------------------
+-- More high-risk offers with mixed patterns -----------------------------------
  ('Empleada, sueldo 8500 semanal, cita edificio multiusos, acudir sola sin INE.',
   'empleada', 'CDMX', 8500,
   DATE '2026-04-12', 1, 'MX','es', 1, 3, 4, 0.98),
@@ -214,7 +214,7 @@ INSERT INTO offers (raw_text, offered_role, offered_location, offered_salary_mxn
   DATE '2026-04-15', 1, 'MX','es', 3, 5, 4, 0.96);
 
 -- Red flags for each fraudulent / high-risk offer ---------------------------
--- Idx-based: cada oferta lleva sus flags segun el patron.
+-- Each offer carries the flags of its pattern.
 
 INSERT INTO red_flags (offer_id, flag_type, flag_confidence, detected_by) VALUES
  -- Offer 1 (Edith-like)
@@ -330,7 +330,7 @@ INSERT INTO red_flags (offer_id, flag_type, flag_confidence, detected_by) VALUES
  (47,'empleo_fuera_estado',         0.95, 'rule');
 
 -- Offer -> SurvivorTestimonyPattern links -----------------------------------
--- Patron mapping: 1=messenger_to_whatsapp, 2=filtro_datos_personales,
+-- Pattern identifiers: 1=messenger_to_whatsapp, 2=filtro_datos_personales,
 -- 3=solicita_ir_sola, 4=solicita_sin_identificacion, 5=empresa_sin_nombre,
 -- 6=sin_logo_whatsapp, 7=sueldos_4k_12k_semanal, 8=cita_central_autobuses,
 -- 9=cita_edificio_multiusos, 10=gancho_seguridad_privada,

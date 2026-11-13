@@ -1,4 +1,4 @@
--- Ramona VKG seed v1.2 — generated from classified press cases
+-- Ramona VKG seed: generated from classified press cases
 -- Source records: 1332 classified articles from press scraper
 -- Each offer row is anchored to a REAL press article via evidence_sources.
 -- Recruiters represented by deterministic SHA-256 stubs. No PII introduced.

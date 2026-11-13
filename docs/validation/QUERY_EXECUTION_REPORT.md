@@ -1,4 +1,4 @@
-# RATR-O v1.10.8: execution of the 41 reference queries
+# RATR-O v1.10.9: execution of the 41 reference queries
 
 The queries were run with `scripts/offline_vkg/`: the seed files in `db/` are loaded into SQLite,
 `mappings/ramona.obda` is executed to produce the graph the VKG exposes, and the queries are evaluated

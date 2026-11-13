@@ -67,8 +67,7 @@ for s, p, o in g.triples((None, RDF.type, None)):
             f"{s} is a {o}")
 
 # Datatypes: OWL 2 QL admits only the datatypes of its datatype map (OWL 2 Profiles, sec. 3.2).
-# xsd:boolean, xsd:date, xsd:gYear, xsd:double, xsd:float are NOT in it. This check was missing
-# before v1.9 and the ROBOT/OWL API profile checker caught 16 such ranges.
+# xsd:boolean, xsd:date, xsd:gYear, xsd:double, xsd:float are not in it.
 QL_DATATYPES = {RDFS.Literal, URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"),
                 URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"), OWL.real, OWL.rational}
 QL_DATATYPES |= {URIRef("http://www.w3.org/2001/XMLSchema#" + t) for t in (
@@ -299,7 +298,7 @@ if OBDA.exists():
     obda_mapping_count = obda_text.count("mappingId")
     if obda_mapping_count < 30:
         log("SHOULD", f"OBDA has only {obda_mapping_count} mapping entries",
-            "Ontology is larger than what the mapping expresses. Consider expanding to cover new v1.4-v1.6 classes.")
+            "The mapping file has fewer than 30 assertions.")
 else:
     log("BLOCKER", "OBDA mapping file missing")
 

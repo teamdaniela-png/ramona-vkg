@@ -1,13 +1,13 @@
-# Real offer corpus: first results (v1.10, 3 Nov 2026)
+# Real offer corpus: results
 
 ## Corpus
 
-- Source: 2,124 press articles on recruitment cases (`data/raw/press.jsonl`, scraped Apr to Jun 2026).
+- Source: the 2,124 press articles that describe a case and carry text, of the 2,591 scraped from April to June 2026 (`data/raw/press.jsonl`).
 - 532 articles contain passages describing an offer (`scripts/extract_offer_snippets.py`).
 - Every passage read and structured without inference (job, pay, platform, location, target, requirements,
   contact, verbatim quote, Type A / Type B flags, scheme, outcome). Verbatim quotes are checked as exact substrings.
 - 352 offer descriptions after merging (295 verified after the independent audit below) (`data/real/press_offers.csv`), **215 in Mexico**, documented by 321 articles
-  (`data/real/press_offer_sources.csv`). 48 carry a verbatim quote of the ad or recruiter message.
+  (`data/real/press_offer_sources.csv`). 47 carry a verbatim quote of the ad or recruiter message.
 - Deduplication is conservative: heavily covered cases (e.g. Teuchitlán) may still appear more than once.
 
 ## Independent audit (4 Nov 2026)
@@ -28,8 +28,8 @@ Output: `data/real/press_offers_verified.csv` (columns `audit_status`, `audit_ev
 
 ## Reasoning check
 
-Ontology v1.10 + 295 verified offers + 1,500 synthetic items: **consistent under HermiT** (ROBOT 1.9.11).
-SPARQL answers over the reasoned graph match the direct counts on the CSV.
+The ontology with the 295 verified offers and the 1,500 synthetic items: **consistent under HermiT** (ROBOT 1.9.11).
+The SPARQL answers below match the direct counts on the tables.
 
 ## Answers (verified offers only)
 
@@ -64,14 +64,13 @@ fake job offer, as published by the Consejo: 47% (2019-2020 analysis), 44% (Jul 
 Among victims recruited through fake job offers: 75% women, 56% destined to prostitution, 52% aged 18 to 31 (Apr 2026).
 Fake job offers are the first recruitment method in every annual report since the pandemic.
 
-**Required citation (Consejo Ciudadano, 4 Nov 2026): always cite the source as "Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México", with the document of origin.** These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
+**Required citation: always cite the source as "Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México", with the document of origin.** These are the Consejo's own aggregates (hotline reports), not a reanalysis. They give the population-level
 frame for the press-offer corpus above.
 
-## Formality bias (limitation flagged by the Consejo Ciudadano, 4 Nov 2026)
+## Formality of the legitimate-offer sample
 
-Consejo Ciudadano staff (personal communication) report that recruitment by organised crime happens mostly
-through informal "chambitas" (supposed motorcycle sales, call centres) that are not even formal companies, and in
-marginalised areas through word of mouth. The legitimate-offer sample (`data/real/legit_offers.csv`) comes from formal
-job boards, so a rule learned from "trap vs legitimate" risks learning "informal vs formal". Mitigation: (1) report the
-contrast as formal-legitimate vs trap, not as legitimate vs trap in general; (2) seek informal legitimate offers
-(e.g. Ramona reports judged legitimate); (3) treat word-of-mouth recruitment as outside what text-based detection can see.
+Consejo Ciudadano staff (personal communication, 4 November 2026) report that recruitment by organised crime
+happens mostly through informal jobs (supposed motorcycle sales, call centres) that are not formal companies, and
+in marginalised areas through word of mouth. The legitimate-offer sample (`data/real/legit_offers.csv`) comes from
+formal job boards. The contrast reported in this repository is therefore between documented cases and advertisements
+on formal job boards, and word-of-mouth recruitment is outside what a text-based detector sees.

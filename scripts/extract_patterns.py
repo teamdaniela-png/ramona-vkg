@@ -145,7 +145,7 @@ def main():
     lines.append("SET search_path TO ramona, public;")
     lines.append("")
     lines.append("-- Extend the survivor_patterns table with two optional columns if they")
-    lines.append("-- do not already exist. Required for v1.3 observatory stats.")
+    lines.append("-- do not already exist.")
     lines.append("ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS pattern_kind TEXT;")
     lines.append("ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS observed_count INTEGER;")
     lines.append("ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS dominance_bucket TEXT;")

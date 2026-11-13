@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Paso 3 del corpus real de ofertas: junta data/processed/offers/extracted_*.jsonl (lectura de los
-fragmentos de prensa), corrige acentos rotos, quita convocatorias legitimas sin victimas, agrega
-el pais de la nota y quita duplicados (el mismo caso contado por varios medios).
+Step 3 of the press-offer corpus: merges data/processed/offers/extracted_*.jsonl (the reading of
+the press passages), repairs broken accents, removes legitimate job calls without victims, adds
+the country of the article and removes duplicates (the same case reported by several outlets).
 
-Salidas (versionadas: solo metadatos, parafrasis propias y citas cortas del anuncio con su fuente):
+Outputs (metadata, own paraphrases and short quotes of the advertisement with their source):
   data/real/press_offers.csv
-  data/real/press_offer_sources.csv  (una fila por nota que documenta cada oferta)
+  data/real/press_offer_sources.csv  (one row per article that documents each offer)
   data/real/press_offers_stats.json
 """
 import csv

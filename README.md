@@ -4,8 +4,8 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 
 ## What this repository contains
 
-- **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.8** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, each asserted as `skos:closeMatch` against the concept IRI BioPortal reports (`docs/HUTRO_vs_RATRO_comparison.md`). In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the observatory extension (victim-centric tables aligned to CTDC).
+- **RATR-O v1.10.9** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, each asserted as `skos:closeMatch` against the concept IRI BioPortal reports (`docs/HUTRO_vs_RATRO_comparison.md`). In profile by the OWL API checker and consistent under HermiT together with its data: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **UML-style class diagrams** of the ontology, six sheets generated from the Turtle file (`docs/diagrams/`).
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
@@ -13,8 +13,8 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 - **41 reference SPARQL queries** (`queries/`, Q1 to Q41) answering 37 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
 - **Mapping specification** (`docs/MAPPING_SPEC.md`): the identifier templates, the foreign keys with the property that states each, and the integrity checks, generated from the schema and the mapping.
 - **Legitimate-offer sample**: 51 advertisements captured from job boards, 37 of them from employers verified in public sources, loaded as `:JobOffer` so they can be compared with the documented cases (`data/real/legit_offers.csv`, `db/15_legit_offers.sql`).
-- **Real offer corpus (v1.10)**: 352 real offer descriptions extracted from press, of which **295 are verified** and loaded (167 in Mexico), with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`). The 55 doubtful and 2 discarded ones are kept in the CSV with their audit status and are not loaded.
-- **Social-media criminal-recruitment module (v1.9)**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
+- **Real offer corpus**: 352 real offer descriptions extracted from press, of which **295 are verified** and loaded (167 in Mexico), with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`). The 55 doubtful and 2 discarded ones are kept in the CSV with their audit status and are not loaded.
+- **Social-media criminal-recruitment module**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
 - **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
 - **Rule learning over the documented offers** (`scripts/rule_learning/`, `docs/results/RULE_LEARNING_RESULTS.md`, `docs/results/RULES_WITH_EXCEPTIONS.md`): conjunctive rules learned from the verified press offers and the verified-employer postings, and rules with exceptions written and learned in answer set programming.
 - **Evidence source catalogue** (`docs/EVIDENCE_SOURCES.md`) and **CTDC–HUTRO–RATR-O mapping workbook** (`docs/CTDC_HUTRO_RATRO_mapping.xlsx`).
@@ -149,7 +149,7 @@ python3 scripts/ontop/run_queries.py --state ctdc
 | `Q30_schemes_in_both_sources.rq` | Fraud schemes with the number of CTDC victims and of press-documented offers attesting each. |
 | `Q31_tiktok_dm_plus_group_code.rq` | Social-media posts that combine a call to a private channel with a coded reference to a criminal group. |
 | `Q32_minor_self_application.rq` | Comments in which an adolescent offers themselves to a criminal group. |
-| `Q33_existential_forced_criminality.rq` | Offers that exhibit some forced-criminality scheme (exercises an existential axiom). |
+| `Q33_existential_forced_criminality.rq` | Offers that exhibit some forced-criminality scheme: the certain answers under the existential axioms of the ontology. |
 | `Q34_recruitment_stories.rq` | Posts per recruitment story of El Colegio de México (2025). |
 | `Q35_lexicon_false_positive_rate.rq` | Lexicon terms that also fire on posts that are not recruitment. |
 | `Q36_who_is_targeted_mx.rq` | Who the verified press-documented offers in Mexico target. |
@@ -177,7 +177,7 @@ ramona_vkg_demo/
 │   ├── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
 │   └── 15_legit_offers.sql                 # advertisements of verified employers, for comparison
 ├── ontology/
-│   ├── ratr-o.ttl                          # RATR-O v1.10.8 in OWL 2 QL, aligned to HUTRO
+│   ├── ratr-o.ttl                          # RATR-O v1.10.9 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
 │   ├── ratr-o.jsonld                       # the same graph in JSON-LD
 │   ├── ratr-o.nt                           # the same graph in N-Triples
@@ -198,8 +198,12 @@ ramona_vkg_demo/
 │   ├── ontop/                              # validate the running demonstrator against the offline validation
 │   └── test_queries.sh
 ├── data/
+│   ├── real/                               # press-documented offers, advertisements of verified employers, Consejo Ciudadano figures
+│   ├── synthetic/                          # 1,500 synthetic social-media items
+│   ├── lexicon/                            # the 79-term TikTok recruitment lexicon
+│   ├── operational/                        # format of an offer export and its data dictionary
 │   ├── raw/                                # scraper output (JSONL, git-ignored)
-│   └── processed/                          # classified output (JSONL + summary JSON)
+│   └── processed/                          # classified output, rule-learning tables
 └── docs/
     ├── diagrams/                           # UML-style class diagrams, generated by scripts/gen_uml_diagrams.py
     ├── COMPETENCY_QUESTIONS.md             # the 37 competency questions and the query answering each
@@ -208,7 +212,7 @@ ramona_vkg_demo/
     ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
     ├── validation/                         # validation report, the execution of the 41 queries, the Ontop demonstrator
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
-    └── CTDC_HUTRO_RATRO_mapping.xlsx       # mapping workbook prepared for Prof. Ortiz
+    └── CTDC_HUTRO_RATRO_mapping.xlsx       # CTDC to HUTRO to RATR-O mapping workbook
 ```
 
 ## Stopping and cleaning up

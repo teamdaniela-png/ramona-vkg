@@ -1,12 +1,16 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q33. Offers that exhibit some forced-criminality scheme (exercises an existential axiom).
-# Every direct-recruitment post is an answer through the axiom
-#   DirectRecruitmentPost SubClassOf exhibitsFraudScheme some ForcedCriminalityScheme
-# even though no row links a post to a scheme.
+# Q33. Offers that exhibit some forced-criminality scheme: the certain answers under the
+# existential axioms of the ontology,
+#   DirectRecruitmentPost    SubClassOf exhibitsFraudScheme some ForcedCriminalityScheme
+#   CriminalRecruitmentOffer SubClassOf exhibitsFraudScheme some ForcedCriminalityScheme
+# The second and third branches of the union are the rewriting of the first under those axioms:
+# no row links such an offer to a scheme.
 
 SELECT (COUNT(DISTINCT ?offer) AS ?n) WHERE {
-  ?offer a :JobOffer ;
-         :exhibitsFraudScheme ?scheme .
-  ?scheme a :ForcedCriminalityScheme .
+  { ?offer :exhibitsFraudScheme ?scheme . ?scheme a :ForcedCriminalityScheme }
+  UNION
+  { ?offer a :DirectRecruitmentPost }
+  UNION
+  { ?offer a :CriminalRecruitmentOffer }
 }

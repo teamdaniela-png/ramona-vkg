@@ -3,11 +3,9 @@
 LLM-based classifier for offer-bearing records (Ramona operational reports or any
 text that actually contains the terms of a job offer).
 
-Why this exists: the rule-based classifier in classify_press.py cannot separate
-Type-A (classic red flags) from Type-B (credible-lethal) reliably, because press
-articles describe outcomes, not offers (see docs/CLASSIFIER_VALIDATION.md, where an
-LLM read found only ~8% of articles contain the offer terms). This script is meant
-for inputs where the offer IS present: the reports users submit to Ramona.
+Press articles mostly describe outcomes, not the terms of the offer (see
+docs/CLASSIFIER_VALIDATION.md). This script is meant for inputs in which the offer is
+present, in the format of data/operational/ramona_offers_template.csv.
 
 Input  JSONL: one record per line, must contain at least {"id", "text"} (a "title"
               field is used if present).
@@ -146,7 +144,6 @@ def main():
         "type_a_only": a_only,
         "type_b_only": b_only,
         "type_a_and_b": both,
-        "ratio_b_a": round(b_only / a_only, 2) if a_only else None,
         "metodo": dict(Counter(r.get("metodo_reclutamiento") for r in ok)),
         "explotacion": dict(Counter(r.get("tipo_explotacion") for r in ok)),
     }

@@ -7,10 +7,10 @@ data/processed/*.jsonl
 .DS_Store
 *.swp
 
-# Datos operativos reales de Ramona (pueden contener PII) - NUNCA subir
+# Operational exports, which may contain personal data
 data/operational/private/
 
-# Corpus real de ofertas (contiene texto de prensa) y cache del Consejo Ciudadano
+# Press text and the cache of the Consejo Ciudadano scraper
 data/processed/offers/snippets.jsonl
 data/processed/offers/batch_*.jsonl
 data/raw/consejo/

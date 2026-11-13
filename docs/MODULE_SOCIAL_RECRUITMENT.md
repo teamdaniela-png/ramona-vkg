@@ -1,4 +1,4 @@
-# RATR-O v1.9: social-media criminal-recruitment module
+# RATR-O: social-media criminal-recruitment module
 
 ## Source
 
@@ -87,15 +87,17 @@ pipeline) or to a SPARQL aggregate, not to the TBox.
 
     DirectRecruitmentPost ⊑ ∃exhibitsFraudScheme.ForcedCriminalityScheme
 
-No database row links a TikTok post to a scheme, yet `Q33` returns every direct recruitment
-post as a certain answer, with an anonymous scheme as witness. Over plain SPARQL on materialised
-data the same query returns zero. This is the clearest demonstration in the repository of why a
-VKG with DL-Lite reasoning answers more than the database alone.
+No database row links a TikTok post to a scheme, yet every direct recruitment post is a certain
+answer to "which offers exhibit some forced-criminality scheme", with an anonymous scheme as
+witness. The demonstrator runs Ontop with its default settings, which do not apply existential
+reasoning, so `Q33` states the rewriting under the axiom as a union: the offers with a recorded
+forced-criminality scheme, the direct recruitment posts and the criminal-recruitment offers.
+It counts 698 offers; the recorded links alone give 92.
 
 **4. Datatypes outside the QL datatype map.**
 `xsd:date`, `xsd:gYear` and `xsd:boolean` are not in the OWL 2 QL datatype map. Ranges using them
-are declared `rdfs:Literal` in the TBox and the mapping emits the concrete type. Caught by the
-OWL API profile checker in v1.9.1 (`docs/validation/VALIDATION_REPORT.md`).
+are declared `rdfs:Literal` in the TBox and the mapping emits the concrete type
+(`docs/validation/VALIDATION_REPORT.md`).
 
 **5. Negation is not in the TBox.**
 `Q35` ("which keywords fire on non-recruitment posts") uses `FILTER NOT EXISTS`, evaluated by
@@ -115,11 +117,11 @@ ontological claim.
 ```bash
 python3 scripts/build_tiktok_synthetic.py --seed 2026
 python3 scripts/build_social_module.py
-.venv/bin/python scripts/obda_to_r2rml.py
+python3 scripts/obda_to_r2rml.py
 ```
 
 ## Status
 
 - Ontology: in OWL 2 QL under the OWL API checker (ROBOT 1.9.11), consistent under HermiT with the 1,500 synthetic items (`docs/validation/VALIDATION_REPORT.md`).
 - Mappings: Ontop native and R2RML, which produce the same graph.
-- Queries Q31 to Q35 execute over the materialised mappings and return rows (`docs/validation/QUERY_EXECUTION_REPORT.md`).
+- Queries Q31 to Q35 execute through Ontop and over the materialised mappings, and return rows (`docs/validation/QUERY_EXECUTION_REPORT.md`).

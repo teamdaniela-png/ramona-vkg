@@ -125,7 +125,7 @@ def main():
          '<div class="meta-box">', "<dl>"]
     h += [f"  <dt>{k}</dt><dd>{v}</dd>" for k, v in meta if v is not None]
     h += ["</dl>", "</div>", "", "<h2>Abstract</h2>", f"<p>{html.escape(abstract)}</p>", "",
-          "<h2>v1.9 module: social-media criminal recruitment</h2>",
+          "<h2>Social-media criminal recruitment module</h2>",
           "<p>Derived from El Colegio de México (2025), <em>Del scroll al “jale”</em>. The four QCA conditions of the report "
           "(NR, ECC, AVC, A) are classes of posts; the three recruitment stories are subclasses with the necessary direction "
           "axiomatised and the sufficient direction (a conjunction, outside OWL 2 QL) computed in the mapping. Entry points: "

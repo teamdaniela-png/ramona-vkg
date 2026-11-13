@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Paso 1 del corpus real de ofertas: de las notas de prensa con caso, saca los fragmentos que
-describen la OFERTA (puesto, pago, plataforma, requisitos, citas textuales del anuncio).
-Salida: data/processed/offers/snippets.jsonl (gitignored: contiene texto de prensa).
-El paso 2 (lectura y estructuracion) lo hace una lectura humana/LLM sobre estos fragmentos.
+Step 1 of the press-offer corpus: from the press articles that describe a case, extracts the
+passages that describe the offer (job, pay, platform, requirements, verbatim quotes of the ad).
+Output: data/processed/offers/snippets.jsonl (git-ignored: it contains press text).
+Step 2 is the reading and structuring of these passages.
 """
 import json
 import re

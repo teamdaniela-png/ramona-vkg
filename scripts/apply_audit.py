@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Aplica la auditoria independiente (data/processed/offers/audit/out_*.jsonl) al corpus de prensa.
+Apply the independent review (data/processed/offers/audit/out_*.jsonl) to the press corpus.
 
-Reglas (verificadas por codigo, no por la palabra del revisor):
-- `evidencia` y cada `evidencia_correcciones` deben ser subcadenas literales del texto de las fuentes;
-  si no lo son, se ignoran.
-- verificada  = revisor dice "si" Y la evidencia es literal.
-- dudosa      = revisor dice "dudoso", o dice "si" sin evidencia literal.
-- descartada  = revisor dice "no".
-- Campo `incorrecto` con correccion respaldada -> se corrige; sin respaldo -> se vacia.
-- Campo `no_en_texto` -> se vacia.  Cita `incorrecto` -> se vacia.
-- criminal_recruitment `incorrecto` -> se invierte.
-Salida: data/real/press_offers_verified.csv (+ columnas audit_status, audit_evidence, audit_changes)
+Rules, checked by code and not taken from the reviewer's word:
+- `evidencia` and every `evidencia_correcciones` must be literal substrings of the source text;
+  otherwise they are ignored.
+- verificada  = the reviewer says "si" and the evidence is literal.
+- dudosa      = the reviewer says "dudoso", or says "si" without literal evidence.
+- descartada  = the reviewer says "no".
+- A field marked `incorrecto` with a supported correction is corrected; without support it is emptied.
+- A field marked `no_en_texto` is emptied. A quote marked `incorrecto` is emptied.
+- criminal_recruitment marked `incorrecto` is inverted.
+Output: data/real/press_offers_verified.csv (adds audit_status, audit_evidence, audit_changes)
 """
 import csv, glob, json, re, collections
 from pathlib import Path

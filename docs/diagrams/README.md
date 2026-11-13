@@ -5,7 +5,7 @@ drawn by hand: the script reads the classes, the datatype properties with their 
 object properties with their domain and range, the subclass axioms, the disjointness axioms and the
 existential restrictions from the Turtle file, and a sheet only says which classes go on it and where.
 The script stops with an error if a class or an object property of the ontology ends up on no sheet.
-For v1.10.8 the six sheets cover all 114 classes and all 69 object properties.
+For v1.10.9 the six sheets cover all 114 classes and all 69 object properties.
 
 ## How to read them
 

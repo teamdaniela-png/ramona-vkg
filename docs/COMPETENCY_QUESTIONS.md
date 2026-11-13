@@ -1,8 +1,8 @@
 # RATR-O — Competency Questions
 
-**Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is now canonical in any serious OWL or DL-Lite deployment. Each CQ is a natural-language question that the domain expert (here: Ramona AI) explicitly wants the ontology to answer. A SPARQL query over the Virtual Knowledge Graph must materialise the answer for the ontology to claim coverage of the CQ.
+**Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is standard practice for OWL and DL-Lite ontologies.
 
-This document lists 37 competency questions for RATR-O v1.10.8 and maps each to the SPARQL query
+This document lists 37 competency questions for RATR-O v1.10.9 and maps each to the SPARQL query
 in `queries/` that answers it. Every one of the 37 names a query file that exists. Four of the 41
 query files answer no competency question of their own and are there as cross-cutting checks:
 `Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and
@@ -17,7 +17,7 @@ ships data for it.
 
 ## Group A — Operational questions (Ramona AI product)
 
-These are the questions Ramona's analysts work on day to day. The VKG must answer them in real time over the operational Postgres.
+These are the questions Ramona's analysts work on day to day. The VKG answers them over the offer tables.
 
 ### CQ1. Which platforms host the most high-risk offers posted since the start of 2026?
 **Answers:** `Q1_highrisk_by_platform.rq`.
@@ -61,7 +61,7 @@ These are the questions Ramona's analysts work on day to day. The VKG must answe
 
 ## Group B — Observatory questions (cross-source statistics)
 
-These exercise the VKG over the three data sources: Ramona operational + CTDC synthetic + press observatory. The same SPARQL query runs transparently over all three.
+These exercise the VKG over the three data sources: the offer tables, the CTDC synthetic dataset and the press observatory. The same SPARQL query runs over all three.
 
 ### CQ9. How many CTDC victims per country of exploitation and by exploitation type?
 **Answers:** `Q9_ctdc_exploitation_by_country.rq`.
@@ -93,7 +93,7 @@ These exercise the VKG over the three data sources: Ramona operational + CTDC sy
 **Why it matters:** measures visibility gap between official registration and public press. Policy-relevant.
 **Ontology machinery exercised:** `:Victim :hasEvidenceSource :EvidenceSource`, `:sourceKind`, cross-datasource federation.
 
-## Group C — FraudScheme questions (the v1.2-v1.6 taxonomy)
+## Group C — FraudScheme questions
 
 These only exist because RATR-O introduced a named FraudScheme taxonomy. They validate that the taxonomy generates actionable questions, not abstract categories.
 
@@ -151,15 +151,15 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 
 ### CQ25. What is the annual trend of victim registration in CTDC 2002-2023?
 **Answers:** `Q25_trend_by_year.rq`.
-**Why it matters:** macro trend for the Discussion section of the paper.
+**Why it matters:** macro trend of registrations.
 **Ontology machinery exercised:** `:yearOfRegistration` aggregation.
 
 ### CQ26. Which means-of-control pairs co-occur most often in CTDC victims?
 **Answers:** `Q26_means_of_control_network.rq`.
-**Why it matters:** input for a control-network visualization in the paper.
+**Why it matters:** shows which means of control are used together.
 **Ontology machinery exercised:** self-join on `:hasMeansOfControl`.
 
-## E. Social-media criminal recruitment (v1.9, Colmex 2025 module)
+## E. Social-media criminal recruitment (Colmex 2025 module)
 
 ### CQ27. Which posts combine a call to a private channel with a coded group reference?
 **Why it matters:** in Colmex 2025 this pair marks the move from public persuasion to private recruitment.
@@ -172,9 +172,9 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Ontology machinery exercised:** `:SelfApplicationComment` plus `:MinorAgeMentionSignal`.
 
 ### CQ29. Which offers exhibit some forced-criminality scheme, even when no scheme is recorded?
-**Why it matters:** demonstrates certain-answer semantics over incomplete data.
+**Why it matters:** shows certain-answer semantics over incomplete data: no row links a post to a scheme.
 **Answered by:** `Q33_existential_forced_criminality.rq`.
-**Ontology machinery exercised:** existential on the right-hand side (`:DirectRecruitmentPost SubClassOf :exhibitsFraudScheme some :ForcedCriminalityScheme`), anonymous witnesses.
+**Ontology machinery exercised:** existential on the right-hand side (`:DirectRecruitmentPost SubClassOf :exhibitsFraudScheme some :ForcedCriminalityScheme`, and the same for `:CriminalRecruitmentOffer`). The query states the rewriting under these axioms as a union.
 
 ### CQ30. How many posts fall into each Colmex recruitment story?
 **Why it matters:** reproduces the three QCA configurations of the source report over the VKG.
@@ -186,7 +186,7 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Answered by:** `Q35_lexicon_false_positive_rate.rq`.
 **Ontology machinery exercised:** `:itemMatchesTerm`, negation in SPARQL (outside OWL 2 QL, evaluated by the endpoint).
 
-## F. Real offer corpus (v1.10)
+## F. Real offer corpus
 
 ### CQ32. Who do real recruitment offers in Mexico target?
 **Answered by:** `Q36_who_is_targeted_mx.rq`. Results in `docs/results/REAL_OFFERS_RESULTS.md`.
@@ -217,8 +217,8 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | B. Observatory | 6 (CQ9-CQ14) | Q9-Q14 |
 | C. FraudScheme | 6 (CQ15-CQ20) | Q15-Q20 |
 | D. Pattern and trend | 6 (CQ21-CQ26) | Q21-Q26 |
-| E. Social-media recruitment (v1.9) | 5 (CQ27-CQ31) | Q31-Q35 |
-| F. Real offer corpus (v1.10) | 5 (CQ32-CQ36) | Q36-Q40 |
+| E. Social-media recruitment | 5 (CQ27-CQ31) | Q31-Q35 |
+| F. Real offer corpus | 5 (CQ32-CQ36) | Q36-Q40 |
 | G. Verified employers | 1 (CQ37) | Q41 |
 | **Total** | **37 CQs** | **37 SPARQL queries** |
 

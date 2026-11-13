@@ -1,4 +1,4 @@
--- Deep regex patterns (v1.4)
+-- Deep regex patterns
 -- Extracted from full text of 1332 case-relevant press articles
 
 SET search_path TO ramona, public;

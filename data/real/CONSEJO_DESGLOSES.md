@@ -40,13 +40,6 @@ Aquí la oferta de empleo es una opción dentro de "cómo fue enganchada la víc
 - **Estados y edades.** Todos los desgloses por estado y edad son de trata en general, NNA u otros universos.
 - **"4 de cada 10 por oferta de empleo en el Mundial"** (6º, p. 6 y p. 70): el reporte no dice a quién cuenta.
 
-## Inconsistencias del propio Consejo (anotadas, no corregidas)
-
-3º p. 36: la leyenda de "Formas de captar" contradice el texto de la página. 4º p. 31: un color de la
-gráfica no cuadra con la p. 28. 5º: sexo de NNA 56/44 (p. 18) vs 58/42 (p. 30). 6º: identidad del agresor
-"se conoce en 61%" (p. 45) vs "~60% no se conoce" (p. 48); "Mendicidad forzada" repetida en p. 67;
-nacionalidades suman 87.6%.
-
 ## Un anuncio real dentro de un reporte
 
 5º reporte, p. 33: imagen de un anuncio "¡ESTAMOS SOLICITANDO! Personal femenino para eventos de

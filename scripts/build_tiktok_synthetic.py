@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Lexico + data sintetica de reclutamiento criminal en TikTok.
+Lexicon and synthetic data of criminal recruitment on TikTok.
 
-Fuente del lexico: Seminario sobre Violencia y Paz, El Colegio de Mexico (2025),
-"Del scroll al 'jale': como se recluta en TikTok" (corpus de 100 videos,
-15-mar a 31-ago-2025). Cada termino trae la pagina y la imagen de donde sale.
-tipo = verbatim_colmex  -> texto que aparece tal cual en una captura o cita del informe
-tipo = variante_sintetica -> variante ortografica o extension nuestra, NO esta en el informe
+Source of the lexicon: Seminario sobre Violencia y Paz, El Colegio de México (2025),
+"Del scroll al 'jale': cómo se recluta en TikTok" (100 videos, 15 March to 31 August 2025).
+Each term carries the page and the image of the report it comes from.
+tipo = verbatim_colmex    -> text that appears as such in a screenshot or quotation of the report
+tipo = variante_sintetica -> a spelling variant or extension written for this dataset, not in the report
 
-Salidas:
+Outputs:
   data/lexicon/tiktok_reclutamiento_lexicon.csv
-  data/synthetic/tiktok_reclutamiento_sintetico.csv  (esquema de data/operational + columnas extra)
-  data/synthetic/tiktok_reclutamiento_sintetico.jsonl (formato de scripts/classify_llm.py)
+  data/synthetic/tiktok_reclutamiento_sintetico.csv  (schema of data/operational plus extra columns)
+  data/synthetic/tiktok_reclutamiento_sintetico.jsonl (format of scripts/classify_llm.py)
   data/synthetic/tiktok_reclutamiento_stats.json
 
-Uso: python3 scripts/build_tiktok_synthetic.py [--seed 2026]
-Deterministico: misma semilla = mismo dataset.
+Usage: python3 scripts/build_tiktok_synthetic.py [--seed 2026]
+Deterministic: the same seed gives the same dataset.
 """
 import argparse
 import csv
@@ -33,7 +33,7 @@ SRC = "Colmex SVP 2025, Del scroll al jale"
 # ---------------------------------------------------------------------------
 # 1. LEXICO
 # (id, termino, patron_regex, categoria, tipo, pagina, elemento)
-# Patrones con limites de palabra: la v1.8 retiro un ratio por regex sin \b.
+# Every pattern is anchored on word boundaries.
 # ---------------------------------------------------------------------------
 LEX = [
     # Oferta / llamado directo (condicion NR del Colmex)

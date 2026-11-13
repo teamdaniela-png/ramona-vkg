@@ -147,7 +147,7 @@ def main():
 
     # Build SQL
     lines = []
-    lines.append("-- Ramona VKG seed v1.2 — generated from classified press cases")
+    lines.append("-- Ramona VKG seed: generated from classified press cases")
     lines.append(f"-- Source records: {len(records)} classified articles from press scraper")
     lines.append("-- Each offer row is anchored to a REAL press article via evidence_sources.")
     lines.append("-- Recruiters represented by deterministic SHA-256 stubs. No PII introduced.")

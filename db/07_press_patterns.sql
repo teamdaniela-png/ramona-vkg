@@ -5,7 +5,7 @@
 SET search_path TO ramona, public;
 
 -- Extend the survivor_patterns table with two optional columns if they
--- do not already exist. Required for v1.3 observatory stats.
+-- do not already exist.
 ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS pattern_kind TEXT;
 ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS observed_count INTEGER;
 ALTER TABLE ramona.survivor_patterns ADD COLUMN IF NOT EXISTS dominance_bucket TEXT;

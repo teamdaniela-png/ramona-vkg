@@ -335,7 +335,7 @@ def deep_patterns():
                     counter[name] += 1
     path = ROOT / "db" / "10_deep_patterns.sql"
     lines = [
-        "-- Deep regex patterns (v1.4)",
+        "-- Deep regex patterns",
         f"-- Extracted from full text of {total} case-relevant press articles",
         "",
         "SET search_path TO ramona, public;",

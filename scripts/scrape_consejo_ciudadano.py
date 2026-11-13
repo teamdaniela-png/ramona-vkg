@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Scraper de cifras publicas del Consejo Ciudadano para la Seguridad y Justicia de la CDMX
-(consejociudadanomx.org) sobre ofertas de empleo falsas, fraude laboral, trata y reclutamiento.
+Scraper of the public figures of the Consejo Ciudadano para la Seguridad y Justicia de la Ciudad
+de México (consejociudadanomx.org) on fake job offers, labour fraud, trafficking and recruitment.
 
-Fuentes: (1) boletines /boletines?page=N -> /contenido/<slug>; (2) reportes PDF en /reportes.
-robots.txt permite todo; se usa 1 peticion por segundo y cache local.
+Sources: (1) bulletins /boletines?page=N -> /contenido/<slug>; (2) PDF reports in /reportes.
+One request per second, with a local cache.
 
-Salidas:
-  data/raw/consejo/html/*.html, data/raw/consejo/pdf/*.pdf     (cache, gitignored)
-  data/processed/consejo/documentos_relevantes.jsonl           (texto, gitignored)
-  data/processed/consejo/cifras_consejo.csv                    (frases con cifras + fuente, versionado)
+Outputs:
+  data/raw/consejo/html/*.html, data/raw/consejo/pdf/*.pdf     (cache, git-ignored)
+  data/processed/consejo/documentos_relevantes.jsonl           (text, git-ignored)
+  data/processed/consejo/cifras_consejo.csv                    (sentences with figures and their source)
 
-Uso: .venv/bin/python scripts/scrape_consejo_ciudadano.py [--max-pages 60] [--no-pdf]
+Usage: python3 scripts/scrape_consejo_ciudadano.py [--max-pages 60] [--no-pdf]
 """
 import argparse
 import csv

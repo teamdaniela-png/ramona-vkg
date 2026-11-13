@@ -1,6 +1,6 @@
--- Ramona VKG — schema extension v1.0
+-- Ramona VKG — schema extension
 -- Adds victim-centric tables aligned to CTDC Global Synthetic Dataset (IOM, 2025)
--- and to the HUTRO-aligned fragment of RATR-O v1.0.
+-- and to the HUTRO-aligned fragment of RATR-O.
 --
 -- Designed to be idempotent: uses CREATE TABLE IF NOT EXISTS.
 --

@@ -1,4 +1,4 @@
--- FraudScheme exemplars (v1.6): relaxed detector, multi-scheme matching
+-- FraudScheme exemplars: one row per press article and scheme it matches
 -- Derived from 1332 case-relevant classified press articles
 
 SET search_path TO ramona, public;
