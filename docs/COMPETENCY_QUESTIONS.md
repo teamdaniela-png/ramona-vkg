@@ -222,9 +222,9 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | G. Verified employers | 1 (CQ37) | Q41 |
 | **Total** | **37 CQs** | **37 SPARQL queries** |
 
-Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 40 SPARQL queries against 36 competency questions.
+Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 41 SPARQL queries against 37 competency questions.
 
-## What RATR-O cannot answer (honest boundary)
+## Outside the scope of RATR-O
 
 The ontology does not commit to answering:
 
@@ -232,9 +232,7 @@ The ontology does not commit to answering:
 - **Monetary amounts of illicit financial flows.** RATR-O models `offeredSalaryMXN` but not the financial flows of the traffickers themselves.
 - **Real-time social-network graph.** The observatory snapshots the network; it does not compute live graph algorithms.
 - **Identity of any individual victim, recruiter, or survivor.** By design, to preserve privacy.
-- **Predictive forecasting.** The ontology is descriptive, not predictive. A companion ML pipeline could be layered on top but is out of scope for v1.6.1.
-
-Stating these boundaries explicitly is itself a rigor signal — the ontology claims only what it delivers.
+- **Predictive forecasting.** The ontology is descriptive, not predictive. A companion ML pipeline could be layered on top but is out of scope.
 
 ## Reference
 

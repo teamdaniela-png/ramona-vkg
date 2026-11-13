@@ -25,8 +25,8 @@ Examples: `:Agent`, `:FraudScheme`, `:PalermoAction`, `:PalermoMeans`, `:Palermo
 are the main case: their exemplars live in `db/09_fraudscheme_examples.sql` (101 rows) and are
 attached to offers there, not minted by a mapping assertion.
 
-**3. The demonstrator database has no column for it.** These are the real gaps, and they are
-honest ones: the ontology models more than Ramona's current schema records.
+**3. The demonstrator database has no column for it.** The ontology models more than the
+demonstrator schema records.
 
 - `:TIPEvent` and all five `:tipEvent*` properties. ICS-TIP's central unit is modelled but there
   is no TIP-event table, so nothing populates it.

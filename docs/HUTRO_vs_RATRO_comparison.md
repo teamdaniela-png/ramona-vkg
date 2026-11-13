@@ -14,19 +14,19 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 
 ## Side-by-side comparison
 
-| Dimension | HUTRO | RATR-O v1.6.1 |
+| Dimension | HUTRO | RATR-O v1.10.6 |
 |---|---|---|
 | **Author** | Danial Zemchal Tesfahans, Addis Ababa (Ethiopia) | Daniela Camberos, Ramona AI (Mexico), with Magdalena Ortiz TU Wien as proposed co-author |
-| **Upload / version date** | 22 April 2025 | 22 April 2026 |
-| **Status declared on BioPortal** | Alpha | Not applicable (this is the ontology's own repository); self-audited twice, the second time before delivery, with zero blockers and zero SHOULD-grade findings remaining |
+| **Upload / version date** | 22 April 2025 | 11 November 2026 |
+| **Status declared on BioPortal** | Alpha | Not applicable (this is the ontology's own repository); in the OWL 2 QL profile under the OWL API and consistent under HermiT (`docs/validation/`) |
 | **Purpose declared** | "to investigate the trend of human trafficking of Eritrean refugees in Ethiopia" | "detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America" |
 | **Geographic scope** | Horn of Africa (Eritrea to Ethiopia corridor, with ransom-transaction focus) | Latin America, with specific attention to Mexico; alignment to the global ISO 3166-1 catalogue (248 countries, keyed on the alpha-3 code, which is the canonical country key of the VKG) |
 | **Formal language** | SKOS ConceptScheme | OWL 2 QL (DL-Lite fragment, Calvanese et al. 2007) |
 | **Reasoning layer** | None (SKOS does not provide logical inference) | Query rewriting under DL-Lite guarantees (Xiao et al. 2019) |
 | **Profile validation** | Not applicable | Validated (no disallowed axioms in the OWL 2 QL profile) |
 | **Classes / top-level concepts** | not re-verified: BioPortal is served behind a bot challenge, so the metrics page could not be opened on 10 November 2026. The first version of this document recorded 37 SKOS concepts | 114 OWL classes |
-| **Object properties** | Default SKOS (broader, narrower, related) | 66 domain-specific object properties |
-| **Datatype properties** | None (SKOS conceptScheme) | 101 domain-specific datatype properties |
+| **Object properties** | Default SKOS (broader, narrower, related) | 69 domain-specific object properties |
+| **Datatype properties** | None (SKOS conceptScheme) | 103 domain-specific datatype properties |
 | **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 26 FraudSchemes with official-source citations |
 | **Alignment with Palermo Protocol** | Not formalised | `:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose` with verbatim sub-concepts |
 | **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |

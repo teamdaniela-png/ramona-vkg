@@ -5,7 +5,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 ## What is an observed fact
 
 - **1,332 offers in `db/05_seed_cases_v1_2.sql`** — each row is anchored to a real press article URL via its `evidence_source`. The offer row does not reproduce the article text (copyright-safe); it records the categorical signals that the rule-based classifier extracted from the article. **The press articles are real. The offers are synthesised structured records that summarise each real article.**
-- **50 offers in `db/03_seed_cases.sql`** — hand-written at the start of the project, inspired by specific publicly documented Mexican cases named in `docs/EVIDENCE_SOURCES.md`. They do not reproduce any real victim's file. They are labelled as synthetic-inspired in the file header.
+- **47 offers in `db/03_seed_cases.sql`** — hand-written at the start of the project, inspired by specific publicly documented Mexican cases named in `docs/EVIDENCE_SOURCES.md`. They do not reproduce any real victim's file. They are labelled as synthetic-inspired in the file header.
 - **1,771 trafficking routes in `db/06_ctdc_routes.sql`** — every route is a unique (citizenship, country_of_exploitation) pair with at least 3 attested victims in the CTDC Global Synthetic Dataset v2025. The CTDC dataset itself is a differentially-private synthetic release from IOM and partners; it is not observed victim records, it is a privacy-preserving release. This distinction is stated up-front in `docs/DATASET_STATS.md`.
 - **38 survivor-testimony patterns + 50 deep-textual patterns in `db/07_press_patterns.sql` and `db/10_deep_patterns.sql`** — each pattern has an `observed_count` equal to the number of press articles whose text matched the pattern's regex. Zero inference beyond the regex match.
 - **101 FraudScheme exemplars in `db/09_fraudscheme_examples.sql`** — each row is a real press article URL plus the single FraudScheme it was assigned by the rule-based detector. The detector's code is in `scripts/enrich_data.py`. Reviewers can reproduce every assignment.
@@ -16,7 +16,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 ## What is not in the data and why
 
-- **There are no synthetic offers derived from CTDC records.** An earlier draft of the repo included 668 offers of this kind labelled `[Sintetizado desde CTDC synthetic record N]`. They were removed for rigor: a "job offer" is not an observable concept in CTDC, and synthesising one from a victim record without attestation would mix observation layers. The repo ships with 1,382 offers only (1,332 press + 50 hand-written seed).
+- **There are no synthetic offers derived from CTDC records.** A job offer is not an observable concept in CTDC, and synthesising one from a victim record would mix observation layers. The repository ships 1,379 seed offers (1,332 anchored to a press article and 47 hand-written).
 - **There are no invented document references.** Every `rdfs:seeAlso` in `ontology/ratr-o.ttl` points to a real URL: UNODC documents, UNICEF pages, ILO publications, FIFPro reports, the Palermo Protocol on OHCHR, HUTRO on BioPortal, CTDC on ctdatacollaborative.org. All 27 external URLs were re-checked on 10 November 2026. Fifteen answer 403 or 406 to automated requests and open normally in a browser. Two no longer serve, `oaxaca.gob.mx` and `zapopan.gob.mx`; both are kept as the primary citation with an Internet Archive snapshot cited next to them and a `skos:note` recording the date of the check. The eight HUTRO alignments no longer assert `skos:closeMatch`: the IRIs previously used were built by concatenating the BioPortal page URL with the concept name, which are not HUTRO identifiers. The alignment is now stated by concept label in a `skos:note` on each class, with the reason it could not be verified.
 - **There are no fabricated victims, recruiters or employers.** Every recruiter is a deterministic SHA-256 stub computed from the press article ID. Every employer is either NULL or references a real institution named in a real press article.
 - **There are no invented FraudSchemes.** Each of the 26 FraudScheme subclasses cites at least one official source in its `rdfs:seeAlso` or `rdfs:comment`:
@@ -36,7 +36,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 - It does not attribute a specific FraudScheme to a victim without evidence. The `:victimOfFraudScheme` relation is asserted only for victims whose source article or CTDC record provides the signal that the detector fires on.
 - It does not claim completeness. The 1,771 routes are only those with ≥3 CTDC victims. The press corpus is 2,591 scraped articles, 2,379 of them case-relevant, a rolling subset of what Google News RSS returned for 70 Spanish-language queries between 21 April and 26 June 2026. Both numbers grow as the scraper runs.
 
-## Numerical gaps that are deliberately left open
+## Figures as they stand
 
 - **Ontology triples: 1,722, not a round number.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
 - **Seed offers: 1,379 in `ramona.offers` and 295 in `ramona.press_offers`.** None is derived from CTDC records.
@@ -47,7 +47,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 - `python -c "import rdflib; g=rdflib.Graph(); g.parse('ontology/ratr-o.ttl','turtle'); print(len(g))"` returns the triple count.
 - `scripts/offline_vkg/run_all.sh` loads the seeds, executes the mappings and prints the row counts of the 41 queries.
 - `grep -c '^  (' db/08_enriched_countries.sql` returns 248.
-- `scripts/test_queries.sh` runs the 40 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3).
+- `scripts/test_queries.sh` runs the 41 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3).
 
 ## Licences
 

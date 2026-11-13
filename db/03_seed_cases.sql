@@ -1,5 +1,5 @@
 -- Case seed data for Ramona demo VKG
--- 50 anonymized offers inspired by documented Mexican cases (Edith Guadalupe, Rancho Izaguirre, Consejo Ciudadano).
+-- 47 anonymized offers inspired by documented Mexican cases (Edith Guadalupe, Rancho Izaguirre, Consejo Ciudadano).
 -- No PII. All contact hashes are deterministic SHA-256 stubs for demo reproducibility.
 
 SET search_path TO ramona, public;

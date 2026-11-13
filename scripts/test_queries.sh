@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the 40 reference SPARQL queries against the local Ontop endpoint.
+# Run the 41 reference SPARQL queries against the local Ontop endpoint.
 # Expects: docker compose up -d has completed and Ontop is ready on :8080.
 
 set -e

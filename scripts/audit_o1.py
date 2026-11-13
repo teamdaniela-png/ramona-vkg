@@ -602,7 +602,7 @@ checks = [
     ("All eight O1 required entities present", not any("Required O1 entity missing" in f["finding"] for f in by_sev["BLOCKER"])),
     ("Every FraudScheme subclass cites at least one official source", not any("FraudScheme" in f["finding"] and "lacks rdfs:seeAlso" in f["finding"] for f in by_sev["SHOULD"])),
     ("Ontology header has version, creator, license", not any("Ontology header missing" in f["finding"] for f in findings if f["severity"] in ("BLOCKER", "SHOULD"))),
-    ("Every property has domain and range", not any("Property missing" in f["finding"] for f in by_sev["SHOULD"])),
+    ("Every property has a range and, unless documented as general, a domain", not any("Property missing" in f["finding"] for f in by_sev["SHOULD"])),
     ("Every skos:closeMatch target under a portal URL carries a verified-IRI note", not any("no note states the IRI was verified" in f["finding"] for f in by_sev["BLOCKER"])),
 
     ("Every object property points at the IRI template its range class is minted under", not any("range class is never minted under" in f["finding"] for f in by_sev["BLOCKER"])),

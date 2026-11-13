@@ -17,6 +17,7 @@ scripts/offline_vkg/run_all.sh
 | `compare_graphs.py` | Compares the two ABoxes triple for triple. |
 | `check_domain_range.py` | Types every individual by the domain and range axioms of the properties it takes part in and reports any class outside the hierarchy of its asserted one. |
 | `check_integrity.py` | Checks that keys, foreign keys and datatypes survive the mapping, and writes `docs/MAPPING_SPEC.md`. |
+| `dataset_stats.py` | Writes `docs/DATASET_STATS.md` from the loaded seeds and the ontology. |
 | `run_queries.py` | Runs the reference queries over the ABox plus the TBox closure Ontop applies at rewrite time. |
 | `shim/psycopg.py` | A sqlite-backed stand-in for psycopg, so `scripts/ingest_ctdc.py` can load the CTDC release into the same SQLite file. |
 
