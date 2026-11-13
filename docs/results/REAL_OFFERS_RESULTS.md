@@ -31,7 +31,7 @@ Output: `data/real/press_offers_verified.csv` (columns `audit_status`, `audit_ev
 Ontology v1.10 + 295 verified offers + 1,500 synthetic items: **consistent under HermiT** (ROBOT 1.9.11).
 SPARQL answers over the reasoned graph match the direct counts on the CSV.
 
-## Answers (verified offers only; Ontop run pending Docker)
+## Answers (verified offers only)
 
 **Q36. Who is targeted (Mexico, 167 verified offers, 103 state a profile):** young people 48, women 27,
 adolescents or minors 22, men 8, migrants 6, students 5, Indigenous people 3.

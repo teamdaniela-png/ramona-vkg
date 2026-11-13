@@ -19,7 +19,7 @@ services:
 
   ontop:
     # ontop/ontop is the image Ontop publishes; ontop/ontop-endpoint has no 5.x tags.
-    image: ontop/ontop:5.2.0
+    image: ontop/ontop:5.5.0
     container_name: ramona_ontop
     depends_on:
       postgres:

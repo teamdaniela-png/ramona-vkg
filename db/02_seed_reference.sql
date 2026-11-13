@@ -10,7 +10,10 @@ INSERT INTO countries (country_code, country_name) VALUES
  ('CL','Chile'),
  ('GT','Guatemala'),
  ('US','United States'),
- ('ES','Spain');
+ ('ES','Spain'),
+ ('HN','Honduras'),
+ ('SV','El Salvador'),
+ ('VE','Venezuela');
 
 -- Languages -------------------------------------------------------------------
 INSERT INTO languages (language_code, language_name) VALUES

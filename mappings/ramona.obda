@@ -196,10 +196,6 @@ mappingId   M-Submission
 target      <https://w3id.org/ratr-o/data/submission/{submission_id}> a :Submission ; :submittedBy <https://w3id.org/ratr-o/data/candidate/{candidate_id}> ; :submittedOffer <https://w3id.org/ratr-o/data/offer/{offer_id}> .
 source      SELECT submission_id, candidate_id, offer_id FROM ramona.submissions
 
-# =========================================================================
-# Victim-centric layer: CTDC records and the press observatory
-# =========================================================================
-
 mappingId   M-AgeGroup
 target      <https://w3id.org/ratr-o/data/agegroup/{age_group_code}> a :AgeGroup ; :ageGroupName {age_group_label}^^xsd:string .
 source      SELECT age_group_code, age_group_label FROM public.age_group

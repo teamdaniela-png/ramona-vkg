@@ -39,6 +39,7 @@ definitions as `rdfs:comment` where OBO expects `IAO:0000115`.
 | Keys and foreign keys | `scripts/offline_vkg/check_integrity.py`, both data states | One IRI per row for the 27 keyed tables; 44 of 49 foreign keys stated by a mapping and 5 not exposed, each with its reason; no link to an untyped individual; no source URL on two individuals; no ill-formed literal. See `../MAPPING_SPEC.md` |
 | Generators | `scripts/build_press_offers_module.py`, `build_social_module.py`, `build_legit_offers_module.py` re-run | Each reproduces its part of the committed mapping file |
 | Reference queries | 41 queries, both data states | All execute; see `QUERY_EXECUTION_REPORT.md` |
+| Ontop over PostgreSQL | The Docker stack of `docker-compose.yml`, Ontop 5.5.0 and PostgreSQL 16 | The 41 queries give the same row counts through the endpoint, and the graph Ontop materialises is the offline one closed under the ontology, 89,121 triples; see `ONTOP_EXECUTION_REPORT.md` |
 
 ## Alignments and citations
 
@@ -74,6 +75,6 @@ This report covers the ontology (Objective 1) and the mappings (Objective 2).
 
 - The Docker stack that serves the VKG through Ontop is the demonstrator of Objective 3 and is
   configured in `docker-compose.yml`. The graph it serves is the one validated here with
-  `scripts/offline_vkg/`.
+  `scripts/offline_vkg/`; `ONTOP_EXECUTION_REPORT.md` has the comparison.
 - The CTDC Global Synthetic Dataset is not redistributed in the repository. `db/` creates the victim
   tables and `scripts/ingest_ctdc.py` fills them from a downloaded copy.

@@ -5,7 +5,7 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.7** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **RATR-O v1.10.7** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, each asserted as `skos:closeMatch` against the concept IRI BioPortal reports (`docs/HUTRO_vs_RATRO_comparison.md`). In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **UML-style class diagrams** of the ontology, six sheets generated from the Turtle file (`docs/diagrams/`).
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
@@ -60,7 +60,7 @@ docker compose up -d
 ```
 
 First run:
-1. pulls Postgres 16 and Ontop 5.2.0;
+1. pulls Postgres 16 and Ontop 5.5.0;
 2. creates the `ramona` database and runs the fifteen files `db/01_schema.sql` to `db/15_legit_offers.sql`, in order, via `/docker-entrypoint-initdb.d/`;
 3. starts Ontop with `ontology/ratr-o.ttl` + `mappings/ramona.obda`.
 
@@ -73,11 +73,16 @@ Wait for Ontop to report as healthy:
 docker compose logs -f ontop
 ```
 
-Then open http://localhost:8080/ for the SPARQL UI, or run the whole reference query suite:
+Then open http://localhost:8080/ for the SPARQL UI, or validate the demonstrator in one command:
 
 ```bash
-./scripts/test_queries.sh
+scripts/ontop/run_all.sh
 ```
+
+It runs the 41 reference queries through the endpoint and compares the row counts with the published
+ones, materialises the graph with Ontop and compares it with the graph of the offline validation.
+`docs/validation/ONTOP_EXECUTION_REPORT.md` has the results. `./scripts/test_queries.sh` prints the
+answers of every query.
 
 ## Populate the observatory
 
@@ -101,7 +106,10 @@ python scripts/ingest_press.py --in data/processed/press_cases.jsonl
 
 # ingest CTDC (once you have the CSV from https://www.ctdatacollaborative.org/page/global-synthetic-dataset)
 DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
-python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
+python scripts/ingest_ctdc.py --csv ~/Downloads/CTDC_global_synthetic_data_v2025.csv
+
+# the 41 queries through Ontop over the 257,969 CTDC records
+python3 scripts/ontop/run_queries.py --state ctdc
 ```
 
 ## Reference queries
@@ -186,6 +194,7 @@ ramona_vkg_demo/
 │   ├── ingest_press.py                     # press → Postgres observatory tables
 │   ├── ingest_ctdc.py                      # CTDC CSV → Postgres observatory tables
 │   ├── offline_vkg/                        # validate mappings and queries without Docker
+│   ├── ontop/                              # validate the running demonstrator against the offline validation
 │   └── test_queries.sh
 ├── data/
 │   ├── raw/                                # scraper output (JSONL, git-ignored)
@@ -196,7 +205,7 @@ ramona_vkg_demo/
     ├── MAPPING_SPEC.md                     # identifier templates, foreign keys and integrity checks
     ├── MAPPING_COVERAGE.md                 # which terms a mapping produces and which it does not
     ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
-    ├── validation/                         # validation report and the execution of the 41 queries
+    ├── validation/                         # validation report, the execution of the 41 queries, the Ontop demonstrator
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
     └── CTDC_HUTRO_RATRO_mapping.xlsx       # mapping workbook prepared for Prof. Ortiz
 ```

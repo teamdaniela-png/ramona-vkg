@@ -47,7 +47,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 - `python -c "import rdflib; g=rdflib.Graph(); g.parse('ontology/ratr-o.ttl','turtle'); print(len(g))"` returns the triple count.
 - `scripts/offline_vkg/run_all.sh` loads the seeds, executes the mappings and prints the row counts of the 41 queries.
 - `grep -c '^  (' db/08_enriched_countries.sql` returns 248.
-- `scripts/test_queries.sh` runs the 41 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3).
+- `scripts/ontop/run_all.sh` runs the 41 reference SPARQL queries against the Ontop endpoint of the Docker stack (Objective 3) and compares the graph Ontop serves with the graph of the offline validation.
 
 ## Licences
 
