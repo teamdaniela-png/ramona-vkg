@@ -116,17 +116,39 @@ typed = set(g.subjects(RDF.type, None)) | set(t_.subjects(RDF.type, None))
 dangling = [(s, p, o) for s, p, o in g if str(p).startswith(NS) and str(p)[len(NS):] in objprops and isinstance(o, URIRef) and o not in typed]
 if dangling: problems.append("references: %d links point at an individual with no class" % len(dangling))
 fkrows = []
+
+
+def stated_by(t, col, rt):
+    """The mapping and object property that state a foreign key: the property whose object IRI is built
+    from the column, or from a column of the referenced table when the mapping joins it."""
+    reading = [(mid, target, source) for mid, target, source in maps
+               if re.search(r"\b%s\b" % re.escape(t), source) and re.search(r"\b%s\b" % re.escape(col), source)]
+    try:
+        ref_cols = {r[1] for r in con.execute("PRAGMA table_info(%s)" % rt)}
+    except Exception:
+        ref_cols = set()
+    pairs = [(mid, target, source, prop, set(re.findall(r"\{(\w+)\}", tpl)))
+             for mid, target, source in reading
+             for prop, tpl in re.findall(r":(\w+)\s+<([^>]*)>", target) if prop in objprops]
+    for mid, target, source, prop, cols in pairs:
+        if col in cols:
+            return mid, prop
+    for mid, target, source, prop, cols in pairs:
+        if re.search(r"\bJOIN\s+\S*\b%s\b" % re.escape(rt), source, re.I) and cols & ref_cols:
+            return mid, prop
+    for mid, target, source in reading:
+        m = re.match(r"<([^>]*)>", target.strip())
+        if m and col in re.findall(r"\{(\w+)\}", m.group(1)):
+            props = [prop for prop, _ in re.findall(r":(\w+)\s+<([^>]*)>", target) if prop in objprops]
+            return mid, "(subject of `:%s`)" % props[0] if props else "(in the subject IRI)"
+    return None
+
+
 for t, col, rt, rc in fks:
-    hit = None
-    for mid, target, source in maps:
-        if re.search(r"\b%s\b" % re.escape(t), source) and re.search(r"\b%s\b" % re.escape(col), source):
-            props = re.findall(r":(\w+)\s+<", target)
-            props = [p for p in props if p in objprops]
-            if props or re.match(r"<[^>]*\{%s\}" % re.escape(col), target.strip()):
-                hit = (mid, props[0] if props else "(in the subject IRI)"); break
+    hit = stated_by(t, col, rt)
     reason = NOT_EXPOSED.get((t, col), "")
     if hit is None and (t, col) not in NOT_EXPOSED:
-        problems.append("references: foreign key %s.%s is read by no mapping and is not listed as not exposed" % (t, col))
+        problems.append("references: foreign key %s.%s is stated by no mapping and is not listed as not exposed" % (t, col))
     fkrows.append((t, col, rt, rc, hit, reason))
 
 # ---- 3. typing

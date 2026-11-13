@@ -112,47 +112,47 @@ part of a subject IRI needs no property: the IRI itself carries it.
 | `legit_offer_flags.legit_id` | `legit_offers.legit_id` | `:hasRedFlag` | `M-Legit-Flag` |
 | `legit_offers.country_code` | `countries.country_code` | `:inCountry` | `M-Legit-Country` |
 | `legit_offers.platform_id` | `platforms.platform_id` | `:postedVia` | `M-Legit-Platform` |
-| `offer_patterns.offer_id` | `offers.offer_id` | `:matchesPattern` | `M-Offer-Pattern` |
+| `offer_patterns.offer_id` | `offers.offer_id` | (subject of `:matchesPattern`) | `M-Offer-Pattern` |
 | `offer_patterns.pattern_id` | `survivor_patterns.pattern_id` | `:matchesPattern` | `M-Offer-Pattern` |
-| `offer_routes.offer_id` | `offers.offer_id` | `:associatedWithRoute` | `M-Offer-Route` |
+| `offer_routes.offer_id` | `offers.offer_id` | (subject of `:associatedWithRoute`) | `M-Offer-Route` |
 | `offer_routes.route_id` | `trafficking_routes.route_id` | `:associatedWithRoute` | `M-Offer-Route` |
 | `offers.classification_id` | `classifications.classification_id` | `:hasRiskClassification` | `M-Offer-Classification` |
 | `offers.country_code` | `countries.country_code` | `:inCountry` | `M-Offer` |
 | `offers.employer_id` | `employers.employer_id` | `:offeredByEmployer` | `M-Offer-Employer` |
 | `offers.evidence_source` | `evidence_sources.source_id` | `:offerDocumentedIn` | `M-Offer-Evidence` |
-| `offers.language_code` | `languages.language_code` | `:inCountry` | `M-Offer` |
+| `offers.language_code` | `languages.language_code` | `:inLanguage` | `M-Offer` |
 | `offers.recruiter_id` | `recruiters.recruiter_id` | `:offeredByRecruiter` | `M-Offer-Recruiter` |
 | `offers.source_platform` | `platforms.platform_id` | `:postedVia` | `M-Offer-PostedVia` |
 | `platforms.platform_country` | `countries.country_code` | `:platformCountry` | `M-Platform-Country` |
 | `press_offer_flags.offer_uid` | `press_offers.offer_uid` | `:hasRedFlag` | `M-Press-Flag` |
 | `press_offer_sources.article_key` | `press_articles.article_key` | `:offerDocumentedIn` | `M-Press-Source` |
-| `press_offer_sources.offer_uid` | `press_offers.offer_uid` | `:offerDocumentedIn` | `M-Press-Source` |
+| `press_offer_sources.offer_uid` | `press_offers.offer_uid` | (subject of `:offerDocumentedIn`) | `M-Press-Source` |
 | `press_offers.country_code` | `countries.country_code` | `:inCountry` | `M-Press-Country` |
 | `press_offers.platform_id` | `platforms.platform_id` | `:postedVia` | `M-Press-Platform` |
 | `recruiters.associated_employer` | `employers.employer_id` | not exposed: RATR-O has no property relating a recruiter to an employer | |
 | `recruiters.recruiter_country` | `countries.country_code` | `:recruiterCountry` | `M-Recruiter-Country` |
-| `red_flags.offer_id` | `offers.offer_id` | `:hasRedFlag` | `M-Offer-RedFlag` |
+| `red_flags.offer_id` | `offers.offer_id` | (subject of `:hasRedFlag`) | `M-Offer-RedFlag` |
 | `route_victim_counts.destination_country` | `countries.country_iso3` | not exposed: used to join the count to its route, which states the destination with :destinationCountry | |
 | `route_victim_counts.origin_country` | `countries.country_iso3` | not exposed: used to join the count to its route, which states the origin with :originCountry | |
 | `social_item_signals.item_id` | `social_items.item_id` | `:itemHasSignal` | `M-Social-Signal-GroupCodeSignal` |
-| `social_item_terms.item_id` | `social_items.item_id` | `:itemMatchesTerm` | `M-Social-Term` |
+| `social_item_terms.item_id` | `social_items.item_id` | (subject of `:itemMatchesTerm`) | `M-Social-Term` |
 | `social_item_terms.term_id` | `lexicon_terms.term_id` | `:itemMatchesTerm` | `M-Social-Term` |
 | `social_items.platform_id` | `platforms.platform_id` | `:itemPostedOn` | `M-Social-Post` |
 | `submissions.candidate_id` | `candidates.candidate_id` | `:submittedBy` | `M-Submission` |
-| `submissions.offer_id` | `offers.offer_id` | `:submittedBy` | `M-Submission` |
+| `submissions.offer_id` | `offers.offer_id` | `:submittedOffer` | `M-Submission` |
 | `survivor_patterns.evidence_source` | `evidence_sources.source_id` | `:derivedFrom` | `M-Pattern-Evidence` |
-| `trafficking_routes.destination_country` | `countries.country_iso3` | `:originCountry` | `M-Route` |
+| `trafficking_routes.destination_country` | `countries.country_iso3` | `:destinationCountry` | `M-Route` |
 | `trafficking_routes.evidence_source` | `evidence_sources.source_id` | `:hasEvidenceSource` | `M-Route-Evidence` |
 | `trafficking_routes.origin_country` | `countries.country_iso3` | `:originCountry` | `M-Route` |
-| `victim.age_group_code` | `age_group.age_group_code` | `:hasDemographicProfile` | `M-Victim-Profile` |
+| `victim.age_group_code` | `age_group.age_group_code` | `:hasAgeGroup` | `M-Victim-Age` |
 | `victim.communication_tool_code` | `communication_tool.tool_code` | `:contactedThrough` | `M-Victim-CommunicationTool` |
 | `victim.documentation_code` | `documentation_type.doc_code` | `:travelledWith` | `M-Victim-Documentation` |
-| `victim.gender_code` | `gender.gender_code` | `:hasDemographicProfile` | `M-Victim-Profile` |
+| `victim.gender_code` | `gender.gender_code` | `:hasGender` | `M-Victim-Gender` |
 | `victim.recruitment_method_code` | `recruitment_method.recruitment_method_code` | `:recruitedVia` | `M-Victim-Recruitment` |
 | `victim.source_id` | `evidence_source_extended.source_id` | `:hasEvidenceSource` | `M-Victim-Source` |
 | `victim.transportation_code` | `transportation_means.tm_code` | `:transportedBy` | `M-Victim-Transport` |
 | `victim_exploitation.exploitation_type_code` | `exploitation_type.exploitation_type_code` | `:victimOfExploitation` | `M-Victim-Exploitation` |
-| `victim_exploitation.victim_id` | `victim.victim_id` | `:victimOfExploitation` | `M-Victim-Exploitation` |
+| `victim_exploitation.victim_id` | `victim.victim_id` | (subject of `:victimOfExploitation`) | `M-Victim-Exploitation` |
 | `victim_means_of_control.means_code` | `means_of_control.means_code` | not exposed: stated as the literal value of the datatype property :hasMeansOfControl | |
 | `victim_means_of_control.victim_id` | `victim.victim_id` | (in the subject IRI) | `M-Victim-Means` |
 | `victim_vulnerability.victim_id` | `victim.victim_id` | `:hasDemographicProfile` | `M-Victim-Profile` |

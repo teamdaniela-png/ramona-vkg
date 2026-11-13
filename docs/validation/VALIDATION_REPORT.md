@@ -30,6 +30,7 @@ definitions as `rdfs:comment` where OBO expects `IAO:0000115`.
 | Seed files | `db/01` to `db/15` loaded in order | All load |
 | Mappings | 204 assertions in `mappings/ramona.obda` executed | 75,675 triples over the seeds |
 | R2RML | `mappings/ramona.r2rml.ttl` executed following the W3C recommendation | The same 75,675 triples |
+| R2RML, independent processor | `mappings/ramona.r2rml.ttl` executed with Morph-KGC 2.10.0 over the same SQLite copy of the seeds | The same subjects, predicates and objects. Two differences, both in how values are written: the lexical form of decimals, and a literal Morph-KGC writes for 1,332 NULL dates, for which R2RML generates no triple |
 | Consistency with the seeds | TBox and ABox merged, HermiT | Consistent, 88,926 triples |
 | CTDC load | `scripts/ingest_ctdc.py` over the 257,969 records of the release | Loads with foreign keys enforced |
 | Consistency with CTDC victims | seeds plus one victim in forty (6,449), HermiT | Consistent, 168,325 triples |

@@ -29,7 +29,8 @@ def esc(v):
              .replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t"))
 
 def iri_esc(v):
-    return urllib.parse.quote(str(v), safe="-._~:/?#[]@!$&'()*+,;=")
+    """IRI-safe form of a column value (R2RML 7.3): everything outside the unreserved set is percent-encoded."""
+    return urllib.parse.quote(str(v), safe="-._~")
 
 def split_po(target):
     """subject, [predicate-object strings]"""

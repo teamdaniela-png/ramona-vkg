@@ -28,7 +28,7 @@ def fill(tpl, row, as_iri):
             if col not in row.keys(): return None
             v = row[col]
             if v is None: return None
-            out.append(urllib.parse.quote(str(v), safe="-._~:/?#[]@!$&'()*+,;=") if as_iri else str(v))
+            out.append(urllib.parse.quote(str(v), safe="-._~") if as_iri else str(v))
             n += 1; i = j + 1
         else:
             out.append(tpl[i]); i += 1
