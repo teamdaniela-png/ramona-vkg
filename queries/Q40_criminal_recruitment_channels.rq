@@ -1,5 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
-# Q40 (CQ36). Through which platforms do real criminal-recruitment offers arrive?
+
+# Q40. Platforms through which press-documented criminal-recruitment offers arrive.
+
 SELECT ?platform (COUNT(DISTINCT ?offer) AS ?n) WHERE {
   ?offer a :CriminalRecruitmentOffer ; :postedVia ?p .
   ?p :platformName ?platform .

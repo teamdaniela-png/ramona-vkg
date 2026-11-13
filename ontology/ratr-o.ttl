@@ -19,21 +19,21 @@
     dc:title "Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O)"@en ;
     dc:title "Ontología Ramona contra el Reclutamiento Fraudulento y la Trata (RATR-O)"@es ;
     dc:creator "Daniela Camberos, Ramona AI" ;
-    dct:contributor "Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)" ;
+    dct:contributor "Magdalena Ortiz, Institute of Logic and Computation, TU Wien (scientific host of the Dialogue Residency)" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dc:description "OWL 2 QL ontology for detecting fraudulent job offers, recruitment fraud and trafficking recruitment in Latin America, designed as the conceptual layer of a Virtual Knowledge Graph."@en ;
-    owl:versionInfo "1.10.6" ;
-    owl:versionIRI <https://w3id.org/ratr-o/1.10.6> ;
-    owl:priorVersion <https://w3id.org/ratr-o/1.10.5> ;
+    owl:versionInfo "1.10.7" ;
+    owl:versionIRI <https://w3id.org/ratr-o/1.10.7> ;
+    owl:priorVersion <https://w3id.org/ratr-o/1.10.6> ;
     dct:issued "2026-04-21"^^xsd:date ;
     dct:created "2026-04-21"^^xsd:date ;
-    dct:modified "2026-11-11"^^xsd:date ;
+    dct:modified "2026-11-13"^^xsd:date ;
     dct:publisher "Ramona AI" ;
     vann:preferredNamespaceUri "https://w3id.org/ratr-o#" ;
     vann:preferredNamespacePrefix "ratro" ;
-    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.6. https://w3id.org/ratr-o"@en ;
-    skos:note "v1.9 (3 November 2026): persistent namespace https://w3id.org/ratr-o; adds the social-media criminal-recruitment module derived from El Colegio de Mexico (2025), Del scroll al jale. v1.10: Type A and Type B red-flag classes, criminal-recruitment offers and offer provenance over the verified press offer corpus. v1.10.6 (11 November 2026): the version delivered as Objective 1 of the Dialogue Residency at TU Wien. Adds :hasEvidenceSource, :exploitedInCountry, :sourceKind and :schemeCode. Every term carries an English and a Spanish label and a definition, and the eight alignments to HUTRO carry concept IRIs verified in BioPortal. In the OWL 2 QL profile under the OWL API checker (ROBOT 1.9.11) and consistent under HermiT with and without data; see docs/validation/VALIDATION_REPORT.md."@en ;
-    rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
+    dct:bibliographicCitation "Camberos, D. (2026). Ramona Anti-Trafficking and Recruitment-fraud Ontology (RATR-O), version 1.10.7. https://w3id.org/ratr-o"@en ;
+    skos:note "In the OWL 2 QL profile under the OWL API checker and consistent under HermiT, alone and together with its data; see docs/validation/VALIDATION_REPORT.md. Every term carries an English and a Spanish label and a definition."@en ;
+    rdfs:comment "A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). It aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona's domain-specific taxonomy of online recruitment fraud in Mexico and Latin America."@en ;
     rdfs:seeAlso <https://bioportal.bioontology.org/ontologies/HUTRO> .
 
 #################################################################
@@ -123,7 +123,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Risk that the offer is recruitment for trafficking in persons in the sense of the Palermo Protocol: for forced labour, sexual exploitation, forced criminality, forced marriage or organ removal."@en .
 
 #################################################################
-#    FraudScheme taxonomy (v1.1)
+#    FraudScheme taxonomy
 #    Named schemes documented from Ramona AI field work and survivor testimony
 #    in Mexico and Latin America. Each scheme is a specific way a fraudulent
 #    job offer is operationalised against candidates in the region.
@@ -214,7 +214,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "The candidate is offered a teaching position abroad (typically Spanish in Asia or English in Latin America) with housing, visa and flight paid by the agency. On arrival the promised contract does not exist: the candidate is placed in a different role, forced to pay back 'travel expenses', has documents retained, or finds the school is a front for sex tourism or forced domestic work. Documented corridors include Mexico-China, Mexico-Korea, and Peru-Japan."@en .
 
 #################################################################
-#    v1.6 — Eight additional FraudSchemes with rigorous documentation
+#    FraudSchemes documented in official sources
 #    Each scheme cites at least one official source
 #    (UNODC, UNICEF, UN Women, ILO, FIFPro, REDIM, Palermo Protocol).
 #################################################################
@@ -226,7 +226,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:seeAlso <https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
                  <http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/> ,
                  <https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/> ;
-    skos:note "The Internet Archive snapshot of 24 February 2025 is cited alongside the oaxaca.gob.mx page, which was unavailable on 10 November 2026."@en .
+    skos:note "The oaxaca.gob.mx page is cited together with its Internet Archive snapshot of 24 February 2025."@en .
 
 :OrganRemovalRecruitmentScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -273,7 +273,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:seeAlso <https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
                  <http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el> ,
                  <https://blog.derechosinfancia.org.mx/> ;
-    skos:note "The Internet Archive snapshot of 23 July 2026 is cited alongside the zapopan.gob.mx page, which was unavailable on 10 November 2026."@en .
+    skos:note "The zapopan.gob.mx page is cited together with its Internet Archive snapshot of 23 July 2026."@en .
 
 :BeggingRingScheme a owl:Class ;
     rdfs:subClassOf :FraudScheme ;
@@ -305,7 +305,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Relates a candidate to the fraud scheme they were defrauded by, as reconstructed from their report."@en .
 
 #################################################################
-#    v1.3 — Observatory measurement layer
+#    Observatory measurement layer
 #    Properties and subclasses that enable empirical statements on top
 #    of the ontology (counts, frequency buckets, earliest year, etc.)
 #################################################################
@@ -389,7 +389,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "The single exploitation type attested for the majority of victims on this route."@en .
 
 #################################################################
-#    v1.4 — Palermo Protocol Article 3 alignment
+#    Palermo Protocol Article 3 alignment
 #    Verbatim definitions from UN Protocol to Prevent, Suppress
 #    and Punish Trafficking in Persons (2000), Article 3(a).
 #################################################################
@@ -534,11 +534,10 @@ skos:closeMatch a owl:AnnotationProperty .
 :Victim rdfs:seeAlso <https://www.unodc.org/unodc/data-and-analysis/glotip.html> .
 
 #################################################################
-#    v1.6 — Additional object and datatype properties
-#    Fine-grained structure for the observatory and paper-grade analytics.
+#    Further object and datatype properties
 #################################################################
 
-# Inverse relations (declared verbose in DL-Lite; OWL 2 QL allows inverseOf)
+# Inverse relations
 :offers a owl:ObjectProperty ;
     rdfs:domain :Agent ; rdfs:range :JobOffer ;
     owl:inverseOf :offeredBy ;
@@ -857,7 +856,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Documentation carried by a victim that was forged, altered or issued in another person's name. One of the values of :DocumentationType."@en .
 
 #################################################################
-#    Victim and demographic classes (new in v1.0)
+#    Victim and demographic classes
 #################################################################
 
 :Victim a owl:Class ;
@@ -981,7 +980,7 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Only asserted when the offer has been confirmed to have produced an exploitation outcome (from press case or dataset confirmation)."@en .
 
 #################################################################
-#    Object properties — Victim-centric (new in v1.0)
+#    Object properties — Victim-centric
 #################################################################
 
 :victimOfOffer a owl:ObjectProperty ;
@@ -1357,28 +1356,19 @@ skos:closeMatch a owl:AnnotationProperty .
     rdfs:comment "Identifier of the record in the open dataset it came from, so that any figure can be traced back to the published dataset."@en .
 
 #################################################################
-#    v1.6 — Observatory provenance annotations (final gap close)
-#    Extra cross-references and SKOS notes that bring triple count
-#    over the 1,000 mark by documenting each major contribution.
+#    Cross-references to the sources of the main concepts
 #################################################################
 
-:FraudScheme skos:note "26 subclasses in all, 21 of them direct. 15 are attested in the verified press corpus; the rest are declared for schemes documented in official sources but not yet matched by a row. Counted against the ontology and the seed files on 10 November 2026."@en ;
-    rdfs:seeAlso <https://ramonaaliadalaboral.com/> ,
+:FraudScheme rdfs:seeAlso <https://ramonaaliadalaboral.com/> ,
                  <https://www.unodc.org/unodc/en/human-trafficking/faqs.html> ,
                  <https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries> ,
                  <https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/> .
 
-:Victim skos:note "Victim records come from CTDC v2025, the IOM differential-privacy synthetic release. The release is not redistributed in this repository: db/ creates the victim tables and scripts/ingest_ctdc.py fills them from a downloaded copy."@en ;
-    rdfs:seeAlso <https://www.ctdatacollaborative.org/page/global-synthetic-dataset> .
+:Victim rdfs:seeAlso <https://www.ctdatacollaborative.org/page/global-synthetic-dataset> .
 
-:TraffickingRoute skos:note "1,778 routes in the seeds: 1,771 CTDC corridors, each with at least 3 victims, plus 7 routes attested in the press and curated by hand. Both sets are keyed by ISO 3166-1 alpha-3. Counted against the seed files on 10 November 2026."@en .
+:RedFlag rdfs:seeAlso <https://ramonaaliadalaboral.com/> .
 
-:RedFlag skos:note "Seven canonical Ramona flags plus 50 deep-textual patterns extracted from press corpus."@en ;
-    rdfs:seeAlso <https://ramonaaliadalaboral.com/> .
-
-:SurvivorTestimonyPattern skos:note "95 patterns in the seeds. 88 carry one of six kind values: classic_a (5), credible_b (7), communication (7), recruitment (9), exploitation (10), deep_textual (50); 7 carry none. Five of the six kinds have a subclass here; deep_textual has none and is read off :patternHasKind. Counted against the seed files on 10 November 2026."@en .
-
-:JobOffer skos:note "1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Counted against the seed files on 10 November 2026."@en .
+:SurvivorTestimonyPattern skos:note "Five kinds of pattern have a subclass here (classic, credible, communication, recruitment, exploitation). The kind of any other pattern is read off :patternHasKind."@en .
 
 :PalermoAction skos:note "Five canonical sub-concepts from Article 3(a) of the Palermo Protocol."@en ;
     rdfs:seeAlso <https://www.ohchr.org/en/instruments-mechanisms/instruments/protocol-prevent-suppress-and-punish-trafficking-persons> .
@@ -1390,11 +1380,6 @@ skos:closeMatch a owl:AnnotationProperty .
 :TIPEvent skos:note "Central unit of classification in ICS-TIP (IOM+UNODC 2023). Aggregates one Victim, at least one PalermoAction, one PalermoMeans and one PalermoPurpose."@en ;
     rdfs:seeAlso <https://www.unodc.org/documents/data-and-analysis/tip/2023/ICS-TIP_2023-v4.pdf> .
 
-:Country skos:note "248 countries and territories loaded from the ISO 3166-1 tables through pycountry (db/08_enriched_countries.sql); 92 of them are attested in the CTDC corridors. Counted against the seed files on 10 November 2026."@en .
-
-:CommunicationTool skos:note "Eight tools in the reference vocabulary. Of the 295 offers in the verified press corpus, 106 name the platform they were carried on: WhatsApp leads with 37 of those 106, which is 12.5% of the whole corpus. Counted on 10 November 2026."@en .
-
-:EvidenceSource skos:note "Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 offers carry :offerDocumentedIn (db/13_offer_provenance.sql). Patterns carry :derivedFrom; routes and victim records carry :hasEvidenceSource. Counted on 10 November 2026."@en .
 
 
 
@@ -1403,7 +1388,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 
 #################################################################
-#    v1.9 — Social-media criminal-recruitment module
+#    Social-media criminal-recruitment module
 #
 #    Source: Arias Vasquez, A. (coord.), Pena Gonzalez, R. (dir.) and
 #    Aguayo Quezada, S. (coord. gral.) (2025). "Del scroll al 'jale':
@@ -1626,7 +1611,7 @@ skos:closeMatch a owl:AnnotationProperty .
 
 
 #################################################################
-#    v1.10 — Real offer corpus: Type A / Type B flags, criminal
+#    Offers documented in the press: Type A / Type B flags, criminal
 #    recruitment offers, provenance of each offer
 #################################################################
 

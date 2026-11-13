@@ -1,9 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q24 — Rutas nuevas documentadas por prensa que aún no están en CTDC.
-# Prensa reciente puede atestiguar corredores que CTDC todavía no registra
-# (porque CTDC requiere asistencia por IOM/Polaris; prensa detecta antes).
-# Esta query es la capacidad de alerta temprana del observatorio Ramona.
+# Q24. Routes documented in the press and not attested in CTDC.
 
 SELECT DISTINCT ?origin ?destination ?source ?outletName
 WHERE {

@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q18 — Perfil demográfico por FraudScheme.
-# Quién es la víctima más frecuente de cada esquema: grupo etario y género.
-# Entrega material para focalización de campañas de prevención.
+# Q18. Demographic profile (age, gender) per fraud scheme.
 
 SELECT ?schemeCode ?ageGroup ?gender (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

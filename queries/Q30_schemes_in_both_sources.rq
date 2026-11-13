@@ -1,11 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q30 — FraudSchemes atestados en AMBAS fuentes (CTDC + prensa).
-# La intersección entre lo que reporta IOM/CTDC y lo que documenta la prensa
-# independiente. Los schemes que aparecen en ambos lados son los de mayor
-# nivel de evidencia documental combinada.
-# Los que aparecen solo en prensa son 'emergentes'. Los que aparecen solo en
-# CTDC pero no en prensa reciente son 'históricos u opacos'.
+# Q30. Fraud schemes attested in CTDC and in the press.
 
 SELECT ?schemeCode
        (COUNT(DISTINCT ?ctdcVictim) AS ?ctdcVictims)

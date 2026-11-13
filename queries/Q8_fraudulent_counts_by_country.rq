@@ -1,7 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
 # Q8. Confirmed-fraudulent offers by country, with average risk score.
-# Operational question: geographic distribution of confirmed cases.
 
 SELECT ?countryName (COUNT(?offer) AS ?nFraudulent) (AVG(?score) AS ?avgRisk) WHERE {
   ?offer a :JobOffer ;

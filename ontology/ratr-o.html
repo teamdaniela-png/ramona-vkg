@@ -28,12 +28,12 @@
 
 <div class="meta-box">
 <dl>
-  <dt>Version</dt><dd>1.10.6</dd>
-  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.6</code></dd>
+  <dt>Version</dt><dd>1.10.7</dd>
+  <dt>Version IRI</dt><dd><code>https://w3id.org/ratr-o/1.10.7</code></dd>
   <dt>Issued</dt><dd>2026-04-21</dd>
-  <dt>Modified</dt><dd>2026-11-11</dd>
+  <dt>Modified</dt><dd>2026-11-13</dd>
   <dt>Creator</dt><dd>Daniela Camberos, Ramona AI</dd>
-  <dt>Contributor</dt><dd>Magdalena Ortiz, TU Wien (proposed co-author, v1.0 onward)</dd>
+  <dt>Contributor</dt><dd>Magdalena Ortiz, Institute of Logic and Computation, TU Wien (scientific host of the Dialogue Residency)</dd>
   <dt>Licence</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></dd>
   <dt>Ontology IRI</dt><dd><code>https://w3id.org/ratr-o</code></dd>
   <dt>Profile</dt><dd>OWL 2 QL (DL-Lite fragment)</dd>
@@ -43,7 +43,7 @@
 </div>
 
 <h2>Abstract</h2>
-<p>A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). v1.0 aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona&#x27;s domain-specific taxonomy of online recruitment fraud in Mexico and Latin America.</p>
+<p>A domain ontology in OWL 2 QL (DL-Lite) for the detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America. RATR-O models the full continuum of recruitment-based harm: from offers that defraud candidates (identity theft, financial scams, unpaid work) through offers that lead to labour exploitation, through to offers whose purpose is trafficking into forced labour, sexual exploitation, or forced criminality. A single JobOffer can exhibit indicators of any combination of these three outcomes, and RATR-O expresses them as distinct but compatible risk axes. The ontology is designed to operate as the conceptual layer of a Virtual Knowledge Graph over Ramona AI operational data and over open anti-trafficking datasets (CTDC, UNODC), following Xiao, Ding, Cogrel and Calvanese (2019). It aligns the generalisable fragment of HUTRO (Human Trafficking Ontology, BioPortal, 2025) with Ramona&#x27;s domain-specific taxonomy of online recruitment fraud in Mexico and Latin America.</p>
 
 <h2>v1.9 module: social-media criminal recruitment</h2>
 <p>Derived from El Colegio de México (2025), <em>Del scroll al “jale”</em>. The four QCA conditions of the report (NR, ECC, AVC, A) are classes of posts; the three recruitment stories are subclasses with the necessary direction axiomatised and the sufficient direction (a conjunction, outside OWL 2 QL) computed in the mapping. Entry points: <a href="#SocialMediaItem"><code>:SocialMediaItem</code></a>, <a href="#DirectRecruitmentPost"><code>:DirectRecruitmentPost</code></a>, <a href="#SocialMediaRecruitmentSignal"><code>:SocialMediaRecruitmentSignal</code></a>, <a href="#LexiconTerm"><code>:LexiconTerm</code></a>. Design note: <a href="https://github.com/teamdaniela-png/ramona-vkg/blob/main/docs/MODULE_SOCIAL_RECRUITMENT.md">MODULE_SOCIAL_RECRUITMENT.md</a>.</p>
@@ -187,9 +187,6 @@
 <h3><code>:Country</code> &mdash; Country</h3>
 <p class="lang">es: <em>País</em></p>
 <p class="comment">A country or territory used as the origin, destination, stopover or jurisdiction of an offer, a route, a platform, a recruiter or a TIP event. Identified by its ISO 3166-1 code through :countryISOCode.</p>
-<table class='meta'>
-<tr><th>Note</th><td>248 countries and territories loaded from the ISO 3166-1 tables through pycountry (db/08_enriched_countries.sql); 92 of them are attested in the CTDC corridors. Counted against the seed files on 10 November 2026.</td></tr>
-</table>
 </div>
 <div class="term" id="CredibleLethalPattern">
 <h3><code>:CredibleLethalPattern</code> &mdash; Credible-lethal pattern</h3>
@@ -313,7 +310,6 @@
 <p class="comment">A public document or case file from which a pattern, route, offer or victim record was derived (e.g. press article, CTDC record, NGO report).</p>
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#OpenDatasetRecord"><code>:OpenDatasetRecord</code></a>, <a href="#PressArticle"><code>:PressArticle</code></a>, <a href="#ResearchReport"><code>:ResearchReport</code></a></td></tr>
-<tr><th>Note</th><td>Provenance chain. 1,337 evidence sources in the seeds, 1,335 of them press articles. 1,325 offers carry :offerDocumentedIn (db/13_offer_provenance.sql). Patterns carry :derivedFrom; routes and victim records carry :hasEvidenceSource. Counted on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="ExploitationPattern">
@@ -383,7 +379,7 @@
 <table class='meta'>
 <tr><th>Subclass of</th><td><a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/">https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/</a>, <a href="http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/">http://web.archive.org/web/20250224033853/https://www.oaxaca.gob.mx/sm/matrimonio-infantil-forzado-una-forma-de-trata-smo/</a>, <a href="https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/">https://blog.derechosinfancia.org.mx/2022/01/28/matrimonio-y-union-temprana-en-ninas-y-mujeres-adolescentes-de-mexico/</a></td></tr>
-<tr><th>Note</th><td>The Internet Archive snapshot of 24 February 2025 is cited alongside the oaxaca.gob.mx page, which was unavailable on 10 November 2026.</td></tr>
+<tr><th>Note</th><td>The oaxaca.gob.mx page is cited together with its Internet Archive snapshot of 24 February 2025.</td></tr>
 </table>
 </div>
 <div class="term" id="ForcedCriminalityScheme">
@@ -418,7 +414,6 @@
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#AgriculturalBondageScheme"><code>:AgriculturalBondageScheme</code></a>, <a href="#BeggingRingScheme"><code>:BeggingRingScheme</code></a>, <a href="#CallCenterScamScheme"><code>:CallCenterScamScheme</code></a>, <a href="#ConstructionLabourBondageScheme"><code>:ConstructionLabourBondageScheme</code></a>, <a href="#DebtBondageTraffickingScheme"><code>:DebtBondageTraffickingScheme</code></a>, <a href="#DomesticWorkerLockInScheme"><code>:DomesticWorkerLockInScheme</code></a>, <a href="#FakeMaquilaScheme"><code>:FakeMaquilaScheme</code></a>, <a href="#FishingVesselLabourScheme"><code>:FishingVesselLabourScheme</code></a>, <a href="#ForcedCriminalityScheme"><code>:ForcedCriminalityScheme</code></a>, <a href="#ForeignLanguageTeacherScheme"><code>:ForeignLanguageTeacherScheme</code></a>, <a href="#GigEconomyFakeDriverScheme"><code>:GigEconomyFakeDriverScheme</code></a>, <a href="#IdentityTheftScheme"><code>:IdentityTheftScheme</code></a>, <a href="#InPersonLureScheme"><code>:InPersonLureScheme</code></a>, <a href="#ModelingAgencyScheme"><code>:ModelingAgencyScheme</code></a>, <a href="#OnlineCryptoJobScheme"><code>:OnlineCryptoJobScheme</code></a>, <a href="#OnlineInfluencerSalesScheme"><code>:OnlineInfluencerSalesScheme</code></a>, <a href="#OrganRemovalRecruitmentScheme"><code>:OrganRemovalRecruitmentScheme</code></a>, <a href="#PayToWorkScheme"><code>:PayToWorkScheme</code></a>, <a href="#PyramidScheme"><code>:PyramidScheme</code></a>, <a href="#SportsTalentScheme"><code>:SportsTalentScheme</code></a>, <a href="#VisaFraudScheme"><code>:VisaFraudScheme</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://ramonaaliadalaboral.com/">https://ramonaaliadalaboral.com/</a>, <a href="https://www.unodc.org/unodc/en/human-trafficking/faqs.html">https://www.unodc.org/unodc/en/human-trafficking/faqs.html</a>, <a href="https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries">https://www.ilo.org/publications/caught-sea-forced-labour-and-trafficking-fisheries</a>, <a href="https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/">https://fifpro.org/en/supporting-players/safe-working-environments/human-trafficking/</a></td></tr>
-<tr><th>Note</th><td>26 subclasses in all, 21 of them direct. 15 are attested in the verified press corpus; the rest are declared for schemes documented in official sources but not yet matched by a row. Counted against the ontology and the seed files on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="GangRecruitmentSchoolsScheme">
@@ -428,7 +423,7 @@
 <table class='meta'>
 <tr><th>Subclass of</th><td><a href="#ChildRecruitmentCriminalScheme"><code>:ChildRecruitmentCriminalScheme</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el">https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el</a>, <a href="http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el">http://web.archive.org/web/20260723014408/https://www.zapopan.gob.mx/v3/inclusion/noticias/policia-de-zapopan-refuerza-acciones-preventivas-contra-la-desaparicion-de-personas-y-el</a>, <a href="https://blog.derechosinfancia.org.mx/">https://blog.derechosinfancia.org.mx/</a></td></tr>
-<tr><th>Note</th><td>The Internet Archive snapshot of 23 July 2026 is cited alongside the zapopan.gob.mx page, which was unavailable on 10 November 2026.</td></tr>
+<tr><th>Note</th><td>The zapopan.gob.mx page is cited together with its Internet Archive snapshot of 23 July 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="Gender">
@@ -498,7 +493,6 @@
 <p class="comment">A posting advertising employment, submitted to Ramona or harvested from public channels.</p>
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#CriminalRecruitmentOffer"><code>:CriminalRecruitmentOffer</code></a>, <a href="#DirectRecruitmentPost"><code>:DirectRecruitmentPost</code></a></td></tr>
-<tr><th>Note</th><td>1,674 :JobOffer individuals in the seeds: 47 hand-curated Ramona cases and 1,332 offers synthesised from classified press articles (ramona.offers, 1,379 rows), plus 295 offers extracted from the verified press corpus (ramona.press_offers). Counted against the seed files on 10 November 2026.</td></tr>
 </table>
 </div>
 <div class="term" id="Language">
@@ -825,7 +819,6 @@
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#ClassicRedFlag"><code>:ClassicRedFlag</code></a>, <a href="#CredibleLethalRedFlag"><code>:CredibleLethalRedFlag</code></a>, <a href="#SocialMediaRecruitmentSignal"><code>:SocialMediaRecruitmentSignal</code></a></td></tr>
 <tr><th>See also</th><td><a href="https://ramonaaliadalaboral.com/">https://ramonaaliadalaboral.com/</a></td></tr>
-<tr><th>Note</th><td>Seven canonical Ramona flags plus 50 deep-textual patterns extracted from press corpus.</td></tr>
 </table>
 </div>
 <div class="term" id="ResearchReport">
@@ -909,7 +902,7 @@
 <p class="comment">A recurring linguistic or logistical pattern extracted from survivor interviews or documented cases.</p>
 <table class='meta'>
 <tr><th>Superclass of</th><td><a href="#ClassicRedFlagPattern"><code>:ClassicRedFlagPattern</code></a>, <a href="#CommunicationPattern"><code>:CommunicationPattern</code></a>, <a href="#CredibleLethalPattern"><code>:CredibleLethalPattern</code></a>, <a href="#ExploitationPattern"><code>:ExploitationPattern</code></a>, <a href="#RecruitmentPattern"><code>:RecruitmentPattern</code></a></td></tr>
-<tr><th>Note</th><td>95 patterns in the seeds. 88 carry one of six kind values: classic_a (5), credible_b (7), communication (7), recruitment (9), exploitation (10), deep_textual (50); 7 carry none. Five of the six kinds have a subclass here; deep_textual has none and is read off :patternHasKind. Counted against the seed files on 10 November 2026.</td></tr>
+<tr><th>Note</th><td>Five kinds of pattern have a subclass here (classic, credible, communication, recruitment, exploitation). The kind of any other pattern is read off :patternHasKind.</td></tr>
 </table>
 </div>
 <div class="term" id="TIPEvent">
@@ -981,7 +974,6 @@
 <p class="comment">A person documented as having been exploited or attempted-to-be-exploited in a trafficking or fraudulent-employment scheme. Sourced from anonymised CTDC records and publicly reported press cases.</p>
 <table class='meta'>
 <tr><th>See also</th><td><a href="https://www.unodc.org/unodc/data-and-analysis/glotip.html">https://www.unodc.org/unodc/data-and-analysis/glotip.html</a>, <a href="https://www.ctdatacollaborative.org/page/global-synthetic-dataset">https://www.ctdatacollaborative.org/page/global-synthetic-dataset</a></td></tr>
-<tr><th>Note</th><td>Victim records come from CTDC v2025, the IOM differential-privacy synthetic release. The release is not redistributed in this repository: db/ creates the victim tables and scripts/ingest_ctdc.py fills them from a downloaded copy.</td></tr>
 </table>
 </div>
 <div class="term" id="VisaFraudScheme">

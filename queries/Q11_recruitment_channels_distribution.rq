@@ -1,10 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q11 — Distribution of first-contact communication tool across all victims in
-# the observatory (CTDC + press + internal). Answers: "Through what channel are
-# people being contacted, in aggregate?" This is the stat that justifies
-# monitoring Messenger, WhatsApp and Telegram as first-class entities.
+# Q11. First-contact communication tool distribution across all sources.
 
 SELECT ?toolName (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

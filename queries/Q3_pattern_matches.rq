@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q3. Offers whose language or logistics match a known
-# SurvivorTestimonyPattern, plus the source that documents the pattern.
-# Operational question: trazabilidad a evidencia publica.
+# Q3. Offers matching survivor patterns, plus source that documents each pattern.
 
 SELECT ?offer ?patternName ?sourceOutlet ?sourceTitle WHERE {
   ?offer :matchesPattern ?pattern .

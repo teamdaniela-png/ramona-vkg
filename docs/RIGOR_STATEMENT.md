@@ -38,7 +38,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 ## Figures as they stand
 
-- **Ontology triples: 1,722, not a round number.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
+- **Ontology triples: 1,714.** That is the count rdflib reports for the current TTL. Of the 1,500 synthetic social-media items, every one carries `:itemIsSynthetic true`, so no figure can mix them with real data unnoticed.
 - **Seed offers: 1,379 in `ramona.offers` and 295 in `ramona.press_offers`.** None is derived from CTDC records.
 - **Countries attested in CTDC: 92 of 248.** The other 156 are catalog entries flagged as such.
 
@@ -58,4 +58,4 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 Author: Daniela Camberos, Ramona AI.
 Reviewer: Prof. Magdalena Ortiz, TU Wien, Institute of Logic and Computation (proposed).
-Last updated: 11 November 2026.
+Last updated: 13 November 2026.

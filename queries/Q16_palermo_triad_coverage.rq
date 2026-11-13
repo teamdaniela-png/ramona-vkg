@@ -1,10 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-# Q16 — Cobertura del triángulo Palermo (Action × Means × Purpose)
-# en los eventos TIP documentados. Una TIP Event completa debe exhibir
-# al menos una Acción, un Medio y un Propósito (Palermo Protocol, Art. 3).
-# Esta query lista eventos que cumplen los 3 ejes y los que no.
+# Q16. Coverage of the Palermo triad (action, means, purpose) per TIP event.
 
 SELECT ?event ?hasAction ?hasMeans ?hasPurpose
 WHERE {

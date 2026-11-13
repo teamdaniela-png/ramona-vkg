@@ -1,5 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
-# Q36 (CQ32). Who do real recruitment offers in Mexico target? (real press corpus, v1.10)
+
+# Q36. Who the press-documented offers in Mexico target.
+
 SELECT ?group (COUNT(DISTINCT ?offer) AS ?n) WHERE {
   ?offer a :JobOffer ; :inCountry <https://w3id.org/ratr-o/data/country/MEX> ; :offerTargetProfile ?p .
   VALUES (?group ?rx) { ("jovenes" "j[oó]ven") ("mujeres" "mujer|chica") ("adolescentes o menores" "adolesc|menor|ni[ñn][ao]|15|16|17")

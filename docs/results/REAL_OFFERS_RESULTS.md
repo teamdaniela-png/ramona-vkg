@@ -12,8 +12,7 @@
 
 ## Independent audit (4 Nov 2026)
 
-Every offer was re-read by an independent reviewer against its source text (`data/processed/offers/audit/`,
-instructions in `data/processed/offers/audit/INSTRUCCIONES_AUDITORIA.md`), and the result was checked by code (`scripts/apply_audit.py`):
+Every offer was re-read by an independent reviewer against its source text, and the result was checked by code (`scripts/apply_audit.py`):
 evidence sentences must be literal substrings of the source.
 
 | Status | Offers | Rule |

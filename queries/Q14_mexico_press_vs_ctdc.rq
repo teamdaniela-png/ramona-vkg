@@ -1,11 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q14 — Mexico: press-documented victims vs CTDC-registered victims.
-# The same SPARQL federates across two radically different sources (scraped
-# press articles and an IOM administrative dataset) because both are mediated
-# by the same Victim class in RATR-O. This is the concrete payoff of OBDA
-# for a public observatory.
+# Q14. Mexico: press-documented vs CTDC-registered victims (cross-source federation).
 
 SELECT ?datasetOrPress (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

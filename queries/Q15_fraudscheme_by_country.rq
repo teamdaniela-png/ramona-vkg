@@ -1,10 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q15 — Distribución de FraudSchemes por país.
-# ¿Qué esquemas de fraude dominan en cada país del observatorio?
-# Demuestra federación entre el catálogo de esquemas (RATR-O) y los
-# exemplars atestados (tabla fraudscheme_exemplars, fuente: prensa).
+# Q15. Fraud schemes by country.
 
 SELECT ?countryIso ?schemeCode (COUNT(DISTINCT ?exemplar) AS ?cases)
 WHERE {

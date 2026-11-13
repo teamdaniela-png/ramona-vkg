@@ -1,10 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q17 — Heatmap esquema × herramienta de comunicación.
-# Correlaciona cada FraudScheme con el CommunicationTool usado en el primer
-# contacto. Permite responder: ¿qué herramienta predomina para cada tipo de
-# esquema? (Hipótesis: WhatsApp domina IdentityTheft; Messenger domina
-# InPersonLure por embudo Messenger->WhatsApp.)
+# Q17. Fraud scheme by communication tool.
 
 SELECT ?schemeLabel ?toolLabel (COUNT(DISTINCT ?victim) AS ?cases)
 WHERE {

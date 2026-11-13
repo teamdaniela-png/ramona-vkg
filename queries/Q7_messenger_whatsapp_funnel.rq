@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q7. Messenger-to-WhatsApp funnel: offers that match the pattern of
-# first contact on Messenger, migration to WhatsApp, and data filtering
-# before interview.
+# Q7. Messenger-to-WhatsApp funnel with personal-data filtering.
 
 SELECT ?offer ?platformName ?role ?posted WHERE {
   ?offer :matchesPattern <https://w3id.org/ratr-o/data/pattern/1> ,  # messenger_to_whatsapp

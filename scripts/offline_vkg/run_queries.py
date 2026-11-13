@@ -1,4 +1,4 @@
-"""Run the 40 reference queries over a materialised ABox plus the TBox.
+"""Run the reference queries over a materialised ABox plus the TBox.
 
 Usage: python scripts/offline_vkg/run_queries.py <abox.ttl>
 
@@ -103,7 +103,7 @@ def h(*a): raise TO()
 signal.signal(signal.SIGALRM, h)
 
 rows_out, empties, errors = [], [], []
-for f in sorted(glob.glob("queries/*.rq"), key=lambda x: (len(os.path.basename(x)), x)):
+for f in sorted(glob.glob("queries/*.rq"), key=lambda x: int(re.match(r"Q(\d+)", os.path.basename(x)).group(1))):
     name = os.path.basename(f)[:-3]
     q = io.open(f, encoding="utf-8").read()
     # Expand `?x IN (a, b)` into `(?x = a || ?x = b)`.
@@ -143,6 +143,20 @@ for f in sorted(glob.glob("queries/*.rq"), key=lambda x: (len(os.path.basename(x
 
 print("\n%-44s %8s %7s" % ("query", "rows", "sec"))
 for n, r, d, w in rows_out: print("%-44s %8d %7.2f  %s" % (n, r, d, w))
-print("\nexecuted: %d   empty: %d   not finished: %d" % (len(rows_out), len(empties), len(errors)))
-if empties: print("\nEMPTY RESULT SET:"); [print("  ", e) for e in empties]
+print("\nexecuted: %d of %d   with rows: %d" % (len(rows_out), len(rows_out) + len(errors), len(rows_out) - len(empties)))
 if errors: print("\nNOT FINISHED:"); [print("  %-44s %s" % e) for e in errors]
+
+# Compare with the row counts published in docs/validation/QUERY_EXECUTION_REPORT.md.
+report = os.path.join(ROOT, "docs", "validation", "QUERY_EXECUTION_REPORT.md")
+published = {m[0]: (int(m[1]), int(m[2])) for m in
+             re.findall(r"^\| `(Q\d+_\w+)` \| (\d+) \| (\d+) \|", open(report, encoding="utf-8").read(), re.M)}
+got = {n: r for n, r, d, w in rows_out}
+for column, state in ((0, "seeds"), (1, "seeds plus CTDC")):
+    if got == {n: v[column] for n, v in published.items()}:
+        print("row counts equal the published ones (%s)" % state)
+        break
+else:
+    column = 1 if any(str(o).startswith("https://w3id.org/ratr-o/data/victim/") for o in g.subjects(RDF.type, URIRef("https://w3id.org/ratr-o#Victim"))) else 0
+    diff = sorted(n for n in set(got) | set(published) if got.get(n) != published.get(n, (None, None))[column])
+    print("row counts differ from the published ones: " + ", ".join(diff))
+    sys.exit(1)

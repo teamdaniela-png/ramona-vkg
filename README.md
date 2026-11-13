@@ -5,7 +5,7 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the v1.0 observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.6** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **RATR-O v1.10.7** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, recorded by concept label in a `skos:note` rather than by `skos:closeMatch`: HUTRO's submission declares the placeholder namespace `http://www.example.com` and BioPortal serves it behind a bot challenge, so its concept IRIs could not be verified. In profile by the OWL API checker and consistent under HermiT together with the full ABox: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **UML-style class diagrams** of the ontology, six sheets generated from the Turtle file (`docs/diagrams/`).
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
@@ -108,7 +108,7 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 
 | File | What it answers |
 |------|-----------------|
-| `Q1_highrisk_by_platform.rq` | High-risk and fraudulent offers grouped by platform (Ramona operational). |
+| `Q1_highrisk_by_platform.rq` | High-risk and fraudulent offers grouped by platform. |
 | `Q2_multicountry_recruiters.rq` | Cross-border recruiters with multiple flags this quarter. |
 | `Q3_pattern_matches.rq` | Offers matching survivor patterns, plus source that documents each pattern. |
 | `Q4_route_unclassified.rq` | Offers on a known trafficking route that have not been classified. |
@@ -127,7 +127,7 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 | `Q17_scheme_vs_tool_heatmap.rq` | Fraud scheme by communication tool. |
 | `Q18_age_gender_per_scheme.rq` | Demographic profile (age, gender) per fraud scheme. |
 | `Q19_outlets_by_scheme.rq` | Press outlets that document each scheme. |
-| `Q20_type_b_over_a_by_country.rq` | Offers matching only credible-lethal patterns and offers matching only classic red flags, by country. Not a prevalence estimate; see `docs/CLASSIFIER_VALIDATION.md`. |
+| `Q20_type_b_over_a_by_country.rq` | Offers matching only credible-lethal patterns and offers matching only classic red flags, by country. Counts of documented offers, not a prevalence estimate. |
 | `Q21_pattern_cooccurrence.rq` | Pairs of patterns that co-occur on offers from the same source. |
 | `Q22_recruitment_x_exploitation.rq` | Recruitment method by exploitation type (CTDC). |
 | `Q23_whatsapp_funnel_schemes.rq` | Schemes that share WhatsApp as the first channel. |
@@ -143,11 +143,11 @@ python scripts/ingest_ctdc.py --csv ~/Downloads/ctdc_global_synthetic_v2025.csv
 | `Q33_existential_forced_criminality.rq` | Offers that exhibit some forced-criminality scheme (exercises an existential axiom). |
 | `Q34_recruitment_stories.rq` | Posts per Colmex recruitment story, and direct-recruitment posts that are also job offers. |
 | `Q35_lexicon_false_positive_rate.rq` | Lexicon terms that also fire on posts that are not recruitment. |
-| `Q36_who_is_targeted_mx.rq` | Who real recruitment offers in Mexico target. |
-| `Q37_where_offers_mx.rq` | Where real recruitment offers in Mexico are located. |
-| `Q38_verbatim_wording.rq` | Verbatim wording of real offers, with the source. |
-| `Q39_type_a_vs_type_b_real.rq` | Real offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
-| `Q40_criminal_recruitment_channels.rq` | Platforms through which real criminal-recruitment offers arrive. |
+| `Q36_who_is_targeted_mx.rq` | Who the press-documented offers in Mexico target. |
+| `Q37_where_offers_mx.rq` | Where the press-documented offers in Mexico are located. |
+| `Q38_verbatim_wording.rq` | Verbatim wording of press-documented offers, with the source. |
+| `Q39_type_a_vs_type_b_real.rq` | Press-documented offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
+| `Q40_criminal_recruitment_channels.rq` | Platforms through which press-documented criminal-recruitment offers arrive. |
 | `Q41_flags_verified_employers_vs_press.rq` | Red flags in advertisements of verified employers next to the same flags in press-documented offers. |
 
 Which of these return rows over the shipped seeds, which need the CTDC release loaded, and why the
@@ -168,7 +168,7 @@ ramona_vkg_demo/
 │   ├── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
 │   └── 15_legit_offers.sql                 # advertisements of verified employers, for comparison
 ├── ontology/
-│   ├── ratr-o.ttl                          # RATR-O v1.10.6 in OWL 2 QL, aligned to HUTRO
+│   ├── ratr-o.ttl                          # RATR-O v1.10.7 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
 │   ├── ratr-o.jsonld                       # the same graph in JSON-LD
 │   ├── ratr-o.nt                           # the same graph in N-Triples

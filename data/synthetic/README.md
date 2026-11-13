@@ -1,57 +1,55 @@
-# Data sintética: reclutamiento criminal en TikTok
+# Synthetic data: criminal recruitment on TikTok
 
-**Todo lo que hay en esta carpeta es SINTÉTICO.** No son publicaciones reales, no hay cuentas,
-teléfonos ni personas. Sirve para entrenar y evaluar detectores, y para poblar el VKG con
-`:ForcedCriminalityScheme` y `:ChildRecruitmentCriminalScheme` mientras llegan datos operativos.
+Everything in this folder is synthetic. There are no real posts, accounts, telephone numbers or persons.
+The items populate the VKG with `:ForcedCriminalityScheme` and `:ChildRecruitmentCriminalScheme` and serve
+to test detectors.
 
-## De dónde salen las palabras
+## Where the words come from
 
-Léxico en `data/lexicon/tiktok_reclutamiento_lexicon.csv` (79 términos, 71 verbatim).
-Fuente: Seminario sobre Violencia y Paz, El Colegio de México (2025), *Del scroll al "jale":
-cómo se recluta en TikTok* (100 videos, 15 de marzo a 31 de agosto de 2025).
+Lexicon: `data/lexicon/tiktok_reclutamiento_lexicon.csv`, 79 terms, 71 of them verbatim.
+Source: Seminario sobre Violencia y Paz, El Colegio de México (2025), *Del scroll al "jale": cómo se
+recluta en TikTok* (100 videos, 15 March to 31 August 2025). Each term carries the page and the image of
+the report it comes from. Column `tipo`:
 
-Cada término trae página e imagen del informe. Las palabras reales están en las **capturas**
-(texto sobre video y comentarios), no en el cuerpo del texto. Columna `tipo`:
+- `verbatim_colmex`: appears as such in the report.
+- `variante_sintetica`: a spelling or hashtag variant written for this dataset.
 
-- `verbatim_colmex`: aparece tal cual en el informe.
-- `variante_sintetica`: variante nuestra (ortografía, hashtags genéricos). No citar como hallazgo.
+Categories: `oferta_llamado`, `oferta_alcance`, `pago`, `contacto_privado`, `codigo_grupo`, `emoji_grupo`,
+`hashtag`, `aspiracion_fatalismo`, `aspiracion_familia`, `autopostulacion`, `menciona_menor`,
+`respuesta_reclutador`.
 
-Categorías: `oferta_llamado`, `oferta_alcance`, `pago`, `contacto_privado`, `codigo_grupo`,
-`emoji_grupo`, `hashtag`, `aspiracion_fatalismo`, `aspiracion_familia`, `autopostulacion`,
-`menciona_menor`, `respuesta_reclutador`.
+## What the dataset contains (seed 2026, 1,500 rows)
 
-## Qué contiene el dataset (seed 2026, 1,500 filas)
-
-| label | n | qué es | relato Colmex |
+| label | n | what it is | Colmex story |
 |---|---|---|---|
-| `reclutamiento_directo` | 600 | anuncio con llamado explícito (NR) | enrolarse (NR*ECC) o conexión emocional (NR*A) |
-| `aspiracion_belica` | 150 | aspiración sin oferta explícita | bélicos (ECC*A*AVC) |
-| `autopostulacion` | 250 | comentario de alguien pidiendo entrar | n/a |
-| `respuesta_reclutador` | 50 | respuesta corta en comentarios ("manda mensaje") | NR |
-| `cultura_sin_reclutamiento` | 150 | corridos y fans, sin oferta (control difícil) | n/a |
-| `legitima_control` | 300 | oferta real con el mismo slang: jale, chamba, plaza, al privado | n/a |
+| `reclutamiento_directo` | 600 | post with an explicit call (NR) | enrol in crime (NR*ECC) or emotional connection (NR*A) |
+| `aspiracion_belica` | 150 | aspiration without an explicit offer | warlike (ECC*A*AVC) |
+| `autopostulacion` | 250 | comment of someone asking to join | n/a |
+| `respuesta_reclutador` | 50 | short reply in the comments | NR |
+| `cultura_sin_reclutamiento` | 150 | music and fan content without an offer | n/a |
+| `legitima_control` | 300 | legitimate offer written with the same slang | n/a |
 
-El 78% de los controles legítimos activa al menos un término del léxico. Eso es a propósito:
-un detector por palabras clave solas falla, y este dataset lo demuestra.
+78% of the legitimate controls trigger at least one lexicon term, by design: a detector that relies on
+keywords alone does not separate them.
 
-Columnas = esquema de `data/operational/ramona_offers_template.csv` + extras:
-`synthetic`, `content_type`, `label`, `relato_colmex`, `colmex_conditions`, `ratro_scheme`,
-`crim_flags`, `hashtags`, `audio_hint`, `visual_hint`, `lexicon_term_ids`, `template_source`.
+Columns: the schema of `data/operational/ramona_offers_template.csv` plus `synthetic`, `content_type`,
+`label`, `relato_colmex`, `colmex_conditions`, `ratro_scheme`, `crim_flags`, `hashtags`, `audio_hint`,
+`visual_hint`, `lexicon_term_ids`, `template_source`.
 
 `crim_flags`: llamado_privado, codigo_grupo, emoji_grupo, pago_semanal_alto, apela_familia,
-menciona_edad_menor, invita_mujeres, alcance_nacional, hashtag_reclutamiento, fatalismo.
-Si hay `menciona_edad_menor`, el esquema pasa a `:ChildRecruitmentCriminalScheme`.
+menciona_edad_menor, invita_mujeres, alcance_nacional, hashtag_reclutamiento, fatalismo. An item with
+`menciona_edad_menor` is assigned `:ChildRecruitmentCriminalScheme`.
 
-## Regenerar
+## Regenerating
 
 ```bash
 python3 scripts/build_tiktok_synthetic.py --seed 2026
 ```
 
-## Límites (decirlos en el paper)
+## Scope
 
-1. Las plantillas recombinan frases del informe. La distribución NO representa lo que circula en
-   TikTok; el propio Colmex aclara que su corpus de 100 videos no es representativo.
-2. El componente visual y sonoro (ECC, A) va como texto descriptivo en `visual_hint` y `audio_hint`.
-3. Ninguna cifra de este dataset es un hallazgo empírico. Sirve para probar el pipeline, no para afirmar prevalencias.
-4. Los sueldos de los controles legítimos son rangos plausibles, no una encuesta salarial.
+1. The templates recombine phrases of the report. The distribution does not represent what circulates on
+   TikTok; the report states that its 100 videos are not a representative sample.
+2. The visual and sound components (ECC, A) are given as descriptive text in `visual_hint` and `audio_hint`.
+3. No figure computed over this dataset is an empirical finding.
+4. The salaries of the legitimate controls are plausible ranges.

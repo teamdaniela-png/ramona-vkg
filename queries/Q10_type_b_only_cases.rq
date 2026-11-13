@@ -1,9 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q10 — Type-B-only cases from press: offers/victims that display at least one
-# credible-lethal pattern but no classic Ramona red flag. These are the Edith
-# Guadalupe family of cases. The central observatory statistic.
+# Q10. Press cases that match Type B patterns but not Type A red flags.
 
 SELECT ?victim ?source ?outlet ?title ?url
 WHERE {

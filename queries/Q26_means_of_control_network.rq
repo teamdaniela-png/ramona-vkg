@@ -1,9 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q26 — Red de co-ocurrencia de Means of Control.
-# Pares de medios de control que aparecen juntos en la misma víctima CTDC.
-# Input para grafo de red de técnicas; base de regla para detectar combos
-# severos (ej. documents_withheld + threats + excessive_hours = alto riesgo).
+# Q26. Co-occurrence of means of control (CTDC).
 
 SELECT ?means1 ?means2 (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

@@ -317,22 +317,6 @@ else:
 
 
 # =========================================================================
-# Section 7: Data-ontology alignment (quick smoke test)
-# =========================================================================
-print("=== 7. Data-ontology alignment ===")
-# If there is a new class like :FraudScheme, does the mapping cover at least
-# one table that produces instances of it? This is a smoke test, not full.
-if OBDA.exists():
-    obda_text = OBDA.read_text()
-    for scheme in ("IdentityTheftScheme", "PyramidScheme", "VisaFraudScheme",
-                   "OrganRemovalRecruitmentScheme", "ForcedChildMarriageScheme"):
-        if scheme not in obda_text:
-            log("NOTE", f"FraudScheme ':{scheme}' is declared in ontology but not materialised in OBDA mapping",
-                "Expected: instances of this scheme come from db/09_fraudscheme_examples, which is loaded into Postgres, not minted by a mapping assertion.")
-
-
-
-# =========================================================================
 # Section 9: Definitions, dangling references, vocabulary closure, datatypes
 # =========================================================================
 print("=== 9. Definitions, dangling refs, vocabulary closure, datatypes ===")
@@ -446,12 +430,6 @@ def _mapped(_e):
     return re.search(r"(?<![\w<#/:])%s(?![\w])" % re.escape(str(_e).split("#")[-1]).join([":", ""]), _map_text) is not None
 _unmapped_p = sorted(str(e).split("#")[-1] for e in (set(obj_props) | set(data_props)) if not _mapped(e))
 _unmapped_c = sorted(str(e).split("#")[-1] for e in classes if not _mapped(e))
-log("NOTE", "Mapping coverage of the declared vocabulary",
-    f"{len(set(obj_props) | set(data_props)) - len(_unmapped_p)} of {len(set(obj_props) | set(data_props))} properties and "
-    f"{len(classes) - len(_unmapped_c)} of {len(classes)} classes are produced by a mapping. The rest are "
-    f"abstract superclasses, controlled values loaded directly by a db/ seed, or vocabulary the demonstrator "
-    f"database has no column for. See docs/MAPPING_COVERAGE.md.")
-
 # one IRI template per class: catches the same real-world entity minted under two different keys
 _tpl = defaultdict(set)
 for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
@@ -460,14 +438,6 @@ for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
         _tpl[_cls].add(re.sub(r"\{[^}]*\}", "{}", _subj))
     for _obj_iri in re.findall(r"<(https://w3id\.org/ratr-o/data/[^>]+)>", _line):
         pass
-_multi = sorted(_cls for _cls, _templates in _tpl.items() if len(_templates) > 1)
-if _multi:
-    log("NOTE", "Classes minted under more than one IRI template",
-        "%d classes: %s. Each template stands for a different registry of the same kind of thing (an "
-        "offer recorded by Ramona, one documented in the press, one advertised on a job board). "
-        "scripts/offline_vkg/check_integrity.py checks that no entity ends up with two IRIs; "
-        "docs/MAPPING_SPEC.md lists the templates." % (len(_multi), ", ".join(_multi)))
-
 # object-property ranges: the IRI template used as object must match the template the range class is minted under
 for _m in re.finditer(r"^target\s+(.*)$", _obda_t, re.M):
     for _prop, _obj in re.findall(r"(:\w+)\s+<(https://w3id\.org/ratr-o/data/[^>]+)>", _m.group(1)):

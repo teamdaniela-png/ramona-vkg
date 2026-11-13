@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q25 — Tendencia temporal de víctimas registradas por año.
-# Usa la variable yearOfRegistration de CTDC para línea de tiempo 2002-2023.
-# Utile como visualización inicial en el dashboard del observatorio.
+# Q25. Victims registered in CTDC by year.
 
 SELECT ?year (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

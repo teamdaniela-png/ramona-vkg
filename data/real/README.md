@@ -1,26 +1,26 @@
-# Datos reales
+# Documented data
 
-## `press_offers.csv`, `press_offer_sources.csv`
-352 descripciones de ofertas de trabajo extraídas de 321 notas de prensa (cada oferta con sus ligas).
-Método y límites: `docs/results/REAL_OFFERS_RESULTS.md`.
+## `press_offers.csv`, `press_offer_sources.csv`, `press_offers_verified.csv`
 
-## `consejo_cifras_clave.csv`
+352 descriptions of job offers extracted from 321 press articles, each with the links to its sources.
+`press_offers_verified.csv` adds the result of the independent review: 295 verified, 55 doubtful and
+2 discarded. Only the verified ones are loaded into the VKG. Method: `docs/results/REAL_OFFERS_RESULTS.md`.
 
-**Fuente obligatoria en toda publicación, presentación o paper que use estas cifras:**
+## `consejo_cifras_clave.csv`, `consejo_desgloses.csv`
+
+Aggregate figures published by the Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México.
+Each row carries the sentence of the source document (`cita_textual`) and its link (`url`).
+`CONSEJO_DESGLOSES.md` describes the breakdowns.
+
+Any publication, presentation or paper that uses these figures cites the source:
 
 > Fuente: Consejo Ciudadano para la Seguridad y Justicia de la Ciudad de México (Consejo Ciudadano),
 > datos de la Línea y Chat Nacional contra la Trata de Personas, publicados en sus reportes y boletines
-> (consejociudadanomx.org). Se cita cada cifra con el documento de origen (columna `url`).
-
-Condición expresa del Consejo Ciudadano (4 nov 2026): los datos están en sus reportes de consulta
-gratuita y solo piden que **siempre se cite al Consejo Ciudadano como fuente**.
-
-Cada fila trae la cita textual del documento (`cita_textual`) y su liga (`url`). Son cifras agregadas
-del propio Consejo, no un reanálisis.
+> (consejociudadanomx.org).
 
 ## `legit_offers.csv`
-51 anuncios de empleo capturados de bolsas de trabajo formales el 4 de noviembre de 2026, con una nota sobre
-si el empleador pudo verificarse en fuentes públicas (37 verificados, 14 no verificados o casos frontera).
-Se cargan al VKG con `scripts/build_legit_offers_module.py`. Vienen de bolsas formales, así que la comparación
-con los casos documentados es entre anuncios formales y casos, no entre lo legítimo y lo fraudulento en general
-(ver `docs/results/REAL_OFFERS_RESULTS.md`).
+
+51 job advertisements captured from formal job boards on 4 November 2026, with a note on whether the
+employer could be verified in public sources (37 verified). Loaded into the VKG by
+`scripts/build_legit_offers_module.py`. The comparison with the documented cases is between advertisements
+on formal job boards and documented cases.

@@ -197,7 +197,7 @@ target      <https://w3id.org/ratr-o/data/submission/{submission_id}> a :Submiss
 source      SELECT submission_id, candidate_id, offer_id FROM ramona.submissions
 
 # =========================================================================
-# v1.0 extensions: CTDC + press observatory (victim-centric layer)
+# Victim-centric layer: CTDC records and the press observatory
 # =========================================================================
 
 mappingId   M-AgeGroup

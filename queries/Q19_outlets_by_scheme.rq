@@ -1,9 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q19 — Outlets de prensa que más documentan cada esquema.
-# ¿Qué medio es la referencia para Rancho Izaguirre? ¿Quién cubre crypto-job?
-# Útil para priorizar alianzas con medios y para validación cruzada de
-# hallazgos en el paper.
+# Q19. Press outlets that document each scheme.
 
 SELECT ?schemeCode ?outlet (COUNT(DISTINCT ?exemplar) AS ?articles)
 WHERE {

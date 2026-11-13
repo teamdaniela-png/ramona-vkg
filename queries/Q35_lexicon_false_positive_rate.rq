@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q35 (CQ31). Which lexicon terms also fire on posts that are NOT recruitment?
-# Operational question: which keywords cannot be used alone as a detector
-# ("jale", "plaza", "manda mensaje" appear in legitimate job ads too).
+# Q35. Lexicon terms that also fire on posts that are not recruitment.
 
 SELECT ?term ?termText (COUNT(DISTINCT ?post) AS ?nonRecruitmentHits) WHERE {
   ?post a :SocialMediaPost ;

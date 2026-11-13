@@ -1,8 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q23 — Esquemas que comparten WhatsApp como primer canal.
-# ¿Qué esquemas usan WhatsApp como punto de entrada? La respuesta informa
-# políticas de moderación y cooperación con plataformas.
+# Q23. Schemes that share WhatsApp as the first channel.
 
 SELECT ?schemeCode (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

@@ -1,4 +1,4 @@
-# RATR-O v1.10.6: execution of the 41 reference queries
+# RATR-O v1.10.7: execution of the 41 reference queries
 
 The queries were run with `scripts/offline_vkg/`: the seed files in `db/` are loaded into SQLite,
 `mappings/ramona.obda` is executed to produce the graph the VKG exposes, and the queries are evaluated
@@ -8,10 +8,10 @@ gives the same graph, triple for triple.
 
 Two data states:
 
-- **Seeds**: what a clone of the repository loads. 75,675 ABox triples, 88,926 with the TBox.
+- **Seeds**: what a clone of the repository loads. 75,675 ABox triples, 77,389 with the TBox.
 - **Seeds plus CTDC**: the same after `scripts/ingest_ctdc.py` has loaded the CTDC Global Synthetic
   Dataset v2025, 257,969 victim records. The queries ran over one victim in forty, 6,449 records:
-  142,629 ABox triples, 168,325 with the TBox. Row counts in that column are over the sample.
+  142,629 ABox triples, 144,343 with the TBox. Row counts in that column are over the sample.
 
 Both graphs are consistent with the ontology under HermiT.
 

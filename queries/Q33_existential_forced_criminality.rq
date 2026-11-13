@@ -1,13 +1,9 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q33 (CQ29). Which offers exhibit some forced-criminality scheme?
-# Ontology machinery exercised: existential axiom
+# Q33. Offers that exhibit some forced-criminality scheme (exercises an existential axiom).
+# Every direct-recruitment post is an answer through the axiom
 #   DirectRecruitmentPost SubClassOf exhibitsFraudScheme some ForcedCriminalityScheme
-# No row in the database links a TikTok post to a scheme, yet every direct
-# recruitment post is a certain answer: the witness is an anonymous scheme.
-# Under OWL 2 QL entailment (Ontop rewriting) the posts appear; under plain
-# SPARQL over the materialised data they do not. This is the demo of
-# certain-answer semantics for the paper.
+# even though no row links a post to a scheme.
 
 SELECT (COUNT(DISTINCT ?offer) AS ?n) WHERE {
   ?offer a :JobOffer ;

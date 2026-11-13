@@ -1,10 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q12 — Demographic cross-section: age-group x gender x exploitation type.
-# Showcases how the ontology collapses a multi-source, multi-table query into
-# a single readable SPARQL expression, which is the core argument of the VKG
-# paradigm (Xiao et al., 2019).
+# Q12. Age × gender × exploitation type (requires ≥3 victims per cell).
 
 SELECT ?ageGroup ?gender ?exploitationType (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

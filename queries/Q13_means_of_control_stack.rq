@@ -1,10 +1,7 @@
 PREFIX : <https://w3id.org/ratr-o#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Q13 — Stack of means of control observed per exploitation type. For each
-# exploitation type, counts how often each means of control is attested.
-# Useful for: "In labour trafficking, which means of control dominate? And
-# in sexual exploitation?"
+# Q13. Means of control by exploitation type.
 
 SELECT ?exploitationType ?means (COUNT(DISTINCT ?victim) AS ?victims)
 WHERE {

@@ -1,9 +1,6 @@
 PREFIX : <https://w3id.org/ratr-o#>
 
-# Q29 — Cohorte Edith Guadalupe.
-# Ofertas que matchean patrones creíble-letales pero NINGUNA de las 7 red
-# flags clásicas. Es exactamente la cohorte que la opinión pública no ve.
-# La query que alimenta el estadístico central del observatorio (Type-B-only).
+# Q29. Offers matching credible-lethal patterns and none of the classic red flags.
 
 SELECT ?offer ?source ?outlet ?title ?country
 WHERE {
