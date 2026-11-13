@@ -1,7 +1,7 @@
 # RATR-O vs HUTRO — Formal comparative analysis
 
 **Prepared for:** the Dialogue Residency at the Institute of Logic and Computation, TU Wien.
-**RATR-O version:** 1.10.7 (13 November 2026).
+**RATR-O version:** 1.10.8 (14 November 2026).
 **HUTRO version reviewed:** as published on BioPortal, upload date 22 April 2025, author Danial Zemchal Tesfahans, status Alpha.
 
 An ontology for human trafficking already exists on BioPortal: HUTRO. This document says what RATR-O reuses from it, what it adds, and why it was not built as an extension of it.
@@ -14,10 +14,10 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 
 ## Side-by-side comparison
 
-| Dimension | HUTRO | RATR-O v1.10.7 |
+| Dimension | HUTRO | RATR-O v1.10.8 |
 |---|---|---|
 | **Author** | Danial Zemchal Tesfahans, Addis Ababa (Ethiopia) | Daniela Camberos, Ramona AI (Mexico); scientific host: Magdalena Ortiz, TU Wien |
-| **Upload / version date** | 22 April 2025 | 13 November 2026 |
+| **Upload / version date** | 22 April 2025 | 14 November 2026 |
 | **Status declared on BioPortal** | Alpha | Not applicable (this is the ontology's own repository); in the OWL 2 QL profile under the OWL API and consistent under HermiT (`docs/validation/`) |
 | **Purpose declared** | "to investigate the trend of human trafficking of Eritrean refugees in Ethiopia" | "detection of fraudulent job offers, labour-recruitment fraud, and human-trafficking recruitment patterns in Latin America" |
 | **Geographic scope** | Horn of Africa (Eritrea to Ethiopia corridor, with ransom-transaction focus) | Latin America, with specific attention to Mexico; alignment to the global ISO 3166-1 catalogue (248 countries, keyed on the alpha-3 code, which is the canonical country key of the VKG) |

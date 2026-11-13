@@ -58,4 +58,4 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 Author: Daniela Camberos, Ramona AI.
 Reviewer: Prof. Magdalena Ortiz, TU Wien, Institute of Logic and Computation (proposed).
-Last updated: 13 November 2026.
+Last updated: 14 November 2026.
