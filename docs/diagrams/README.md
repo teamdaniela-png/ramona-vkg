@@ -5,7 +5,7 @@ drawn by hand: the script reads the classes, the datatype properties with their 
 object properties with their domain and range, the subclass axioms, the disjointness axioms and the
 existential restrictions from the Turtle file, and a sheet only says which classes go on it and where.
 The script stops with an error if a class or an object property of the ontology ends up on no sheet.
-For v1.10.10 the six sheets cover all 114 classes and all 69 object properties.
+For v1.11.0 the six sheets cover all 115 classes and all 70 object properties.
 
 ## How to read them
 
@@ -45,7 +45,7 @@ platforms and risk classifications.
 
 ![Social media](ratr-o-uml-4-social-media.svg)
 
-## 5. Survivor-testimony patterns and the evidence behind every fact
+## 5. Survivor-testimony patterns, official statistics and the evidence behind every fact
 
 `:hasEvidenceSource` has a range and deliberately no domain, so it is drawn from `owl:Thing`.
 

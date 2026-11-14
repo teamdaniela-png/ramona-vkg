@@ -2,8 +2,8 @@
 
 **Methodology:** Competency questions (CQs) are the standard instrument for ontology requirements and evaluation in knowledge engineering. The approach was formalised by Uschold and Gruninger (*Ontologies: Principles, Methods and Applications*, Knowledge Engineering Review, 1996) and is standard practice for OWL and DL-Lite ontologies.
 
-This document lists 37 competency questions for RATR-O v1.10.10 and maps each to the SPARQL query
-in `queries/` that answers it. Every one of the 37 names a query file that exists. Four of the 41
+This document lists 40 competency questions for RATR-O v1.11.0 and maps each to the SPARQL query
+in `queries/` that answers it. Every one of the 40 names a query file that exists. Four of the 44
 query files answer no competency question of their own and are there as cross-cutting checks:
 `Q27_vulnerability_x_exploitation.rq`, `Q28_crossborder_with_press.rq`, `Q29_edith_cohort.rq` and
 `Q30_schemes_in_both_sources.rq`.
@@ -209,6 +209,19 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 **Answered by:** `Q41_flags_verified_employers_vs_press.rq`. **Ontology machinery exercised:** `:offeredByEmployer`, `:hasVerifiedIdentity`, `:offerDocumentedIn`, `:sourceKind`, `:hasRedFlag`, `:flagType`, over two registries of `:JobOffer`.
 **Why it matters:** a flag that is as frequent in the advertisements of verified employers as in the documented cases cannot be used alone as a detector. The two corpora are documented cases and a sample of formal job boards, so the answer describes them and is not a prevalence estimate.
 
+## H. Official statistics
+
+### CQ38. How many trafficking victims does Mexico report to UNODC each year?
+**Answered by:** `Q42_unodc_detected_victims_mx.rq`. **Ontology machinery exercised:** `:OfficialStatistic`, `:statisticForCountry`, `:statisticIndicator`, `:statisticYear`, `:statisticValueAsPublished`.
+**Why it matters:** the official series against which the documented cases are read.
+
+### CQ39. Which forms of exploitation do the victims detected in Mexico suffer, by year?
+**Answered by:** `Q43_unodc_form_of_exploitation_mx.rq`. **Ontology machinery exercised:** `:statisticDimension`, `:statisticCategory`.
+
+### CQ40. Per country, how do the victims reported to UNODC compare with the victim records of CTDC?
+**Answered by:** `Q44_unodc_vs_ctdc_by_country.rq`. **Ontology machinery exercised:** `:statisticValue` aggregated per country next to `:Victim :exploitedInCountry`, over two sources joined on `:Country`.
+**Why it matters:** two open datasets answered by one query, which is what the virtual knowledge graph is for.
+
 ## Coverage summary
 
 | CQ group | Questions | Answered by |
@@ -220,9 +233,10 @@ These only exist because RATR-O introduced a named FraudScheme taxonomy. They va
 | E. Social-media recruitment | 5 (CQ27-CQ31) | Q31-Q35 |
 | F. Real offer corpus | 5 (CQ32-CQ36) | Q36-Q40 |
 | G. Verified employers | 1 (CQ37) | Q41 |
-| **Total** | **37 CQs** | **37 SPARQL queries** |
+| H. Official statistics | 3 (CQ38-CQ40) | Q42-Q44 |
+| **Total** | **40 CQs** | **40 SPARQL queries** |
 
-Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 41 SPARQL queries against 37 competency questions.
+Four additional SPARQL queries exist (`Q27` vulnerability × exploitation, `Q28` cross-border + press, `Q29` Edith cohort explicit, `Q30` schemes attested in both sources). They are not required to answer a pre-registered CQ but serve as internal validation and cross-checks. In total the repository ships 44 SPARQL queries against 40 competency questions.
 
 ## Outside the scope of RATR-O
 

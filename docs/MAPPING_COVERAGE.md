@@ -1,15 +1,16 @@
 # Mapping coverage of the declared vocabulary
 
-State on 14 November 2026, RATR-O v1.10.10, `mappings/ramona.obda` with 204 mappings. The published
+State on 14 November 2026, RATR-O v1.11.0, `mappings/ramona.obda` with 206 mappings. The published
 `mappings/ramona.r2rml.ttl` was executed against the same seeds and produces the same 75,675 triples,
-triple for triple, and the same 142,629 over the seeds plus a 1-in-40 sample of the CTDC victim records.
+triple for triple, and the same 267,488 over the seeds plus a 1-in-40 sample of the CTDC victim records and the UNODC
+figures of the Americas.
 `docs/MAPPING_SPEC.md` has the identifier templates and the foreign keys.
 
 | | Declared | Produced by a mapping | Not produced |
 |---|---:|---:|---:|
-| Classes | 114 | 79 | 35 |
-| Object properties | 69 | 37 | 32 |
-| Datatype properties | 103 | 72 | 31 |
+| Classes | 115 | 80 | 35 |
+| Object properties | 70 | 38 | 32 |
+| Datatype properties | 111 | 80 | 31 |
 
 The ontology is deliberately larger than the current mapping. A reviewer should be able to tell at
 a glance which part of it the demonstrator actually populates, which is what this file is for.

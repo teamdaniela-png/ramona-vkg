@@ -5,17 +5,18 @@ A Virtual Knowledge Graph (VKG) over a public-interest human-trafficking observa
 ## What this repository contains
 
 - **Postgres 16** with Ramona's operational schema (offers, recruiters, platforms, red flags, classifications, survivor patterns, trafficking routes, and provenance) plus the observatory extension (victim-centric tables aligned to CTDC).
-- **RATR-O v1.10.10** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (114 classes, 69 object properties, 103 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, each asserted as `skos:closeMatch` against the concept IRI BioPortal reports (`docs/HUTRO_vs_RATRO_comparison.md`). In profile by the OWL API checker and consistent under HermiT together with its data: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
+- **RATR-O v1.11.0** (`ontology/ratr-o.ttl`, persistent IRI `https://w3id.org/ratr-o`): the Ramona Anti-Trafficking and Recruitment-fraud Ontology in OWL 2 QL (115 classes, 70 object properties, 111 datatype properties, every one of them carrying a definition), aligned to the generalisable fragment of HUTRO (Human Trafficking Ontology, Danial Zemchal Tesfahans, BioPortal, 2025) on eight concepts, each asserted as `skos:closeMatch` against the concept IRI BioPortal reports (`docs/HUTRO_vs_RATRO_comparison.md`). In profile by the OWL API checker and consistent under HermiT together with its data: `docs/validation/VALIDATION_REPORT.md`, `docs/AUDIT_O1_SUMMARY.md`.
 - **UML-style class diagrams** of the ontology, six sheets generated from the Turtle file (`docs/diagrams/`).
 - **Ontop mapping** (`mappings/ramona.obda`) connecting the Postgres schema to RATR-O.
 - **Ontop mapping in W3C R2RML** (`mappings/ramona.r2rml.ttl`), generated from the native one and verified to produce the same graph.
 - **SPARQL endpoint** served by Ontop on port 8080 once the Docker stack is up.
-- **41 reference SPARQL queries** (`queries/`, Q1 to Q41) answering 37 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
+- **44 reference SPARQL queries** (`queries/`, Q1 to Q44) answering 40 competency questions (`docs/COMPETENCY_QUESTIONS.md`).
 - **Mapping specification** (`docs/MAPPING_SPEC.md`): the identifier templates, the foreign keys with the property that states each, and the integrity checks, generated from the schema and the mapping.
+- **Official figures of UNODC**: the figures on trafficking in persons that Member States report to UNODC for the Global Report on Trafficking in Persons, as `:OfficialStatistic`, loaded from the UNODC data portal by `scripts/ingest_unodc.py` (65,398 figures, 198 countries, 2003 to 2023).
 - **Legitimate-offer sample**: 51 advertisements captured from job boards, 37 of them from employers verified in public sources, loaded as `:JobOffer` so they can be compared with the documented cases (`data/real/legit_offers.csv`, `db/15_legit_offers.sql`).
 - **Real offer corpus**: 352 real offer descriptions extracted from press, of which **295 are verified** in a second reading checked by code and loaded (167 in Mexico), with provenance and verbatim quotes (`data/real/`, `docs/results/REAL_OFFERS_RESULTS.md`). The 55 doubtful and 2 discarded ones are kept in the CSV with their audit status and are not loaded.
 - **Social-media criminal-recruitment module**: classes for the conditions and recruitment stories of El Colegio de México (2025), *Del scroll al "jale"*, a 79-term TikTok recruitment lexicon and 1,500 synthetic items (`docs/MODULE_SOCIAL_RECRUITMENT.md`, `data/synthetic/README.md`).
-- **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
+- **A multi-source dataset pipeline** under `scripts/`: press scraping (Mexico + LatAm), CTDC (IOM) and UNODC ingestion, rule-based classification into Type A (classic red flags) and Type B (credible-lethal patterns) tracks.
 - **Rule learning over the documented offers** (`scripts/rule_learning/`, `docs/results/RULE_LEARNING_RESULTS.md`, `docs/results/RULES_WITH_EXCEPTIONS.md`): conjunctive rules learned from the verified press offers and the verified-employer postings, and rules with exceptions written and learned in answer set programming.
 - **Evidence source catalogue** (`docs/EVIDENCE_SOURCES.md`) and **CTDC–HUTRO–RATR-O mapping workbook** (`docs/CTDC_HUTRO_RATRO_mapping.xlsx`).
 
@@ -43,7 +44,7 @@ The observatory publishes two parallel classifications for every case:
 
 The stack below is the demonstrator of Objective 3. The ontology, the mappings and the queries can be
 validated without it: `scripts/offline_vkg/run_all.sh` loads the same `db/*.sql` files, executes the
-same mapping file and runs the same 41 queries, and `docs/validation/` has the results.
+same mapping file and runs the same 44 queries, and `docs/validation/` has the results.
 
 Ontop's image ships no JDBC driver. Download the PostgreSQL one once:
 
@@ -61,10 +62,11 @@ docker compose up -d
 
 First run:
 1. pulls Postgres 16 and Ontop 5.5.0;
-2. creates the `ramona` database and runs the fifteen files `db/01_schema.sql` to `db/15_legit_offers.sql`, in order, via `/docker-entrypoint-initdb.d/`;
+2. creates the `ramona` database and runs the sixteen files `db/01_schema.sql` to `db/16_unodc_statistics.sql`, in order, via `/docker-entrypoint-initdb.d/`;
 3. starts Ontop with `ontology/ratr-o.ttl` + `mappings/ramona.obda`.
 
-The victim tables are created empty. The CTDC release that fills them is not redistributed here; see
+The victim tables and the table of UNODC figures are created empty. The CTDC and UNODC releases that
+fill them are not redistributed here; see
 "Populate the observatory" below.
 
 Wait for Ontop to report as healthy:
@@ -79,7 +81,7 @@ Then open http://localhost:8080/ for the SPARQL UI, or validate the demonstrator
 scripts/ontop/run_all.sh
 ```
 
-It runs the 41 reference queries through the endpoint and compares the row counts with the published
+It runs the 44 reference queries through the endpoint and compares the row counts with the published
 ones, materialises the graph with Ontop and compares it with the graph of the offline validation,
 and compares the answers of the two row by row.
 `docs/validation/ONTOP_EXECUTION_REPORT.md` has the results. `./scripts/test_queries.sh` prints the
@@ -109,8 +111,12 @@ python scripts/ingest_press.py --in data/processed/press_cases.jsonl
 DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
 python scripts/ingest_ctdc.py --csv ~/Downloads/CTDC_global_synthetic_data_v2025.csv
 
-# the 41 queries through Ontop over the 257,969 CTDC records
-python3 scripts/ontop/run_queries.py --state ctdc
+# ingest the UNODC figures (data_glotip.xlsx from https://dataunodc.un.org/dp-trafficking-persons)
+DSN="postgresql://ramona:ramona_demo@localhost:5432/ramona" \
+python scripts/ingest_unodc.py --xlsx ~/Downloads/data_glotip.xlsx
+
+# the 44 queries through Ontop over the 257,969 CTDC records and the 65,398 UNODC figures
+python3 scripts/ontop/run_queries.py --state full
 ```
 
 ## Reference queries
@@ -158,8 +164,11 @@ python3 scripts/ontop/run_queries.py --state ctdc
 | `Q39_type_a_vs_type_b_real.rq` | Press-documented offers with at least one red flag: classic only, credible-lethal only, or both. Not a prevalence estimate. |
 | `Q40_criminal_recruitment_channels.rq` | Platforms through which press-documented criminal-recruitment offers arrive. |
 | `Q41_flags_verified_employers_vs_press.rq` | Red flags in advertisements of verified employers next to the same flags in press-documented offers. |
+| `Q42_unodc_detected_victims_mx.rq` | Trafficking victims detected in Mexico per year, as reported to UNODC. |
+| `Q43_unodc_form_of_exploitation_mx.rq` | Trafficking victims detected in Mexico by form of exploitation and year, as reported to UNODC. |
+| `Q44_unodc_vs_ctdc_by_country.rq` | Per country, the trafficking victims reported to UNODC over all years next to the victim records of CTDC exploited in that country. |
 
-Which of these return rows over the shipped seeds, which need the CTDC release loaded, and why the
+Which of these return rows over the shipped seeds, which need the CTDC or the UNODC release loaded, and why the
 rest return none, is in `docs/validation/QUERY_EXECUTION_REPORT.md`.
 
 ## Layout
@@ -169,31 +178,33 @@ ramona_vkg_demo/
 ├── README.md
 ├── docker-compose.yml
 ├── requirements.txt
-├── db/                                     # 15 files, run in order by Postgres on first start
+├── db/                                     # 16 files, run in order by Postgres on first start
 │   ├── 01_schema.sql ... 03_seed_cases.sql # operational schema and the 47 offers written for the demonstrator
 │   ├── 04_schema_extension_v1.sql          # victim-centric extension and reference vocabularies
 │   ├── 05 ... 12                           # press-synthesised offers, CTDC routes, patterns, countries, social module, verified press offers
 │   ├── 13_offer_provenance.sql             # offer-to-source links and source kinds
 │   ├── 14_route_victim_counts.sql          # victim counts of the CTDC corridors
-│   └── 15_legit_offers.sql                 # advertisements of verified employers, for comparison
+│   ├── 15_legit_offers.sql                 # advertisements of verified employers, for comparison
+│   └── 16_unodc_statistics.sql             # table of the UNODC figures, created empty
 ├── ontology/
-│   ├── ratr-o.ttl                          # RATR-O v1.10.10 in OWL 2 QL, aligned to HUTRO
+│   ├── ratr-o.ttl                          # RATR-O v1.11.0 in OWL 2 QL, aligned to HUTRO
 │   ├── ratr-o.rdf                          # the same graph in RDF/XML, for content negotiation
 │   ├── ratr-o.jsonld                       # the same graph in JSON-LD
 │   ├── ratr-o.nt                           # the same graph in N-Triples
 │   └── ratr-o.html                         # generated documentation
 ├── mappings/
-│   ├── ramona.obda                         # Ontop native mapping, 204 mapping assertions
+│   ├── ramona.obda                         # Ontop native mapping, 206 mapping assertions
 │   └── ramona.r2rml.ttl                    # the same in W3C R2RML, generated by scripts/obda_to_r2rml.py
 ├── ontop/
 │   └── ontop.properties
 ├── queries/
-│   └── Q1 ... Q41_*.rq                     # the 41 reference queries listed above
+│   └── Q1 ... Q44_*.rq                     # the 44 reference queries listed above
 ├── scripts/
 │   ├── scrape_press.py                     # Google News RSS + trafilatura
 │   ├── classify_press.py                   # Type A / Type B rule-based classification
 │   ├── ingest_press.py                     # press → Postgres observatory tables
 │   ├── ingest_ctdc.py                      # CTDC CSV → Postgres observatory tables
+│   ├── ingest_unodc.py                     # UNODC workbook → Postgres table of official figures
 │   ├── offline_vkg/                        # validate mappings and queries without Docker
 │   ├── ontop/                              # validate the running demonstrator against the offline validation
 │   └── test_queries.sh
@@ -206,11 +217,11 @@ ramona_vkg_demo/
 │   └── processed/                          # classified output, rule-learning tables
 └── docs/
     ├── diagrams/                           # UML-style class diagrams, generated by scripts/gen_uml_diagrams.py
-    ├── COMPETENCY_QUESTIONS.md             # the 37 competency questions and the query answering each
+    ├── COMPETENCY_QUESTIONS.md             # the 40 competency questions and the query answering each
     ├── MAPPING_SPEC.md                     # identifier templates, foreign keys and integrity checks
     ├── MAPPING_COVERAGE.md                 # which terms a mapping produces and which it does not
     ├── HUTRO_vs_RATRO_comparison.md        # the alignment to HUTRO
-    ├── validation/                         # validation report, the execution of the 41 queries, the Ontop demonstrator
+    ├── validation/                         # validation report, the execution of the 44 queries, the Ontop demonstrator
     ├── EVIDENCE_SOURCES.md                 # real-world sources behind every pattern and route
     └── CTDC_HUTRO_RATRO_mapping.xlsx       # CTDC to HUTRO to RATR-O mapping workbook
 ```
@@ -228,6 +239,7 @@ docker compose down -v     # stop and wipe the Postgres volume
 - Code (SQL, OBDA mappings, SPARQL queries, scripts, Docker setup): Apache 2.0 (full text in [`LICENSE`](LICENSE)).
 - Third-party material in `data/raw/` and the press quotes in `data/real/` keep the terms of their original sources and are included for research reference only.
 - CTDC Global Synthetic Dataset: IOM and partners, CC BY 4.0 with source attribution.
+- UNODC figures: UNODC (2024), UNODC Research - Data Portal – Trafficking in Persons, https://dataunodc.un.org/dp-trafficking-persons (release of 28 October 2025, accessed on 14 November 2026).
 - HUTRO: Danial Zemchal Tesfahans, BioPortal, 2025.
 - Framework: Xiao, G., Ding, L., Cogrel, B. and Calvanese, D. (2019). *Virtual Knowledge Graphs: An Overview of Systems and Use Cases.* Data Intelligence, 1(3), 201–223. DOI: 10.1162/dint_a_00011.
 - Ontop: Calvanese et al. (2017), https://ontop-vkg.org.

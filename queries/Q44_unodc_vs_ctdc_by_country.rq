@@ -1,0 +1,31 @@
+PREFIX : <https://w3id.org/ratr-o#>
+
+# Q44. Per country, the trafficking victims reported to UNODC over all years next to the victim
+# records of CTDC exploited in that country.
+
+SELECT ?countryIso ?unodcDetected ?ctdcRecords WHERE {
+  {
+    SELECT ?country (SUM(?value) AS ?unodcDetected) WHERE {
+      ?statistic a :OfficialStatistic ;
+                 :statisticForCountry ?country ;
+                 :statisticIndicator "Detected trafficking victims" ;
+                 :statisticDimension "Total" ;
+                 :statisticCategory "Total" ;
+                 :statisticSex "Total" ;
+                 :statisticAge "Total" ;
+                 :statisticValue ?value .
+    }
+    GROUP BY ?country
+  }
+  {
+    SELECT ?country (COUNT(DISTINCT ?victim) AS ?ctdcRecords) WHERE {
+      ?victim a :Victim ;
+              :exploitedInCountry ?country ;
+              :hasEvidenceSource ?source .
+      ?source :datasetName "CTDC Global Synthetic Dataset v2025" .
+    }
+    GROUP BY ?country
+  }
+  ?country :countryISOCode ?countryIso .
+}
+ORDER BY DESC(?unodcDetected)

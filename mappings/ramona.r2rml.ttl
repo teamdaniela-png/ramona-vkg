@@ -874,6 +874,59 @@
         rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/doc/{documentation_code}" ]
     ] .
 
+<#TM_M_UNODC_Statistic> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT stat_id, country_iso3, source_id, indicator, dimension, category, sex, age, year, value_as_published FROM ramona.unodc_statistics""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/unodc-statistic/{stat_id}" ;
+        rr:class :OfficialStatistic ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticForCountry ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/country/{country_iso3}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :hasEvidenceSource ;
+        rr:objectMap [ rr:template "https://w3id.org/ratr-o/data/evidence-ext/{source_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticIndicator ;
+        rr:objectMap [ rr:column "indicator" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticDimension ;
+        rr:objectMap [ rr:column "dimension" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticCategory ;
+        rr:objectMap [ rr:column "category" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticSex ;
+        rr:objectMap [ rr:column "sex" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticAge ;
+        rr:objectMap [ rr:column "age" ; rr:datatype xsd:string ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticYear ;
+        rr:objectMap [ rr:column "year" ; rr:datatype xsd:gYear ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticValueAsPublished ;
+        rr:objectMap [ rr:column "value_as_published" ; rr:datatype xsd:string ]
+    ] .
+
+<#TM_M_UNODC_Value> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """SELECT stat_id, value FROM ramona.unodc_statistics WHERE value IS NOT NULL""" ] ;
+    rr:subjectMap [
+        rr:template "https://w3id.org/ratr-o/data/unodc-statistic/{stat_id}" ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate :statisticValue ;
+        rr:objectMap [ rr:column "value" ; rr:datatype xsd:integer ]
+    ] .
+
 <#TM_M_Exemplar_Scheme> a rr:TriplesMap ;
     rr:logicalTable [ rr:sqlQuery """SELECT x.scheme_code, e.source_id FROM ramona.fraudscheme_exemplars x JOIN ramona.evidence_sources e ON e.source_url = x.url""" ] ;
     rr:subjectMap [

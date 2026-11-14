@@ -1,7 +1,7 @@
 # RATR-O vs HUTRO — Formal comparative analysis
 
 **Prepared for:** the Dialogue Residency at the Institute of Logic and Computation, TU Wien.
-**RATR-O version:** 1.10.10 (14 November 2026).
+**RATR-O version:** 1.11.0 (14 November 2026).
 **HUTRO version reviewed:** as published on BioPortal, upload date 22 April 2025, author Danial Zemchal Tesfahans, status Alpha.
 
 An ontology for human trafficking already exists on BioPortal: HUTRO. This document says what RATR-O reuses from it, what it adds, and why it was not built as an extension of it.
@@ -14,7 +14,7 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 
 ## Side-by-side comparison
 
-| Dimension | HUTRO | RATR-O v1.10.10 |
+| Dimension | HUTRO | RATR-O v1.11.0 |
 |---|---|---|
 | **Author** | Danial Zemchal Tesfahans, Addis Ababa (Ethiopia) | Daniela Camberos, Ramona AI (Mexico); scientific host: Magdalena Ortiz, TU Wien |
 | **Upload / version date** | 22 April 2025 | 14 November 2026 |
@@ -24,16 +24,16 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Formal language** | SKOS ConceptScheme | OWL 2 QL (DL-Lite fragment, Calvanese et al. 2007) |
 | **Reasoning layer** | None (SKOS does not provide logical inference) | Query rewriting under DL-Lite guarantees (Xiao et al. 2019) |
 | **Profile validation** | Not applicable | Validated (no disallowed axioms in the OWL 2 QL profile) |
-| **Classes / top-level concepts** | 36 top concepts and 90 individuals | 114 OWL classes |
-| **Object properties** | Default SKOS (broader, narrower, related) | 69 domain-specific object properties |
-| **Datatype properties** | None (SKOS conceptScheme) | 103 domain-specific datatype properties |
+| **Classes / top-level concepts** | 36 top concepts and 90 individuals | 115 OWL classes |
+| **Object properties** | Default SKOS (broader, narrower, related) | 70 domain-specific object properties |
+| **Datatype properties** | None (SKOS conceptScheme) | 111 domain-specific datatype properties |
 | **Named subclasses of "trafficking recruitment scheme"** | 0 (HUTRO does not factor recruitment into named schemes) | 26 FraudScheme subclasses with official-source citations |
 | **Alignment with Palermo Protocol** | Not formalised | `:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose` with verbatim sub-concepts |
 | **Alignment with ICS-TIP** | Not formalised | `rdfs:seeAlso` to ICS-TIP v4 PDF and `:TIPEvent` central unit. `:TIPEvent` is conceptual only: the demonstrator database has no TIP-event table, so no mapping populates it |
-| **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim` |
+| **Alignment with UNODC GLOTIP** | Not formalised | `rdfs:seeAlso` on `:Victim`, and `:OfficialStatistic` for the figures Member States report to UNODC |
 | **Operational database binding (OBDA or R2RML)** | None | Ontop OBDA mapping + W3C R2RML mapping both shipped |
-| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 41 reference queries answering 37 competency questions |
-| **Connected open dataset** | None | 257,969 CTDC records, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
+| **Connected SPARQL demonstrator** | None | Dockerised Ontop stack and 44 reference queries answering 40 competency questions |
+| **Connected open dataset** | None | 257,969 CTDC records, 65,398 UNODC figures, 2,379 case-relevant press articles, and 295 verified real offer descriptions |
 | **Provenance mechanism for each domain claim** | `inScheme` only | `:hasEvidenceSource :EvidenceSource`, with `:derivedFrom` for patterns and `:offerDocumentedIn` for offers |
 | **Documentation** | BioPortal class tree | HTML documentation, dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
 | **Reproducibility** | Not applicable (static vocabulary) | Every statistic reproducible by running committed scripts |
@@ -86,7 +86,7 @@ The following are original contributions of RATR-O with no counterpart in HUTRO.
 ### Formal-reasoning and framework-alignment layer
 - Palermo Protocol Article 3 triad as OWL classes (`:PalermoAction`, `:PalermoMeans`, `:PalermoPurpose`) with verbatim sub-concepts.
 - ICS-TIP's `:TIPEvent` as the central unit of classification.
-- UNODC GLOTIP cross-reference for macro statistics.
+- UNODC GLOTIP: `:OfficialStatistic` holds the figures Member States report, per country and year.
 
 ### Data-engineering layer (not present in any SKOS vocabulary)
 - Observatory measurement properties: `:observedCount`, `:pctOfCases`, `:dominanceBucketValue`, `:routeVictimCount`, `:routeEarliestYear`, `:routeLatestYear`.

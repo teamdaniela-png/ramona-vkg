@@ -63,6 +63,10 @@ L += ["", "The graph the mappings produce over these seeds has {:,} triples.".fo
       "## With the CTDC release", "",
       "The CTDC Global Synthetic Dataset v2025 (IOM and partners, CC BY 4.0) has 257,969 victim records. It is not",
       "redistributed here; `scripts/ingest_ctdc.py` loads a downloaded copy into the victim tables.", "",
+      "## With the UNODC release", "",
+      "The UNODC data portal publishes the figures on trafficking in persons that Member States report: 65,398",
+      "figures for 198 countries, 2003 to 2023, in the release of 28 October 2025. It is not redistributed here;",
+      "`scripts/ingest_unodc.py` loads a downloaded copy into `ramona.unodc_statistics`.", "",
       "## The twenty routes with most victims in CTDC", "",
       "| Origin | Destination | Victims |", "|---|---|---:|"]
 for o, d, c in con.execute(

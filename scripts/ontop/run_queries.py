@@ -1,11 +1,12 @@
 """Run the reference queries against the Ontop SPARQL endpoint and compare the row counts
 with the published ones.
 
-Usage: python3 scripts/ontop/run_queries.py [--state seeds|sample|ctdc] [--report FILE] [--dump DIR]
+Usage: python3 scripts/ontop/run_queries.py [--state seeds|sample|full] [--report FILE] [--dump DIR]
 
   seeds   what `docker compose up -d` loads on a fresh volume (the default)
-  sample  the seeds plus one CTDC victim in forty, the state of the offline validation
-  ctdc    the seeds plus the 257,969 victim records of the CTDC release
+  sample  the seeds plus one CTDC victim in forty and the UNODC figures of the Americas, the
+          state of the offline validation
+  full    the seeds plus the 257,969 victim records of CTDC and the 65,398 figures of UNODC
 
 The endpoint is read from the ENDPOINT environment variable and defaults to
 http://localhost:8080/sparql. With --dump, the answers of every query are also written to DIR,
@@ -16,8 +17,8 @@ import argparse, csv, glob, io, os, re, sys, time, urllib.parse, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ENDPOINT = os.environ.get("ENDPOINT", "http://localhost:8080/sparql")
-STATES = ["seeds", "sample", "ctdc"]
-LABEL = {"seeds": "seeds", "sample": "seeds plus the CTDC sample", "ctdc": "seeds plus CTDC"}
+STATES = ["seeds", "sample", "full"]
+LABEL = {"seeds": "seeds", "sample": "seeds plus the CTDC and UNODC sample", "full": "seeds plus CTDC and UNODC"}
 
 
 def published(state):

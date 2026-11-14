@@ -316,6 +316,14 @@ mappingId   M-Victim-Documentation
 target      <https://w3id.org/ratr-o/data/victim/{victim_id}> :travelledWith <https://w3id.org/ratr-o/data/doc/{documentation_code}> .
 source      SELECT victim_id, documentation_code FROM public.victim WHERE documentation_code IS NOT NULL
 
+mappingId   M-UNODC-Statistic
+target      <https://w3id.org/ratr-o/data/unodc-statistic/{stat_id}> a :OfficialStatistic ; :statisticForCountry <https://w3id.org/ratr-o/data/country/{country_iso3}> ; :hasEvidenceSource <https://w3id.org/ratr-o/data/evidence-ext/{source_id}> ; :statisticIndicator {indicator}^^xsd:string ; :statisticDimension {dimension}^^xsd:string ; :statisticCategory {category}^^xsd:string ; :statisticSex {sex}^^xsd:string ; :statisticAge {age}^^xsd:string ; :statisticYear {year}^^xsd:gYear ; :statisticValueAsPublished {value_as_published}^^xsd:string .
+source      SELECT stat_id, country_iso3, source_id, indicator, dimension, category, sex, age, year, value_as_published FROM ramona.unodc_statistics
+
+mappingId   M-UNODC-Value
+target      <https://w3id.org/ratr-o/data/unodc-statistic/{stat_id}> :statisticValue {value}^^xsd:integer .
+source      SELECT stat_id, value FROM ramona.unodc_statistics WHERE value IS NOT NULL
+
 mappingId   M-Exemplar-Scheme
 target      <https://w3id.org/ratr-o/data/scheme/{scheme_code}> :schemeCode {scheme_code}^^xsd:string ; :evidencedByPressArticle <https://w3id.org/ratr-o/data/evidence/{source_id}> .
 source      SELECT x.scheme_code, e.source_id FROM ramona.fraudscheme_exemplars x JOIN ramona.evidence_sources e ON e.source_url = x.url

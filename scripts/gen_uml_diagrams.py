@@ -103,9 +103,9 @@ SHEETS = [
     "RedFlag": (1280, 50, "c"), "SocialMediaRecruitmentSignal": (1220, 220, "s"),
     "LexiconTerm": (1240, 560), "EvidenceSource": (1260, 780, "c"),
   }, {"exhibitsFraudScheme", "hasRedFlag", "containsRedFlag", "postedVia", "hostsOffer", "offerDocumentedIn"}),
- ("5-patterns-evidence", "Survivor-testimony patterns and the evidence behind every fact", (1660, 800), {
+ ("5-patterns-evidence", "Survivor-testimony patterns, official statistics and the evidence behind every fact", (1660, 900), {
     "JobOffer": (540, 50, "c"), "SurvivorTestimonyPattern": (480, 280, "s"),
-    "DominanceBucket": (70, 320), "Country": (70, 520, "c"),
+    "DominanceBucket": (70, 320), "Country": (70, 520, "c"), "OfficialStatistic": (60, 660),
     "owl:Thing": (1180, 40, "c"), "EvidenceSource": (1100, 230),
     "PressArticle": (940, 610), "OpenDatasetRecord": (1150, 610), "ResearchReport": (1400, 610),
   }, {"inCountry"}),

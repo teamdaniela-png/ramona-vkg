@@ -164,7 +164,7 @@ report = os.path.join(ROOT, "docs", "validation", "QUERY_EXECUTION_REPORT.md")
 published = {m[0]: (int(m[1]), int(m[2])) for m in
              re.findall(r"^\| `(Q\d+_\w+)` \| (\d+) \| (\d+) \|", open(report, encoding="utf-8").read(), re.M)}
 got = {n: r for n, r, d, w in rows_out}
-for column, state in ((0, "seeds"), (1, "seeds plus CTDC")):
+for column, state in ((0, "seeds"), (1, "seeds plus CTDC and UNODC")):
     if got == {n: v[column] for n, v in published.items()}:
         print("row counts equal the published ones (%s)" % state)
         break

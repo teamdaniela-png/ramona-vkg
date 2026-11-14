@@ -19,21 +19,25 @@ scripts/offline_vkg/run_all.sh
 | `check_integrity.py` | Checks that keys, foreign keys and datatypes survive the mapping, and writes `docs/MAPPING_SPEC.md`. |
 | `dataset_stats.py` | Writes `docs/DATASET_STATS.md` from the loaded seeds and the ontology. |
 | `run_queries.py` | Runs the reference queries over the ABox plus the TBox closure Ontop applies at rewrite time. |
-| `shim/psycopg.py` | A sqlite-backed stand-in for psycopg, so `scripts/ingest_ctdc.py` can load the CTDC release into the same SQLite file. |
+| `shim/psycopg.py` | A sqlite-backed stand-in for psycopg, so `scripts/ingest_ctdc.py` and `scripts/ingest_unodc.py` can load their releases into the same SQLite file. |
 
-## With the CTDC victim records
+## With the CTDC victim records and the UNODC figures
 
-The CTDC Global Synthetic Dataset is not redistributed here. With a downloaded copy:
+Neither release is redistributed here. With downloaded copies:
 
 ```bash
 WORK=$(mktemp -d)
 python3 scripts/offline_vkg/load_sqlite.py . $WORK/ramona.db
 SQLITE_PATH=$WORK/ramona.db PYTHONPATH=scripts/offline_vkg/shim \
   python3 scripts/ingest_ctdc.py --csv /path/to/CTDC_global_synthetic_data_v2025.csv
+SQLITE_PATH=$WORK/ramona.db PYTHONPATH=scripts/offline_vkg/shim \
+  python3 scripts/ingest_unodc.py --xlsx /path/to/data_glotip.xlsx --region Americas
 ```
 
-The full load is 257,969 victim records. The in-memory query runner is comfortable with a sample;
-`docs/validation/QUERY_EXECUTION_REPORT.md` used one victim in forty.
+The full loads are 257,969 victim records and 65,398 UNODC figures. The in-memory query runner is
+comfortable with a sample; `docs/validation/QUERY_EXECUTION_REPORT.md` used one victim in forty
+(`DELETE FROM victim WHERE victim_id % 40 <> 0`, and the same on its two child tables) and the UNODC
+figures of the Americas.
 
 ## Regenerating the mapping
 

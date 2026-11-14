@@ -1,4 +1,4 @@
-# RATR-O v1.10.10: execution of the 41 reference queries
+# RATR-O v1.11.0: execution of the 44 reference queries
 
 The queries were run with `scripts/offline_vkg/`: the seed files in `db/` are loaded into SQLite,
 `mappings/ramona.obda` is executed to produce the graph the VKG exposes, and the queries are evaluated
@@ -8,16 +8,18 @@ gives the same graph, triple for triple.
 
 Two data states:
 
-- **Seeds**: what a clone of the repository loads. 75,675 ABox triples, 77,389 with the TBox.
-- **Seeds plus CTDC**: the same after `scripts/ingest_ctdc.py` has loaded the CTDC Global Synthetic
-  Dataset v2025, 257,969 victim records. The queries ran over one victim in forty, 6,449 records:
-  142,629 ABox triples, 144,343 with the TBox. Row counts in that column are over the sample.
+- **Seeds**: what a clone of the repository loads. 75,675 ABox triples, 77,449 with the TBox.
+- **Seeds plus CTDC and UNODC**: the same after `scripts/ingest_ctdc.py` has loaded the CTDC Global
+  Synthetic Dataset v2025, 257,969 victim records, and `scripts/ingest_unodc.py` the UNODC figures on
+  trafficking in persons, 65,398 figures. The queries ran over one victim in forty, 6,449 records, and
+  the 11,596 figures of the Americas: 267,488 ABox triples, 269,262 with the TBox. Row counts in that
+  column are over this sample.
 
 Both graphs are consistent with the ontology under HermiT.
 
 ## Results
 
-| Query | Seeds | Seeds plus CTDC |
+| Query | Seeds | Seeds plus CTDC and UNODC |
 | --- | ---: | ---: |
 | `Q1_highrisk_by_platform` | 4 | 4 |
 | `Q2_multicountry_recruiters` | 1 | 1 |
@@ -60,8 +62,11 @@ Both graphs are consistent with the ontology under HermiT.
 | `Q39_type_a_vs_type_b_real` | 3 | 3 |
 | `Q40_criminal_recruitment_channels` | 3 | 3 |
 | `Q41_flags_verified_employers_vs_press` | 15 | 15 |
+| `Q42_unodc_detected_victims_mx` | 0 | 15 |
+| `Q43_unodc_form_of_exploitation_mx` | 0 | 47 |
+| `Q44_unodc_vs_ctdc_by_country` | 0 | 5 |
 
-All 41 queries execute. 23 return rows over the seeds and 30 once the CTDC release is loaded.
+All 44 queries execute. 23 return rows over the seeds and 33 once the CTDC and UNODC releases are loaded.
 
 ## Queries that return no rows in either state
 
@@ -86,4 +91,4 @@ competency questions they answer are part of what the ontology is meant to cover
 scripts/offline_vkg/run_all.sh
 ```
 
-`scripts/offline_vkg/README.md` describes each step and how to add the CTDC records.
+`scripts/offline_vkg/README.md` describes each step and how to add the CTDC records and the UNODC figures.

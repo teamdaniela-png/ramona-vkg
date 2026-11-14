@@ -55,7 +55,14 @@ for f in sorted(glob.glob(os.path.join(REPO, "db", "*.sql"))):
         s = st.strip()
         if not s or s == ";" or SKIP.match(s): continue
         if re.search(r"ALTER\s+TABLE.*ADD\s+CONSTRAINT", s, re.I | re.S):
-            constraints.append((base, " ".join(s.split()))); continue
+            # A UNIQUE constraint becomes a unique index, which is how SQLite states it and
+            # what a foreign key to that column requires.
+            u = re.match(r"ALTER\s+TABLE\s+(\w+)\s+ADD\s+CONSTRAINT\s+(\w+)\s+UNIQUE\s*\(([^)]*)\)", " ".join(s.split()), re.I)
+            if u:
+                con.execute("CREATE UNIQUE INDEX IF NOT EXISTS %s ON %s (%s)" % (u.group(2), u.group(1), u.group(3))); ok += 1
+            else:
+                constraints.append((base, " ".join(s.split())))
+            continue
         try:
             con.execute(s); ok += 1
         except Exception as e:

@@ -1,17 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1660 800" width="1660" height="800" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1660 900" width="1660" height="900" font-family="Helvetica, Arial, sans-serif">
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.8 L10,5 L0,9.2" fill="none" stroke="#333" stroke-width="1.3"/></marker><marker id="tri" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="15" markerHeight="15" orient="auto"><path d="M1,1 L13,7 L1,13 Z" fill="#fff" stroke="#333" stroke-width="1.2"/></marker></defs>
 <rect width="100%%" height="100%%" fill="#ffffff"/>
-<text x="24" y="766" font-size="17" font-weight="bold" fill="#111">RATR-O 1.10.10. Survivor-testimony patterns and the evidence behind every fact</text>
-<text x="24" y="786" font-size="11" fill="#555">Generated from ontology/ratr-o.ttl by scripts/gen_uml_diagrams.py. Box: class with its datatype properties. Named arrow: object property, domain to range. Hollow triangle: subclass of. Grey box: attributes drawn on another sheet.</text>
+<text x="24" y="866" font-size="17" font-weight="bold" fill="#111">RATR-O 1.11.0. Survivor-testimony patterns, official statistics and the evidence behind every fact</text>
+<text x="24" y="886" font-size="11" fill="#555">Generated from ontology/ratr-o.ttl by scripts/gen_uml_diagrams.py. Box: class with its datatype properties. Named arrow: object property, domain to range. Hollow triangle: subclass of. Grey box: attributes drawn on another sheet.</text>
 <line x1="1014.6" y1="610.0" x2="1147.7" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
 <line x1="1241.4" y1="610.0" x2="1228.2" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
 <line x1="1455.9" y1="610.0" x2="1304.3" y2="429.0" stroke="#333" stroke-width="1.2" marker-end="url(#tri)"/>
+<line x1="165.2" y1="660.0" x2="138.9" y2="552.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
 <line x1="480.0" y1="430.0" x2="187.1" y2="520.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
 <line x1="480.0" y1="375.2" x2="211.0" y2="341.8" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
 <line x1="642.4" y1="82.0" x2="1100.0" y2="277.8" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
 <line x1="1100.0" y1="341.6" x2="734.0" y2="378.3" stroke="#333" stroke-width="1.1" marker-end="url(#arr)" marker-start="url(#arr)"/>
 <line x1="1243.6" y1="72.0" x2="1229.7" y2="230.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
 <line x1="605.1" y1="82.0" x2="606.3" y2="280.0" stroke="#333" stroke-width="1.1" marker-end="url(#arr)"/>
+<rect x="95.8" y="597.5" width="112.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
+<text x="152.0" y="609.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">statisticForCountry</text>
 <rect x="282.8" y="466.5" width="101.5" height="17.0" fill="#fff" fill-opacity="0.93"/>
 <text x="333.5" y="478.5" font-size="10.5" font-style="italic" text-anchor="middle" fill="#1a3d7c">observedInCountry</text>
 <rect x="292.0" y="350.0" width="107.0" height="17.0" fill="#fff" fill-opacity="0.93"/>
@@ -47,6 +50,17 @@
 <text x="140.5" y="338.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">DominanceBucket</text>
 <rect x="70.0" y="520.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
 <text x="135.0" y="538.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Country</text>
+<rect x="60.0" y="660.0" width="247.9" height="154.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>
+<text x="183.9" y="678.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">OfficialStatistic</text>
+<line x1="60.0" y1="686.0" x2="307.9" y2="686.0" stroke="#222" stroke-width="0.8"/>
+<text x="69.0" y="701.0" font-size="11">statisticAge : xsd:string</text>
+<text x="69.0" y="716.0" font-size="11">statisticCategory : xsd:string</text>
+<text x="69.0" y="731.0" font-size="11">statisticDimension : xsd:string</text>
+<text x="69.0" y="746.0" font-size="11">statisticIndicator : xsd:string</text>
+<text x="69.0" y="761.0" font-size="11">statisticSex : xsd:string</text>
+<text x="69.0" y="776.0" font-size="11">statisticValue : xsd:integer</text>
+<text x="69.0" y="791.0" font-size="11">statisticValueAsPublished : xsd:string</text>
+<text x="69.0" y="806.0" font-size="11">statisticYear : rdfs:Literal</text>
 <rect x="1180.0" y="40.0" width="130.0" height="32.0" fill="#eef0f2" stroke="#222" stroke-width="1.2"/>
 <text x="1245.0" y="58.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">owl:Thing</text>
 <rect x="1100.0" y="230.0" width="241.8" height="199.0" fill="#fffbe8" stroke="#222" stroke-width="1.2"/>

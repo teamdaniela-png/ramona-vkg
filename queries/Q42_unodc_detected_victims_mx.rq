@@ -1,0 +1,17 @@
+PREFIX : <https://w3id.org/ratr-o#>
+
+# Q42. Trafficking victims detected in Mexico per year, as reported to UNODC.
+
+SELECT ?year ?detectedVictims WHERE {
+  ?statistic a :OfficialStatistic ;
+             :statisticForCountry ?country ;
+             :statisticIndicator "Detected trafficking victims" ;
+             :statisticDimension "Total" ;
+             :statisticCategory "Total" ;
+             :statisticSex "Total" ;
+             :statisticAge "Total" ;
+             :statisticYear ?year ;
+             :statisticValueAsPublished ?detectedVictims .
+  ?country :countryISOCode "MEX" .
+}
+ORDER BY ?year

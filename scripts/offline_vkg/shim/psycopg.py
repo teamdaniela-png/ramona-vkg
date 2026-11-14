@@ -1,4 +1,4 @@
-"""sqlite-backed stand-in for psycopg, so scripts/ingest_ctdc.py runs unchanged offline."""
+"""sqlite-backed stand-in for psycopg, so scripts/ingest_ctdc.py and scripts/ingest_unodc.py run unchanged offline."""
 import os, re, sqlite3
 class _Cur:
     def __init__(s, c): s.c=c.cursor()
