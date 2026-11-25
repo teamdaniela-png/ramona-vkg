@@ -236,8 +236,8 @@ docker compose down -v     # stop and wipe the Postgres volume
 
 ## Credits and licence
 
-- Ontology (RATR-O), documentation, competency questions and synthetic data: CC BY 4.0 (full text in [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0)).
-- Code (SQL, OBDA mappings, SPARQL queries, scripts, Docker setup): Apache 2.0 (full text in [`LICENSE`](LICENSE)).
+- Ontology (RATR-O), mappings (`mappings/`, in the Ontop native format and in R2RML), documentation, competency questions and synthetic data: CC BY 4.0 (full text in [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0)).
+- Code (SQL, SPARQL queries, scripts, Docker setup): Apache 2.0 (full text in [`LICENSE`](LICENSE)).
 - Third-party material in `data/raw/` and the press quotes in `data/real/` keep the terms of their original sources and are included for research reference only.
 - CTDC Global Synthetic Dataset: IOM and partners, CC BY 4.0 with source attribution.
 - UNODC figures: UNODC (2024), UNODC Research - Data Portal – Trafficking in Persons, https://dataunodc.un.org/dp-trafficking-persons (release of 28 October 2025, accessed on 14 November 2026).

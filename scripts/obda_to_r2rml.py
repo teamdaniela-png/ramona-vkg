@@ -136,7 +136,7 @@ def emit_r2rml(prefixes: dict, mappings: list) -> str:
     out = []
     out.append("# Ramona VKG — W3C R2RML mapping")
     out.append("# Converted from mappings/ramona.obda (Ontop native format) by scripts/obda_to_r2rml.py")
-    out.append("# Licence: Apache 2.0.")
+    out.append("# Licence: CC BY 4.0.")
     out.append("")
     # R2RML needs rr:; the rest come from the .obda. A prefix declared twice is legal
     # Turtle but reads as an oversight, so each name is written once and the .obda wins

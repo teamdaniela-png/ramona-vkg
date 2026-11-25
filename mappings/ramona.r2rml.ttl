@@ -1,6 +1,6 @@
 # Ramona VKG — W3C R2RML mapping
 # Converted from mappings/ramona.obda (Ontop native format) by scripts/obda_to_r2rml.py
-# Licence: Apache 2.0.
+# Licence: CC BY 4.0.
 
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .

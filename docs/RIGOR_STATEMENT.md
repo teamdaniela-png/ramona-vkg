@@ -52,7 +52,7 @@ Any reviewer inspecting the repository should find this document first. It docum
 
 ## Licences
 
-- Ontology (RATR-O): CC BY 4.0.
+- Ontology (RATR-O) and mappings: CC BY 4.0.
 - Demonstrator code, scripts and SQL: Apache 2.0.
 - CTDC Global Synthetic Dataset: CC BY 4.0, IOM and partners, downloaded by each user from the CTDC website with attribution.
 - Press article references: URL attribution. The repository carries short verbatim quotes of the offers the articles describe, with their source, and no full article text.

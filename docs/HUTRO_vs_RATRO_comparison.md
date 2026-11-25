@@ -37,7 +37,7 @@ HUTRO and RATR-O are complementary, not overlapping. HUTRO covers a very specifi
 | **Provenance mechanism for each domain claim** | `inScheme` only | `:hasEvidenceSource :EvidenceSource`, with `:derivedFrom` for patterns and `:offerDocumentedIn` for offers |
 | **Documentation** | BioPortal class tree | HTML documentation, dataset statistics, audit report, rigor statement, comparison table, competency questions, GitHub Pages |
 | **Reproducibility** | Not applicable (static vocabulary) | Every statistic reproducible by running committed scripts |
-| **Licence** | Not explicitly stated | CC BY 4.0 (ontology), Apache 2.0 (code) |
+| **Licence** | Not explicitly stated | CC BY 4.0 (ontology and mappings), Apache 2.0 (code) |
 
 ## Conceptual reuse from HUTRO to RATR-O
 
