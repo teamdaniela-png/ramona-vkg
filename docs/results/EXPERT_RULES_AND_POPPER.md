@@ -10,7 +10,7 @@ published, so the programs that read them do not run from a clone.
 |---|---|
 | Expert rules, version 2 (22 rules) | `scripts/rule_learning/asp/expert_rules.lp` |
 | The same rules with every exception written in the body | `scripts/rule_learning/asp/expert_rules_long.lp` |
-| Check that the two files give the same alerts | `scripts/rule_learning/asp/check_long_rules.py` |
+| Check that the two files give the same alerts (0 differences over the 813 offers and cases collected) | `scripts/rule_learning/asp/check_long_rules.py` |
 | From a collected offer to ASP facts | `scripts/rule_learning/asp/build_posting_facts.py` |
 | Clingo, Popper, Clingo | `scripts/rule_learning/popper/run_pipeline.py` |
 | Rules learned by Popper, versions 1 to 3 | `scripts/rule_learning/popper/learned/` |
@@ -38,13 +38,13 @@ Definitions used by the rules:
 | 2 | Urgent hiring | Seasonal sales job at a large verified employer; operational post, internship or security post at a verified employer; the only urgency is the badge of a job board | verifica |
 | 3 | Urgent hiring with no experience needed | An exception of rule 2 applies; entry-level post or internship at a verified employer | verifica |
 | 4 | The offer arrives by WhatsApp or e-mail without the person having looked for a job | The channel was agreed with the recruiter; the recruiter is verifiable (profile with followers, with activity and related to the vacancy) | verifica |
-| 5 | The only way in is a personal channel (a WhatsApp number, a private message, a Hotmail or Gmail address) | The employer is verified | verifica |
+| 5 | The only way in is a personal channel (a WhatsApp number, a private message, a phone number, a Hotmail or Gmail address) | The employer is verified | verifica |
 | 6 | The person has to put up money to work | No exception | alerta |
 | 7 | The offer does not say what the job is | The recruiter is verifiable | verifica |
 | 8 | The offer uses the name or logo of a brand or public body that is not the one publishing it | No exception | alerta |
 | 9 | The job is in another state or the transport is paid for | The employer is verified | alerta |
 | 10 | The real job is not the one advertised (known only after contact) | No exception | escalar |
-| 11 | The job is one reported as a false offer used to hook trafficking victims (waitress, receptionist, masseuse, domestic service, care work, adult entertainment) | The employer is verified | verifica |
+| 11 | The job is one reported as a false offer used to hook trafficking victims (waitress, receptionist, masseuse, maid, domestic service, care work, adult entertainment) | The employer is verified | verifica |
 | 12 | Security post (guard, escort, bodyguard driver) | The employer is verified | verifica |
 | 13 | It asks for "good presentation" and does not say what the job is | No exception | alerta |
 | 14 | It asks for personal documents or bank details before any interview | No exception | alerta |
@@ -108,7 +108,7 @@ The 34 signals: `appearance_required`, `asks_for_documents`, `asks_for_money`, `
 `seasonal`, `security`, `social_network`, `specialised_role`, `trafficking_risk_role`, `transport_sent`,
 `unestablished_meeting_place`, `unsolicited_contact`, `urgent`, `verified`, `women_or_age_targeted`.
 
-Popper does not see the expert's rules or their exceptions. It sees the signals and the labels.
+Popper does not see the expert's rules. It sees the signals and the labels. One exception of the expert is already inside a signal: `urgent` leaves out the urgency badge that job boards put on a posting, which is an exception of rule 2.
 
 ### Three versions
 
@@ -128,8 +128,9 @@ that time; it is not shown to be optimal.
 
 Version 2 adds to the training the offers of the second blind test (40 positive, 15 negative; the 4 doubtful ones
 and one offer whose label the expert withdrew are left out) and four signals: photo, coded language, job used as
-bait, verified employer. Version 3 adds the 17 field cases as positives and two signals Popper could not see: the
-place of the appointment and offers addressed to women or an age range.
+bait, verified employer. Version 3 adds the 17 field cases as positives and two signals Popper did not receive: an
+appointment at a place that is not a workplace, and offers addressed to women or an age range. The more specific
+signal `bus_terminal` was given to Popper from version 1.
 
 ### Version 1, the ten rules that sat the blind test
 
@@ -145,6 +146,18 @@ place of the appointment and offers addressed to women or an age range.
  9. alert(O) :- offer(O), channel_known(O), not formal_portal(O), security(O), not personal_channel(O).
 10. alert(O) :- offer(O), operational_role(O), not sales(O), not requires_experience(O),
                 trafficking_risk_role(O), not personal_channel(O).
+```
+
+### Version 2, the seven rules of the intermediate version
+
+```
+1. alert(O) :- offer(O), no_job_described(O).
+2. alert(O) :- offer(O), borrowed_name(O).
+3. alert(O) :- offer(O), employer_never_named(O).
+4. alert(O) :- offer(O), asks_to_download(O).
+5. alert(O) :- offer(O), channel_known(O), not formal_portal(O), not verified_employer(O).
+6. alert(O) :- offer(O), not requires_experience(O), not security(O), moves_person(O).
+7. alert(O) :- offer(O), not requires_experience(O), operational_role(O), trafficking_risk_role(O), not personal_channel(O), not sales(O).
 ```
 
 ### Version 3, the nine current rules
@@ -194,8 +207,10 @@ space.
 - "The employer is never named" was rule 1 of Popper version 1 before the expert had it. The expert added it in
   version 2 as rule 20, limited to social networks, personal channels and direct messages. The signal was among
   those given to Popper; the rule was formed by Popper.
-- Given by the expert and absent from the data of Popper version 1: the appointment at the bus terminal as a
-  signal, coded language, and that an account bearing the name of a company is not enough to verify it.
+- Given by the expert and not received by Popper version 1: coded language, the signal for an appointment at a
+  place that is not a workplace, and that an account bearing the name of a company is not enough to verify it.
+  Popper version 1 did receive `bus_terminal`: it is true in 29 of its 170 positive examples and in none of the
+  227 negative ones, but the final hypothesis has no rule with it.
 - Rules 6, 8 and 9 of version 3 use negation, as the expert's exceptions do.
 
 ## 3. The steps
@@ -215,7 +230,8 @@ Blind-test protocol:
 - The offers are new: they are in no earlier round and not in the training.
 - Each offer is put on a card with the same fields and the same tone, without its source, so that the format does
   not give away where it comes from.
-- The expert labels from the card, without seeing the result of the rules: legitima, dudosa, fraude or peligro.
+- The expert labels from the card, without seeing the result of the rules and without the source of the offers
+  she did not bring herself: legitima, dudosa, fraude or peligro.
 - The signals of an offer include what the poster did after contact (asked for money, asked for documents, set the
   appointment at the bus terminal). They do not include the outcome.
 - It is run once. After the result no rule of that version is changed: changes go to a new version, tested on new
@@ -256,7 +272,7 @@ frozen on 23 November. Version 1 had no levels: an alert means that at least one
 | Peligro with an alert (23) | 21 (91.3%) | 23 (100.0%) |
 | Fraude and peligro with an alert (40) | 38 (95.0%) | 40 (100.0%) |
 | Legitima with an alert, false alarms (16) | 3 (18.8%) | 5 (31.3%) |
-| Correct alerts among the alerts given | 38 of 41 (92.7%) | 40 of 45 (88.9%) |
+| Correct alerts among the alerts on offers with a firm label | 38 of 41 (92.7%) | 40 of 45 (88.9%) |
 | Correct over the 56 offers with a firm label | 51 (91.1%) | 51 (91.1%) |
 | Dudosa with an alert (4) | 3 | 2 |
 
@@ -276,9 +292,9 @@ rules and 5 of 15 for Popper.
 
 ### Field cases: 17
 
-Ten interviews and seven cases of users of Ramona, labelled by the expert after version 2 was frozen: 15 peligro
-and 2 fraude. They were not used to write the expert's rules version 2 nor to train Popper versions 1 and 2. They
-are in the training of Popper version 3.
+Ten interviews and seven cases of users of Ramona, labelled by the expert on 24 November, after version 2 of her
+rules was written: 15 peligro and 2 fraude. They were not used to train Popper versions 1 and 2; they are in the
+training of Popper version 3. The expert already knew these cases, so for her rules they are not a blind test.
 
 | | Expert v1 | Popper v1 | Expert v2 | Popper v2 |
 |---|---|---|---|---|
@@ -286,24 +302,27 @@ are in the training of Popper version 3.
 | User cases (7) | 7 | 5 | 6 alerta, 1 verifica | 4 |
 | Total (17) | 16 (94.1%) | 9 (52.9%) | 14 alerta, 2 verifica | 12 (70.6%) |
 
-Seven of the ten interviews include an appointment at a place that is not a workplace (rule 16), nearly always
-the bus terminal. Popper version 1 did not have that signal. One interview meets none of the expert's rules in
-either version.
+Seven of the ten interviews include an appointment at a place that is not a workplace (rule 16); in five of them
+it is the bus terminal. Popper version 1 did not receive the signal for such an appointment. It did receive
+`bus_terminal`, present in those five cases, but had no rule that used it. One interview meets none of the
+expert's rules in either version.
 
 ### First blind test
 
 19 November 2026, 43 offers, the expert's first 10 rules frozen on 18 November: 7 of 7 fraude with an alert and
-16 of 23 legitima with no alert. It had no peligro offers. Those 43 offers are no longer a blind test for later
+16 of 23 legitima with no alert. The other 13 were labelled dudosa (7 with an alert). It had no peligro offers. Those 43 offers are no longer a blind test for later
 versions.
 
 ### Limits
 
 - One person labelled: the expert.
+- The 17 field cases are interviews and cases of Ramona that the expert already knew. They measure Popper
+  versions 1 and 2 on data they had not seen; for the expert's rules they are not a blind test.
 - Of the 60 offers of the second blind test, 49 were labelled without their source. The other 11 are screenshots
   brought by the expert, who therefore knew where they came from. The two peligro offers the expert's rules missed
   are among those 11.
-- The second blind test measured the versions 1. The expert's rules version 2 and Popper version 3 have no blind
-  test yet: it is the third round, with new offers, the same protocol and the versions already frozen.
+- The second blind test measured version 1 of the expert's rules and of Popper. The expert's rules version 2 and
+  Popper version 3 have no blind test yet: it is the third round, with new offers, the same protocol and the versions already frozen.
 - The press cases were read by a language model. Their labels are the expert's.
 - Two legitimate postings share one identifier, so one negative example carries the signals of two postings (both
   legitimate and verified): 243 postings in 242 examples. It is corrected in the next version.

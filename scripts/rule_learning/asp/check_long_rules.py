@@ -23,7 +23,7 @@ if "-q" not in sys.argv:
         for b in body: print("   " + re.sub(r"\s+", " ", b))
         print()
 files = [D / "offers.lp", D / "expert_facts.lp", ASP / "expert_rules.lp", ASP / "expert_rules_long.lp"] + sorted(P.glob("anuncios_*.lp"))
-for extra in ("prensa/prensa_casos.lp", "popper/_prueba/anuncios_prueba.lp"):
+for extra in ("prensa/prensa_casos.lp", "popper/_prueba/anuncios_prueba.lp", "popper/_examen2/anuncios_examen2.lp", "popper/_examen2/anuncios_campo.lp"):
     if (P / extra).exists(): files.append(P / extra)
 ctl = clingo.Control(["--warn=none"])
 for f in files: ctl.load(str(f))
