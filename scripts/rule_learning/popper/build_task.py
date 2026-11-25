@@ -26,7 +26,7 @@ UNARY = ["requires_experience", "sales", "seasonal", "internship", "entry_level"
 DERIVED = {"pay_high": "high_pay", "moves_person": "relocation", "personal_channel": "personal_contact"}
 HAS = {"contratacion_urgente": "urgent", "sin_experiencia": "no_experience", "pago_adelantado": "asks_for_money",
        "pidio_datos_personales": "asks_for_documents"}
-CONTENT = sorted(set(UNARY) | set(DERIVED.values()) | set(HAS.values()))
+CONTENT = sorted((set(UNARY) | set(DERIVED.values()) | set(HAS.values())) - {"different_job"})   # known only after contact
 POS = {"fraude", "peligro", "reclutamiento_criminal"}
 MONEY = re.compile(r"cuota|inscripci[oó]n|anticipo|dep[oó]sit|transferenc|cobr(a|o|an|aron|aban)\b|pag(ar|o|aron|aban) (por|para|de) (el |la |un |una )?(tr[aá]mite|visa|examen|curso|uniforme|gesti[oó]n)|pid(en|ieron|i[oó]|e) dinero|invertir|recarga", re.I)
 BORROWED = re.compile(r"suplant|usurp|se hac[ií]a[n]? pasar|haci[eé]ndose pasar|a nombre de|nombre de (la|una) empresa|falsa[s]? (p[aá]gina|cuenta|empresa|agencia)|logotipo", re.I)
@@ -35,20 +35,42 @@ GENERIC_JOB = re.compile(r"^\s*$|^(empleo|trabajo|oferta de (empleo|trabajo)|vac
 
 
 def press_signals():
-    """Signals of the press offers read from their text with the same patterns used for the postings."""
-    lines = []
-    for r in csv.DictReader(open(ROOT / "data/real/press_offers_verified.csv", encoding="utf-8-sig")):
-        o = r["offer_uid"].lower().replace("-", "_")
-        job = r["job_title"]; text = " ".join(r[k] for k in ("job_title", "requirements", "contact_method", "paraphrase", "verbatim_quote"))
-        if g.SECURITY.search(job): lines.append(f"security({o}).")
-        if g.TRAFFICKING_RISK.search(job): lines.append(f"trafficking_risk_role({o}).")
-        if g.APPEARANCE.search(text): lines.append(f"appearance_required({o}).")
-        if GENERIC_JOB.search(job): lines.append(f"no_job_described({o}).")
-        if MONEY.search(text): lines.append(f"asks_for_money({o}).")
-        if BORROWED.search(text): lines.append(f"borrowed_name({o}).")
-        if DOCS.search(r["requirements"]): lines.append(f"asks_for_documents({o}).")
-    (P / "prensa").mkdir(exist_ok=True)
-    (P / "prensa/prensa_senales.lp").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    """Signals of the press offers, captured note by note and case by case (captura_notas_por_caso.csv).
+
+    An offer gets a signal when any case of any of its notes has it. Offers whose notes could not be
+    opened fall back to the first capture (captura_167_notas.csv).
+    """
+    period = {"dia": 22, "semana": 4.33, "quincena": 2, "mes": 1}
+    rate = {"MXN": 1, "USD": 19}
+    flags = {"pide_experiencia": "requires_experience", "no_solicitado": "unsolicited_contact", "pide_dinero": "asks_for_money",
+             "usa_nombre_ajeno": "borrowed_name", "otro_estado_o_traslado": "relocation", "pagan_o_dan_el_boleto": "relocation",
+             "pide_documentos": "asks_for_documents", "pide_datos_bancarios": "asks_for_documents",
+             "pide_descargar": "asks_to_download", "buena_presentacion": "appearance_required", "no_dice_puesto": "no_job_described",
+             "puesto_real_distinto": "different_job", "solo_mujeres_o_rango_edad": "women_or_age_targeted",
+             "cita_en_lugar_no_establecido": "unestablished_meeting_place", "sigue_por_mensaje_privado": "personal_contact",
+             "empresa_nunca_nombrada": "employer_never_named", "incomunicado_o_retiran_celular": "held_incommunicado",
+             "adiestramiento_o_capacitacion_fuera": "training_elsewhere"}
+    facts = {}
+    def add(o, r, pay_col):
+        s = facts.setdefault(o, set()); job = r["puesto"]
+        s.update(f"{pred}({o})." for col, pred in flags.items() if r.get(col) == "1")
+        if r["sin_experiencia"] == "1": s.add(f"has({o}, sin_experiencia).")
+        if r["urgente"] == "1": s.add(f"has({o}, contratacion_urgente).")
+        if r["contacto"] in g.PERSONAL_CONTACT: s.add(f"personal_contact({o}).")
+        try:
+            if float(r[pay_col]) * rate[r["pago_moneda"]] * period.get(r["pago_periodo"], 1) >= g.HIGH_PAY_MONTHLY: s.add(f"high_pay({o}).")
+        except (ValueError, KeyError): pass
+        if g.SECURITY.search(job): s.add(f"security({o}).")
+        if g.TRAFFICKING_RISK.search(job): s.add(f"trafficking_risk_role({o}).")
+        if g.PROMOTION.search(job): s.add(f"sales({o}).")
+        if g.OPERATIONAL.search(job): s.add(f"operational_role({o}).")
+    for r in csv.DictReader(open(P / "prensa/captura_notas_por_caso.csv", encoding="utf-8")):
+        if r["nota_disponible"] == "1" and r["trata_del_tema"] != "0" and r["describe_enganche"] == "1":
+            add(r["id"].lower().replace("-", "_"), r, "pago_maximo")
+    for r in csv.DictReader(open(P / "prensa/captura_167_notas.csv", encoding="utf-8")):
+        o = r["id"].lower().replace("-", "_")
+        if o not in facts: add(o, r, "pago_tope")
+    (P / "prensa/prensa_senales.lp").write_text("\n".join(sorted(x for s in facts.values() for x in s)) + "\n", encoding="utf-8")
 
 
 def atoms(lp_files):

@@ -9,10 +9,11 @@ P = ROOT / "data/operational/private"
 NAMES = {1: "Sueldo alto", 2: "Urgencia", 3: "Urgencia y sin experiencia", 4: "Llega sin haber buscado",
          5: "Solo canal personal", 6: "Te piden dinero", 7: "No dice el puesto", 8: "Usa nombre ajeno",
          9: "Otro estado o traslado", 10: "El trabajo real es otro",
-         11: "Puesto de riesgo de trata", 12: "Seguridad, empresa anonima", 13: "Buena presentacion sin puesto",
-         14: "Piden documentos antes", 15: "Piden descargar o evaluacion"}
+         11: "Puesto de riesgo de trata", 12: "Puesto de seguridad", 13: "Buena presentacion sin puesto",
+         14: "Piden documentos antes", 15: "Piden descargar o evaluacion",
+         16: "Cita en lugar no establecido", 17: "Solo mujeres o rango de edad", 18: "Pide foto sin empresa verificada", 19: "Codigos o emojis (pollitos)", 20: "Empresa nunca nombrada en red", 21: "Sueldo alto sin empresa/exp/puesto", 22: "Puesto gancho (verifica)"}
 ctl = clingo.Control(["--warn=none"])
-for f in [D / "offers.lp", D / "expert_facts.lp", ROOT / "scripts/rule_learning/asp/expert_rules.lp"] + sorted(P.glob("*.lp")):
+for f in [D / "offers.lp", D / "expert_facts.lp", ROOT / "scripts/rule_learning/asp/expert_rules.lp"] + sorted(P.glob("*.lp")) + sorted(P.glob("prensa/prensa_senales.lp")):
     ctl.load(str(f))
 ctl.ground([("base", [])])
 fin, dft = collections.defaultdict(set), collections.defaultdict(set)
@@ -43,7 +44,7 @@ for g in order:
     print("%-44s %8d %14d %14d" % (g, len(ids), sum(1 for o in ids if dft[o]), sum(1 for o in ids if fin[o])))
 print("\nPOR REGLA (ofertas que la disparan: sin excepcion -> con excepcion)\n")
 print("%-30s %22s %22s %22s" % ("Regla", "Real validada", "Experta: fraude etc.", "Prensa"))
-for c in range(1, 16):
+for c in range(1, 23):
     row = []
     for g in (order[0], order[2], order[3]):
         ids = [o for o in group if group[o] == g]

@@ -6,14 +6,15 @@ T = (Path(__file__).resolve().parent / "expert_rules.lp").read_text(encoding="ut
 ES = {1: "SUELDO ALTO", 2: "URGENCIA", 3: "URGENCIA Y SIN EXPERIENCIA", 4: "LLEGA SIN HABER BUSCADO",
       5: "SOLO CANAL PERSONAL", 6: "TE PIDEN DINERO", 7: "NO DICE EL PUESTO", 8: "USA NOMBRE AJENO",
       9: "OTRO ESTADO O TRASLADO PAGADO", 10: "EL TRABAJO REAL ES OTRO",
-      11: "PUESTO DE RIESGO DE TRATA (CONSEJO CIUDADANO)", 12: "SEGURIDAD O ESCOLTA DE EMPRESA ANONIMA", 13: "BUENA PRESENTACION SIN DECIR EL PUESTO",
-      14: "PIDEN DOCUMENTOS ANTES DE LA ENTREVISTA", 15: "PIDEN DESCARGAR ALGO O HACER UNA EVALUACION"}
+      11: "PUESTO DE RIESGO DE TRATA (CONSEJO CIUDADANO)", 12: "PUESTO DE SEGURIDAD O ESCOLTA", 13: "BUENA PRESENTACION SIN DECIR EL PUESTO",
+      14: "PIDEN DOCUMENTOS ANTES DE LA ENTREVISTA", 15: "PIDEN DESCARGAR ALGO O HACER UNA EVALUACION",
+      16: "CITA EN LUGAR NO ESTABLECIDO (TERMINAL, RANCHO, CASA, HOTEL, COMIDA RAPIDA)", 17: "SOLO MUJERES O RANGO DE EDAD", 18: "PIDE FOTO SIN EMPRESA VERIFICADA", 19: "CODIGOS O EMOJIS (POLLITOS)", 20: "EMPRESA NUNCA NOMBRADA EN RED", 21: "SUELDO ALTO SIN EMPRESA/EXP/PUESTO", 22: "PUESTO GANCHO (VERIFICA)"}
 m = re.search(r"% ---- An employer that advertises.*?(?=\n\n)", T, re.S)
 print("\n=== CUANDO UNA EMPRESA CUENTA COMO VALIDADA ===\n")
 print("\n".join(l for l in T.splitlines() if l.startswith("verified_employer(")))
 if m:
     print(m.group(0).replace("% ---- ", "").replace("%      ", "  ").replace("#show validated_on_social/1.", ""))
-for c in range(1, 16):
+for c in range(1, 23):
     b = re.search(r"% ---- Component " + str(c) + r"\..*?(?=\n\n)", T, re.S)
     if b:
         print("\n=== REGLA %d. %s ===\n" % (c, ES[c]))

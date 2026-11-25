@@ -27,7 +27,7 @@ def main():
     print()
 
     ctl = clingo.Control(["--warn=none"])
-    extra = sorted((ROOT / "data/operational/private").glob("*.lp"))
+    extra = sorted((ROOT / "data/operational/private").glob("*.lp")) + sorted((ROOT / "data/operational/private").glob("prensa/prensa_senales.lp"))
     for f in [D / "offers.lp", D / "expert_facts.lp", RULES] + extra:
         ctl.load(str(f))
     ctl.ground([("base", [])])

@@ -19,7 +19,34 @@ SPECIALISED = re.compile(r"\bphd\b|doctorado|doctor en|cient[ií]fic[oa] de dato
 # Jobs the Consejo Ciudadano (6to Reporte de Trata de Personas) lists as the false offers used to hook victims.
 TRAFFICKING_RISK = re.compile(r"meser|recepcionist|masajist|mucama|dom[eé]stic|ni[nñ]er|cuidador|entretenimiento para adultos|table dance|bailarina", re.I)
 ANONYMOUS = re.compile(r"confidencial|oculto|sin empresa|an[oó]nim|sin nombre", re.I)
+# Jobs that appear as bait in the press cases the expert labelled fraude or peligro (24-nov-2026). Alone they only
+# ask to verify: the expert does not want to stigmatise these jobs.
+RECRUIT_ROLE = re.compile(r"guardia|vigilan|seguridad|escolta|custodi|meser|\bbar\b|hostess|edec[aá]n|recepcionist|bailarina|modelo|"
+                          r"campo|cosecha|jornaler|corte de|agr[ií]col|construcci|alba[nñ]il|cocin|dom[eé]stic|ni[nñ]er|cuidador|"
+                          r"limpieza|intendencia|call center|agente telef|asesor telef|ejecutivo telef|telemarket|teleoperador|chofer|conductor", re.I)
+# Codes and emojis that criminal groups use in their offers, from the press cases (C-047, C-137, C-141, C-175, C-189, C-190...)
+# and the expert ("pollitos": migrants or newly recruited youths).
+CODES = re.compile(r"gallo|ninja|pizza|chapiz|diablo|calavera|pistola|pollo|pollito|4 ?letras|cuatro letras|\b4l\b|\bng\b|#|mencho|"
+                   r"\bmaña\b|b[eé]lic|casco militar|pastillas|picas|narcocorrido|corridos|santa muerte|gente nueva|gente valiente|entrona", re.I)
 APPEARANCE = re.compile(r"(buena|excelente) presentaci", re.I)
+SOCIAL = re.compile(r"facebook|tiktok|instagram|snapchat|twitch|discord|videojuego|roblox|youtube|redes|^x$", re.I)
+PORTAL = re.compile(r"portal|indeed|computrabajo|occ|glassdoor|sne|bolsa|^linkedin$", re.I)
+MESSAGE = re.compile(r"whatsapp|sms|llamada|correo|mensaj|telegram|messenger", re.I)
+
+
+def channel(value):
+    """Where the offer reached the person: a social network, a formal job board or a direct message."""
+    out = []
+    for part in filter(None, re.split(r"[;,]", value or "")):
+        part = part.strip()
+        if MESSAGE.search(part): out.append("direct_message")
+        elif SOCIAL.search(part): out.append("social_network")
+        elif PORTAL.search(part): out.append("formal_portal")
+    return sorted(set(out)), bool((value or "").strip())
+
+
+BUS_TERMINAL = re.compile(r"central (de autobuses|camioner)|terminal(es)? de (autobuses|camiones)|central nueva", re.I)
+TRANSPORT_SENT = re.compile(r"ofrece transporte|pagan? el (autob|boleto|traslado|viaje|pasaje)|pagar el boleto|mandan? (un )?(taxi|uber|transporte)|pasan por", re.I)
 FLAGS = (("ventas", "sales"), ("temporada", "seasonal"), ("becario", "internship"),
          ("entry_level", "entry_level"), ("marca_conocida", "large_verified_employer"))
 
@@ -73,8 +100,36 @@ def main():
                 lines.append(f"appearance_required({o}).")
             if r.get("pide_documentos") == "1":
                 lines.append(f"asks_for_documents({o}).")
+            if r.get("pide_foto") == "1":
+                lines.append(f"asks_for_photo({o}).")
+            if CODES.search(r.get("codigos_o_emojis") or ""):
+                lines.append(f"coded_language({o}).")
+            if RECRUIT_ROLE.search(r["puesto"]):
+                lines.append(f"recruitment_role({o}).")
             if r.get("pide_descargar") == "1":
                 lines.append(f"asks_to_download({o}).")
+            if r.get("cita_lugar_no_establecido") == "1":
+                lines.append(f"unestablished_meeting_place({o}).")
+            if r.get("solo_mujeres_o_edad") == "1":
+                lines.append(f"women_or_age_targeted({o}).")
+            if r.get("urgencia_fuente") == "etiqueta_portal":
+                lines.append(f"portal_badge_only({o}).")
+            for s in filter(None, (r.get("senales_reclutador") or "").split(";")):
+                lines.append(f"recruiter_profile({o}, {s}).")
+            if r.get("reclutador_verificable") == "1":      # the expert checked the recruiter herself
+                lines.append(f"verifiable_recruiter({o}).")
+            source = r.get("canal") if "canal" in r else path.name.split("_")[1]      # anuncios_<fuente>_...
+            kinds, known = channel(source)
+            lines += [f"{k}({o})." for k in kinds]
+            if known:
+                lines.append(f"channel_known({o}).")
+            if ANONYMOUS.search(r["empresa"]):
+                lines.append(f"employer_never_named({o}).")
+            text = r["puesto"] + " " + (r.get("nota") or "")
+            if BUS_TERMINAL.search(text):
+                lines.append(f"bus_terminal({o}).")
+            if TRANSPORT_SENT.search(text):
+                lines.append(f"transport_sent({o}).")
             if r.get("intermediaria") == "1":
                 lines.append(f"intermediary({o}).")
             if r["id"].startswith("D-"):
